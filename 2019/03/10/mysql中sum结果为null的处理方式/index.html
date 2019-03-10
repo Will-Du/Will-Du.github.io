@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>java8的简单用法 | 个人博客</title>
+  <title>mysql中sum结果为null的处理方式 | 个人博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以下为java8的一些基本用法1.按条件过滤集合(filter)：1List&amp;lt;Employee&amp;gt; list = employeeList.stream().filter(e -&amp;gt; e.getAge() &amp;lt; 30 &amp;amp;&amp;amp; &quot;A1&quot;.equal(e.getDept())).collect(Collectors.toList()); 2.取集合中某个属性作为新的集合">
-<meta name="keywords" content="java">
+  <meta name="description" content="在sql中经常遇到需要求和的时候，有时候忘记判断查出来的结果时，程序再接着往后跑的时候会抛出空指针的异常，然后程序无法继续执行。所以我们求和时，如果没有值可以赋0.因此用到ifnull()这个函数。1ifnull(sum(字段A),0)">
+<meta name="keywords" content="sql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java8的简单用法">
-<meta property="og:url" content="http://yoursite.com/2019/01/13/java8的简单用法/index.html">
+<meta property="og:title" content="mysql中sum结果为null的处理方式">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/mysql中sum结果为null的处理方式/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="以下为java8的一些基本用法1.按条件过滤集合(filter)：1List&amp;lt;Employee&amp;gt; list = employeeList.stream().filter(e -&amp;gt; e.getAge() &amp;lt; 30 &amp;amp;&amp;amp; &quot;A1&quot;.equal(e.getDept())).collect(Collectors.toList()); 2.取集合中某个属性作为新的集合">
+<meta property="og:description" content="在sql中经常遇到需要求和的时候，有时候忘记判断查出来的结果时，程序再接着往后跑的时候会抛出空指针的异常，然后程序无法继续执行。所以我们求和时，如果没有值可以赋0.因此用到ifnull()这个函数。1ifnull(sum(字段A),0)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-08T09:48:10.179Z">
+<meta property="og:updated_time" content="2019-03-10T02:59:34.041Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java8的简单用法">
-<meta name="twitter:description" content="以下为java8的一些基本用法1.按条件过滤集合(filter)：1List&amp;lt;Employee&amp;gt; list = employeeList.stream().filter(e -&amp;gt; e.getAge() &amp;lt; 30 &amp;amp;&amp;amp; &quot;A1&quot;.equal(e.getDept())).collect(Collectors.toList()); 2.取集合中某个属性作为新的集合">
+<meta name="twitter:title" content="mysql中sum结果为null的处理方式">
+<meta name="twitter:description" content="在sql中经常遇到需要求和的时候，有时候忘记判断查出来的结果时，程序再接着往后跑的时候会抛出空指针的异常，然后程序无法继续执行。所以我们求和时，如果没有值可以赋0.因此用到ifnull()这个函数。1ifnull(sum(字段A),0)">
   
     <link rel="alternative" href="/atom.xml" title="个人博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java8的简单用法" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-mysql中sum结果为null的处理方式" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/01/13/java8的简单用法/" class="article-date">
-  	<time datetime="2019-01-13T02:44:05.000Z" itemprop="datePublished">2019-01-13</time>
+      <a href="/2019/03/10/mysql中sum结果为null的处理方式/" class="article-date">
+  	<time datetime="2019-03-10T02:54:50.000Z" itemprop="datePublished">2019-03-10</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java8的简单用法
+      mysql中sum结果为null的处理方式
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="/2019/01/13/java8的简单用法/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java8的简单用法">
+    <span id="/2019/03/10/mysql中sum结果为null的处理方式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mysql中sum结果为null的处理方式">
          &nbsp;
         view
     </span>
@@ -203,12 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="以下为java8的一些基本用法"><a href="#以下为java8的一些基本用法" class="headerlink" title="以下为java8的一些基本用法"></a>以下为java8的一些基本用法</h2><p>1.按条件过滤集合(filter)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Employee&gt; list = employeeList.stream().filter(e -&gt; e.getAge() &lt; <span class="number">30</span> &amp;&amp; <span class="string">"A1"</span>.equal(e.getDept())).collect(Collectors.toList());</span><br></pre></td></tr></table></figure></p>
-<p>2.取集合中某个属性作为新的集合(map)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; deptList = employeeList.stream().map(Employee::getDept).collect(Collectors.toList());</span><br></pre></td></tr></table></figure></p>
-<p>3.去重(distinct)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个distinct()是把相同对象先去重，第二个distinct()是把取得的值去重</span></span><br><span class="line">List&lt;String&gt; deptList = employeeList.stream().distinct().map(Employee::getDept).distinct().collect(Collectors.toList());</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>4.分组(groupingBy):<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,List&lt;Employee&gt;&gt; map = employeeList.stream(). collect(groupingBy(Employee:getDept));</span><br></pre></td></tr></table></figure></p>
-<p>5.循环(foreach)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环赋值</span></span><br><span class="line">employeeList.foreach(e -&gt; &#123;e.setDept(<span class="string">"A1"</span>); e.setAge(<span class="number">25</span>);&#125;);</span><br></pre></td></tr></table></figure></p>
+        <p>在sql中经常遇到需要求和的时候，有时候忘记判断查出来的结果时，程序再接着往后跑的时候会抛出空指针的异常，然后程序无法继续执行。<br>所以我们求和时，如果没有值可以赋0.因此用到ifnull()这个函数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifnull(sum(字段A),<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -218,18 +213,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/15/jquery自定义验证/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/10/js截取字符串/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          jquery自定义验证
+          js截取字符串
         
       </div>
     </a>
   
   
-    <a href="/2019/01/11/js中toFixed的精度问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js中toFixed的精度问题</div>
+    <a href="/2019/03/10/样式覆盖的问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">样式覆盖的问题</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   

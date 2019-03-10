@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a>
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,266 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-js金额格式化" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/10/js金额格式化/" class="article-date">
+  	<time datetime="2019-03-10T03:06:29.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/js金额格式化/">
+        js金额格式化
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* number：要格式化的数字</span></span><br><span class="line"><span class="comment">	* flag : 货币符号</span></span><br><span class="line"><span class="comment">	* decimals：保留几位小数</span></span><br><span class="line"><span class="comment">	* dec_point：小数点符号</span></span><br><span class="line"><span class="comment">	* thousands_sep：千分位符号</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">formatMoney: <span class="function"><span class="keyword">function</span>(<span class="params">number,flag,decimals,dec_point,thousands_sep</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!number) &#123;</span><br><span class="line">	  <span class="keyword">if</span>(number == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">	  <span class="keyword">if</span>(decimals) &#123;</span><br><span class="line">		decimals = decimals &gt; <span class="number">0</span> &amp;&amp; decimals &lt;= <span class="number">20</span> ? decimals : <span class="number">2</span>;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		decimals = <span class="number">2</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	  </span><br><span class="line">	  number = (number + <span class="string">''</span>).replace(<span class="regexp">/[^0-9+-Ee.]/g</span>, <span class="string">''</span>);</span><br><span class="line">	  <span class="keyword">var</span> n = !<span class="built_in">isFinite</span>(+number) ? <span class="number">0</span> : +number,</span><br><span class="line">		  prec = !<span class="built_in">isFinite</span>(+decimals) ? <span class="number">0</span> : <span class="built_in">Math</span>.abs(decimals),</span><br><span class="line">		  sep = (<span class="keyword">typeof</span> thousands_sep === <span class="string">'undefined'</span>) ? <span class="string">','</span> : thousands_sep,</span><br><span class="line">		  dec = (<span class="keyword">typeof</span> dec_point === <span class="string">'undefined'</span>) ? <span class="string">'.'</span> : dec_point,</span><br><span class="line">		  s = <span class="string">''</span>,</span><br><span class="line">		  toFixedFix = <span class="function"><span class="keyword">function</span> (<span class="params">n, prec</span>) </span>&#123;</span><br><span class="line">			  <span class="keyword">var</span> k = <span class="built_in">Math</span>.pow(<span class="number">10</span>, prec);</span><br><span class="line">			  <span class="keyword">return</span> <span class="string">''</span> + <span class="built_in">Math</span>.ceil(n * k) / k;</span><br><span class="line">		  &#125;;</span><br><span class="line"></span><br><span class="line">	  s = (prec ? toFixedFix(n, prec) : <span class="string">''</span> + <span class="built_in">Math</span>.round(n)).split(<span class="string">'.'</span>);</span><br><span class="line">	  <span class="keyword">var</span> re = <span class="regexp">/(-?\d+)(\d&#123;3&#125;)/</span>;</span><br><span class="line">	  <span class="keyword">while</span> (re.test(s[<span class="number">0</span>])) &#123;</span><br><span class="line">		  s[<span class="number">0</span>] = s[<span class="number">0</span>].replace(re, <span class="string">"$1"</span> + sep + <span class="string">"$2"</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">if</span> ((s[<span class="number">1</span>] || <span class="string">''</span>).length &lt; prec) &#123;</span><br><span class="line">		  s[<span class="number">1</span>] = s[<span class="number">1</span>] || <span class="string">''</span>;</span><br><span class="line">		  s[<span class="number">1</span>] += <span class="keyword">new</span> <span class="built_in">Array</span>(prec - s[<span class="number">1</span>].length + <span class="number">1</span>).join(<span class="string">'0'</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">var</span> returnStr = s.join(dec);</span><br><span class="line">	  <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		returnStr = flag + <span class="string">" "</span> + returnStr;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="keyword">return</span> returnStr;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/03/10/js金额格式化/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js金额格式化">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-js截取字符串" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/10/js截取字符串/" class="article-date">
+  	<time datetime="2019-03-10T03:01:34.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/js截取字符串/">
+        js截取字符串
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此代码为vue项目中，用来控制字符串显示问题的过滤器<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* value：传入的字符串</span></span><br><span class="line"><span class="comment">	* maxLength: 字符串显示的最大长度</span></span><br><span class="line"><span class="comment">	* length：超出该值得部分用'...'</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">ShowStr: <span class="function"><span class="keyword">function</span>(<span class="params">value,maxLength,length</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!value) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(value.length &lt;= maxLength) &#123;</span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> value.substr(<span class="number">0</span>,length) + <span class="string">'...'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/03/10/js截取字符串/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js截取字符串">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-mysql中sum结果为null的处理方式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/10/mysql中sum结果为null的处理方式/" class="article-date">
+  	<time datetime="2019-03-10T02:54:50.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/mysql中sum结果为null的处理方式/">
+        mysql中sum结果为null的处理方式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在sql中经常遇到需要求和的时候，有时候忘记判断查出来的结果时，程序再接着往后跑的时候会抛出空指针的异常，然后程序无法继续执行。<br>所以我们求和时，如果没有值可以赋0.因此用到ifnull()这个函数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifnull(sum(字段A),<span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/03/10/mysql中sum结果为null的处理方式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mysql中sum结果为null的处理方式">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-样式覆盖的问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/10/样式覆盖的问题/" class="article-date">
+  	<time datetime="2019-03-10T02:25:24.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/样式覆盖的问题/">
+        样式覆盖的问题
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.<br>官方表述的CSS样式优先级如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用选择器（*） &lt; 元素(类型)选择器 &lt; 类选择器 &lt; 属性选择器 &lt; 伪类 &lt; ID 选择器 &lt; 内联样式</span><br></pre></td></tr></table></figure></p>
+<p>!important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/03/10/样式覆盖的问题/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="样式覆盖的问题">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-js中Number精度问题" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -553,143 +813,10 @@
 
 
   
-    <article id="post-java-DateUtil-常用时间方法封装" class="article article-type-post" itemscope="" itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2019/01/09/java-DateUtil-常用时间方法封装/" class="article-date">
-  	<time datetime="2019-01-09T14:02:09.000Z" itemprop="datePublished">2019-01-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/java-DateUtil-常用时间方法封装/">
-        java-DateUtil 常用时间方法封装
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>运用Calendar封装了个工具类，代码如下(主页请点击more阅读全文)<br>
-      
-    </p></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/01/09/java-DateUtil-常用时间方法封装/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-DateUtil 常用时间方法封装">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/01/09/java-DateUtil-常用时间方法封装/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="w-java-Calendar常用方法总结" class="article article-type-w" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/01/06/java-Calendar常用方法总结/" class="article-date">
-  	<time datetime="2019-01-06T13:02:19.000Z" itemprop="datePublished">2019-01-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/java-Calendar常用方法总结/">
-        java-Calendar常用方法总结
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="取得Calendar中的年月日时分秒"><a href="#取得Calendar中的年月日时分秒" class="headerlink" title="取得Calendar中的年月日时分秒"></a>取得Calendar中的年月日时分秒</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 实例化Calendar</span></span><br><span class="line">		Calendar calendar = Calendar.getInstance();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第一种：直接将date放入</span></span><br><span class="line">		Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).parse(<span class="string">"2019-01-06 20:30:00"</span>);</span><br><span class="line">		<span class="comment">// 将实例化的时间设为2019-01-06</span></span><br><span class="line">		calendar.setTime(date);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第二种：year:年, month:月-1(以0开始), date:日, hourOfDay:小时, minute:分钟, second:秒数</span></span><br><span class="line">		calendar.set(<span class="number">2019</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第三种 若不设置则取当前时间有关的年月日时分秒</span></span><br><span class="line">		calendar.set(Calendar.YEAR, <span class="number">2019</span>);</span><br><span class="line">		calendar.set(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line">		calendar.set(Calendar.DAY_OF_MONTH, <span class="number">6</span>);</span><br><span class="line">		calendar.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">		calendar.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		calendar.set(Calendar.SECOND, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 获取calendar中设定的年，若calendar为直接实例出来，默认是当前年。</span></span><br><span class="line">		<span class="keyword">int</span> year = calendar.get(Calendar.YEAR);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的月。注：默认为0，因此需要+1才显示当前月</span></span><br><span class="line">		<span class="keyword">int</span> month = calendar.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">		<span class="comment">// 获取calendar中设定的日</span></span><br><span class="line">		<span class="keyword">int</span> day = calendar.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的小时</span></span><br><span class="line">		<span class="keyword">int</span> hour = calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = calendar.get(Calendar.MINUTE);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的秒</span></span><br><span class="line">		<span class="keyword">int</span> second = calendar.get(Calendar.SECOND);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的星期，注：英国国家以星期日开始，因此需要转换一下</span></span><br><span class="line">		<span class="keyword">int</span> weekday = calendar.get(Calendar.DAY_OF_WEEK) -<span class="number">1</span> == <span class="number">0</span> ? <span class="number">7</span> : calendar.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		System.err.println(<span class="string">"calendar中设定的时间为："</span> + year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + day + <span class="string">"日"</span> + hour + <span class="string">"时"</span> + minute + <span class="string">"分"</span> </span><br><span class="line">		+ second + <span class="string">"秒  星期"</span> + weekday);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">calendar中设定的时间为：2019年1月6日20时30分0秒  星期7</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/01/06/java-Calendar常用方法总结/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-Calendar常用方法总结">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/01/06/java-Calendar常用方法总结/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">

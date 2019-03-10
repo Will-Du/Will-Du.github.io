@@ -3,24 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>java-Calendar常用方法总结 | 个人博客</title>
+  <title>个人博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="取得Calendar中的年月日时分秒12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package com.test;import java.text.ParseException;import java.text.SimpleDateFormat;import jav">
-<meta name="keywords" content="java">
-<meta property="og:type" content="article">
-<meta property="og:title" content="java-Calendar常用方法总结">
-<meta property="og:url" content="http://yoursite.com/2019/01/06/java-Calendar常用方法总结/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="个人博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="取得Calendar中的年月日时分秒12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package com.test;import java.text.ParseException;import java.text.SimpleDateFormat;import jav">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-08T09:48:10.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java-Calendar常用方法总结">
-<meta name="twitter:description" content="取得Calendar中的年月日时分秒12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849package com.test;import java.text.ParseException;import java.text.SimpleDateFormat;import jav">
+<meta name="twitter:title" content="个人博客">
   
     <link rel="alternative" href="/atom.xml" title="个人博客" type="application/atom+xml">
   
@@ -155,7 +150,77 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="w-java-Calendar常用方法总结" class="article article-type-w" itemscope="" itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-java-DateUtil-常用时间方法封装" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/09/java-DateUtil-常用时间方法封装/" class="article-date">
+  	<time datetime="2019-01-09T14:02:09.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/09/java-DateUtil-常用时间方法封装/">
+        java-DateUtil 常用时间方法封装
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>运用Calendar封装了个工具类，代码如下(主页请点击more阅读全文)<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/01/09/java-DateUtil-常用时间方法封装/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-DateUtil 常用时间方法封装">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/01/09/java-DateUtil-常用时间方法封装/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="w-java-Calendar常用方法总结" class="article article-type-w" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2019/01/06/java-Calendar常用方法总结/" class="article-date">
@@ -171,24 +236,35 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      java-Calendar常用方法总结
-      
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/06/java-Calendar常用方法总结/">
+        java-Calendar常用方法总结
+        
+      </a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="取得Calendar中的年月日时分秒"><a href="#取得Calendar中的年月日时分秒" class="headerlink" title="取得Calendar中的年月日时分秒"></a>取得Calendar中的年月日时分秒</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 实例化Calendar</span></span><br><span class="line">		Calendar calendar = Calendar.getInstance();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第一种：直接将date放入</span></span><br><span class="line">		Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).parse(<span class="string">"2019-01-06 20:30:00"</span>);</span><br><span class="line">		<span class="comment">// 将实例化的时间设为2019-01-06</span></span><br><span class="line">		calendar.setTime(date);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第二种：year:年, month:月-1(以0开始), date:日, hourOfDay:小时, minute:分钟, second:秒数</span></span><br><span class="line">		calendar.set(<span class="number">2019</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第三种 若不设置则取当前时间有关的年月日时分秒</span></span><br><span class="line">		calendar.set(Calendar.YEAR, <span class="number">2019</span>);</span><br><span class="line">		calendar.set(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line">		calendar.set(Calendar.DAY_OF_MONTH, <span class="number">6</span>);</span><br><span class="line">		calendar.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">		calendar.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		calendar.set(Calendar.SECOND, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 获取calendar中设定的年，若calendar为直接实例出来，默认是当前年。</span></span><br><span class="line">		<span class="keyword">int</span> year = calendar.get(Calendar.YEAR);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的月。注：默认为0，因此需要+1才显示当前月</span></span><br><span class="line">		<span class="keyword">int</span> month = calendar.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">		<span class="comment">// 获取calendar中设定的日</span></span><br><span class="line">		<span class="keyword">int</span> day = calendar.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的小时</span></span><br><span class="line">		<span class="keyword">int</span> hour = calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = calendar.get(Calendar.MINUTE);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的秒</span></span><br><span class="line">		<span class="keyword">int</span> second = calendar.get(Calendar.SECOND);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的星期，注：英国国家以星期日开始，因此需要转换一下</span></span><br><span class="line">		<span class="keyword">int</span> weekday = calendar.get(Calendar.DAY_OF_WEEK) -<span class="number">1</span> == <span class="number">0</span> ? <span class="number">7</span> : calendar.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		System.err.println(<span class="string">"calendar中设定的时间为："</span> + year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + day + <span class="string">"日"</span> + hour + <span class="string">"时"</span> + minute + <span class="string">"分"</span> </span><br><span class="line">		+ second + <span class="string">"秒  星期"</span> + weekday);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">calendar中设定的时间为：2019年1月6日20时30分0秒  星期7</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 	</div>
 
-        
+      
 
+      
         
-          
 <div class="counter-tag counter">
     <span id="/2019/01/06/java-Calendar常用方法总结/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-Calendar常用方法总结">
          &nbsp;
@@ -196,43 +272,28 @@
     </span>
 </div>
 
-        
-        <div class="clearfix"></div>
-      </div>
       
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="取得Calendar中的年月日时分秒"><a href="#取得Calendar中的年月日时分秒" class="headerlink" title="取得Calendar中的年月日时分秒"></a>取得Calendar中的年月日时分秒</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 实例化Calendar</span></span><br><span class="line">		Calendar calendar = Calendar.getInstance();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第一种：直接将date放入</span></span><br><span class="line">		Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).parse(<span class="string">"2019-01-06 20:30:00"</span>);</span><br><span class="line">		<span class="comment">// 将实例化的时间设为2019-01-06</span></span><br><span class="line">		calendar.setTime(date);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第二种：year:年, month:月-1(以0开始), date:日, hourOfDay:小时, minute:分钟, second:秒数</span></span><br><span class="line">		calendar.set(<span class="number">2019</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第三种 若不设置则取当前时间有关的年月日时分秒</span></span><br><span class="line">		calendar.set(Calendar.YEAR, <span class="number">2019</span>);</span><br><span class="line">		calendar.set(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line">		calendar.set(Calendar.DAY_OF_MONTH, <span class="number">6</span>);</span><br><span class="line">		calendar.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">		calendar.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		calendar.set(Calendar.SECOND, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 获取calendar中设定的年，若calendar为直接实例出来，默认是当前年。</span></span><br><span class="line">		<span class="keyword">int</span> year = calendar.get(Calendar.YEAR);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的月。注：默认为0，因此需要+1才显示当前月</span></span><br><span class="line">		<span class="keyword">int</span> month = calendar.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">		<span class="comment">// 获取calendar中设定的日</span></span><br><span class="line">		<span class="keyword">int</span> day = calendar.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的小时</span></span><br><span class="line">		<span class="keyword">int</span> hour = calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = calendar.get(Calendar.MINUTE);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的秒</span></span><br><span class="line">		<span class="keyword">int</span> second = calendar.get(Calendar.SECOND);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的星期，注：英国国家以星期日开始，因此需要转换一下</span></span><br><span class="line">		<span class="keyword">int</span> weekday = calendar.get(Calendar.DAY_OF_WEEK) -<span class="number">1</span> == <span class="number">0</span> ? <span class="number">7</span> : calendar.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		System.err.println(<span class="string">"calendar中设定的时间为："</span> + year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + day + <span class="string">"日"</span> + hour + <span class="string">"时"</span> + minute + <span class="string">"分"</span> </span><br><span class="line">		+ second + <span class="string">"秒  星期"</span> + weekday);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">calendar中设定的时间为：2019年1月6日20时30分0秒  星期7</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>    
-<h2 id="设定Calendar中的年月日时分秒"><a href="#设定Calendar中的年月日时分秒" class="headerlink" title="设定Calendar中的年月日时分秒"></a>设定Calendar中的年月日时分秒</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种：直接将date放入</span></span><br><span class="line">Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).parse(<span class="string">"2019-01-06 20:30:00"</span>);</span><br><span class="line"><span class="comment">// 将实例化的时间设为2019-01-06</span></span><br><span class="line">calendar.setTime(date);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种：year:年, month:月-1(以0开始), date:日, hourOfDay:小时, minute:分钟, second:秒数</span></span><br><span class="line">calendar.set(<span class="number">2019</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种 若不设置则取当前时间有关的年月日时分秒</span></span><br><span class="line">calendar.set(Calendar.YEAR, <span class="number">2019</span>);</span><br><span class="line">calendar.set(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line">calendar.set(Calendar.DAY_OF_MONTH, <span class="number">6</span>);</span><br><span class="line">calendar.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">calendar.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">calendar.set(Calendar.SECOND, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<label style="color:red"><br><strong>注：第二种与第三种设置月日时分秒若设置为负数，则时间会倒推。<br>如calendar.set(2019, -1, 6, 20, 30, 0);则时间为2018-12-6 20:30:00</strong><br></label>
-      
+      <div class="clearfix"></div>
     </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/01/06/java-Calendar常用方法总结/#more">more >></a>
+        </p>
+      
     
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/01/09/java-DateUtil-常用时间方法封装/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          java-DateUtil 常用时间方法封装
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
   
 </article>
 
 
 
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -256,8 +317,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
