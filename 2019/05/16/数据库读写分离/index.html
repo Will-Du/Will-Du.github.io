@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>样式覆盖的问题 | 个人博客</title>
+  <title>数据库读写分离 | 个人博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
-<meta name="keywords" content="css">
+  <meta name="description" content="1.主数据库创建一个用户(尽量不要使用root)     CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;    username:用户名    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%    password:用户密码2.给该用户授权slave(mysq">
+<meta name="keywords" content="sql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="样式覆盖的问题">
-<meta property="og:url" content="http://yoursite.com/2019/03/10/样式覆盖的问题/index.html">
+<meta property="og:title" content="数据库读写分离">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/数据库读写分离/index.html">
 <meta property="og:site_name" content="个人博客">
-<meta property="og:description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
+<meta property="og:description" content="1.主数据库创建一个用户(尽量不要使用root)     CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;    username:用户名    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%    password:用户密码2.给该用户授权slave(mysq">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-10T02:32:49.207Z">
+<meta property="og:updated_time" content="2019-06-11T13:47:03.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="样式覆盖的问题">
-<meta name="twitter:description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
+<meta name="twitter:title" content="数据库读写分离">
+<meta name="twitter:description" content="1.主数据库创建一个用户(尽量不要使用root)     CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;    username:用户名    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%    password:用户密码2.给该用户授权slave(mysq">
   
     <link rel="alternative" href="/atom.xml" title="个人博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-样式覆盖的问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-数据库读写分离" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/10/样式覆盖的问题/" class="article-date">
-  	<time datetime="2019-03-10T02:25:24.000Z" itemprop="datePublished">2019-03-10</time>
+      <a href="/2019/05/16/数据库读写分离/" class="article-date">
+  	<time datetime="2019-05-16T06:19:43.000Z" itemprop="datePublished">2019-05-16</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      样式覆盖的问题
+      数据库读写分离
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="/2019/03/10/样式覆盖的问题/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="样式覆盖的问题">
+    <span id="/2019/05/16/数据库读写分离/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库读写分离">
          &nbsp;
         view
     </span>
@@ -203,8 +203,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.<br>官方表述的CSS样式优先级如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用选择器（*） &lt; 元素(类型)选择器 &lt; 类选择器 &lt; 属性选择器 &lt; 伪类 &lt; ID 选择器 &lt; 内联样式</span><br></pre></td></tr></table></figure></p>
-<p>!important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高</p>
+        <label style="color:red">1.主数据库创建一个用户(尽量不要使用root) </label><br>    CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;<br>    username:用户名<br>    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%<br>    password:用户密码<br><label style="color:red">2.给该用户授权slave(mysql8.0以上可以不用写IDENTIFIED BY ‘password’;)</label><br>    GRANT REPLICATION SLAVE ON *.* to ‘username‘@’%’;<br><label style="color:red">3.主数据库与从数据库修改配置文件(linux:my.cnf;window:my.ini)并重启数据库</label><br>    log-bin=mysql-bin //启用二进制日志 (主数据库必须)<br>    server-id=1 //服务器唯一ID，默认是1，一般取IP最后一段(必须)(不同服务器的server-id应不同)<a id="more"></a><br><label style="color:red">4.登录主服务器的mysql，查询master的状态(执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化)</label><br>    show master status;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File			Position		Binlog_Do_DB		Binlog_Ignore_DB</span><br><span class="line">mysql-bin.000004	<span class="number">308</span></span><br></pre></td></tr></table></figure><br><br><label style="color:red">5.配置从服务器Slave</label><br>    change master to master_host=’主数据库ip’,master_user=’username’,master_password=’password’, master_log_file=’mysql-bin.000004’,master_log_pos=308;<br>     username：主数据库创建的用户名<br>    password：主数据库创建的用户的密码<br>    master_log_file：主数据库的状态的File<br>    master_log_pos：主数据库的状态的Position<br><label style="color:red">6.start slave; //启动从服务器复制功能</label><br><label style="color:red">7.检查从服务器复制功能状态</label><br><strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong> row <strong><strong><strong><strong><strong><strong>***</strong></strong></strong></strong></strong></strong><br>             Slave_IO_State: Waiting for master to send event<br>                    Master_Host: 10.20.14.6(主数据库ip)<br>                    Master_User: repl(用户名)<br>                    Master_Port: 3306<br>                Connect_Retry: 60<br>            Master_Log_File: mysql-bin.000004<br>    Read_Master_Log_Pos: 308<br>         Slave_IO_Running: Yes(数据同步)<br>        Slave_SQL_Running: Yes(sql同步)<br><label style="color:red">8.测试，在主数据添加一条数据，在从数据库查询</label>
+
 
       
     </div>
@@ -214,18 +214,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/03/10/mysql-sum(null)-deal/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/10/29/面试题/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">&lt;</strong>
       <div class="article-nav-title">
         
-          mysql中sum结果为null的处理方式
+          面试题
         
       </div>
     </a>
   
   
-    <a href="/2019/01/27/js-Number-precision/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js中Number精度问题</div>
+    <a href="/2019/03/10/js-moneyFormat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js金额格式化</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
