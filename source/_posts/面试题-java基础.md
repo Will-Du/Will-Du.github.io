@@ -34,7 +34,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;ArrayList：底层数据结构是数组，查询快，增删慢，线程不安全，效率高
 &nbsp;&nbsp;&nbsp;&nbsp;Vector：底层数据结构是数组，查询快，增删慢，线程安全，效率低
 &nbsp;&nbsp;&nbsp;&nbsp;LinkedList：底层数据结构是链表，查询慢，增删快，线程不安全，效率高
-&nbsp;&nbsp;&nbsp;&nbsp;查询多用ArrayList，增删多用LinkedList，如果都多用ArratList
+&nbsp;&nbsp;&nbsp;&nbsp;查询多用ArrayList，增删多用LinkedList，如果都多用ArrayList
 7.String、StringBuffer、StringBuilder区别
 &nbsp;&nbsp;&nbsp;&nbsp;String：适用少量的字符串操作的情况
 &nbsp;&nbsp;&nbsp;&nbsp;StringBuilder：适用单线程下的字符缓冲区进行大量操作的情况
