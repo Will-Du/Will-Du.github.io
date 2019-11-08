@@ -249,7 +249,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.delete与truncate区别<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate是DDL语句(create、drop、alter、truncate)，delete是DML语句(insert、uodate、delete、select)；DCL语句(grant、revoke)<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate的速度快于delete<br>&nbsp;&nbsp;&nbsp;&nbsp;delete数据可以进行rollback进行数据回滚，truncate是永久删除不能回滚<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate不会触发表上的delete触发器，而delete会正常触发<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate语句不能带where条件意味着只能全部数据删除，而delete可带where条件进行删除<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate操作会重置表的高水位线，而delete不会<br>
+        <p>1.delete与truncate区别<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate是DDL语句(create、drop、alter、truncate)，delete是DML语句(insert、update、delete、select)；DCL语句(grant、revoke)<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate的速度快于delete<br>&nbsp;&nbsp;&nbsp;&nbsp;delete数据可以进行rollback进行数据回滚，truncate是永久删除不能回滚<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate不会触发表上的delete触发器，而delete会正常触发<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate语句不能带where条件意味着只能全部数据删除，而delete可带where条件进行删除<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate操作会重置表的高水位线，而delete不会<br>
       
     </p></div>
     
