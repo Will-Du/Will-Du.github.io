@@ -56,4 +56,19 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;在开发过程中使用HashMap比较多，在Map中插入、删除和定位元素，HashMap是最好的选择
 &nbsp;&nbsp;&nbsp;&nbsp;如果要按自然顺序或自定义顺序排序遍历键，那么TreeMap会更好
 &nbsp;&nbsp;&nbsp;&nbsp;如果需要输出的顺序和输入的相同，那么LinkedHashMap可以实现
-&nbsp;&nbsp;
+10.HashMap、HashTable、ConcurrentHashMap区别
+&nbsp;&nbsp;&nbsp;&nbsp;HashTable:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;底层：数组+链表+红黑树，无论key还是value都不能为null，线程安全，实现线程安全的方式是在修改数据时锁住整个HashTable，效率低
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;初始size为11，扩容：newSize = oldSize * 2 + 1
+&nbsp;&nbsp;&nbsp;&nbsp;HashMap:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;底层：数组+链表，可以存储null键和null值，null键只能有一个，线程不安全
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;初始size为16，扩容：newSize = oldSize * 2，size一定是2的n次幂
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩容针对整个Map，每次扩容时，原来数组中的元素依次重新计算存放位置，并重新插入
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入元素才判断该不该扩容，有可能无效扩容(插入后如果扩容，如果没有插入，就会产生无效扩容)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当Map中的元素总数超过Entry数组的75%，触发扩容操作，为了减少链表长度，元素分配更加均匀
+&nbsp;&nbsp;&nbsp;&nbsp;ConcurrentHashMap：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;底层：分段数组+链表，线程安全
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过把整个Map分为N个Segment，可以提供相同的线程安全，但是效率提高N倍，默认提升16倍
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HashTable的synchronized是针对整张Hash表，即每次锁住整张表让线程独占。ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有些方法需要跨段，比如size()和containsValue()，他们可能需要锁定整个表而不仅仅是某个分段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩容：段内扩容(段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个map进行扩容)，插入前检测需不需要扩容，有效避免无效扩容
