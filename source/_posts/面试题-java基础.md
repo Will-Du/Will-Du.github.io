@@ -72,3 +72,25 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HashTable的synchronized是针对整张Hash表，即每次锁住整张表让线程独占。ConcurrentHashMap允许多个修改操作并发进行，其关键在于使用了锁分离技术
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有些方法需要跨段，比如size()和containsValue()，他们可能需要锁定整个表而不仅仅是某个分段，这需要按顺序锁定所有段，操作完毕后，又按顺序释放所有段的锁
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;扩容：段内扩容(段内元素超过该段对应Entry数组长度的75%触发扩容，不会对整个map进行扩容)，插入前检测需不需要扩容，有效避免无效扩容
+11.AOP,OOP,OOD的理解
+&nbsp;&nbsp;&nbsp;&nbsp;OOD：面向对象设计(Object Oriented Design)方法是OO方法中一个中间过渡环节。其主要作用是对OOA分析的结果作进一步的规范化管理，以便能够被OOP直接接受
+&nbsp;&nbsp;&nbsp;&nbsp;OOP：面向对象编程(Object Oriented Programming)是一种计算机编程架构。OOP的一条基本原则是计算机程序是由单个能够起到子程序作用的单元或对象组合而成
+&nbsp;&nbsp;&nbsp;&nbsp;AOP：面向切面编程(Aspect Oriented Programming)是对业务逻辑又进行了进一步的抽取，将多种业务逻辑中的公用部分抽取出来做成一种服务(比如日志记录、性能统计、安全验证等)，从而实现代码复用。另外这种服务通过配置可以动态的给程序添加统一控制，利用AOP可以对业务逻辑的各个部分进行分离，从而使业务逻辑各部分之间的耦合度降低
+12.内存溢出与内存泄漏
+&nbsp;&nbsp;&nbsp;&nbsp;内存溢出：是指程序在申请内存时，没有足够的内存空间供其使用，出现OutOfMemoryError.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产生原因:1.JVM内存过小  2.程序不严密，产生过多的垃圾
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序体现:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.内存中加载的数据量过于庞大，如一次从数据库取出过多数据
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.集合类中有对对象的引用，使用完后未清空，使得JVM不能回收
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.代码中存在死循环或循环产生过多重复的对象实体
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.使用的第三发软件中的BUG
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.启动参数内存值设定的过小
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决办法：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.增加JVM的内存大小：对于tomcat容器，找到tomcat在电脑中安装目录，进入这个目录，然后进入bin目录中，在window环境下找catalina.bat，在linux环境中找catalina.sh。编辑catalina.bat文件，找到JAVA_OPTS(具体来说是 set "JVAV_OPTS=%JAVA_OPTS% %LOGGING_MANAGER%")这个选项的位置，这个参数是Java启动的时候，需要的启动参数。也可以在操作系统的环境变量中对JAVA_OPTS进行设置，因为tomcat启动的时候，也会读取操作系统中的环境变量的值，进行加载。如果是修改操作系统的环境变量，需要重启机器，在重启tomcat，如果是修改tomcat的配置文件，需要将配置文件保存，然后重启tomcat，设置就能生效
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.优化程序，释放垃圾：主要思路就是避免程序体现的问题。避免死循环，防止一次载入太多数据，提高程序健壮性及时释放。因此，从根本上解决内存溢出的唯一方法就是修改程序，及时释放没用的对象，释放内存空间
+&nbsp;&nbsp;&nbsp;&nbsp;内存泄漏：是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄漏的危害可以忽略，但内存泄漏堆积后果很严重，无论多少内存，迟早会被占光
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在java中，内存泄漏就是存在一些被分配的对象，这些对象具有以下两个特点:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.这些对象是可达的，即在有向图中，存在通路与其相连
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.这些对象是无用的，即程序以后不会再使用这些对象
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果满足这两个条件，这些对象就可以判定java中的内存泄漏，这些对象不会被GC所回收，然而它却占用内存
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;解决办法:提高程序的健壮性，因为内存泄漏是纯代码层面的问题

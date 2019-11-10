@@ -26,3 +26,14 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;缺点：在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如rabbitmq等。
 7.能不能生产一次消费多次呢？
 &nbsp;&nbsp;&nbsp;&nbsp;使用pub/sub主题订阅者模式，可以实现1:N的消息队列。
+8.缓存穿透
+&nbsp;&nbsp;&nbsp;&nbsp;原理：一般的缓存系统都是按照KEY去缓存查询，如果不存在对应的value，就应该去后端系统查询(比如DB)。一些恶意的请求会故意查询不存在的KEY，请求量很大，就会对后端系统造成很大压力。
+&nbsp;&nbsp;&nbsp;&nbsp;如何避免：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.对查询结果为空的情况也进行缓存，缓存时间设置短一点，或者该KEY对应的数据insert了之后清理缓存
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.对一定不存在的key进行过滤。可以把所有的可能存在的KEY放到一个大的BigMap中，查询时通过该BigMap过滤
+9.缓存雪崩
+&nbsp;&nbsp;&nbsp;&nbsp;原理：当缓存服务器重启或大量缓存集中在某一个时间段失效，这样在失效的时候，会给后端系统带来很大压力，导致系统崩溃
+&nbsp;&nbsp;&nbsp;&nbsp;如何避免：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.在缓存失效后，通过加锁或者队列来控制读数据库写缓存的线程数量。比如对某个KEY只允许一个线程查询数据和写缓存，其他线程等待
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.做二级缓存，A1为原始缓存，A2为拷贝缓存，A1失效时，可以访问A2，A1缓存失效时间设置为短期，A2设置为长期
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.不同的KEY设置不同的过期时间，让缓存失效的时间点尽量均匀

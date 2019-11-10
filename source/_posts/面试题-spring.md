@@ -28,3 +28,15 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;如果子事务回滚：父事务会回滚到进入子事务前建立的save point，然后尝试其他的事务或者业务逻辑，父事务之前的操作不会受到影响，更不会自动回滚
 &nbsp;&nbsp;&nbsp;&nbsp;如果父事务回滚：父事务回滚，子事务也会跟着回滚。因为父事务结束之前，子事务是不会提交的。
 &nbsp;&nbsp;&nbsp;&nbsp;事务的提交：子事务是父事务的一部分，由父事务统一提交
+3.SpringMVC的工作原理
+&nbsp;&nbsp;&nbsp;&nbsp;1.用户发送请求至前端控制器DispatcherServlet
+&nbsp;&nbsp;&nbsp;&nbsp;2.DispatcherServlet接收到请求调用HandlerMapping处理器映射器
+&nbsp;&nbsp;&nbsp;&nbsp;3.处理器映射器找到具体的处理器(可以根据XML配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherSrvlet
+&nbsp;&nbsp;&nbsp;&nbsp;4.DispatcherServlet调用HandlerAdapter处理器适配器
+&nbsp;&nbsp;&nbsp;&nbsp;5.HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)
+&nbsp;&nbsp;&nbsp;&nbsp;6.Controller执行完成返回ModelAndView
+&nbsp;&nbsp;&nbsp;&nbsp;7.HandlerAdapter将Controller执行结果ModelAndView返回给DispatcherServlet
+&nbsp;&nbsp;&nbsp;&nbsp;8.DispatcherServlet将ModelAndView传给ViewReslover视图解析器
+&nbsp;&nbsp;&nbsp;&nbsp;9.ViewReslover解析后返回具体View
+&nbsp;&nbsp;&nbsp;&nbsp;10.DispatcherServlet根据View进行渲染视图(即 将模型数据填充至视图中)
+&nbsp;&nbsp;&nbsp;&nbsp;11.DispatcherServlet相应用户
