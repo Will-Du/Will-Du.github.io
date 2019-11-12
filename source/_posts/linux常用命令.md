@@ -19,7 +19,7 @@ cat /proc/net/dev 显示网络适配器及统计
 cat /proc/mounts 显示已加载的文件系统
 Ispci -tv 罗列PCI设备
 Isusb -tv 罗列USB设备
-<label style="color:red">date 显示系统时间</label>
+date 显示系统时间
 cal 2019 显示2019年的日历表
 date 111021002019.00 设置日期和时间 -月日时分年.秒
 clock -w 将时间保存到BIOS
@@ -30,34 +30,34 @@ telinit 0 关闭系统
 init 0 关闭系统
 shutdown -h hours:minutes & 按预定时间关闭系统
 shutdown -c 取消按预定时间关闭系统
-<label style="color:red">shuntdown -r now 立即重启</label>
+shuntdown -r now 立即重启
 reboot 重启
 logout 注销
 
 ### 文件和目录
-<label style="color:red">cd /home 进入'/home'目录</label>
+cd /home 进入'/home'目录
 cd .. 返回上一级目录
 cd ../.. 返回上两级目录
 cd 进入个人的主目录
 cd ~user1 进入个人的主目录
 cd - 返回上次所在的目录
-<label style="color:red">pwd 显示工作路径</label>
-<label style="color:red">ls 查看目录中的文件</label>
+pwd 显示工作路径
+ls 查看目录中的文件
 ls -F 查看目录中的文件
 ls -l 显示文件和目录的详细资料
 ls -a 显示隐藏文件
 ls *[0-9]* 显示包含数字的文件名和目录名
 tree 显示文件和目录由根目录开始的树形结构
 lstree 显示文件和目录由根目录开始的树形结构
-<label style="color:red">mkdir dir1 创建一个叫做'dir1'的目录</label>
+mkdir dir1 创建一个叫做'dir1'的目录
 mkdir dir1 dir2 同时创建两个目录
 mkdir -p /usr/local/dir1 创建一个目录树
 rm -f file1 删除一个叫'file1'的文件
 rmdir dir1 删除一个叫'dir1'的目录
-<label style="color:red">rm -rf dir1 删除一个叫'dir1'的目录并同时删除其内容</label>
+rm -rf dir1 删除一个叫'dir1'的目录并同时删除其内容
 rm -rf dir1 dir2 同时删除两个目录及内容
-<label style="color:red">mv dir1 dir2 重命名/移动 一个目录</label>
-<label style="color:red">cp file1 file2 复制一个文件</label>
+mv dir1 dir2 重命名/移动 一个目录
+cp file1 file2 复制一个文件
 cp dir/* . 复制一个目录下的所有文件到当前工作目录
 cp -a /usr/local/dir1 . 复制一个目录到当前工作目录
 cp -a dir1 dir2 复制一个目录
@@ -67,7 +67,7 @@ ln file1 lnk1 创建一个指向文件或目录的物理链接
 iconv -l 列出已知的编码
 
 ### 文件搜索
-<label style="color:red">find / -name file1 从'/'开始进入根文件系统搜索文件和目录</label>
+find / -name file1 从'/'开始进入根文件系统搜索文件和目录
 find / -user user1 搜索属于用户'user1'的文件和目录
 find /home/user1 -name \*.bin  在目录'/home/user1'搜索带有'.bin'结尾的文件
 find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件
@@ -99,11 +99,11 @@ du -sh dir1 估算目录'dir1'已经使用的磁盘空间
 du -sk *|sort -rn 以容量大小为依据依次显示文件和目录的大小
 
 ### 用户和群组
-<label style="color:red">groupadd group_name 创建一个新用户组</label>
-<label style="color:red">groupdel group_name 删除一个用户组</label>
+groupadd group_name 创建一个新用户组
+groupdel group_name 删除一个用户组
 groupmod -n new_group_name old_group_name 重命名一个用户组
 useradd -c "Name Surname" -g admin -d /home/user1 -s /bin/bash user1 创建一个属于'admin'用户组的用户
-<label style="color:red">useradd user1 创建一个新用户</label>
+useradd user1 创建一个新用户
 userdel -r user1 删除一个用户(-r 排除主目录)
 usermod -c "User FTP" -g ststem -d /ftp/user1 -s /bin/nologin user1 修改用户属性
 passwd 修改口令
@@ -116,7 +116,7 @@ newgrp group_name 登录进一个新的群组以及改变新创建文件的预�
 ### 文件的权限 '+'设置权限 '-'取消权限
 ls -lh 显示权限
 ls /tmp |pr -T5 -W$COLUMNS 将终端划分成5栏显示
-<label style="color:red">chmod ugo+rwx dir1 设置目录的所有人(u)、群组(g)以及其他人(o)以读(r)、写(w)和执行(x)的权限</label>
+chmod ugo+rwx dir1 设置目录的所有人(u)、群组(g)以及其他人(o)以读(r)、写(w)和执行(x)的权限
 chmod go-rwx dir1 删除群组与其他人对目录的读写执行权限
 chown user1 file1 改变一个文件的所有人属性
 chown -R user1 dir1 改变一个目录的所有人属性并同时改变该目录下所有文件的属性
@@ -153,13 +153,13 @@ unrar x file1.rar 解压rar包
 tar -cvf archive.tar file1 创建一个非压缩的tarball
 tar -cvf archive.tar file1 file2 dir 创建一个包含'file1'、'file2'和'dir'的档案文件
 tar -tf archive.tar 显示一个包中的内容
-<label style="color:red">tar -xvf archive.tar 释放一个包</label>
+tar -xvf archive.tar 释放一个包
 tar -xvf archive.tar -C /tmp 将压缩包释放到/tmp目录下
 tar -cvfj archive.tar.bz2 dir1 创建一个bzip2格式的压缩包
 tar -jxvf archive.tar.bz2 解压一个bzip2格式的压缩包
 tar -cvfz archive.rar.gz dir1 创建一个gzip格式的压缩包
-<label style="color:red">tar -zxvf archive.rar.gz 解压一个gzip格式的压缩包</label>
+tar -zxvf archive.rar.gz 解压一个gzip格式的压缩包
 zip file1.zip file1 创建一个zip格式的压缩包
 zip -r file.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包
-<label style="color:red">unzip file1.zip 解压一个zip格式的压缩包</label>
+unzip file1.zip 解压一个zip格式的压缩包
 
