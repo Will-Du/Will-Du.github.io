@@ -46,7 +46,7 @@ ls 查看目录中的文件
 ls -F 查看目录中的文件
 ls -l 显示文件和目录的详细资料
 ls -a 显示隐藏文件
-ls *[0-9]* 显示包含数字的文件名和目录名
+ls \*[0-9]\* 显示包含数字的文件名和目录名
 tree 显示文件和目录由根目录开始的树形结构
 lstree 显示文件和目录由根目录开始的树形结构
 mkdir dir1 创建一个叫做'dir1'的目录
@@ -58,7 +58,7 @@ rm -rf dir1 删除一个叫'dir1'的目录并同时删除其内容
 rm -rf dir1 dir2 同时删除两个目录及内容
 mv dir1 dir2 重命名/移动 一个目录
 cp file1 file2 复制一个文件
-cp dir/* . 复制一个目录下的所有文件到当前工作目录
+cp dir/\* . 复制一个目录下的所有文件到当前工作目录
 cp -a /usr/local/dir1 . 复制一个目录到当前工作目录
 cp -a dir1 dir2 复制一个目录
 cp -r dir1 dir2 复制一个目录及子目录
@@ -96,7 +96,7 @@ mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂�
 df -h 显示已经挂载的分区列表
 ls -ISr|more 以尺寸大小排列文件和目录
 du -sh dir1 估算目录'dir1'已经使用的磁盘空间
-du -sk *|sort -rn 以容量大小为依据依次显示文件和目录的大小
+du -sk \*|sort -rn 以容量大小为依据依次显示文件和目录的大小
 
 ### 用户和群组
 groupadd group_name 创建一个新用户组
