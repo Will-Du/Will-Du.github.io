@@ -40,3 +40,8 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;9.ViewReslover解析后返回具体View
 &nbsp;&nbsp;&nbsp;&nbsp;10.DispatcherServlet根据View进行渲染视图(即 将模型数据填充至视图中)
 &nbsp;&nbsp;&nbsp;&nbsp;11.DispatcherServlet相应用户
+4.Spring中IOC的注入方式
+&nbsp;&nbsp;&nbsp;&nbsp;①.接口注入:接口注入模式因为具备侵略性，它要求组件必须与特定的接口相关联，因此不被看好，实际使用有限。
+&nbsp;&nbsp;&nbsp;&nbsp;②.Setter注入:对于习惯了传统javabean开发的程序员，通过setter方法设定依赖关系更加直观。如果依赖关系较为复杂，那么构造子注入模式的构造函数也会相当庞大，而此时设值注入模式更加简洁。如果使用第三方类库，可能要求我们的组件提供一个默认的构造函数，此时构造子注入模式也不适用。
+&nbsp;&nbsp;&nbsp;&nbsp;③.构造器注入:在构造期间完成一个完整的、合法的对象。所有依赖关系在构造函数中集中呈现。依赖关系在构造时由容器一次性设定，组件被创建之后一直处于相对'不变'的稳定状态。只有组件的创建者关心其内部依赖关系，对调用者而言，该依赖关系处于'黑盒'之中。
+&nbsp;&nbsp;&nbsp;&nbsp;④.注解注入:@Resource先会按照名称到spring容器中查找，如果查找不到，就回退按照类型匹配，如果再次没有匹配到，就会抛出异常。如果在开发的时候，建议大家都是用@Rescourc(name="userDao"),此时只能按照名称匹配。
