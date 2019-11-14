@@ -39,9 +39,21 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;8.DispatcherServlet将ModelAndView传给ViewReslover视图解析器
 &nbsp;&nbsp;&nbsp;&nbsp;9.ViewReslover解析后返回具体View
 &nbsp;&nbsp;&nbsp;&nbsp;10.DispatcherServlet根据View进行渲染视图(即 将模型数据填充至视图中)
-&nbsp;&nbsp;&nbsp;&nbsp;11.DispatcherServlet相应用户
+&nbsp;&nbsp;&nbsp;&nbsp;11.DispatcherServlet响应用户
 4.Spring中IOC的注入方式
 &nbsp;&nbsp;&nbsp;&nbsp;①.接口注入:接口注入模式因为具备侵略性，它要求组件必须与特定的接口相关联，因此不被看好，实际使用有限。
 &nbsp;&nbsp;&nbsp;&nbsp;②.Setter注入:对于习惯了传统javabean开发的程序员，通过setter方法设定依赖关系更加直观。如果依赖关系较为复杂，那么构造子注入模式的构造函数也会相当庞大，而此时设值注入模式更加简洁。如果使用第三方类库，可能要求我们的组件提供一个默认的构造函数，此时构造子注入模式也不适用。
 &nbsp;&nbsp;&nbsp;&nbsp;③.构造器注入:在构造期间完成一个完整的、合法的对象。所有依赖关系在构造函数中集中呈现。依赖关系在构造时由容器一次性设定，组件被创建之后一直处于相对'不变'的稳定状态。只有组件的创建者关心其内部依赖关系，对调用者而言，该依赖关系处于'黑盒'之中。
 &nbsp;&nbsp;&nbsp;&nbsp;④.注解注入:@Resource先会按照名称到spring容器中查找，如果查找不到，就回退按照类型匹配，如果再次没有匹配到，就会抛出异常。如果在开发的时候，建议大家都是用@Rescourc(name="userDao"),此时只能按照名称匹配。
+5.拦截器与过滤器的区别(https://www.jianshu.com/p/cf088baa9b04?utm_campaign=hugo&utm_medium=reader_share&utm_content=note)
+&nbsp;&nbsp;&nbsp;&nbsp;过滤器:是在java web中将传入的request、response提前过滤掉一些信息，或者提前设置一些参数，然后再传入servlet或struts2的action进行业务逻辑处理。比如过滤掉非法url(不是login.do的地址请求，如果用户没有登陆就都过滤掉)，或者在传入servlet或Struts2的action前统一设置字符集，或者去除掉一些非法字符。
+&nbsp;&nbsp;&nbsp;&nbsp;拦截器:是面向切面编程的。就是在service或者一个方法前调用一个方法，或者在一个方法后调用一个方法。比如动态代理就是拦截器的简单实现，在调用方法前打印出字符串(或者做其他的业务逻辑)，也可以在调用方法后打印出字符串，甚至在抛出异常的时候做业务逻辑的操作。
+&nbsp;&nbsp;&nbsp;&nbsp;主要区别:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.拦截器是基于java的反射机制的，而过滤器是基于函数回调。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.拦截器不依赖于servlet容器，过滤器依赖于servlet容器。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③.拦截器只能对action请求起作用，而过滤器可以对几乎所有的请求起作用。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④.拦截器可以访问action上下文、值栈里面的对象，而过滤器不能访问。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤.在action的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时被调用一次。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥.<label style="color:red">拦截器可以获取IOC容器中的各个bean，而过滤器就不行，在拦截器里注入一个service，可以调用业务逻辑。</label>
+&nbsp;&nbsp;&nbsp;&nbsp;本质区别:从灵活性上来说拦截器功能更强大些，filter能做的事情他都能做，而且可以在请求前，请求后执行，比较灵活。filter主要是针对URL地址做一个编码的事情、过滤掉没用的参数、安全校验，太细的活还是建议使用interceptor。具体还是需要根据不同情况进行选择合适的。
+&nbsp;&nbsp;&nbsp;&nbsp;执行顺序:过滤前->拦截前->action处理->拦截后->过滤后。
