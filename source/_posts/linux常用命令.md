@@ -189,3 +189,15 @@ rpm -Va 检查系统中所有已安装的rpm包,谨慎使用
 rpm -Vp package.rpm 确认一个rpm包还未安装
 rpm2cpio package.rpm|cpio \-\-extract \-\-make-directories \*bin\* 从一个rpm包运行可执行文件
 rpm -ivh /usr/src/redhat/PRMS/arch/package.rpm 从一个rpm源码构建一个rpm包
+
+### YUM软件包升级器-(Fedora、Redhat及类似系统)
+yum install package_name 下载并安装一个rpm包
+yum localinstall package_name.rpm 将安装一个rpm包，使用自己的软件仓库来解决所有依赖关系
+yum update package_name.rpm 更新当前系统中所有安装的rpm包
+yum update package_name 更新一个rpm包
+yum remove package_name 删除一个rpm包
+yum list 列出当前系统中安装的所有包
+yum search package_name 在rpm仓库中搜寻软件包
+yum clean packages 清理rpm缓存,删除下载的包
+yum clean headers 删除所有的头文件
+yun clean all 删除所有缓存的包和头文件
