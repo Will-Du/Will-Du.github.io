@@ -210,3 +210,31 @@ less file1 类似于'more'命令，但是它允许在文件中和正向操作一
 head -2 file1 查看一个文件的前两行
 tail -2 file1 查看一个文件的最后两行
 tail -f /var/log/messages 实时查看被添加到一个文件中的内容
+
+### 文本处理
+grep Aug /var/log/messages 在文件'/var/log/messages'中查找关键词'Aug'
+grep ^Aug /var/log/messages 在文件'/var/log/messages'中查找以'Aug'开始的词汇
+grep [0-9] /var/log/messages 选择'/var/log/messages'文件中所包含数字的行
+grep Aug -R /var/log/\* 在目录'/var/log'及随后的目录中搜索字符串'Aug'
+sed 's/string1/string2/g' example.txt 将example.txt文件中的'string1'替换成'string2'
+sed 's/^$/d' example.txt 从example.txt文件中删除所有的空白行
+sed '/\*#/d;/^$/d' example.txt 从example.txt中删除所有的注释和空白行
+sed -e '1d' example.txt 从文件example.txt中排除第一行
+sed -n '/string1/p' 查看只包含'string1'的行
+sed -e 's/\*$//' example.txt 删除每一行最后的空白字符
+sed -e 's/string1//g' example.txt 从文档中只删除词汇'string1'并保留剩余全部
+sed -n '1,5p;5q' example.txt 查看从第1行到第5行的内容
+sed -n '5p;5q' example.txt 查看第5行
+sed -e 's/00\*/0/g' example.txt 用单个0替换多个0
+cat -n file1 标识文件的行数
+cat example.txt|awk 'NR%2==1' 删除example.txt文件中的所有偶数行
+echo a b c|awk '{print $1}' 查看一行第一栏
+echo a b c|awk '{print $1,$3}' 查看一行的第一栏和第三栏
+paste file1 file2 合并两个文件或两栏内容
+paste -d '+' file1 file2 合并两个文件或两栏内容，中间用'+'区分
+sort file1 file2 排序两个文件的内容
+sort file1 file2 |uniq 取出两个文件的并集
+sort file1 file2 |uniq -u 删除交集，留下其他行
+comm -1 file1 file2 比较两个文件的内容只删除'file1'所包含的内容
+comm -2 file1 file2 比较两个文件的内容只删除'file2'所包含的内容
+comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分
