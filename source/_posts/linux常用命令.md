@@ -238,3 +238,9 @@ sort file1 file2 |uniq -u 删除交集，留下其他行
 comm -1 file1 file2 比较两个文件的内容只删除'file1'所包含的内容
 comm -2 file1 file2 比较两个文件的内容只删除'file2'所包含的内容
 comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分
+
+### 字符设置和文件格式转化
+dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX
+unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS
+recode ..HTML<page.txt> page.html 将一个文本文件转换成html
+recode -l|more 显示所有允许的转换格式
