@@ -244,3 +244,14 @@ dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换�
 unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS
 recode ..HTML<page.txt> page.html 将一个文本文件转换成html
 recode -l|more 显示所有允许的转换格式
+
+### 文件系统分析
+badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块
+fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性
+fsck .etx2 /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性
+e2fsck /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性
+e2fsck -j /dev/hda1 修复/检查hda1磁盘上etx3文件系统的完整性
+fsck .vaft /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性
+fsck .msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性
+dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性
+
