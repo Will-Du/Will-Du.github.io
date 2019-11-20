@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="系统信息arch 显示机器的处理器架构uname -m 显示机器的处理器架构uname -r 显示正在使用的版本内核dmidecode -q 显示硬件系统部件hdparm -i/dev/hda 罗列一个磁盘的架构特性hdparm -t/dev/sda 在磁盘上执行测试性读写操作cat /proc/cupuinfo 显示CPU info的信息cat /proc/interrupts 显示中断cat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-19T14:27:03.075Z">
+<meta property="og:updated_time" content="2019-11-20T14:08:39.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用命令">
 <meta name="twitter:description" content="系统信息arch 显示机器的处理器架构uname -m 显示机器的处理器架构uname -r 显示正在使用的版本内核dmidecode -q 显示硬件系统部件hdparm -i/dev/hda 罗列一个磁盘的架构特性hdparm -t/dev/sda 在磁盘上执行测试性读写操作cat /proc/cupuinfo 显示CPU info的信息cat /proc/interrupts 显示中断cat">
@@ -219,6 +219,8 @@
 <h3 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h3><p>grep Aug /var/log/messages 在文件’/var/log/messages’中查找关键词’Aug’<br>grep ^Aug /var/log/messages 在文件’/var/log/messages’中查找以’Aug’开始的词汇<br>grep [0-9] /var/log/messages 选择’/var/log/messages’文件中所包含数字的行<br>grep Aug -R /var/log/* 在目录’/var/log’及随后的目录中搜索字符串’Aug’<br>sed ‘s/string1/string2/g’ example.txt 将example.txt文件中的’string1’替换成’string2’<br>sed ‘s/^$/d’ example.txt 从example.txt文件中删除所有的空白行<br>sed ‘/*#/d;/^$/d’ example.txt 从example.txt中删除所有的注释和空白行<br>sed -e ‘1d’ example.txt 从文件example.txt中排除第一行<br>sed -n ‘/string1/p’ 查看只包含’string1’的行<br>sed -e ‘s/*$//‘ example.txt 删除每一行最后的空白字符<br>sed -e ‘s/string1//g’ example.txt 从文档中只删除词汇’string1’并保留剩余全部<br>sed -n ‘1,5p;5q’ example.txt 查看从第1行到第5行的内容<br>sed -n ‘5p;5q’ example.txt 查看第5行<br>sed -e ‘s/00*/0/g’ example.txt 用单个0替换多个0<br>cat -n file1 标识文件的行数<br>cat example.txt|awk ‘NR%2==1’ 删除example.txt文件中的所有偶数行<br>echo a b c|awk ‘{print $1}’ 查看一行第一栏<br>echo a b c|awk ‘{print $1,$3}’ 查看一行的第一栏和第三栏<br>paste file1 file2 合并两个文件或两栏内容<br>paste -d ‘+’ file1 file2 合并两个文件或两栏内容，中间用’+’区分<br>sort file1 file2 排序两个文件的内容<br>sort file1 file2 |uniq 取出两个文件的并集<br>sort file1 file2 |uniq -u 删除交集，留下其他行<br>comm -1 file1 file2 比较两个文件的内容只删除’file1’所包含的内容<br>comm -2 file1 file2 比较两个文件的内容只删除’file2’所包含的内容<br>comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分</p>
 <h3 id="字符设置和文件格式转化"><a href="#字符设置和文件格式转化" class="headerlink" title="字符设置和文件格式转化"></a>字符设置和文件格式转化</h3><p>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX<br>unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS<br>recode ..HTML&lt;page.txt&gt; page.html 将一个文本文件转换成html<br>recode -l|more 显示所有允许的转换格式</p>
 <h3 id="文件系统分析"><a href="#文件系统分析" class="headerlink" title="文件系统分析"></a>文件系统分析</h3><p>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块<br>fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性<br>fsck .etx2 /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性<br>e2fsck /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性<br>e2fsck -j /dev/hda1 修复/检查hda1磁盘上etx3文件系统的完整性<br>fsck .vaft /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性<br>fsck .msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性<br>dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性</p>
+<h3 id="初始化一个文件系统"><a href="#初始化一个文件系统" class="headerlink" title="初始化一个文件系统"></a>初始化一个文件系统</h3><p>mkfs /dev/hda1 在hda1分区创建一个文件系统<br>mke2fs /dev/hda1 在hda1分区创建一个linux etx2的文件系统<br>mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统<br>mkfs -t vfat 32 -F /dev/hda1 创建一个FAT32文件系统<br>fdformat -n /dev/fd0 格式化一个软盘</p>
+<h3 id="SWAP文件系统"><a href="#SWAP文件系统" class="headerlink" title="SWAP文件系统"></a>SWAP文件系统</h3><p>mkswap /dev/hda3 创建一个swap文件系统<br>swspon /dev/hda3 启动一个新的swap文件系统<br>swapon /dev/hda2 /dev/hda3 启动2个swap分区</p>
 
       
     </div>
