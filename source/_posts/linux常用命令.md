@@ -255,3 +255,14 @@ fsck .vaft /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性
 fsck .msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性
 dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性
 
+### 初始化一个文件系统
+mkfs /dev/hda1 在hda1分区创建一个文件系统
+mke2fs /dev/hda1 在hda1分区创建一个linux etx2的文件系统
+mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统
+mkfs -t vfat 32 -F /dev/hda1 创建一个FAT32文件系统
+fdformat -n /dev/fd0 格式化一个软盘
+
+### SWAP文件系统
+mkswap /dev/hda3 创建一个swap文件系统
+swspon /dev/hda3 启动一个新的swap文件系统
+swapon /dev/hda2 /dev/hda3 启动2个swap分区
