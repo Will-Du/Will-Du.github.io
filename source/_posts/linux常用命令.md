@@ -266,3 +266,9 @@ fdformat -n /dev/fd0 格式化一个软盘
 mkswap /dev/hda3 创建一个swap文件系统
 swspon /dev/hda3 启动一个新的swap文件系统
 swapon /dev/hda2 /dev/hda3 启动2个swap分区
+
+### 备份
+dump -0aj -f /tmp/home0.bak /home 制作一个'/home'目录的完整备份
+dump -1aj -f /tmp/home0.bak /home 制作一个'/home'目录的交互式备份
+restore -if /tmp/home0.bak 还原一个交互式备份
+rsync -rogpav \-\-delete /home /tmp 同步两边目录
