@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="系统信息arch 显示机器的处理器架构uname -m 显示机器的处理器架构uname -r 显示正在使用的版本内核dmidecode -q 显示硬件系统部件hdparm -i/dev/hda 罗列一个磁盘的架构特性hdparm -t/dev/sda 在磁盘上执行测试性读写操作cat /proc/cupuinfo 显示CPU info的信息cat /proc/interrupts 显示中断cat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-20T14:08:39.483Z">
+<meta property="og:updated_time" content="2019-11-21T13:53:40.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用命令">
 <meta name="twitter:description" content="系统信息arch 显示机器的处理器架构uname -m 显示机器的处理器架构uname -r 显示正在使用的版本内核dmidecode -q 显示硬件系统部件hdparm -i/dev/hda 罗列一个磁盘的架构特性hdparm -t/dev/sda 在磁盘上执行测试性读写操作cat /proc/cupuinfo 显示CPU info的信息cat /proc/interrupts 显示中断cat">
@@ -221,6 +221,7 @@
 <h3 id="文件系统分析"><a href="#文件系统分析" class="headerlink" title="文件系统分析"></a>文件系统分析</h3><p>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块<br>fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性<br>fsck .etx2 /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性<br>e2fsck /dev/hda1 修复/检查hda1磁盘上etx2文件系统的完整性<br>e2fsck -j /dev/hda1 修复/检查hda1磁盘上etx3文件系统的完整性<br>fsck .vaft /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性<br>fsck .msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性<br>dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性</p>
 <h3 id="初始化一个文件系统"><a href="#初始化一个文件系统" class="headerlink" title="初始化一个文件系统"></a>初始化一个文件系统</h3><p>mkfs /dev/hda1 在hda1分区创建一个文件系统<br>mke2fs /dev/hda1 在hda1分区创建一个linux etx2的文件系统<br>mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统<br>mkfs -t vfat 32 -F /dev/hda1 创建一个FAT32文件系统<br>fdformat -n /dev/fd0 格式化一个软盘</p>
 <h3 id="SWAP文件系统"><a href="#SWAP文件系统" class="headerlink" title="SWAP文件系统"></a>SWAP文件系统</h3><p>mkswap /dev/hda3 创建一个swap文件系统<br>swspon /dev/hda3 启动一个新的swap文件系统<br>swapon /dev/hda2 /dev/hda3 启动2个swap分区</p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>dump -0aj -f /tmp/home0.bak /home 制作一个’/home’目录的完整备份<br>dump -1aj -f /tmp/home0.bak /home 制作一个’/home’目录的交互式备份<br>restore -if /tmp/home0.bak 还原一个交互式备份<br>rsync -rogpav --delete /home /tmp 同步两边目录</p>
 
       
     </div>
