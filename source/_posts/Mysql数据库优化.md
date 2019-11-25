@@ -7,6 +7,7 @@ tags: sql
 &nbsp;&nbsp;&nbsp;&nbsp;数据库优化一方面是找出系统的瓶颈，提高MySQL数据库的整体性能，而另一方面需要合理的结构设计和参数调整，以提高用户的相应速度，同时还尽可能的节约系统资源，以便让系统提供更大的负荷。
 ** 优化 **
 &nbsp;&nbsp;&nbsp;&nbsp;优化分为两大类：软优化和硬优化，软优化一般是操作数据库即可，而硬优化是操作服务器硬件及参数配置。
+<!-- more -->
 *** 软优化 ***
 &nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">①.查询语句优化：</label>我们可以用EXPLAIN或DESCRIBE(简写：DESC)命令分析一条查询语句的执行信息，例如：DESC SELECT * FROM USER;其中会显示索引和查询数据读取数据条数等信息。
 &nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">②.优化子查询：</label>在MySQL中，尽量使用JOIN来代替子查询。因为子查询需要嵌套查询，嵌套查询时会建立一张临时表，临时表的建立和删除都会有较大的系统开销，而连接查询不会创建临时表，因此效率比嵌套子查询高。
