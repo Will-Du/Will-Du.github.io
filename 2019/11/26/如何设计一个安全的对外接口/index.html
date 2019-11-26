@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>如何设计一个安全的对外接口 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何设计一个安全的对外接口">
+<meta property="og:url" content="http://yoursite.com/2019/11/26/如何设计一个安全的对外接口/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="前言 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-26T15:11:12.952Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何设计一个安全的对外接口">
+<meta name="twitter:description" content="前言 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-如何设计一个安全的对外接口" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/26/如何设计一个安全的对外接口/" class="article-date">
+  	<time datetime="2019-11-26T13:59:36.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何设计一个安全的对外接口
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/11/26/如何设计一个安全的对外接口/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个安全的对外接口">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：<br><a id="more"></a><br><strong> 1.数据加密 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;我们知道数据在传输过程中是很容易被抓包的，如果直接传输比如通过http协议，那么用户传输的数据可以被任何人获取，所以必须对数据加密，常见的做法对关键字段加密比如用户密码直接通过md5加密；现在主流的做法是使用https协议，在http与tcp之间添加一层加密层(SSL层)，这一层负责数据的加密和解密。<br>&nbsp;&nbsp;&nbsp;&nbsp;现在主流的加密方式有对称加密和非对称加密。<br>&nbsp;&nbsp;&nbsp;&nbsp;对称加密：对称密钥在加密和解密的过程中使用的密钥是相同的，常见的对称加密算法有DES，AES。优点是计算速度快，缺点是数据传送前，发送发和接收方必须商定好密钥，然后使双方都能保存好密钥，如果一方的密钥泄漏，那么加密信息也就不安全了。<br>&nbsp;&nbsp;&nbsp;&nbsp;非对称加密：服务端会生成一对密钥，私钥存放在服务器，公钥可以发布给任何人使用。优点：就是比对称加密更加安全，但是加解密的速度比堆成加密慢太多了。广泛使用的是RSA算法。<br>&nbsp;&nbsp;&nbsp;&nbsp;两种方式各有优缺点，而https的实现方式正好是结合了两种加密方式，整合了双方的优点，在安全和性能方面比较好。<br>&nbsp;&nbsp;&nbsp;&nbsp;对称加密和非对称加密代码实现，JDK提供了相关的工具类可以直接使用，https如何配置使用相对来说复杂一些。<br><strong> 2.数据加签 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;数据加签就是由发送者产生一段无法伪造的一段数字串，来保证数据在传输过程中不被篡改；你可能会问数据如果已经通过https加密了，还有必要进行加签吗？数据在传输过程中经过加密，理论上就算被抓包，也无法对数据进行篡改；但是我们要知道加密的部分其实只是在外网，现在很多服务在内网中都需要经过很多服务跳转，所以这里加签可以防止内网中数据被篡改。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据签名使用比较多的是md5算法，将需要提交的数据通过某种方式组合成一个字符串，然后通过md5生成一段加密字符串，这段字符串就是数据包的签名，可以看一个简单的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str:参数1=&#123;参数1&#125;&amp;参数2=&#123;参数2&#125;&amp;……&amp;参数n=&#123;参数n&#125;&amp;key=&#123;用户密钥&#125;;</span><br><span class="line">MD5.encrypt(str);</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;注意最后的用户密钥，服务端和客户端都有一份，这样会更加安全。<br><strong> 3.时间戳机制 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;数据是很容易抓包的，但是经过如上的加密、加签处理，就算拿到数据也不能看到真实的数据。但是有不法者不关心真实的数据，而是直接拿到抓取的数据包进行恶意请求，这时候可以使用时间戳机制，在每次请求中加入当前时间，服务器端会拿到当前时间和消息中的时间相减，看看是否在一个固定的时间范围内比如5分钟内。这样恶意请求的数据包是无法更改里面的时间的，所以5分钟后的请求视为非法请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;解密后的数据，经过签名认证后，我们拿到数据包中的客户端时间戳字段，然后用服务器当前时间去减客户端时间，看结果是否在一个区间内，伪代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">long</span> interval = <span class="number">5</span>*<span class="number">60</span>*<span class="number">1000</span>;<span class="comment">// 超时时间</span></span><br><span class="line"><span class="keyword">long</span> clientTime = request.getParameter(<span class="string">"clientTime"</span>);</span><br><span class="line"><span class="keyword">long</span> serverTime = System.currentTimeMills();</span><br><span class="line"><span class="keyword">if</span>(serverTime - clientTime &gt; interval) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Response(<span class="string">"超过处理时长"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> 4.AppId机制 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;大部分网站基本都需要用户名和密码才能登陆，并不是谁都能来使用我的网站，这其实也是一种安全机制。对应的对外提供的接口其实也需要这么一种机制，并不是谁都可以调用，需要使用接口的用户需要在后台开通appid，提供给用户相关的密钥，在调用的接口中需要提供appid+密钥，服务端会进行相关的验证。<br>&nbsp;&nbsp;&nbsp;&nbsp;生成一个唯一的appid即可，密钥使用字母、数字等特殊字符随机生成即可，生成唯一appid根据实际情况看是否需要全局统一，但是不管是否全局统一，最好让生成的id有如下属性：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.趋势递增：这样在保存数据库的时候，使用索引性能更好。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.信息安全：尽量不要连续的、容易发现规律的。<br>&nbsp;&nbsp;&nbsp;&nbsp;关于全局唯一id生成的方式常见的有类snowflake方式等。<br><strong> 5.限流机制 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;本来就是真实的用户，并且开通了appid，但是出现频繁调用接口的情况，这种情况需要给相关appid限流处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;常用的限流算法有令牌桶限流、漏桶算法、计数器限流。<br>&nbsp;&nbsp;&nbsp;&nbsp;1.令牌桶限流：令牌桶限流的原理是系统以一定速率向桶中放入令牌，填满了就丢弃令牌，请求来时会先从桶中取出令牌，如果能取到令牌，则可以继续完成请求，否则等待或者拒绝服务。令牌桶允许一定程度突发流量，只要有令牌就可以处理，支持一次拿多个令牌。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.漏桶限流：漏桶算法的原理是按照固定常量速率流出请求，流入请求速率任意，当请求超过桶的容量时，新的请求等待或者拒绝服务，可以看出漏桶算法可以勉强强制限制数据的传输速度。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.计数器限流：计数器是一种比较简单粗暴的算法，主要用来限制总并发数，比如数据库连接池、线程池、秒杀的并发输。计数器限流只要一定时间内的总请求数超过设定的阈值则进行限流。<br>&nbsp;&nbsp;&nbsp;&nbsp;具体基于以上算法如何实现，Guava提供了RateLimiter工具类基于令牌桶算法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RateLimiter rateLimiter = RartLimiter.create(5);</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;以上代码表示一秒钟只允许处理5个并发请求，以上方式只能在单应用的请求限流，不能进行全局限流。这时候就需要分布式限流，可以基于redis+lua来实现。<br><strong> 6.黑名单机制 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;如果此appid进行过很多非法操作，或者说专门有一个中黑系统，经过分析之后直接将此appid列入黑名单，所有请求直接返回错误码。<br>&nbsp;&nbsp;&nbsp;&nbsp;我们可以给每个用户设置一个状态比如包括：初始化状态、正常状态、中黑状态、关闭状态等等。或者我们直接通过分布式配置中心，直接保存黑名单列表，每次检查是否在列表中即可。<br><strong> 7.数据合法性校验 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;这个可以说是每个系统都会有的处理机制，只有在数据是合法的情况下才会进行数据处理。每个系统都有自己的校验规则，当然也可能有一下常规性的规则，比如身份证验证长度和组成，电话号码长度等等。<br>&nbsp;&nbsp;&nbsp;&nbsp;合法性校验包括常规性校验和业务校验。<br>&nbsp;&nbsp;&nbsp;&nbsp;常规性校验：包括签名校验、必填校验、长度校验、类型校验、格式校验等。<br>&nbsp;&nbsp;&nbsp;&nbsp;业务校验：根据实际业务而定，比如订单金额不能小于0等。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/25/Mysql数据库优化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql数据库优化</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":100,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
