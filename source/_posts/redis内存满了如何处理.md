@@ -37,3 +37,108 @@ maxmemory-policy allkeys-lru
 // 通过命令修改淘汰策略
 127.0.0.1:6379>config set maxmemory-policy allkeys-lru
 ```
+** LRU算法 **
+&nbsp;&nbsp;&nbsp;&nbsp;LRU(Least Recently Used):即最近最少使用，是一种缓存置换算法。在使用内存作为缓存的时候，缓存的大小一般是固定的。当缓存被占满，这个时候继续往缓存里面添加数据，就需要淘汰一部分老的数据，释放内存空间用来存储新的数据。这个时候就可以使用LRU算法了，其核心思想是：如果一个数据在最近一段时间没有被用到，那么将来被使用到的可能性也很小，所以就可以被淘汰掉。
+&nbsp;&nbsp;&nbsp;&nbsp;使用java实现一个简单的LRU算法:
+```java
+public class LRUCache<K,V> {
+	// 容量
+	private int capacity;
+	// 当前有多少节点的统计
+	private int count;
+	// 缓存节点
+	private Map<K,Node<K,V>> nodeMap;
+	private Node<K,V> head;
+	private Node<K,V> tail;
+	
+	public LRUCache(int capacity) {
+		if(capacity < 1) {
+			throw new IllegalArgumentException(String.valueOf(capacity));
+		}
+		this.capacity = capacity;
+		this.nodeMap = new HashMap<>();
+		// 初始化头结点和尾结点，利用哨兵模式减少判断头结点和尾结点为空的代码
+		Node headNode = new Node(null, null);
+		Node tailNode = new Node(null, null);
+		headNode.next = tailNode;
+		tailNode.pre = headNode;
+		this.head = headNode;
+		this.tail = tailNode;
+	}
+	
+	public void put(K key, V value) {
+		Node<K, V> node = nodeMap.get(key);
+		if(node == null) {
+			if(count >= capacity) {
+				// 先移除一个结点
+				removeNode();
+			}
+			node = new Node<>(key, value);
+			// 添加结点
+			addNode(node);
+		} else {
+			// 移动结点到头结点
+			moveNodeToHead(node);
+		}
+	}
+	
+	public Node<K, V> get(K key) {
+		Node<K, V> node = nodeMap.get(key);
+		if(node != null) {
+			moveNodeToHead(node);
+		}
+		return node;
+	}
+	
+	private void removeNode() {
+		Node node = tail.pre;
+		// 从链表里面移除
+		removeFromList(node);
+		nodeMap.remove(node.key);
+		count--;
+	}
+	
+	private void removeFromList(Node<K, V> node) {
+		Node node = node.pre;
+		Node next = node.next;
+		pre.next = next;
+		next.pre = pre;
+		node.next = null;
+		node.pre = null;
+	}
+	
+	private void addNode(Node<K, V> node) {
+		// 添加结点到头部
+		addToHead(node);
+		nodeMap.put(node.key, node);
+		count++;
+	}
+	
+	private void addToHead(Node<K, V> node) {
+		Node next = head.next;
+		next.pre = node;
+		node.next = next;
+		node.pre = head;
+		head.next = node;
+	}
+	
+	private void moveNodeToHead(Node<K, V> node) {
+		// 从链表里面移除
+		removeFromList(node);
+		// 添加结点到头部
+		addToHead(node);
+	}
+	
+	class Node<K, V> {
+		K key;
+		V value;
+		Node pre;
+		Node next;
+		
+		public Node(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+	}
+}
+```
