@@ -142,3 +142,16 @@ public class LRUCache<K,V> {
 	}
 }
 ```
+** LRU在Redis中的实现 **
+&nbsp;&nbsp;&nbsp;&nbsp;<b>近似LRU算法：</b>Redis使用的是近似LRU算法，它跟常规的LRU算法还不大一样。近似LRU算法通过随机采样法淘汰，每次随机出5(默认)个key，从里面淘汰最近最少使用的key。
+&nbsp;&nbsp;&nbsp;&nbsp;可以通过maxmemory-samples参数修改采样数量，例如：maxmemory-samples 10,maxmemory-samples配置的越大，淘汰的结果越接近于严格的LRU算法。
+&nbsp;&nbsp;&nbsp;&nbsp;Redis为了实现近似LRU算法，给每一个key额外增加了一个24bit的字段，用来存储该key最后一次被访问的时候。
+** Redis3.0对近似LRU算法的优化 **
+&nbsp;&nbsp;&nbsp;&nbsp;Redis3.0对近似LRU算法进行了一些优化。新算法会维护一个候选池(大小为16)，池中的数据根据访问时间排序，第一次随机选取的key会放入池中，随后每次随机选取的key只有在访问时间小于池中最小的时间才会放入池中，直到候选池被放满。当放满后，如果有新的key需要放入，则将池中最后访问时间最大(最近被访问)的移除。当需要淘汰时，则直接从池中选取最近访问时间最小(最久没被访问)的key淘汰掉。
+** LFU算法 **
+&nbsp;&nbsp;&nbsp;&nbsp;LFU算法是Redis4.0里面新加的一种淘汰策略、它的全称是Least Frequently Used，它的核心思想是根据key的最近访问的频率进行淘汰，很少被访问的优先被淘汰，被访问的多则被留下来。
+&nbsp;&nbsp;&nbsp;&nbsp;LFU算法能更好的表示一个key被访问的热度。假如你使用的是LRU算法，一个key很久没有被访问到，只刚刚偶尔被访问一次，那么它就会被认为是热点数据，不会被淘汰，而有些key将来很有可能被访问到的则被淘汰了。如果使用LFU算法则不会出现这种情况，因为使用一次并不会使一个key成为热点数据。
+&nbsp;&nbsp;&nbsp;&nbsp;LFU一共有两种策略：
+- volatile-lfu:在设置过期时间的key中使用LFU算法淘汰key。
+- allkeys-lfu:在所有key中使用LFU算法淘汰数据。
+&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：设置使用这两种淘汰策略跟前面讲的一样，不过要注意一点的是这两种策略只能在Redis4.0及以上设置，如果在Redis4.0以下设置会报错。</label>
