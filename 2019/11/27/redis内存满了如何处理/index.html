@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>redis内存满了如何处理 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Redis是基于内存的key-value数据库，因为系统的内存大小有限，所以我们在使用Redis的时候可以配置Redis能使用的最大的内存大小。">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis内存满了如何处理">
+<meta property="og:url" content="http://yoursite.com/2019/11/27/redis内存满了如何处理/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Redis是基于内存的key-value数据库，因为系统的内存大小有限，所以我们在使用Redis的时候可以配置Redis能使用的最大的内存大小。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-27T14:04:47.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis内存满了如何处理">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Redis是基于内存的key-value数据库，因为系统的内存大小有限，所以我们在使用Redis的时候可以配置Redis能使用的最大的内存大小。">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-redis内存满了如何处理" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/27/redis内存满了如何处理/" class="article-date">
+  	<time datetime="2019-11-27T07:23:20.000Z" itemprop="datePublished">2019-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis内存满了如何处理
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/11/27/redis内存满了如何处理/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="redis内存满了如何处理">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Redis是基于内存的key-value数据库，因为系统的内存大小有限，所以我们在使用Redis的时候可以配置Redis能使用的最大的内存大小。<br><a id="more"></a><br><strong> 1.通过修改配置文件 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;通过Redis安装目录下面的redis.conf配置文件中添加以下配置设置内存大小(Redis的配置文件不一定使用的是安装目录下面的redis.conf文件，启动redis服务的时候是可以传一个参数指定redis的配置文件)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 设置Redis最大占用内存大小为100M</span><br><span class="line">maxmemory 100mb</span><br></pre></td></tr></table></figure></p>
+<p><strong> 2.通过命令修改 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;Redis支持运行时通过命令动态修改内存大小(如果不设置最大内存大小或者设置最大内存大小为0，在64位操作系统系下不限制内存大小，在32位操作系统下最多使用3GB内存)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 设置Redis最大占用内存大小为100M</span><br><span class="line">127.0.0.1:6379&gt;config set maxmemory 100mb</span><br><span class="line">// 查看设置的Redis能使用的最大内存大小</span><br><span class="line">127.0.0.1:6379&gt;config get maxmemory</span><br></pre></td></tr></table></figure></p>
+<p><strong> 3.Redis的内存淘汰 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;既然可以设置Redis最大占用内存大小，那么配置的内存就有用完的时候。那在内存用完的时候，还继续往Redis里面添加数据不就没有内存可用吗？实际上Redis定义了几种策略来处理这种情况：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>noeviction(默认策略)：</b>对于写请求不再提供服务，直接返回错误(DEL请求和部分特殊请求除外)。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>allkeys-lru:</b>从所有key中使用LRU算法进行淘汰。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-lru:</b>从设置过期时间的key中使用LRU算法进行淘汰。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>allkeys-random:</b>从所有key中随机淘汰数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-random:</b>从设置了过期时间的key中随机淘汰。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-ttl:</b>在设置了过期时间的key中，根据key的过期时间进行淘汰，越早过期的越优先被淘汰。<br>&nbsp;&nbsp;&nbsp;&nbsp;当使用volatile-lru、volatile-random、volatile-ttl这三个策略时，如果没有key可以被淘汰，则和noveiction一样返回错误。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>如何获取及设置内存淘汰策略：</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 获取当前内存淘汰策略</span><br><span class="line">127.0.0.1:6379&gt;config get maxmemory-policy</span><br><span class="line">// 通过配置文件设置淘汰策略(修改redis.conf文件)</span><br><span class="line">maxmemory-policy allkeys-lru</span><br><span class="line">// 通过命令修改淘汰策略</span><br><span class="line">127.0.0.1:6379&gt;config set maxmemory-policy allkeys-lru</span><br></pre></td></tr></table></figure></p>
+<p><strong> LRU算法 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;LRU(Least Recently Used):即最近最少使用，是一种缓存置换算法。在使用内存作为缓存的时候，缓存的大小一般是固定的。当缓存被占满，这个时候继续往缓存里面添加数据，就需要淘汰一部分老的数据，释放内存空间用来存储新的数据。这个时候就可以使用LRU算法了，其核心思想是：如果一个数据在最近一段时间没有被用到，那么将来被使用到的可能性也很小，所以就可以被淘汰掉。<br>&nbsp;&nbsp;&nbsp;&nbsp;使用java实现一个简单的LRU算法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">	<span class="comment">// 容量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">	<span class="comment">// 当前有多少节点的统计</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">	<span class="comment">// 缓存节点</span></span><br><span class="line">	<span class="keyword">private</span> Map&lt;K,Node&lt;K,V&gt;&gt; nodeMap;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;K,V&gt; head;</span><br><span class="line">	<span class="keyword">private</span> Node&lt;K,V&gt; tail;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(capacity &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(String.valueOf(capacity));</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">		<span class="keyword">this</span>.nodeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		<span class="comment">// 初始化头结点和尾结点，利用哨兵模式减少判断头结点和尾结点为空的代码</span></span><br><span class="line">		Node headNode = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">		Node tailNode = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">		headNode.next = tailNode;</span><br><span class="line">		tailNode.pre = headNode;</span><br><span class="line">		<span class="keyword">this</span>.head = headNode;</span><br><span class="line">		<span class="keyword">this</span>.tail = tailNode;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">		Node&lt;K, V&gt; node = nodeMap.get(key);</span><br><span class="line">		<span class="keyword">if</span>(node == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(count &gt;= capacity) &#123;</span><br><span class="line">				<span class="comment">// 先移除一个结点</span></span><br><span class="line">				removeNode();</span><br><span class="line">			&#125;</span><br><span class="line">			node = <span class="keyword">new</span> Node&lt;&gt;(key, value);</span><br><span class="line">			<span class="comment">// 添加结点</span></span><br><span class="line">			addNode(node);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 移动结点到头结点</span></span><br><span class="line">			moveNodeToHead(node);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Node&lt;K, V&gt; <span class="title">get</span><span class="params">(K key)</span> </span>&#123;</span><br><span class="line">		Node&lt;K, V&gt; node = nodeMap.get(key);</span><br><span class="line">		<span class="keyword">if</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line">			moveNodeToHead(node);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> node;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Node node = tail.pre;</span><br><span class="line">		<span class="comment">// 从链表里面移除</span></span><br><span class="line">		removeFromList(node);</span><br><span class="line">		nodeMap.remove(node.key);</span><br><span class="line">		count--;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeFromList</span><span class="params">(Node&lt;K, V&gt; node)</span> </span>&#123;</span><br><span class="line">		Node node = node.pre;</span><br><span class="line">		Node next = node.next;</span><br><span class="line">		pre.next = next;</span><br><span class="line">		next.pre = pre;</span><br><span class="line">		node.next = <span class="keyword">null</span>;</span><br><span class="line">		node.pre = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(Node&lt;K, V&gt; node)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 添加结点到头部</span></span><br><span class="line">		addToHead(node);</span><br><span class="line">		nodeMap.put(node.key, node);</span><br><span class="line">		count++;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addToHead</span><span class="params">(Node&lt;K, V&gt; node)</span> </span>&#123;</span><br><span class="line">		Node next = head.next;</span><br><span class="line">		next.pre = node;</span><br><span class="line">		node.next = next;</span><br><span class="line">		node.pre = head;</span><br><span class="line">		head.next = node;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">moveNodeToHead</span><span class="params">(Node&lt;K, V&gt; node)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 从链表里面移除</span></span><br><span class="line">		removeFromList(node);</span><br><span class="line">		<span class="comment">// 添加结点到头部</span></span><br><span class="line">		addToHead(node);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">		K key;</span><br><span class="line">		V value;</span><br><span class="line">		Node pre;</span><br><span class="line">		Node next;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.key = key;</span><br><span class="line">			<span class="keyword">this</span>.value = value;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong> LRU在Redis中的实现 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;<b>近似LRU算法：</b>Redis使用的是近似LRU算法，它跟常规的LRU算法还不大一样。近似LRU算法通过随机采样法淘汰，每次随机出5(默认)个key，从里面淘汰最近最少使用的key。<br>&nbsp;&nbsp;&nbsp;&nbsp;可以通过maxmemory-samples参数修改采样数量，例如：maxmemory-samples 10,maxmemory-samples配置的越大，淘汰的结果越接近于严格的LRU算法。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redis为了实现近似LRU算法，给每一个key额外增加了一个24bit的字段，用来存储该key最后一次被访问的时候。<br><strong> Redis3.0对近似LRU算法的优化 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;Redis3.0对近似LRU算法进行了一些优化。新算法会维护一个候选池(大小为16)，池中的数据根据访问时间排序，第一次随机选取的key会放入池中，随后每次随机选取的key只有在访问时间小于池中最小的时间才会放入池中，直到候选池被放满。当放满后，如果有新的key需要放入，则将池中最后访问时间最大(最近被访问)的移除。当需要淘汰时，则直接从池中选取最近访问时间最小(最久没被访问)的key淘汰掉。<br><strong> LFU算法 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;LFU算法是Redis4.0里面新加的一种淘汰策略、它的全称是Least Frequently Used，它的核心思想是根据key的最近访问的频率进行淘汰，很少被访问的优先被淘汰，被访问的多则被留下来。<br>&nbsp;&nbsp;&nbsp;&nbsp;LFU算法能更好的表示一个key被访问的热度。假如你使用的是LRU算法，一个key很久没有被访问到，只刚刚偶尔被访问一次，那么它就会被认为是热点数据，不会被淘汰，而有些key将来很有可能被访问到的则被淘汰了。如果使用LFU算法则不会出现这种情况，因为使用一次并不会使一个key成为热点数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;LFU一共有两种策略：</p>
+<ul>
+<li>volatile-lfu:在设置过期时间的key中使用LFU算法淘汰key。</li>
+<li>allkeys-lfu:在所有key中使用LFU算法淘汰数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：设置使用这两种淘汰策略跟前面讲的一样，不过要注意一点的是这两种策略只能在Redis4.0及以上设置，如果在Redis4.0以下设置会报错。</label></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/26/如何设计一个安全的对外接口/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何设计一个安全的对外接口</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":100,"height":200},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
