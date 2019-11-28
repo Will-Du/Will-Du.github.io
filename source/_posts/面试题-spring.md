@@ -57,3 +57,9 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥.<label style="color:red">拦截器可以获取IOC容器中的各个bean，而过滤器就不行，在拦截器里注入一个service，可以调用业务逻辑。</label>
 &nbsp;&nbsp;&nbsp;&nbsp;本质区别:从灵活性上来说拦截器功能更强大些，filter能做的事情他都能做，而且可以在请求前，请求后执行，比较灵活。filter主要是针对URL地址做一个编码的事情、过滤掉没用的参数、安全校验，太细的活还是建议使用interceptor。具体还是需要根据不同情况进行选择合适的。
 &nbsp;&nbsp;&nbsp;&nbsp;执行顺序:过滤前->拦截前->action处理->拦截后->过滤后。
+6.Spring中常见的几种advice(https://www.cnblogs.com/cslgzl/p/10533335.html)
+&nbsp;&nbsp;&nbsp;&nbsp;①.环绕advice:环绕advice类似一个拦截器链，这个拦截器链的中心就是被拦截的方法。Invocation.proceed()方法运行指向连接点的拦截器链并返回proceed()的结果。
+&nbsp;&nbsp;&nbsp;&nbsp;②.Before advice:一个更简单的通知类型是before通知。它不需要MethodInvocation对象，因为它只是在进入方法之前被调用。before advice的一个主要优点是它不需要调用proceed()方法，因此就不会发生无意间运行拦截连失败的情况。
+&nbsp;&nbsp;&nbsp;&nbsp;③.After advice:一个after advice可以访问返回值(但不能修改)、被调用方法、方法参数及目标对象。
+&nbsp;&nbsp;&nbsp;&nbsp;④.Threws advice
+&nbsp;&nbsp;&nbsp;&nbsp;⑤.introfuction advice
