@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>面试题-spring | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.spring五个事务隔离级别和7个事务传播行为&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题-spring">
+<meta property="og:url" content="http://yoursite.com/2019/11/07/Spring/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="1.spring五个事务隔离级别和7个事务传播行为&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-01T09:48:51.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试题-spring">
+<meta name="twitter:description" content="1.spring五个事务隔离级别和7个事务传播行为&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 18px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/sql/" style="font-size: 14px;">sql</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Spring" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/07/Spring/" class="article-date">
+  	<time datetime="2019-11-07T14:16:53.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面试题-spring
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/11/07/Spring/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-spring">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.spring五个事务隔离级别和7个事务传播行为<br>&nbsp;&nbsp;&nbsp;&nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的数据可能是不一样的。这样就发生了在同一个事务内两次读到的数据是不一样的。<br>&nbsp;&nbsp;&nbsp;&nbsp;幻读：第一个事务对一个表中的数据进行修改，这种修改涉及到表中的全部数据行，同时，第二个事务也修改了表中的数据，这种修改是向表中新增一行数据。那么，就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好像发生幻觉一样。<br>&nbsp;&nbsp;&nbsp;&nbsp;可参考：<a href="https://www.cnblogs.com/ubuntu1/p/8999403.html" target="_blank" rel="noopener">https://www.cnblogs.com/ubuntu1/p/8999403.html</a><br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;Spring在TransactionDefinition接口中定义了五个事务隔离级别：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.ISOLATION_DEFAULT:这是一个platfromTranscationManager默认的隔离级别，使用数据库默认的隔离级别。另外四个与JDBC的隔离级别相对应<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ISOLATION_READ_UNCOMMITED:这是事务最低的隔离级别，他允许另外一个事务可以看到这个事务未提交的数据。这种隔离级别会产生脏读、不可重复读和幻读<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.ISOLATION_READ_COMMITED:保证一个事务修改的数据提交后才能被另外一个事务读取，另一个事务不能读取该事务未提交的数据。这种隔离级别可以避免脏读的出现，但是可能会出现不可重复读和幻读<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.ISOLATION_REPEATABLE_READ:这种事务隔离级别可以防止脏读、不可重复读。但是可能出现幻读。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.ISOLATION_SERIALIZABLE:这是花费最高代价但是最可靠的事务隔离等级。事务被处理为顺序执行，可以防止脏读、不可重复读、幻读<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring在TranscationDefinition接口定义了7种事务传播行为<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.PROPAGATION_REQUIRED:如果存在一个事务，则支持当前事务。如果没有事务则开启一个新的事务<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.PROPAGATION_SUPPORTS:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。但是对于事务同步的事务管理器，PROPAGATION_SUPPORTS与不使用事务有少许不同<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.PROPAGATION_MANDATORY:如果已经存在一个事务，支持当前事务。如果没有一个活动的事务，则抛出异常<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.PROPAGATION_REQUIRES_NEW:总是开启一个新的事务。如果一个事务已经存在，则将这个存在的事务挂起<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.PROPAGATION_NOT_SUPPORTED:总是非事务的执行，并挂起任何存在的事务<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.PROPAGATION_NEVER:总是非事务的执行，如果存在一个活动事务，则抛出异常<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.PROPAGATION_NESTED:如果一个活动的事务存在，则运行在一个嵌套的事务中。如果没有活动的事务，则按PROPAGATION_REQUIRED执行<br>2.事务嵌套<br>&nbsp;&nbsp;&nbsp;&nbsp;事务嵌套是子事务嵌套在父事务中执行，子事务是父事务的一部分，在进入子事务之前，父事务建立一个回滚点，叫save point，然后执行子事务，这个子事务也算是父事务的一部分，然后子事务执行结束，父事务继续执行。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果子事务回滚：父事务会回滚到进入子事务前建立的save point，然后尝试其他的事务或者业务逻辑，父事务之前的操作不会受到影响，更不会自动回滚<br>&nbsp;&nbsp;&nbsp;&nbsp;如果父事务回滚：父事务回滚，子事务也会跟着回滚。因为父事务结束之前，子事务是不会提交的。<br>&nbsp;&nbsp;&nbsp;&nbsp;事务的提交：子事务是父事务的一部分，由父事务统一提交<br>3.SpringMVC的工作原理<br>&nbsp;&nbsp;&nbsp;&nbsp;1.用户发送请求至前端控制器DispatcherServlet<br>&nbsp;&nbsp;&nbsp;&nbsp;2.DispatcherServlet接收到请求调用HandlerMapping处理器映射器<br>&nbsp;&nbsp;&nbsp;&nbsp;3.处理器映射器找到具体的处理器(可以根据XML配置、注解进行查找)，生成处理器对象及处理器拦截器(如果有则生成)一并返回给DispatcherSrvlet<br>&nbsp;&nbsp;&nbsp;&nbsp;4.DispatcherServlet调用HandlerAdapter处理器适配器<br>&nbsp;&nbsp;&nbsp;&nbsp;5.HandlerAdapter经过适配调用具体的处理器(Controller，也叫后端控制器)<br>&nbsp;&nbsp;&nbsp;&nbsp;6.Controller执行完成返回ModelAndView<br>&nbsp;&nbsp;&nbsp;&nbsp;7.HandlerAdapter将Controller执行结果ModelAndView返回给DispatcherServlet<br>&nbsp;&nbsp;&nbsp;&nbsp;8.DispatcherServlet将ModelAndView传给ViewReslover视图解析器<br>&nbsp;&nbsp;&nbsp;&nbsp;9.ViewReslover解析后返回具体View<br>&nbsp;&nbsp;&nbsp;&nbsp;10.DispatcherServlet根据View进行渲染视图(即 将模型数据填充至视图中)<br>&nbsp;&nbsp;&nbsp;&nbsp;11.DispatcherServlet响应用户<br>4.Spring中IOC的注入方式<br>&nbsp;&nbsp;&nbsp;&nbsp;①.接口注入:接口注入模式因为具备侵略性，它要求组件必须与特定的接口相关联，因此不被看好，实际使用有限。<br>&nbsp;&nbsp;&nbsp;&nbsp;②.Setter注入:对于习惯了传统javabean开发的程序员，通过setter方法设定依赖关系更加直观。如果依赖关系较为复杂，那么构造子注入模式的构造函数也会相当庞大，而此时设值注入模式更加简洁。如果使用第三方类库，可能要求我们的组件提供一个默认的构造函数，此时构造子注入模式也不适用。<br>&nbsp;&nbsp;&nbsp;&nbsp;③.构造器注入:在构造期间完成一个完整的、合法的对象。所有依赖关系在构造函数中集中呈现。依赖关系在构造时由容器一次性设定，组件被创建之后一直处于相对’不变’的稳定状态。只有组件的创建者关心其内部依赖关系，对调用者而言，该依赖关系处于’黑盒’之中。<br>&nbsp;&nbsp;&nbsp;&nbsp;④.注解注入:@Resource先会按照名称到spring容器中查找，如果查找不到，就回退按照类型匹配，如果再次没有匹配到，就会抛出异常。如果在开发的时候，建议大家都是用@Rescourc(name=”userDao”),此时只能按照名称匹配。<br>5.拦截器与过滤器的区别(<a href="https://www.jianshu.com/p/cf088baa9b04?utm_campaign=hugo&amp;utm_medium=reader_share&amp;utm_content=note" target="_blank" rel="noopener">https://www.jianshu.com/p/cf088baa9b04?utm_campaign=hugo&amp;utm_medium=reader_share&amp;utm_content=note</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;过滤器:是在java web中将传入的request、response提前过滤掉一些信息，或者提前设置一些参数，然后再传入servlet或struts2的action进行业务逻辑处理。比如过滤掉非法url(不是login.do的地址请求，如果用户没有登陆就都过滤掉)，或者在传入servlet或Struts2的action前统一设置字符集，或者去除掉一些非法字符。<br>&nbsp;&nbsp;&nbsp;&nbsp;拦截器:是面向切面编程的。就是在service或者一个方法前调用一个方法，或者在一个方法后调用一个方法。比如动态代理就是拦截器的简单实现，在调用方法前打印出字符串(或者做其他的业务逻辑)，也可以在调用方法后打印出字符串，甚至在抛出异常的时候做业务逻辑的操作。<br>&nbsp;&nbsp;&nbsp;&nbsp;主要区别:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.拦截器是基于java的反射机制的，而过滤器是基于函数回调。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.拦截器不依赖于servlet容器，过滤器依赖于servlet容器。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③.拦截器只能对action请求起作用，而过滤器可以对几乎所有的请求起作用。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④.拦截器可以访问action上下文、值栈里面的对象，而过滤器不能访问。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤.在action的生命周期中，拦截器可以多次调用，而过滤器只能在容器初始化时被调用一次。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥.<label style="color:red">拦截器可以获取IOC容器中的各个bean，而过滤器就不行，在拦截器里注入一个service，可以调用业务逻辑。</label><br>&nbsp;&nbsp;&nbsp;&nbsp;本质区别:从灵活性上来说拦截器功能更强大些，filter能做的事情他都能做，而且可以在请求前，请求后执行，比较灵活。filter主要是针对URL地址做一个编码的事情、过滤掉没用的参数、安全校验，太细的活还是建议使用interceptor。具体还是需要根据不同情况进行选择合适的。<br>&nbsp;&nbsp;&nbsp;&nbsp;执行顺序:过滤前-&gt;拦截前-&gt;action处理-&gt;拦截后-&gt;过滤后。<br>6.Spring中常见的几种advice(<a href="https://www.cnblogs.com/cslgzl/p/10533335.html" target="_blank" rel="noopener">https://www.cnblogs.com/cslgzl/p/10533335.html</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;①.环绕advice:环绕advice类似一个拦截器链，这个拦截器链的中心就是被拦截的方法。Invocation.proceed()方法运行指向连接点的拦截器链并返回proceed()的结果。<br>&nbsp;&nbsp;&nbsp;&nbsp;②.Before advice:一个更简单的通知类型是before通知。它不需要MethodInvocation对象，因为它只是在进入方法之前被调用。before advice的一个主要优点是它不需要调用proceed()方法，因此就不会发生无意间运行拦截连失败的情况。<br>&nbsp;&nbsp;&nbsp;&nbsp;③.After advice:一个after advice可以访问返回值(但不能修改)、被调用方法、方法参数及目标对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;④.Threws advice<br>&nbsp;&nbsp;&nbsp;&nbsp;⑤.introfuction advice<br>7.不同版本的Spring Framework有哪些主要功能？</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">version</font></th>
+<th style="text-align:left"><font color="#0A0A0A">Feature</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Spring 2.5</td>
+<td style="text-align:left">发布于2007年。这是第一个支持注解的版本。</td>
+</tr>
+<tr>
+<td style="text-align:left">Spring 3.0</td>
+<td style="text-align:left">发布于2009年。它完全利用java5中的改进，并为JEE6提供了支持。</td>
+</tr>
+<tr>
+<td style="text-align:left">Spring 4.0</td>
+<td style="text-align:left">发布于2013年。这是第一个完全支持JAVA8的版本。</td>
+</tr>
+</tbody>
+</table>
+<p>8.什么是Spring Framework?<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring是一个开源应用框架，旨在降低应用程序开发的复杂度。<br>&nbsp;&nbsp;&nbsp;&nbsp;它是轻量级、松散耦合的。<br>&nbsp;&nbsp;&nbsp;&nbsp;它具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架。<br>&nbsp;&nbsp;&nbsp;&nbsp;它可以集成其它框架，如Structs、Hibernate、EJB等，所以又称为框架的框架。<br>9.列举Spring Framework的优点<br>&nbsp;&nbsp;&nbsp;&nbsp;1.由于Spring Framework的分层架构，用户可以自由选择需要的组件。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Framework支持POJO(Plain Old Java Object)编程，从而具备持续集成和可测试性。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.由于依赖注入和控制反转，JDBC得以简化。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.它是开源免费的。<br>10.Spring Framework有哪些不同的功能</p>
+<ul>
+<li>轻量级：Spring在代码质量和透明度方面都很轻便。</li>
+<li>IOC：控制反转。</li>
+<li>APO：面向切面编程可以将应用业务逻辑和系统服务分离，以实现高内聚。</li>
+<li>容器：Spring负责创建和管理对象(Bean)的生命周期和配置。</li>
+<li>MVC：对WEB应用提供了高度可配置性，其它框架的集成也十分方便。</li>
+<li>事务管理：提供了用于事务管理的通用抽象层。Spring的事务支持也可用于容器较少的环境。</li>
+<li>JDBC异常：Spring的JDBC抽象层提供了一个异常层次结构，简化了错误处理策略。<br>11.Spring Framework中有多少个模块，他们分别是什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Spring Core<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Bean<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.SpEL(Spring Expression Language)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Spring Context<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.JDBC(Java DataBase Connectivity)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ORM(Object Relational Mapping)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.OXM(Object XML Mappers)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.JMS(Java Messaging Service)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Transaction<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Web<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Web-Servlet<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Web-Socket<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Web-Portlet<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>AOP,</b>该层支持面向切面编程。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Instrumentation,</b>该层为类检测和类加载器实现提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Test,</b>该层为使用JUint和TestNG进行测试提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Aspects,</b>该模块为与AspectJ的集成提供支持。<br>12.什么是Spring配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring配置文件是XML文件。该文件主要包含类信息。它描述了这些类是如何配置以及相互引用的。但是，XML配置文件冗长且更加干净。如果没有正确规划和编写，那么在大项目中管理变得十分困难。<br>13.Spring应用程序有哪些不同的组件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring应用一般有一下组件：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>接口：</b>定义功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean类:</b>它包含属性、setter和getter方法、函数等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean配置文件：</b>包含类的信息以及如何配置它们。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>用户程序：</b>它使用接口。<br>14.使用Spring有哪些方式？<br>&nbsp;&nbsp;&nbsp;&nbsp;1.作为一个成熟的Spring Web应用程序。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/10/linux常用命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          linux常用命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/07/面试题-数据库/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试题-数据库</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
