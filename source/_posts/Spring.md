@@ -63,3 +63,64 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;③.After advice:一个after advice可以访问返回值(但不能修改)、被调用方法、方法参数及目标对象。
 &nbsp;&nbsp;&nbsp;&nbsp;④.Threws advice
 &nbsp;&nbsp;&nbsp;&nbsp;⑤.introfuction advice
+7.不同版本的Spring Framework有哪些主要功能？
+
+|<font color='#0A0A0A'>version</font>|<font color='#0A0A0A'>Feature</font>|
+|:-----  |:-----|
+|Spring 2.5| 发布于2007年。这是第一个支持注解的版本。|
+|Spring 3.0| 发布于2009年。它完全利用java5中的改进，并为JEE6提供了支持。|
+|Spring 4.0| 发布于2013年。这是第一个完全支持JAVA8的版本。|
+8.什么是Spring Framework?
+&nbsp;&nbsp;&nbsp;&nbsp;Spring是一个开源应用框架，旨在降低应用程序开发的复杂度。
+&nbsp;&nbsp;&nbsp;&nbsp;它是轻量级、松散耦合的。
+&nbsp;&nbsp;&nbsp;&nbsp;它具有分层体系结构，允许用户选择组件，同时还为J2EE应用程序开发提供了一个有凝聚力的框架。
+&nbsp;&nbsp;&nbsp;&nbsp;它可以集成其它框架，如Structs、Hibernate、EJB等，所以又称为框架的框架。
+9.列举Spring Framework的优点
+&nbsp;&nbsp;&nbsp;&nbsp;1.由于Spring Framework的分层架构，用户可以自由选择需要的组件。
+&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Framework支持POJO(Plain Old Java Object)编程，从而具备持续集成和可测试性。
+&nbsp;&nbsp;&nbsp;&nbsp;3.由于依赖注入和控制反转，JDBC得以简化。
+&nbsp;&nbsp;&nbsp;&nbsp;4.它是开源免费的。
+10.Spring Framework有哪些不同的功能
+- 轻量级：Spring在代码质量和透明度方面都很轻便。
+- IOC：控制反转。
+- APO：面向切面编程可以将应用业务逻辑和系统服务分离，以实现高内聚。
+- 容器：Spring负责创建和管理对象(Bean)的生命周期和配置。
+- MVC：对WEB应用提供了高度可配置性，其它框架的集成也十分方便。
+- 事务管理：提供了用于事务管理的通用抽象层。Spring的事务支持也可用于容器较少的环境。
+- JDBC异常：Spring的JDBC抽象层提供了一个异常层次结构，简化了错误处理策略。
+11.Spring Framework中有多少个模块，他们分别是什么？
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Spring Core
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Bean
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.SpEL(Spring Expression Language)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Spring Context
+&nbsp;&nbsp;&nbsp;&nbsp;<b>数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.JDBC(Java DataBase Connectivity)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ORM(Object Relational Mapping)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.OXM(Object XML Mappers)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.JMS(Java Messaging Service)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Transaction
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Web
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Web-Servlet
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Web-Socket
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Web-Portlet
+&nbsp;&nbsp;&nbsp;&nbsp;<b>AOP,</b>该层支持面向切面编程。
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Instrumentation,</b>该层为类检测和类加载器实现提供支持。
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Test,</b>该层为使用JUint和TestNG进行测试提供支持。
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Aspects,</b>该模块为与AspectJ的集成提供支持。
+12.什么是Spring配置文件
+&nbsp;&nbsp;&nbsp;&nbsp;Spring配置文件是XML文件。该文件主要包含类信息。它描述了这些类是如何配置以及相互引用的。但是，XML配置文件冗长且更加干净。如果没有正确规划和编写，那么在大项目中管理变得十分困难。
+13.Spring应用程序有哪些不同的组件
+&nbsp;&nbsp;&nbsp;&nbsp;Spring应用一般有一下组件：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>接口：</b>定义功能。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean类:</b>它包含属性、setter和getter方法、函数等。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean配置文件：</b>包含类的信息以及如何配置它们。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>用户程序：</b>它使用接口。
+14.使用Spring有哪些方式？
+&nbsp;&nbsp;&nbsp;&nbsp;1.作为一个成熟的Spring Web应用程序。
+&nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。
+&nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。
+&nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)
