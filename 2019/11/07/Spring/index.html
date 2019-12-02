@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="1.spring五个事务隔离级别和7个事务传播行为&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-01T09:48:51.111Z">
+<meta property="og:updated_time" content="2019-12-02T14:36:37.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试题-spring">
 <meta name="twitter:description" content="1.spring五个事务隔离级别和7个事务传播行为&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第">
@@ -234,8 +234,65 @@
 <li>容器：Spring负责创建和管理对象(Bean)的生命周期和配置。</li>
 <li>MVC：对WEB应用提供了高度可配置性，其它框架的集成也十分方便。</li>
 <li>事务管理：提供了用于事务管理的通用抽象层。Spring的事务支持也可用于容器较少的环境。</li>
-<li>JDBC异常：Spring的JDBC抽象层提供了一个异常层次结构，简化了错误处理策略。<br>11.Spring Framework中有多少个模块，他们分别是什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Spring Core<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Bean<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.SpEL(Spring Expression Language)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Spring Context<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.JDBC(Java DataBase Connectivity)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ORM(Object Relational Mapping)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.OXM(Object XML Mappers)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.JMS(Java Messaging Service)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Transaction<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Web<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Web-Servlet<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Web-Socket<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Web-Portlet<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>AOP,</b>该层支持面向切面编程。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Instrumentation,</b>该层为类检测和类加载器实现提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Test,</b>该层为使用JUint和TestNG进行测试提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Aspects,</b>该模块为与AspectJ的集成提供支持。<br>12.什么是Spring配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring配置文件是XML文件。该文件主要包含类信息。它描述了这些类是如何配置以及相互引用的。但是，XML配置文件冗长且更加干净。如果没有正确规划和编写，那么在大项目中管理变得十分困难。<br>13.Spring应用程序有哪些不同的组件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring应用一般有一下组件：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>接口：</b>定义功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean类:</b>它包含属性、setter和getter方法、函数等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean配置文件：</b>包含类的信息以及如何配置它们。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>用户程序：</b>它使用接口。<br>14.使用Spring有哪些方式？<br>&nbsp;&nbsp;&nbsp;&nbsp;1.作为一个成熟的Spring Web应用程序。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)</li>
+<li>JDBC异常：Spring的JDBC抽象层提供了一个异常层次结构，简化了错误处理策略。<br>11.Spring Framework中有多少个模块，他们分别是什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Spring Core<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Bean<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.SpEL(Spring Expression Language)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Spring Context<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.JDBC(Java DataBase Connectivity)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ORM(Object Relational Mapping)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.OXM(Object XML Mappers)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.JMS(Java Messaging Service)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Transaction<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Web<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Web-Servlet<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Web-Socket<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Web-Portlet<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>AOP,</b>该层支持面向切面编程。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Instrumentation,</b>该层为类检测和类加载器实现提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Test,</b>该层为使用JUint和TestNG进行测试提供支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>Aspects,</b>该模块为与AspectJ的集成提供支持。<br>12.什么是Spring配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring配置文件是XML文件。该文件主要包含类信息。它描述了这些类是如何配置以及相互引用的。但是，XML配置文件冗长且更加干净。如果没有正确规划和编写，那么在大项目中管理变得十分困难。<br>13.Spring应用程序有哪些不同的组件<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring应用一般有一下组件：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>接口：</b>定义功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean类:</b>它包含属性、setter和getter方法、函数等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean配置文件：</b>包含类的信息以及如何配置它们。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>用户程序：</b>它使用接口。<br>14.使用Spring有哪些方式？<br>&nbsp;&nbsp;&nbsp;&nbsp;1.作为一个成熟的Spring Web应用程序。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)<br>15.什么是Spring IOC容器<br>&nbsp;&nbsp;&nbsp;&nbsp;Spring框架的核心是Spring容器。容器创建对象，将它们装配在一起，配置它们并管理他们的完整生命周期。Spring容器使用依赖注入来管理组成应用程序的组件。<br>&nbsp;&nbsp;&nbsp;&nbsp;容器通过读取提供的配置元数据来接受对象进行实例化，配置和组装的指令。该元数据可以通过XML、Java注解或Java代码提供。<br>16.什么是依赖注入？<br>&nbsp;&nbsp;&nbsp;&nbsp;在依赖注入中，您不必创建对象，但必须描述如何创建它们。您不是直接在代码中将组件和服务连接在一起，而是描述配置文件中哪些组件需要哪些服务。由IOC容器将它们装配在一起。<br>17.可以通过多少种方式完成依赖注入？</li>
+<li>构造函数注入</li>
+<li>setter注入</li>
+<li>接口注入<br>&nbsp;&nbsp;&nbsp;&nbsp;在Spring Framework中，仅使用构造函数和setter注入。<br>18.区分构造函数注入和setter注入</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">构造函数注入</font></th>
+<th style="text-align:left"><font color="#0A0A0A">Setter注入</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">没有部分注入</td>
+<td style="text-align:left">有部分注入</td>
+</tr>
+<tr>
+<td style="text-align:left">不会覆盖setter属性</td>
+<td style="text-align:left">会覆盖setter属性</td>
+</tr>
+<tr>
+<td style="text-align:left">任意修改都会创建一个新的实例</td>
+<td style="text-align:left">任意修改不会创建一个新的实例</td>
+</tr>
+<tr>
+<td style="text-align:left">适用于设置很多属性</td>
+<td style="text-align:left">适用于设置少量属性</td>
+</tr>
+</tbody>
+</table>
+<p>19.Spring中有多少种IOC容器？<br>&nbsp;&nbsp;&nbsp;&nbsp;1.BeanFactory:就像一个包含bean集合的工厂类。它会在客户端要求时实例化bean。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.ApplicationContext:ApplicationContext接口扩展了BeanFactory接口。它在BeanFactory基础上提供了一些额外的功能。<br>20.区分BeanFactory和ApplicationContext</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">BeanFactory</font></th>
+<th style="text-align:left"><font color="#0A0A0A">ApplicationContext</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">它使用懒加载</td>
+<td style="text-align:left">它使用即时加载</td>
+</tr>
+<tr>
+<td style="text-align:left">它使用语法显式提供资源对象</td>
+<td style="text-align:left">它自己创建和管理资源对象</td>
+</tr>
+<tr>
+<td style="text-align:left">不支持国际化</td>
+<td style="text-align:left">支持国际化</td>
+</tr>
+<tr>
+<td style="text-align:left">不支持基于依赖的注解</td>
+<td style="text-align:left">支持基于依赖的注解</td>
+</tr>
+</tbody>
+</table>
+<p>21.列举IOC的一些好处<br>&nbsp;&nbsp;&nbsp;&nbsp;1.它将最小化应用程序的代码量。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.它将使您的应用程序易于测试，因为它不需要单元测试用例中的任何单例或JNDI查找机制。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.它以最小的影响和最少的侵入机制促进松耦合。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.它支持即时的实例化和延迟加载服务。</p>
 
       
     </div>
