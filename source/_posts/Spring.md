@@ -124,3 +124,37 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。
 &nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。
 &nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)
+15.什么是Spring IOC容器
+&nbsp;&nbsp;&nbsp;&nbsp;Spring框架的核心是Spring容器。容器创建对象，将它们装配在一起，配置它们并管理他们的完整生命周期。Spring容器使用依赖注入来管理组成应用程序的组件。
+&nbsp;&nbsp;&nbsp;&nbsp;容器通过读取提供的配置元数据来接受对象进行实例化，配置和组装的指令。该元数据可以通过XML、Java注解或Java代码提供。
+16.什么是依赖注入？
+&nbsp;&nbsp;&nbsp;&nbsp;在依赖注入中，您不必创建对象，但必须描述如何创建它们。您不是直接在代码中将组件和服务连接在一起，而是描述配置文件中哪些组件需要哪些服务。由IOC容器将它们装配在一起。
+17.可以通过多少种方式完成依赖注入？
+- 构造函数注入
+- setter注入
+- 接口注入
+&nbsp;&nbsp;&nbsp;&nbsp;在Spring Framework中，仅使用构造函数和setter注入。
+18.区分构造函数注入和setter注入
+
+|<font color='#0A0A0A'>构造函数注入</font>|<font color='#0A0A0A'>Setter注入</font>|
+|:-----  |:-----|
+| 没有部分注入 | 有部分注入 |
+| 不会覆盖setter属性 | 会覆盖setter属性 |
+| 任意修改都会创建一个新的实例 | 任意修改不会创建一个新的实例 |
+| 适用于设置很多属性 | 适用于设置少量属性 |
+19.Spring中有多少种IOC容器？
+&nbsp;&nbsp;&nbsp;&nbsp;1.BeanFactory:就像一个包含bean集合的工厂类。它会在客户端要求时实例化bean。
+&nbsp;&nbsp;&nbsp;&nbsp;2.ApplicationContext:ApplicationContext接口扩展了BeanFactory接口。它在BeanFactory基础上提供了一些额外的功能。
+20.区分BeanFactory和ApplicationContext
+
+|<font color='#0A0A0A'>BeanFactory</font>|<font color='#0A0A0A'>ApplicationContext</font>|
+|:-----  |:-----|
+| 它使用懒加载 | 它使用即时加载 |
+| 它使用语法显式提供资源对象 | 它自己创建和管理资源对象 |
+| 不支持国际化 | 支持国际化 |
+| 不支持基于依赖的注解 | 支持基于依赖的注解 |
+21.列举IOC的一些好处
+&nbsp;&nbsp;&nbsp;&nbsp;1.它将最小化应用程序的代码量。
+&nbsp;&nbsp;&nbsp;&nbsp;2.它将使您的应用程序易于测试，因为它不需要单元测试用例中的任何单例或JNDI查找机制。
+&nbsp;&nbsp;&nbsp;&nbsp;3.它以最小的影响和最少的侵入机制促进松耦合。
+&nbsp;&nbsp;&nbsp;&nbsp;4.它支持即时的实例化和延迟加载服务。
