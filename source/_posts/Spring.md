@@ -194,3 +194,34 @@ class Client {
 	}	
 }
 ```
+23.什么是spring bean？
+- 它们是构成用户应用程序主干的对象。
+- Bean是由Spring IOC容器管理。
+- 它们是由Spring IOC容器实例化、配置、装配和管理。
+- Bean是基于用户提供给容器的配置元数据创建。
+24.Spring提供了哪些Bean的配置方式？
+&nbsp;&nbsp;&nbsp;&nbsp;1.基于XML配置：Bean所需的依赖项和服务在XML格式的配置文件中指定。这些配置文件通常包含许多bean定义和特定于应用程序的配置选项。他们通常以bean标签开头。例如：
+```XML
+<bean id="studentBean" class="com.test.bean.studentBean">
+	<property name="name" value="Edureka"></property>
+</bean>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;2.基于注解配置：您可以通过在相关的类、方法或字段声明上使用注解，将bean配置为组件类本身，而不是使用XML来描述bean的装配。默认情况下，Spring容器中未打开注解装配。因此，您需要在使用它之前在Spring配置文件中启用它。例如“
+```XML
+<beans>
+	<context:annotation-config/>
+</beans>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;3.基于Java API配置：Spring的Java配置是通过使用@Bean和@Configuration来实现。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.@Bean注解扮演与元素相同的角色。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.@Configuration类允许通过简单地调用同一个类中的其他@Bean方法来定义bean间关系。
+&nbsp;&nbsp;&nbsp;&nbsp;例如:
+```java
+@Configuration
+public class StudentConfig {
+	@Bean
+	public StudentBean myStudent() {
+		return new StudentBean();
+	}
+}
+```
