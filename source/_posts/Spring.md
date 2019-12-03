@@ -158,3 +158,39 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;2.它将使您的应用程序易于测试，因为它不需要单元测试用例中的任何单例或JNDI查找机制。
 &nbsp;&nbsp;&nbsp;&nbsp;3.它以最小的影响和最少的侵入机制促进松耦合。
 &nbsp;&nbsp;&nbsp;&nbsp;4.它支持即时的实例化和延迟加载服务。
+22.Spring IOC的实现机制
+&nbsp;&nbsp;&nbsp;&nbsp;Spring中的IOC的实现原理就是工厂模式加反射机制，示例：
+```java
+interface Fruit {
+	public abstract void eat();
+}
+class Apple implements Fruit {
+	public void eat() {
+		System.out.println("Apple");
+	}
+}
+class Orange implements Fruit {
+	public void eat() {
+		System.out.println("Orange");
+	}
+}
+class Factory {
+	public static Fruit getInstance(String ClassName) {
+		Fruit f = null;
+		try {
+			f = (Fruit) Class.forName(ClassName).newInstance();
+		} catch (Expression e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+}
+class Client {
+	public static void main(String[] a) {
+		Fruit f = Factory.getInstnce("com.test.Apple");
+		if (f != null) {
+			f.eat();
+		}
+	}	
+}
+```
