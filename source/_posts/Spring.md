@@ -225,3 +225,22 @@ public class StudentConfig {
 	}
 }
 ```
+25.Spring支持集中bean scope？
+&nbsp;&nbsp;&nbsp;&nbsp;Spring bean 支持5种scope：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.Singleton:每个Spring IOC容器仅有一个实例。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.Prototype:每次请求都会产生一个新的实例。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③.Request:每一次HTTP请求都会产生一个新的实例，并且该bean仅在当前HTTP请求内有效。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④.Session:每一次HTTP请求都会于产生一个新的bean，同时该bean仅在当前HTTP session内有效。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤.Global-session:类似于标准的HTTP Session作用域，不过它仅仅在基于protlet的web应用中才有意义。Protlet规范定义了全局Session的概念，它被所有构成某个protlet web应用的各种不同的protlet Session的生命周期范围内。如果你在web中使用global-session作用域来标识bean，那么web会自动当成session类型使用。
+&nbsp;&nbsp;&nbsp;&nbsp;仅当用户使用支持web的ApplicationContext时，最后三个才可用。
+26.spring bean容器的生命周期是什么样的？
+&nbsp;&nbsp;&nbsp;&nbsp;spring bean容器的生命周期流程如下：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.Spring 容器根据配置中的bean定义去实例化bean。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.Spring使用依赖注入填充所有属性，如bean中所定义的配置。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③.如果bean实现BeanNameAware接口，则工厂通过传递bean的ID来调用setBeanName()。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;④.如果bean实现BeanFactoryAware接口，工厂通过传递自身的实例来调用setBeanFactory()。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑤.如果存在与bean关联的任何BeanPostProcessors，则调用preProcessBeforeInitialization()方法。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑥.如果为bean指定了init方法(的init-method属性)，那么将调用它。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑦.最后，如果它存在与bean关联的任何BeanPostProcessors，则将调用postProcessAfterInitializationn()方法。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑧.如果bean实现DisposableBean接口，当spring容器关闭时，会调用destory()。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑨.如果为bean指定了destory方法(的destory-method属性)，那么将调用它。
