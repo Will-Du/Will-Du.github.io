@@ -45,3 +45,15 @@ tags: sql
 	</foreach>
 </update>
 ```
+```XML
+<!-- 批量删除 -->
+<delete id="batchDeleteByIds" parameterType="java.lang.String">
+	DELETE FROM 
+		STUDENT
+	WHERE
+		ID IN 
+		<foreach collection="array" item="id" opean="(" separator="," close=")">
+			#{id}
+		</foreach>
+</delete>
+```
