@@ -281,3 +281,76 @@ public class Person {
 &nbsp;&nbsp;&nbsp;&nbsp;覆盖的可能性：您始终可以使用和设置指定依赖项，这将覆盖自动装配。
 &nbsp;&nbsp;&nbsp;&nbsp;基本元数据类型：简单属性(如元数据类型，字符串和类)无法自动装配。
 &nbsp;&nbsp;&nbsp;&nbsp;令人困惑的性质：总是喜欢使用明确的装配，因为自动装配不太精确。
+30.用过哪些重要的注解
+&nbsp;&nbsp;&nbsp;&nbsp;@Controller：用于SpringMVC项目中的控制器类。
+&nbsp;&nbsp;&nbsp;&nbsp;@service：用于服务类。
+&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping：用于在控制器处理程式方法中配置URI映射。
+&nbsp;&nbsp;&nbsp;&nbsp;@ResponseBody：用于发送Object作为响应，通常用于发生XML或JSON数据作为响应。
+&nbsp;&nbsp;&nbsp;&nbsp;@PathVariable：用于将动态值从URI映射到处理程式方法参数。
+&nbsp;&nbsp;&nbsp;&nbsp;@Autowired：用于在Spring bean中自动装配依赖项。
+&nbsp;&nbsp;&nbsp;&nbsp;@Qualifier：使用@Autowired注解，以避免存在多个bean类型实例时出现混淆。
+&nbsp;&nbsp;&nbsp;&nbsp;@Scope：用于配置Spring Bean的范围。
+&nbsp;&nbsp;&nbsp;&nbsp;@Configuration,@ComponentScan和@Bean：用于基于java的配置。
+&nbsp;&nbsp;&nbsp;&nbsp;@Aspect、@Before、@After、@Around、@Pointcut：用于切面编程(AOP)。
+31.如何在Spring中启动注解装配？
+&nbsp;&nbsp;&nbsp;&nbsp;默认情况下，Spring容器中未打开注解装配。因此，要使用基于注解装配，我们必须通过配置<context:annotation-config />元素在Spring配置文件中启用它。
+32.@Component、@Controller、@Repository、@Service有何区别
+&nbsp;&nbsp;&nbsp;&nbsp;@Component：这将java类标记为bean。它是任何Spring管理组件的通用构造型。Spring的组件扫描机制可以将其拾取并将其拉入应用程序环境中。
+&nbsp;&nbsp;&nbsp;&nbsp;@Controller：这将一个类标记为Spring Web MVC控制器。标有它的bean会自动导入到IOC容器中。
+&nbsp;&nbsp;&nbsp;&nbsp;@Service：此注解是组件注解的特化。他不会对@Component注解提供任何行为。您可以在服务层中使用@Service而不是@Component，因为它以更好的方式指定了意图。
+&nbsp;&nbsp;&nbsp;&nbsp;@Repository：这个注解是具有类似用途和功能的@Component注解的特化。它为DAO提供了额外的好处。它将DAO导入IOC容器，并使未经检查的异常有资格转化为Spring DataAccessException。
+33.@Required注解有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;@Required应用于bean属性setter方法。此注解仅指示必须在配置时使用bean定义中的显式属性值或使用自动装配填充受影响的bean属性。如果尚未填充受影响的bean属性，则容器将抛出BeanInitializationException。
+```java
+public class Employee {
+	private String name;
+	@Required
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+}
+```
+34.@Autowired注解有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;@Autowired可以更准确地控制应该在何处以及如何进行自动装配。此注解用于在setter方法、构造函数，具有任意名称或多个参数的属性或方法上自动装配bean。默认情况下，它是类型驱动的注入。
+```java
+public class Employee {
+	private String name;
+	@Autowired
+	public void serName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+}
+```
+35.@Qualifier注解有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;当您创建多个相同类型的bean并希望仅使用属性装配其中一个bean时，您可以使用@Qualifier注解和@Autowired通过指定应该装配哪个确切的bean来消除歧义。
+&nbsp;&nbsp;&nbsp;&nbsp;例如：这里我们分别有两个类，Employee和EmpAccount。在EmpAccount中，使用@Qualifier指定了必须装配id为emp1的bean。
+```java
+public class Employee {
+	private String name;
+	@Autowired
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+}
+public class EmpAccount {
+	private Empoyee emp;
+	@Autowired
+	@Qualifier(emp1)
+	public void showName() {
+		System.err.println("Employee name:" + emp.getName());
+	}
+}
+```
+36.@RequestMapping注解有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping注解用于将特定HTTP请求方法映射到将处理相应请求的控制器中的特定类/方法。此注解可应用于两个级别：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类级别：映射请求的URL。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法级别：映射URL以及HTTP请求方法。
