@@ -244,3 +244,40 @@ public class StudentConfig {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑦.最后，如果它存在与bean关联的任何BeanPostProcessors，则将调用postProcessAfterInitializationn()方法。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑧.如果bean实现DisposableBean接口，当spring容器关闭时，会调用destory()。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⑨.如果为bean指定了destory方法(的destory-method属性)，那么将调用它。
+26.什么是Spring的内部bean？
+&nbsp;&nbsp;&nbsp;&nbsp;只有将bean用作另一个bean的属性时，才能将bean声明为内部bean。为了定义bean，Spring基于XML的配置元数据在<property>或<constructor-arg>中提供了<bean>元素的使用。内部bean总是匿名的，他们总是作为原型。
+&nbsp;&nbsp;&nbsp;&nbsp;例如：假设我们有一个Student类，其中引用了Preson类。这里我们将只创建一个Person类实例并在Student中使用它。
+```java
+public class Student {
+	private Person person;
+}
+public class Person {
+	private String name;
+	private String address;
+}
+```
+```XML
+<!-- bean.xml -->
+<bean id="StudentBean" class="com.test.bean.Student">
+	<property name="person">
+		<bean class="com.test.bean.Person>
+			<property name="name" value="Will"></property>
+			<property name="address" value="中国"></property>
+		</bean>
+	</property>
+</bean>
+```
+27.什么是Spring装配
+&nbsp;&nbsp;&nbsp;&nbsp;当bean在Spring容器中组合在一起时，它被成为装配或bean装配。Spring容器需要知道需要什么bean以及容器应该如何使用依赖注入来将bean绑定在一起，同时装配bean。
+28.自动装配有哪些方式
+&nbsp;&nbsp;&nbsp;&nbsp;Spring容器能够自动装配bean，也就是说，可以通过检查BeanFactory的内容让Spring自动解析bean的协作者。
+&nbsp;&nbsp;&nbsp;&nbsp;自动装配的不同模式：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no：这是默认设置，表示没有自动装配。应使用显式bean引用进行装配。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byName：它根据bean的名称注入对象依赖项。它匹配并装配其属性与XML文件中由相同名称定义的bean。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byType：它根据类型注入对象依赖项。如果属性的类型与XML文件中的一个bean名称匹配，则匹配并装配属性。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;构造函数：它通过调用类的构造函数来注入依赖项。它有大量的参数。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autodetect：首先容器尝试通过构造函数使用autowire装配，如果不能，则尝试通过byType自动装配。
+29.自动装配有什么局限性？
+&nbsp;&nbsp;&nbsp;&nbsp;覆盖的可能性：您始终可以使用和设置指定依赖项，这将覆盖自动装配。
+&nbsp;&nbsp;&nbsp;&nbsp;基本元数据类型：简单属性(如元数据类型，字符串和类)无法自动装配。
+&nbsp;&nbsp;&nbsp;&nbsp;令人困惑的性质：总是喜欢使用明确的装配，因为自动装配不太精确。
