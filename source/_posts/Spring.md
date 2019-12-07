@@ -360,3 +360,14 @@ public class EmpAccount {
 &nbsp;&nbsp;&nbsp;&nbsp;JdbcTemplate
 &nbsp;&nbsp;&nbsp;&nbsp;SimpleJdbcTemplate
 &nbsp;&nbsp;&nbsp;&nbsp;NamedParameterJdbcTemplate
+&nbsp;&nbsp;&nbsp;&nbsp;SimpleJdbcInsert
+&nbsp;&nbsp;&nbsp;&nbsp;SimpleJdbcCall
+39.使用spring访问Hibernate的方法有哪些？
+&nbsp;&nbsp;&nbsp;&nbsp;我们可以通过两种方式使用Spring访问Hibernate：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.使用Hibernate模板和回调进行控制反转。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.扩展HibernateDAOSupport并应用AOP拦截节点。
+40.列举Spring支持的事务管理类型
+&nbsp;&nbsp;&nbsp;&nbsp;1.程序化事务管理：在此过程中，在编译的帮助下管理事务。它为您提供极大的灵活性，但维护起来非常困难。
+&nbsp;&nbsp;&nbsp;&nbsp;2.声明式事务管理：在此，事务管理与业务代码分离。仅使用注解或基于XML的配置来管理事务。
+41.Spring支持哪些ORM框架
+&nbsp;&nbsp;&nbsp;&nbsp;Hibernate、MyBatis、JPA、JDO、OJB
