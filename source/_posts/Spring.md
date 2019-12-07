@@ -354,3 +354,9 @@ public class EmpAccount {
 &nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping注解用于将特定HTTP请求方法映射到将处理相应请求的控制器中的特定类/方法。此注解可应用于两个级别：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类级别：映射请求的URL。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法级别：映射URL以及HTTP请求方法。
+37.Spring DAO有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;Spring DAO使得JDBC、Hibernate或JDO这样的数据访问技术更容易以一种统一的方式工作。这使得用户容易在持久性技术之间切换。它允许您在编写代码时，无需考虑捕获每种技术不同的异常。
+38.Spring JDBC API中存在哪些类？
+&nbsp;&nbsp;&nbsp;&nbsp;JdbcTemplate
+&nbsp;&nbsp;&nbsp;&nbsp;SimpleJdbcTemplate
+&nbsp;&nbsp;&nbsp;&nbsp;NamedParameterJdbcTemplate
