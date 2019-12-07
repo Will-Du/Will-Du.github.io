@@ -63,6 +63,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;③.After advice:一个after advice可以访问返回值(但不能修改)、被调用方法、方法参数及目标对象。
 &nbsp;&nbsp;&nbsp;&nbsp;④.Threws advice
 &nbsp;&nbsp;&nbsp;&nbsp;⑤.introfuction advice
+### Spring Faramework ###
 7.不同版本的Spring Framework有哪些主要功能？
 
 |<font color='#0A0A0A'>version</font>|<font color='#0A0A0A'>Feature</font>|
@@ -124,6 +125,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。
 &nbsp;&nbsp;&nbsp;&nbsp;3.用于远程使用。
 &nbsp;&nbsp;&nbsp;&nbsp;4.作为企业级Java Bean，它可以包装现有的POJO(Plain Old Java Objects)
+### 依赖注入(IOC) ###
 15.什么是Spring IOC容器
 &nbsp;&nbsp;&nbsp;&nbsp;Spring框架的核心是Spring容器。容器创建对象，将它们装配在一起，配置它们并管理他们的完整生命周期。Spring容器使用依赖注入来管理组成应用程序的组件。
 &nbsp;&nbsp;&nbsp;&nbsp;容器通过读取提供的配置元数据来接受对象进行实例化，配置和组装的指令。该元数据可以通过XML、Java注解或Java代码提供。
@@ -194,6 +196,7 @@ class Client {
 	}	
 }
 ```
+### Beans ###
 23.什么是spring bean？
 - 它们是构成用户应用程序主干的对象。
 - Bean是由Spring IOC容器管理。
@@ -281,6 +284,7 @@ public class Person {
 &nbsp;&nbsp;&nbsp;&nbsp;覆盖的可能性：您始终可以使用和设置指定依赖项，这将覆盖自动装配。
 &nbsp;&nbsp;&nbsp;&nbsp;基本元数据类型：简单属性(如元数据类型，字符串和类)无法自动装配。
 &nbsp;&nbsp;&nbsp;&nbsp;令人困惑的性质：总是喜欢使用明确的装配，因为自动装配不太精确。
+### 注解 ###
 30.用过哪些重要的注解
 &nbsp;&nbsp;&nbsp;&nbsp;@Controller：用于SpringMVC项目中的控制器类。
 &nbsp;&nbsp;&nbsp;&nbsp;@service：用于服务类。
@@ -354,6 +358,7 @@ public class EmpAccount {
 &nbsp;&nbsp;&nbsp;&nbsp;@RequestMapping注解用于将特定HTTP请求方法映射到将处理相应请求的控制器中的特定类/方法。此注解可应用于两个级别：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类级别：映射请求的URL。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方法级别：映射URL以及HTTP请求方法。
+### 数据访问 ###
 37.Spring DAO有什么用？
 &nbsp;&nbsp;&nbsp;&nbsp;Spring DAO使得JDBC、Hibernate或JDO这样的数据访问技术更容易以一种统一的方式工作。这使得用户容易在持久性技术之间切换。它允许您在编写代码时，无需考虑捕获每种技术不同的异常。
 38.Spring JDBC API中存在哪些类？
@@ -371,3 +376,25 @@ public class EmpAccount {
 &nbsp;&nbsp;&nbsp;&nbsp;2.声明式事务管理：在此，事务管理与业务代码分离。仅使用注解或基于XML的配置来管理事务。
 41.Spring支持哪些ORM框架
 &nbsp;&nbsp;&nbsp;&nbsp;Hibernate、MyBatis、JPA、JDO、OJB
+### AOP ###
+42.什么是AOP
+&nbsp;&nbsp;&nbsp;&nbsp;AOP(Aspect-Oriented Programming),即面向切面编程，它与OOP(Object-Oriented Programming，面向对象编程)相辅相成，提供了与OOP不同的抽象软件结构的视角。
+&nbsp;&nbsp;&nbsp;&nbsp;在OOP中，我们以类(class)作为我们的基本单元，而AOP中的基本单元是Aspect(切面)。
+43.AOP中的Aspect、Advice、Pointcut、JoinPoint和Adivce参数分别是什么？
+&nbsp;&nbsp;&nbsp;&nbsp;Aspect：是一个实现交叉问题的类，例如事务管理。方面可以是配置的普通类，然后在Spring Bean配置文件中配置，或者我们可以使用Spring AspectJ支持使用@Aspect注解，将类声明为Aspect。
+&nbsp;&nbsp;&nbsp;&nbsp;Advice：是针对特定JoinPoint采取的操作。在编程方面，它们是在应用程式中达到具有匹配切入点的特定JoinPoint时执行的方法。您可以将Advice视为Spring拦截器(Interceptor)或Servlet过滤器(filter)。
+&nbsp;&nbsp;&nbsp;&nbsp;Advice Arguments：我们可以在advice方法中传递参数。我们可以在切入点中使用args()表达式来应用于与参数模式匹配的任何方法。如果我们使用它，那么我们需要在确定参数类型的advice方法中使用相同的名称。
+&nbsp;&nbsp;&nbsp;&nbsp;Pointcut：是与JoinPoint匹配的正则表达式，用于确定是否需要执行Advice。Pointcut使用与JoinPoint匹配的不同类型的表达式。Spring框架使用AspectJ Pointcut表达式语言来确定将应用通知方法的JoinPoint。
+&nbsp;&nbsp;&nbsp;&nbsp;JoinPoint：是应用程序中的特定点，例如方法执行、异常处理、更改对象变量值等。在Spring AOP中，JoinPoint始终是方法的执行器。
+44.什么是通知(Advice)
+&nbsp;&nbsp;&nbsp;&nbsp;特定JoinPoint处的Aspect所采取的动作称为Advice。Spring AOP使用一个Advice作为拦截器，在JoinPoint“周围”维护一系列的拦截器。
+45.有哪些类型的通知(Advice)
+&nbsp;&nbsp;&nbsp;&nbsp;Before：这些类型的Advice在JoinPoint方法之前执行，并使用@Before注解标记进行配置。
+&nbsp;&nbsp;&nbsp;&nbsp;After Returning：这些类型的Advice在连接点方法正常执行后执行，并使用@AfterReturning注解标记进行配置。
+&nbsp;&nbsp;&nbsp;&nbsp;After Throwing：这些类型的Advice尽在JoinPoint方法通过抛出异常退出并使用@AfterThrowing注解标记配置时执行。
+&nbsp;&nbsp;&nbsp;&nbsp;After(finally)：这些类型的Advice在连接点方法之后执行，无论方法退出是正常还是异常返回，并使用@After注解标记进行配置。
+&nbsp;&nbsp;&nbsp;&nbsp;Around：这些类型的Advice在连接点之前和之后执行，并使用@Around注解标记进行配置。
+46.指出在Spring AOP中concern和cross-cutting concern的不同之处
+&nbsp;&nbsp;&nbsp;&nbsp;concern是我们想要在应用程序的特定模块中定义的行为。它可以定义为我们想要实现的功能。
+&nbsp;&nbsp;&nbsp;&nbsp;cross-cutting concern是一个适用于整个应用的行为，这会影响整个应用程序。例如：日志记录、安全性和数据传输是应用程序几乎每个模块都需要关注的问题，因此它们是跨领域的问题。
+47.
