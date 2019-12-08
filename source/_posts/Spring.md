@@ -416,3 +416,7 @@ Advice + Target Object = Proxy
 50.什么是编织(Weaving)
 &nbsp;&nbsp;&nbsp;&nbsp;为了创建一个Advice对象而链接一个Aspect和其他应用类型或对象，称为编织(Weaving)。在Spring AOP中，编织在运行时执行。
 ### MVC ###
+51.Spring MVC框架有什么用？
+&nbsp;&nbsp;&nbsp;&nbsp;Spring Web MVC框架提供“模型-视图-控制器”架构和随时可用的组件，用于开发灵活且松散耦合的WEB应用程序。MVC模式有助于分离应用程序的不同方面，如输入逻辑、业务逻辑和UI逻辑，同时在所有这些元素之间提供松散耦合。
+52.介绍一下WebApplicationContext
+&nbsp;&nbsp;&nbsp;&nbsp;WebApplicationContext是ApplicationContext的扩展。它具有Web应用程序所需的一些额外功能。它与普通的ApplicationContext在解析主题和决定与哪个servlet关联的能力方面有所不同。
