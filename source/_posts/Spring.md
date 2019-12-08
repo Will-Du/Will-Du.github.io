@@ -397,4 +397,11 @@ public class EmpAccount {
 46.指出在Spring AOP中concern和cross-cutting concern的不同之处
 &nbsp;&nbsp;&nbsp;&nbsp;concern是我们想要在应用程序的特定模块中定义的行为。它可以定义为我们想要实现的功能。
 &nbsp;&nbsp;&nbsp;&nbsp;cross-cutting concern是一个适用于整个应用的行为，这会影响整个应用程序。例如：日志记录、安全性和数据传输是应用程序几乎每个模块都需要关注的问题，因此它们是跨领域的问题。
-47.
+47.AOP有哪些实现方式？
+&nbsp;&nbsp;&nbsp;&nbsp;实现AOP的技术，主要分为两大类：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;静态代理：指使用AOP框架提供的命令进行编译，从而在编译阶段就可生成AOP代理类，因此也称为编译时增强：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编译时编织(特殊编译器实现)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类加载时编织(特殊的类加载器实现)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动态代理：在运行时在内存中“临时”生成AOP动态代理类，因此也被称为运行时增强。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JDK动态代理
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGLIB
