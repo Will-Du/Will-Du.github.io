@@ -405,3 +405,14 @@ public class EmpAccount {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动态代理：在运行时在内存中“临时”生成AOP动态代理类，因此也被称为运行时增强。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JDK动态代理
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGLIB
+48.Spring AOP和AspectJ AOP有什么区别？
+&nbsp;&nbsp;&nbsp;&nbsp;Spring AOP基于动态代理方式实现；AspectJ AOP基于静态代理方式实现。
+&nbsp;&nbsp;&nbsp;&nbsp;Spring AOP仅支持方法级别的PointCut;AspectJ APO提供了完全的AOP支持，它还支持属性级别的PointCut。
+49.如何理解Spring中的代理
+&nbsp;&nbsp;&nbsp;&nbsp;将Advice应用于目标对象后创建的对象称为代理。在客户端对象的情况下，目标对象和代理对象是相同的。
+```
+Advice + Target Object = Proxy
+```
+50.什么是编织(Weaving)
+&nbsp;&nbsp;&nbsp;&nbsp;为了创建一个Advice对象而链接一个Aspect和其他应用类型或对象，称为编织(Weaving)。在Spring AOP中，编织在运行时执行。
+### MVC ###
