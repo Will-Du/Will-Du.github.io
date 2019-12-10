@@ -20,6 +20,7 @@ tags: sql
 </insert>
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：表名之后没有VALUES。</label>
+<!-- more -->
 ```XML
 <!-- 批量插入第二种方式 -->
 <insert id="batchInsert" parameterType="java.util.List">

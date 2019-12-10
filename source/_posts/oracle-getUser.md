@@ -14,6 +14,9 @@ WHERE
 	A.PADDR = B.ADDR
 	AND A.PREV_SQL_ID = C.SQL_ID
 ORDER BY A.PREV_EXEC_START;
+```
+<!-- more -->
+```sql
 -- 删除相关用户会话(SERIAL#,SID为上方查询结果)
 ALTER SYSTEM KILL SESSION 'SERIAL#, SID';
 -- 查询oracle连接数
