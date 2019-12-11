@@ -174,3 +174,62 @@ public List<Student> findStudents(@param("name") String name, @param("age") int 
 &nbsp;&nbsp;&nbsp;&nbsp;有联合查询和嵌套查询。
 &nbsp;&nbsp;&nbsp;&nbsp;联合查询是几个表联合查询，只查询一次，通过在resultMap里面collection节点配置一对多的类就可以完成。
 &nbsp;&nbsp;&nbsp;&nbsp;嵌套查询是先查一个表，根据这个表里面的结果的外键id，再去另一个表里面查询数据，也是通过配置collection，但另一个表的查询通过select属性配置。
+21.Mybatis是否支持延迟加载？如果支持，它的实现原理是什么？
+&nbsp;&nbsp;&nbsp;&nbsp;Mybatis仅支持association关联对象和collection关联集合对象的延迟加载，association指的就是一对一，collection指的是一对多查询。在Mybatis配置文件中，可以配置是否启用延迟加载lazyLodingEnabled=true|false。
+&nbsp;&nbsp;&nbsp;&nbsp;它的原理是使用CGLIB创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用a.getB().getName()，拦截器invoke()方法发现a.getB()是null值，那么就会单独发送事先保存好的查询关联B对象的SQL，把B查询出来，然后调用a.setB(b)，于是a的对象b属性就有值了，接着完成a.getB().getName()方法的调用。这就是延迟加载的基本原理。
+&nbsp;&nbsp;&nbsp;&nbsp;当然了，不光是Mybatis，几乎所有的包含Hibernate，支持延迟加载的原理都是一样的。
+22.Mybatis的一级、二级缓存：
+&nbsp;&nbsp;&nbsp;&nbsp;一级缓存：基于PrepetualCache的HashMap本地缓存，其存储作用域为Session，当Session flush或close之后，该Session中的所有Cache就将清空，默认打开一级缓存。
+&nbsp;&nbsp;&nbsp;&nbsp;二级缓存与一级缓存其机制相同，默认也是采用PrepetualCache，HashMap存储，不同在于其储存作用域为Mapper(namespace)，并且可自定义存储源，如Ehcache。默认不打开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口(可用来保存对象的状态)，可在它的映射文件中配置<cache/>。
+&nbsp;&nbsp;&nbsp;&nbsp;对于缓存数据更新机制，当某一个作用域(一级缓存Session/二级缓存Namespace)的进行了C/U/D操作后，默认该作用域下所以select中缓存将被clear。
+23.什么是Mybatis的接口绑定？有哪些实现方式？
+&nbsp;&nbsp;&nbsp;&nbsp;接口绑定就是在Mybatis中任意定义接口，然后把接口里面的方法和SQL语句绑定，我们直接调用接口方法就可以，这样比起原来的SqlSession提供的方法，我们可以更加灵活的选择和设置。
+&nbsp;&nbsp;&nbsp;&nbsp;接口绑定有两种实现方式，一种是通过注解绑定，就是在接口的方法上面加上@Select、@Update等注解，里面包含SQL语句来绑定；另外一种就是通过XML里面写SQL来绑定，在这种情况下，要指定XML映射文件里面的namespace必须为接口全路径名。当SQL语句比较简单时候，用注解绑定，当SQL语句比较复杂时候，用XML绑定，一般用XML绑定的比较多。
+24.使用Mybatis的mapper接口调用时有哪些要求？
+&nbsp;&nbsp;&nbsp;&nbsp;Mapper接口方法名和mapper.xml中定义的每个SQL的id相同。
+&nbsp;&nbsp;&nbsp;&nbsp;Mapper接口方法的输入参数类型和mapper.xml中定义的每一个SQL的parameterType的类型相同。
+&nbsp;&nbsp;&nbsp;&nbsp;Mapper接口方法的输出参数类型和mapper.xml中定义的每一个SQL的resultType的类型相同。
+&nbsp;&nbsp;&nbsp;&nbsp;Mapper.xml文件中namespace即是mapper接口的类路径。
+25.Mapper编写有哪几种方式？
+&nbsp;&nbsp;&nbsp;&nbsp;第一种：接口实现类继承SqlSessionDaoSupport：使用此方法需要编写mapper接口、mapper接口实现类、mapper.xml文件。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在sqlMapConfig.xml配置mapper.xml的位置
+```XML
+<mappers>
+	<mapper resource="mapper.xml文件的地址" />
+	<mapper resource="mapper2.xml文件的地址" />
+</mappers>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定义mapper接口：实现类集成sqlSessionDaoSupport，mapper方法中可以this.getSqlSession()进行数据增删改查。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring配置
+```XML
+<bean id="XX" class="mapper接口的实现">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+</bean>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;第二种：使用org.mybatis.spring.mapper.MapperFactoryBean:在sqlMapConfig.xml中配置mapper.xml的位置，如果mapper.xml和mapper接口的名称相同且在同一目录下，这里可以不用配置。
+```XML
+<mappers>
+	<mapper resource="mapper.xml文件的地址" />
+</mappsers>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定义mapper接口：mapper.xml中namespace为mapper接口的地址，mapper接口中的方法名和mapper.xml中定义的statement的id保持一致
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring中定义：
+```XML
+<bean id="xx" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+	<property name="mapperInterface" value="mapper接口地址" />
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;第三种：使用mapper扫描器：mapper.xml文件编写：mapper.xml中的namespace为mapper接口的地址；mapper接口中的方法名和mapper.xml中定义的statement的id保持一致；如果将mapper.xml和mapper接口的名称保持一致则不用在sqlMapConfig.xml中进行配置。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定义mapper接口：注意mapper.xml的文件名和mapper的接口名称保持一致，且放在同一目录
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配置mapper扫描器：
+```XML
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="mapper接口包地址" ></property>
+	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+</bean>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用扫描器后从spring容器中获取mapper的实现对象。
+26.简述Mybatis的插件运行原理，以及如何编写一个插件
+&nbsp;&nbsp;&nbsp;&nbsp;Mybatis仅可以编写针对ParameterHandler、ResultSetHandler、StatementHandler、Executor这4中接口的插件，Mybatis使用JDK的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4中接口对象的方法时，就会进入拦截方法，具体就是InvocationHandler的invoke()方法，当然，只会拦截那些你指定需要拦截的方法。
+&nbsp;&nbsp;&nbsp;&nbsp;编写插件：实现Mybatis的Interceptor接口并复写intercept()方法，然后再给插件写注解，指定要拦截哪一个接口的哪些方法即可，记住，别忘了在配置文件中配置你编写的插件。
