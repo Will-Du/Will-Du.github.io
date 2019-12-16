@@ -80,31 +80,31 @@ tags: 面试题
 - B树，每个节点都存储key和data，所有节点组成这棵树，并且叶子节点指针为null，叶子节点不包含任何关键字信息。
 - B+树，所有的叶子节点中包含全部关键字信息，及指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接。所有的非终结点可以看成是索引部分，结点中仅含有其子树根节点中最大(或最小)关键字。(而B树的非终结点也包含需要查找的有效信息)
 12.为什么说B+比B树更适合实际应用中操作系统的文件索引和数据库索引？
-&nbsp;&nbsp;&nbsp;&nbsp;<b>1.B+的磁盘读写代价更低。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.B+的磁盘读写代价更低。</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B+的内部节点并没有指向关键字具体信息的指针，因此其内部结点相对B数更小。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果把所有同一内部节点的关键字存放在同一盘块中，那么盘块所能容纳的关键字数量也越多。一次性读入内存中的需要查找的关键字也就越多。相对来说IO读写次数也就降低了。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>2.B+-树的查询效率更加稳定。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.B+-树的查询效率更加稳定。</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于非终结点并不是最终指向文件内容的结点，而只是叶子结点中关键字的索引。所以任何关键字的查找必须走一条从根节点到叶子节点的路。所有关键词查找的路径长度相同，导致每一个数据的查询效率相当。
 13.MySQL联合索引
-&nbsp;&nbsp;&nbsp;&nbsp;<b>1.联合索引是两个或更多个列上的索引。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.联合索引是两个或更多个列上的索引。</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于联合索引：MYSQL从左到右的使用索引中的字段，一个查询可以只使用索引中的一部分，但只能是最左侧部分。如：索引是key_index(a,b,c)，可以支持a、a,b、a,b,c，3种组合进行查找，但不支持b,c进行查找。当最左侧字段是常量引用时，索引就十分有效。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>2.利用索引中的附加列，可以缩小搜索的范围，但使用一个具有两列的索引不同于使用两个单独的索引。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.利用索引中的附加列，可以缩小搜索的范围，但使用一个具有两列的索引不同于使用两个单独的索引。</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;复合索引的结构与电话簿类似，人名由姓和名构成，电话簿首先会按姓氏进行排序，然后按名字对有相同姓氏的人进行排序。如果只知道姓，电话簿将非常有用；如果知道姓和名，电话簿更为有用；但如果只知道名不知道姓，电话簿将没有用处。
 14.什么情况下应不建或少建索引
-&nbsp;&nbsp;&nbsp;&nbsp;<b>1.表记录太少</b>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>2.经常插入、删除、修改的表</b>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>3.数据重复且分布均匀的表字段，</b>假如一个表有10W行数据，有一个字段A只有T和F两种值，且每个值的分布概率大约为50%，那么对这种表A字段建立索引一般不会提高数据库的查询速度。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>4.经常和主字段一块查询，但主字段索引值比较多的表字段。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.表记录太少</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.经常插入、删除、修改的表</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.数据重复且分布均匀的表字段，</b>假如一个表有10W行数据，有一个字段A只有T和F两种值，且每个值的分布概率大约为50%，那么对这种表A字段建立索引一般不会提高数据库的查询速度。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">4.经常和主字段一块查询，但主字段索引值比较多的表字段。</b>
 15.什么是表分区
 &nbsp;&nbsp;&nbsp;&nbsp;表分区是指根据一定规则，将数据库中的一张表分解成多个更小的、容易管理的部分。从逻辑上看，只有一张表，但是底层却是由多个物理分区组成。
 16.表分区和分表的区别
-&nbsp;&nbsp;&nbsp;&nbsp;<b>分表：</b>指的是通过一定规则，将一张表分解成多张不同的表。比如将用户订单记录根据时间分成多个表。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>分表与分区的区别在于：</b>分区从逻辑上来讲只有一张表，而分表则是将一张表分解成多张。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">分表：</b>指的是通过一定规则，将一张表分解成多张不同的表。比如将用户订单记录根据时间分成多个表。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">分表与分区的区别在于：</b>分区从逻辑上来讲只有一张表，而分表则是将一张表分解成多张。
 17.表分区有什么好处
-&nbsp;&nbsp;&nbsp;&nbsp;<b>1.存储更多数据。</b>分区表的数据可以分布在不同的物理设备上，从而高效地利用多个硬件设备。和单个磁盘或者文件系统相比，可以存储更多数据。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>2.优化查询。</b>在where语句中包含分区条件时，可以只扫描一个或多个分区表来提高查询效率；涉及sum和count语句时，也可以在多个分区上并行处理，最后汇总结果。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>3.分区表更容易维护。</b>例如：想批量删除大量数据可以清除整个分区。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>4.避免某些特殊的瓶颈。</b>例如InnoDB的单个索引的互斥访问，ext3文件系统的inode锁竞争等。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.存储更多数据。</b>分区表的数据可以分布在不同的物理设备上，从而高效地利用多个硬件设备。和单个磁盘或者文件系统相比，可以存储更多数据。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.优化查询。</b>在where语句中包含分区条件时，可以只扫描一个或多个分区表来提高查询效率；涉及sum和count语句时，也可以在多个分区上并行处理，最后汇总结果。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.分区表更容易维护。</b>例如：想批量删除大量数据可以清除整个分区。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">4.避免某些特殊的瓶颈。</b>例如InnoDB的单个索引的互斥访问，ext3文件系统的inode锁竞争等。
 18.分区表的限制因素
 &nbsp;&nbsp;&nbsp;&nbsp;1.一个表最多只能有1024个分区。
 &nbsp;&nbsp;&nbsp;&nbsp;2.MYSQL5.1中，分区表达式必须是整数，或者返回整数的表达式。在MYSQL5.5中提供了非整数表达式分区的支持。
@@ -112,16 +112,16 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;4.分区表中无法使用外键约束。
 &nbsp;&nbsp;&nbsp;&nbsp;5.MYSQL的分区适用于一个表的所有数据和索引，不能只对表数据分区而不对索引分区，也不能只对索引分区而不对表分区，也不能只对表中的一部分数据分区。
 19.MYSQL支持的分区类型有哪些？
-&nbsp;&nbsp;&nbsp;&nbsp;<b>RANGE分区：</b>这种模式允许将数据划分不同的范围。例如可以将一个表通过年份划分成若干个分区。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>LIST分区：</b>这种模式允许系统通过预定义的列表的值来对数据进行分割。按照list中的值分区，与RANGE分区的区别是，RANGE分区的区间范围是连续的。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>HASH分区：</b>这种模式允许通过对表的一个或多个列的HASH Key进行计算，最后通过这个HASH码不同数值对应的数据区域进行分区。例如可以建立一个对表主键进行分区的表。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>KEY分区：</b>上面的HASH模式的一种延伸，这里的HASH Key是MYSQL系统产生的。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">RANGE分区：</b>这种模式允许将数据划分不同的范围。例如可以将一个表通过年份划分成若干个分区。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">LIST分区：</b>这种模式允许系统通过预定义的列表的值来对数据进行分割。按照list中的值分区，与RANGE分区的区别是，RANGE分区的区间范围是连续的。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">HASH分区：</b>这种模式允许通过对表的一个或多个列的HASH Key进行计算，最后通过这个HASH码不同数值对应的数据区域进行分区。例如可以建立一个对表主键进行分区的表。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">KEY分区：</b>上面的HASH模式的一种延伸，这里的HASH Key是MYSQL系统产生的。
 20.行级锁定的优缺点
-&nbsp;&nbsp;&nbsp;&nbsp;<b>优点：</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">优点：</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.当在许多线程中访问不同的行时只存在少量锁定冲突。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.回滚时只有少量的更改。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.可以长时间锁定单一的行。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>缺点：</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">缺点：</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.比页级或表级锁定占用更多的内存。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.当在表的大部分中使用时，比页级或表级锁定速度慢，因为你必须获取更多的锁。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.如果你在大部分数据上经常进行GROUP BY操作或者必须经常扫描整个表，比其它锁定明显慢很多。
@@ -130,12 +130,12 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;key是数据库的物理结构，它包含两层意义和作用，一是约束(偏重于约束和规范数据库的结构完整性)，二是索引(辅助查询)。包含primary key、unique key、foreign key等。
 &nbsp;&nbsp;&nbsp;&nbsp;index是数据库的物理结构，它只是辅助查询的，它创建时会在另外的表空间(mysql中的innoDB表空间)以一个类似目录的结构存储。索引要分类的话，分为前缀索引、全文本索引等。
 22.mysql中MyISAM和InnoDB的区别有哪些？
-&nbsp;&nbsp;&nbsp;&nbsp;<b>1.InnoDB支持事务，MyISAM不支持。</b>对于InnoDB每一条SQL语句都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语句放在begin和commit之间，组成一个事务。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>2.InnoDB支持外键，而MyISAM不支持。</b>对一个包含外键的InnoDB表转为MYISAM会失败。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>3.InnoDB是聚集索引，</b>数据文件和索引是绑在一起的，必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此主键不应过大，因为主键太大，其它索引也都会很大。
-&nbsp;&nbsp;&nbsp;&nbsp;而<b>MyISAM是非聚集索引，</b>数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>4.InnodDB不保存表的具体行数，</b>执行select  count(*) from table时需要全表扫描。而<b>MyISAM用一个变量保存了整个表的行数，</b>执行上述语句时只需要读出该变量即可，速度很快。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>5.InnoDB不支持全文索引，而MyISAM支持全文索引，查询效率上MyISAM要高。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.InnoDB支持事务，MyISAM不支持。</b>对于InnoDB每一条SQL语句都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语句放在begin和commit之间，组成一个事务。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.InnoDB支持外键，而MyISAM不支持。</b>对一个包含外键的InnoDB表转为MYISAM会失败。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.InnoDB是聚集索引，</b>数据文件和索引是绑在一起的，必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此主键不应过大，因为主键太大，其它索引也都会很大。
+&nbsp;&nbsp;&nbsp;&nbsp;而<b style="color:orangered">MyISAM是非聚集索引，</b>数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">4.InnodDB不保存表的具体行数，</b>执行select  count(*) from table时需要全表扫描。而<b style="color:orangered">MyISAM用一个变量保存了整个表的行数，</b>执行上述语句时只需要读出该变量即可，速度很快。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">5.InnoDB不支持全文索引，而MyISAM支持全文索引，查询效率上MyISAM要高。</b>
 &nbsp;&nbsp;&nbsp;&nbsp;如何选择：
 - 是否要支持事务，如果要请选择InnoDB，如果不需要可以考虑MyISAM;
 - 如果表中绝大多数都只是读查询，可以考虑MyISAM，如果既有读 写也挺频繁，请使用InnodDB;

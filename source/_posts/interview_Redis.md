@@ -9,7 +9,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;持久化就是把内存的数据写到磁盘中去，防止服务宕机了内存数据丢失。
 <!-- more -->
 3.Redis常用命令：
-&nbsp;&nbsp;&nbsp;&nbsp;Keys pattern * 查看Exists  key是否存在
+&nbsp;&nbsp;&nbsp;&nbsp;Keys pattern \* 查看Exists  key是否存在
 &nbsp;&nbsp;&nbsp;&nbsp;Set 设置 key 对应的值为 string 类型的 value。
 &nbsp;&nbsp;&nbsp;&nbsp;setnx 设置 key 对应的值为 string 类型的 value。如果 key 已经存在，返回 0，nx 是 not exist 的意思。
 &nbsp;&nbsp;&nbsp;&nbsp;Expire 设置过期时间（单位秒）

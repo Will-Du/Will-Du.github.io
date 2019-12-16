@@ -21,14 +21,14 @@ maxmemory 100mb
 ```
 ** 3.Redis的内存淘汰 **
 &nbsp;&nbsp;&nbsp;&nbsp;既然可以设置Redis最大占用内存大小，那么配置的内存就有用完的时候。那在内存用完的时候，还继续往Redis里面添加数据不就没有内存可用吗？实际上Redis定义了几种策略来处理这种情况：
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>noeviction(默认策略)：</b>对于写请求不再提供服务，直接返回错误(DEL请求和部分特殊请求除外)。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>allkeys-lru:</b>从所有key中使用LRU算法进行淘汰。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-lru:</b>从设置过期时间的key中使用LRU算法进行淘汰。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>allkeys-random:</b>从所有key中随机淘汰数据。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-random:</b>从设置了过期时间的key中随机淘汰。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>volatile-ttl:</b>在设置了过期时间的key中，根据key的过期时间进行淘汰，越早过期的越优先被淘汰。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">noeviction(默认策略)：</b>对于写请求不再提供服务，直接返回错误(DEL请求和部分特殊请求除外)。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">allkeys-lru:</b>从所有key中使用LRU算法进行淘汰。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">volatile-lru:</b>从设置过期时间的key中使用LRU算法进行淘汰。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">allkeys-random:</b>从所有key中随机淘汰数据。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">volatile-random:</b>从设置了过期时间的key中随机淘汰。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">volatile-ttl:</b>在设置了过期时间的key中，根据key的过期时间进行淘汰，越早过期的越优先被淘汰。
 &nbsp;&nbsp;&nbsp;&nbsp;当使用volatile-lru、volatile-random、volatile-ttl这三个策略时，如果没有key可以被淘汰，则和noveiction一样返回错误。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>如何获取及设置内存淘汰策略：</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">如何获取及设置内存淘汰策略：</b>
 ```
 // 获取当前内存淘汰策略
 127.0.0.1:6379>config get maxmemory-policy
@@ -143,7 +143,7 @@ public class LRUCache<K,V> {
 }
 ```
 ** LRU在Redis中的实现 **
-&nbsp;&nbsp;&nbsp;&nbsp;<b>近似LRU算法：</b>Redis使用的是近似LRU算法，它跟常规的LRU算法还不大一样。近似LRU算法通过随机采样法淘汰，每次随机出5(默认)个key，从里面淘汰最近最少使用的key。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">近似LRU算法：</b>Redis使用的是近似LRU算法，它跟常规的LRU算法还不大一样。近似LRU算法通过随机采样法淘汰，每次随机出5(默认)个key，从里面淘汰最近最少使用的key。
 &nbsp;&nbsp;&nbsp;&nbsp;可以通过maxmemory-samples参数修改采样数量，例如：maxmemory-samples 10,maxmemory-samples配置的越大，淘汰的结果越接近于严格的LRU算法。
 &nbsp;&nbsp;&nbsp;&nbsp;Redis为了实现近似LRU算法，给每一个key额外增加了一个24bit的字段，用来存储该key最后一次被访问的时候。
 ** Redis3.0对近似LRU算法的优化 **

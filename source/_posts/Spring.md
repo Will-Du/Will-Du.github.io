@@ -90,36 +90,36 @@ tags: 面试题
 - 事务管理：提供了用于事务管理的通用抽象层。Spring的事务支持也可用于容器较少的环境。
 - JDBC异常：Spring的JDBC抽象层提供了一个异常层次结构，简化了错误处理策略。
 11.Spring Framework中有多少个模块，他们分别是什么？
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Spring核心容器，</b>该层基本上是Spring Framework的核心。它包含以下模块：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Spring Core
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Spring Bean
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.SpEL(Spring Expression Language)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Spring Context
-&nbsp;&nbsp;&nbsp;&nbsp;<b>数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">数据访问/集成，</b>该层提供与数据库交互的支持。它包含以下模块：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.JDBC(Java DataBase Connectivity)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.ORM(Object Relational Mapping)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.OXM(Object XML Mappers)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.JMS(Java Messaging Service)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Transaction
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Web,</b>该层提供了创建web应用程式的支持。它包含以下模块：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Web
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Web-Servlet
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Web-Socket
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.Web-Portlet
-&nbsp;&nbsp;&nbsp;&nbsp;<b>AOP,</b>该层支持面向切面编程。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Instrumentation,</b>该层为类检测和类加载器实现提供支持。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Test,</b>该层为使用JUint和TestNG进行测试提供支持。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Aspects,</b>该模块为与AspectJ的集成提供支持。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">AOP,</b>该层支持面向切面编程。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Instrumentation,</b>该层为类检测和类加载器实现提供支持。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Test,</b>该层为使用JUint和TestNG进行测试提供支持。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Messaging,</b>该模块为STOMP提供支持。它还支持注解编程模型，该模型用于从WebSocket客户端路由和处理STOMP消息。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Aspects,</b>该模块为与AspectJ的集成提供支持。
 12.什么是Spring配置文件
 &nbsp;&nbsp;&nbsp;&nbsp;Spring配置文件是XML文件。该文件主要包含类信息。它描述了这些类是如何配置以及相互引用的。但是，XML配置文件冗长且更加干净。如果没有正确规划和编写，那么在大项目中管理变得十分困难。
 13.Spring应用程序有哪些不同的组件
 &nbsp;&nbsp;&nbsp;&nbsp;Spring应用一般有一下组件：
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>接口：</b>定义功能。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean类:</b>它包含属性、setter和getter方法、函数等。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Bean配置文件：</b>包含类的信息以及如何配置它们。
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>用户程序：</b>它使用接口。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">接口：</b>定义功能。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Bean类:</b>它包含属性、setter和getter方法、函数等。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Spring面向切面编程(AOP)：</b>提供面向切面编程的功能。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">Bean配置文件：</b>包含类的信息以及如何配置它们。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">用户程序：</b>它使用接口。
 14.使用Spring有哪些方式？
 &nbsp;&nbsp;&nbsp;&nbsp;1.作为一个成熟的Spring Web应用程序。
 &nbsp;&nbsp;&nbsp;&nbsp;2.作为第三方Web框架，使用Spring Frameworks中间层。
