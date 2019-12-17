@@ -163,7 +163,7 @@ Node reverseList(Node head) {
 	Node newList = reverseList(head.next);
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;我们在第一步时，就已经定义了reverseList函数的功能可以把一个单链表反转，所以，我们对2->3->4反转之后的结果应该是这样：head->1->2<-3<-4<-newList。我们把2->3->4递归成4->3->2。不过1这个结点我们并没有去碰它，所以1的next结点仍然是连接2。其实，接下来就简单了，我们接下来只需<b>把结点2的next指向1，然后把1的next指向null，不就行了？</b>即通过改变newList链表之后的结果：newList->4->3->2->1->null，也就是说，reverseList(head)等价于reverseList(head.next)+<b>改变一下1,2这两个结点的指向</b>。好了，等价关系找出来了，代码如下：
+&nbsp;&nbsp;&nbsp;&nbsp;我们在第一步时，就已经定义了reverseList函数的功能可以把一个单链表反转，所以，我们对2->3->4反转之后的结果应该是这样：head->1->2<-3<-4<-newList。我们把2->3->4递归成4->3->2。不过1这个结点我们并没有去碰它，所以1的next结点仍然是连接2。其实，接下来就简单了，我们接下来只需<b style="color:orangered">把结点2的next指向1，然后把1的next指向null，不就行了？</b>即通过改变newList链表之后的结果：newList->4->3->2->1->null，也就是说，reverseList(head)等价于reverseList(head.next)+<b style="color:orangered">改变一下1,2这两个结点的指向</b>。好了，等价关系找出来了，代码如下：
 ```java
 // 用递归的方法反转链表
 public static Node reverseList(Node head) {
@@ -184,3 +184,46 @@ public static Node reverseList(Node head) {
 	
 }
 ```
+### 递归的一些优化思路 ###
+##### 1.是否考虑重复计算 #####
+&nbsp;&nbsp;&nbsp;&nbsp;如果你使用递归的时候不进行优化，是有非常非常非常多的子问题被重复计算的。f(n-1)、f(n-2)……就是f(n)的子问题。
+&nbsp;&nbsp;&nbsp;&nbsp;例如对于案例2那道题算f(8)，递归计算时，重复计算了两次f(5)，五次f(4)……这是非常恐怖的，n越大，重复计算的就越多，所以我们必须进行优化。
+&nbsp;&nbsp;&nbsp;&nbsp;如何优化？一般我们可以把我们计算的结果保存起来，例如把f(4)的计算结果保存起来，当再次要计算f(4)的时候，我们先判断一下，之前是否计算过，如果计算过，直接把f(4)得结果取出来就可以了，没有计算过的话，再递归计算。
+&nbsp;&nbsp;&nbsp;&nbsp;用什么保存呢？我们可以用数组或者HashMap保存，我们用数组来保存，把n作为我们的数组下标，f(n)作为值，例如arr[n]=f(n)。f(n)还没有计算的时候，我们让arr[n]等于一个特殊值，例如arr[n]=-1。当我们要判断的时候，如果arr[n]=-1，则证明f(n)没有计算过，否则，f(n)就已经计算过，且f(n)=arr[n]。直接把值取出来就行了。代码如下：
+```java
+// 我们实现假定arr数组已经初始化好了
+int f(int n) {
+	if(n <= 1) {
+		return n;
+	}
+	// 先判断有没有计算过
+	if(arr[n] != -1) {
+		// 计算过，直接返回
+		return arr[n];
+	} else {
+		// 没有计算过，递归计算，并且把结果保存到arr数组里
+		arr[n] = f(n-1) + f(n-2);
+		return arr[n];
+	}
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;也就是说，使用递归的时候，必须要考虑有没有重复计算，如果重复计算，一定要把计算过的状态保存起来。
+##### 2.考虑是否可以自底而上 #####
+&nbsp;&nbsp;&nbsp;&nbsp;对于递归的问题，我们一般都是<b style="color:orangered">从上往下递归</b>的，直到递归到最底，再一层一层着把值返回。不过，有时候当n比较大的时候，例如当n=10000时，那么必须要往下递归10000层直到n<=1才将结果慢慢返回，如果n太大的话，可能栈空间会不够用。对于这种情况，其实我们是可以考虑自底向上的做法。例如我知道f(1)=1,f(2)=2;那么我们就可以推出f(3)=f(2)+f(1)=3。从而可以推出f(4),f(5)等直到f(n)。因此，我们考虑使用自底向上的方法来取代递归，代码如下：
+```java
+public int f(int n) {
+	if(n <= 2) {
+		return n;
+	}
+	int f1 = 1;
+	int f2 = 2;
+	int sum = 0;
+	for(int i = 3; i <= n; i++) {
+		sum = f1 + f2;
+		f1 = f2;
+		f2 = sum;
+	}
+	return sum;
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;这种方法，其实也被称之为递推。
