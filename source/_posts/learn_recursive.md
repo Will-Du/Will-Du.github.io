@@ -60,3 +60,127 @@ int f(int n) {
 }
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;至此，递归三要素已经都写进代码里了，所以这个f(n)功能的内部代码我们已经写好了。这就是递归最重要的三要素，每次做递归的时候，你就强迫自己试着去寻找这三个要素。
+### 案例1.斐波那契数列 ###
+&nbsp;&nbsp;&nbsp;&nbsp;斐波那契数列是这样一个数列：1、1、2、3、5、8、13、21、34……，即第一项f(1)=1,第二项f(2)=1,……，第n项为f(n)=f(n-1)+f(n-2)。求第n项的值是多少。
+##### 递归函数功能 #####
+&nbsp;&nbsp;&nbsp;&nbsp;假设f(n)的功能是求第n项的值，代码如下：
+```java
+int f(int n) {
+
+}
+```
+##### 找出递归结束的条件 #####
+&nbsp;&nbsp;&nbsp;&nbsp;显然，当n=1或者n=2，我们可以轻易知道结果f(1)=f(2)=1。所以递归结束条件可以为n <= 2.代码如下：
+```java
+int f(int n) {
+	if(n <= 2) {
+		return 1;
+	}
+}
+```
+##### 找出函数的等价关系式 #####
+&nbsp;&nbsp;&nbsp;&nbsp;题目已经把等价关系式给我们了，所以我们很容易知道f(n) = f(n-1) + f(n-2)。所以最终代码如下：
+```java
+int f(int n) {
+	if(n <= 2) {
+		return 1;
+	}
+	return f(n-1) + f(n-2);
+}
+```
+### 案例2.小青蛙跳台阶 ###
+&nbsp;&nbsp;&nbsp;&nbsp;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级台阶总共有多少种跳法。
+##### 递归函数功能 #####
+&nbsp;&nbsp;&nbsp;&nbsp;假设f(n)的功能是求青蛙跳上一个n级台阶总共有多少种方法，代码如下：
+```java
+int f(int n) {
+	
+}
+```
+##### 找出递归结束的条件 #####
+&nbsp;&nbsp;&nbsp;&nbsp;直接把n压缩到很小很小，因为n越小，我们就越容易直观算出f(n)等于多少，所以当n=1时，知道f(1)=1、所以代码如下：
+```java
+int f(int n) {
+	if(n == 1) {
+		return 1;
+	}
+}
+```
+##### 找出函数的等价关系式 #####
+&nbsp;&nbsp;&nbsp;&nbsp;每次跳的时候，小青蛙可以跳一个台阶，也可以跳两个台阶，也就是说，每次跳的时候，小青蛙有两种跳法。
+&nbsp;&nbsp;&nbsp;&nbsp;第一种跳法：第一次跳了一个台阶，那么还剩下n-1个台阶没跳，剩下的n-1个台阶的跳法有f(n-1)种。
+&nbsp;&nbsp;&nbsp;&nbsp;第二种跳法：第一次跳了两个台阶，那么还剩下n-2个台阶没跳，剩下的n-2个台阶的跳法有f(n-2)种。
+&nbsp;&nbsp;&nbsp;&nbsp;所以，小青蛙的全部跳法就是这两种跳法之和了，即f(n) = f(n-1) + f(n-2)。至此，等价关系式就求出来了，代码如下：
+```java
+int f(int n) {
+	if(n == 1) {
+		return 1;
+	}
+	return f(n-1) + f(n-2);
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;上面的代码对吗？答案是不大对，当n=2时，显然会有f(2) = f(1) + f(0).我们知道，f(0)=0,按道理是递归结束，不用继续往下调用的，但我们上面的代码逻辑中，会继续调用f(0)=f(-1)+f(-2)。这会导致无限调用，进入死循环。
+&nbsp;&nbsp;&nbsp;&nbsp;这也是要注意的，关于<b style="color:orangered">递归结束条件是否够严谨问题</b>，有很多人使用递归的时候，由于结束条件不够严谨，导致出现死循环。也就是说，当我们在第二步找出了一个递归结束条件的时候，可以把结束条件写进代码，然后进行第三步，但是请注意，当我们第三步找出等价函数之后，记得再返回第二步，根据第三步函数的调用关系，会不会出现一些漏掉的结束条件。就像上面，f(n-2)这个函数的调用，有可能出现f(0)的情况，导致死循环，所以我们把它补上。代码如下：
+```java
+int f(int n) {
+	if(n <= 1) {
+		return n;
+	}
+	return f(n-1) + f(n-2);
+}
+```
+### 案例3.反转单链表 ###
+&nbsp;&nbsp;&nbsp;&nbsp;例如链表为：1->2->3->4，反转后为4->3->2->1
+```java
+class Node {
+	int data;
+	Node next;
+}
+```
+##### 定义递归函数功能 #####
+&nbsp;&nbsp;&nbsp;&nbsp;假设函数reverseList(head)的功能是反转单链表，其中head表示链表的头结点。代码如下：
+```java
+Node reverseList(Node head) {
+
+}
+```
+##### 寻找结束条件 #####
+&nbsp;&nbsp;&nbsp;&nbsp;当链表只有一个结点，或者如果是空表的话，你应该知道结果吧，直接啥也不用干，直接把head返回。代码如下：
+```java
+Node reverseList(Node head) {
+	if(head == null || head.next == null) {
+		return head;
+	}
+}
+```
+##### 寻找等价关系 #####
+&nbsp;&nbsp;&nbsp;&nbsp;这个的等价关系不像n是个数值那样，比较容易寻找。但是它的等价条件中，一定是范围不断缩小，对于链表来说，就是链表的结点个数不断在变小，所以，如果你实在找不出，你就先对reverseList(head.next)递归走一遍，看看结果是咋样的。例如链表结点为head->1->2->3->4，我们就缩小范围，先对2->3->4递归试试，代码如下：
+```java
+Node reverseList(Node head) {
+	if(head == null || head.next == null) {
+		return head;
+	}
+	Node newList = reverseList(head.next);
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;我们在第一步时，就已经定义了reverseList函数的功能可以把一个单链表反转，所以，我们对2->3->4反转之后的结果应该是这样：head->1->2<-3<-4<-newList。我们把2->3->4递归成4->3->2。不过1这个结点我们并没有去碰它，所以1的next结点仍然是连接2。其实，接下来就简单了，我们接下来只需<b>把结点2的next指向1，然后把1的next指向null，不就行了？</b>即通过改变newList链表之后的结果：newList->4->3->2->1->null，也就是说，reverseList(head)等价于reverseList(head.next)+<b>改变一下1,2这两个结点的指向</b>。好了，等价关系找出来了，代码如下：
+```java
+// 用递归的方法反转链表
+public static Node reverseList(Node head) {
+	// 1.递归结束条件
+	if(head == null || head.next == null) {
+		return head;
+	}
+	// 递归反转子链表
+	Node newList = reverseList(head.next);
+	// 改变1,2结点的指向。通过head.next获取结点2
+	Node t1 = head.next;
+	// 让2的next指向2
+	t1.next = head;
+	// 1的next指向null
+	head.next = null;
+	// 把调整之后的链表返回
+	return newList;
+	
+}
+```
