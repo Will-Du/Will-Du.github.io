@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Dubbo RPC | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.为什么要有RPC&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo RPC">
+<meta property="og:url" content="http://yoursite.com/2019/12/21/interview_RPC/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="一.为什么要有RPC&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-31T13:29:57.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dubbo RPC">
+<meta name="twitter:description" content="一.为什么要有RPC&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview_RPC" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/21/interview_RPC/" class="article-date">
+  	<time datetime="2019-12-21T07:51:48.000Z" itemprop="datePublished">2019-12-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dubbo RPC
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/12/21/interview_RPC/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Dubbo RPC">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-为什么要有RPC"><a href="#一-为什么要有RPC" class="headerlink" title="一.为什么要有RPC"></a>一.为什么要有RPC</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。<br><a id="more"></a></p>
+<h5 id="1-单一应用架构"><a href="#1-单一应用架构" class="headerlink" title="1.单一应用架构"></a>1.单一应用架构</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;当网站流量很小时，只需一个应用，将所有功能部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。</p>
+<h5 id="2-垂直应用架构"><a href="#2-垂直应用架构" class="headerlink" title="2.垂直应用架构"></a>2.垂直应用架构</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提高效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。</p>
+<h5 id="3-分布式服务架构"><a href="#3-分布式服务架构" class="headerlink" title="3.分布式服务架构"></a>3.分布式服务架构</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时，用于提高业务复用及整合的分布式服务框架(RPC)，提供统一的服务是关键。<br>&nbsp;&nbsp;&nbsp;&nbsp;例如：各个团队的服务提供方就不要各自实现一套序列化、反序列化、网络框架、连接池、收发线程、超时处理、状态机等“业务之外”的重复技术劳动，造成整体的低效。</p>
+<h5 id="4-流动计算架构"><a href="#4-流动计算架构" class="headerlink" title="4.流动计算架构"></a>4.流动计算架构</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;PS：这个属于扩展内容，摘自Dubbo官网，属于架构演进的一个过程。<br>&nbsp;&nbsp;&nbsp;&nbsp;当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需要一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键。</p>
+<h5 id="5-另外一个原因"><a href="#5-另外一个原因" class="headerlink" title="5.另外一个原因"></a>5.另外一个原因</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;就是因为在几个进程内(应用分布在不同的机器上)，无法共用内存空间，或者在一台机器内通过本地调用无法完成相关的需求，比如不同的系统之间的通讯，甚至不同组织之间的通讯。此外由于机器的横向扩展，需要在多台机器组成的集群上部署应用等等。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以，统一RPC框架来解决提供统一的服务。</p>
+<h3 id="二-什么是RPC"><a href="#二-什么是RPC" class="headerlink" title="二.什么是RPC"></a>二.什么是RPC</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;RPC(Remote Procedure Call Protocol)远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。简言之，RPC使得程序能够像访问本地系统资源一样，去访问远端系统资源。比较关键的一些方面包括：通讯协议、序列化、资源(接口)描述、服务框架、性能、语言支持等。<br>&nbsp;&nbsp;&nbsp;&nbsp;简单地说，RPC就是从一台机器(客户端)上通过参数传递的方式调用另一台机器(服务器)上的一个函数或方法(可以统称为服务)并得到返回的结果。</p>
+<h3 id="三-RPC架构组件"><a href="#三-RPC架构组件" class="headerlink" title="三.RPC架构组件"></a>三.RPC架构组件</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;一个基本的RPC架构里面应该至少包含以下4个组件：</p>
+<ul>
+<li>客户端(Client)：服务调用方(服务消费者)</li>
+<li>客户端存根(Client Stub)：存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端</li>
+<li>服务端存根(Server Stub)：接收客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理</li>
+<li>服务端(Server)：服务的真正提供者<br>&nbsp;&nbsp;&nbsp;&nbsp;具体调用过程：</li>
+<li>1.服务消费者(client客户端)通过调用本地服务的方式调用需要消费的服务；</li>
+<li>2.客户端存根(client stub)接收到调用请求后负责将方法、入参等信息序列化(组装)成能够进行网络传输的消息体；</li>
+<li>3.客户端存根(client stub)找到远程的服务地址，并且将消息通过网络发给服务端；</li>
+<li>4.服务端存根(server stub)收到消息后进行解码(反序列化操作)；</li>
+<li>5.服务端存根(server stub)根据解码结果调用本地的服务进行相关处理；</li>
+<li>6.本地服务执行具体业务逻辑并将结果返回给服务端存根(server stub);</li>
+<li>7.服务端存根(server stub)将返回结果重新打包成消息(序列化)并通过网络发送至消费方；</li>
+<li>8.客户端存根(client stub)接收到消息，并进行解码(反序列化)；</li>
+<li>9.服务消费方得到最终结果<br>&nbsp;&nbsp;&nbsp;&nbsp;而RPC框架的实现目标则是将上面的第2-8步完好地封装起来，也就是把调用、编码/解码的过程给封装起来，让用户感觉上像调用本地服务一样地调用远程服务。<h3 id="四-RPC和SOA、SOAP、REST的区别"><a href="#四-RPC和SOA、SOAP、REST的区别" class="headerlink" title="四.RPC和SOA、SOAP、REST的区别"></a>四.RPC和SOA、SOAP、REST的区别</h3>&nbsp;&nbsp;&nbsp;&nbsp;REST:可以看做是HTTP协议的一种直接应用，默认基于JSON作为传输格式，使用简单，学习成本低，效率高，但是安全性较低。<br>&nbsp;&nbsp;&nbsp;&nbsp;SOAP:是一种数据交换协议规范，是一种轻量的、简单的、基于XML协议的规范。而SOAP可以看做是一个重量级的协议，基于XML。SOAP在安全方面是通过使用XML-Security和XML-Signature两个规范组成了WS-Security来实现安全控制，当前已经得到了各个厂商的支持。优点是：易用、灵活、跨语言、跨平台。<br>&nbsp;&nbsp;&nbsp;&nbsp;SOA:面向服务框架，它可以根据需求通过网络对松散耦合的粗粒度应用组件进行分布式部署、组合和使用。服务层是SOA的基础，可以直接被应用调用，从而有效控制系统中与软件代理交互的人为依赖性。SOA是一种粗粒度、松耦合服务架构，服务之间通过简单、精确定义接口进行通讯，不涉及底层编程接口和通讯模型。SOA可以看作是B/S模型、XML(标准通用标记语言的子集)/Web Service技术之后的自然延伸。<br>&nbsp;&nbsp;&nbsp;&nbsp;其实它们没什么太大区别，它们的本质都是提供可支持分布式的基础服务，最大的区别在于它们各自的特点所带来的不同应用的场景。<h3 id="五-RPC框架需要解决的问题"><a href="#五-RPC框架需要解决的问题" class="headerlink" title="五.RPC框架需要解决的问题"></a>五.RPC框架需要解决的问题</h3>&nbsp;&nbsp;&nbsp;&nbsp;1.如何确定客户端和服务端之间的通讯协议？<br>&nbsp;&nbsp;&nbsp;&nbsp;2.如何更高效地进行网络通讯？<br>&nbsp;&nbsp;&nbsp;&nbsp;3.服务端提供的服务如何暴露给客户端？<br>&nbsp;&nbsp;&nbsp;&nbsp;4.客户端如何发现这些暴露的服务？<br>&nbsp;&nbsp;&nbsp;&nbsp;5.如何更高效地对请求对象和响应结果进行序列化和反序列化操作？<h3 id="六-RPC的实现基础"><a href="#六-RPC的实现基础" class="headerlink" title="六.RPC的实现基础"></a>六.RPC的实现基础</h3>&nbsp;&nbsp;&nbsp;&nbsp;1.需要有非常高效的网络通信，比如一般选择Netty作为网络通信框架；<br>&nbsp;&nbsp;&nbsp;&nbsp;2.需要有比较高效的序列化框架，比如谷歌的Protobuf序列化框架；<br>&nbsp;&nbsp;&nbsp;&nbsp;3.可靠的寻址方式(主要是提供服务的发现)，比如可以使用Zookeeper来注册服务等等；<br>&nbsp;&nbsp;&nbsp;&nbsp;4.如果是带会话(状态)的RPC调用，还需要有会话和状态保持的功能；<h3 id="七-RPC使用了哪些关键技术"><a href="#七-RPC使用了哪些关键技术" class="headerlink" title="七.RPC使用了哪些关键技术"></a>七.RPC使用了哪些关键技术</h3><h5 id="1-动态代理"><a href="#1-动态代理" class="headerlink" title="1.动态代理"></a>1.动态代理</h5>&nbsp;&nbsp;&nbsp;&nbsp;生成Client Stub(客户端存根)和Server Stub(服务端存根)的时候需要用的Java动态代理技术，可以使用JDK提供的原生的动态代理机制，也可以使用开源的:CGLib代理、Javassist字节码生成技术。<h5 id="2-序列化和反序列化"><a href="#2-序列化和反序列化" class="headerlink" title="2.序列化和反序列化"></a>2.序列化和反序列化</h5>&nbsp;&nbsp;&nbsp;&nbsp;在网络中，所有的数据都将会被转化为字节进行传送，所以为了能够使参数对象在网络中进行传输，需要对这些参数进行序列化和反序列化操作。<br>&nbsp;&nbsp;&nbsp;&nbsp;序列化：把对象转换为字节序列的过程称为对象的序列化，也就是编码的过程。<br>&nbsp;&nbsp;&nbsp;&nbsp;反序列化：把字节序列恢复为对象的过程称为对象的反序列化，也就是解码过程。<br>&nbsp;&nbsp;&nbsp;&nbsp;目前比较高效的开源序列化框架：如Kryo、FastJson和Protobuf等。<h5 id="3-NIO通信"><a href="#3-NIO通信" class="headerlink" title="3.NIO通信"></a>3.NIO通信</h5>&nbsp;&nbsp;&nbsp;&nbsp;出于并发性能的考虑，传统的阻塞式IO显然不太适合，因此我们需要异步的IO，即NIO。Java提供了NIO的解决方案，Java7也提供了更优秀的NIO.2支持。可以选择Netty或者MINA来解决NIO数据传输的问题。<h5 id="4-服务注册中心"><a href="#4-服务注册中心" class="headerlink" title="4.服务注册中心"></a>4.服务注册中心</h5>&nbsp;&nbsp;&nbsp;&nbsp;可选Redis、Zookeeper、Consul、Etcd。一般使用Zookeeper提供服务注册与发现功能，解决单点故障以及分布式部署的问题(注册中心)。<h3 id="八-主流RPC框架有哪些"><a href="#八-主流RPC框架有哪些" class="headerlink" title="八.主流RPC框架有哪些"></a>八.主流RPC框架有哪些</h3><h5 id="1-RMI"><a href="#1-RMI" class="headerlink" title="1.RMI"></a>1.RMI</h5>&nbsp;&nbsp;&nbsp;&nbsp;利用java.rmi包实现，基于Java远程方法协议(Java Remote Method Protocol)和Java的原生序列化。<h5 id="2-Hessian"><a href="#2-Hessian" class="headerlink" title="2.Hessian"></a>2.Hessian</h5>&nbsp;&nbsp;&nbsp;&nbsp;是一个轻量级的remoting onhttp工具，使用简单的方法提供了RMI的功能。基于HTTP协议，采用二进制编解码。<h5 id="3-protobuf-rpc-pro"><a href="#3-protobuf-rpc-pro" class="headerlink" title="3.protobuf-rpc-pro"></a>3.protobuf-rpc-pro</h5>&nbsp;&nbsp;&nbsp;&nbsp;是一个Java类库，提供了基于Google的Protocol Buffers协议的远程方法调用的框架。基于Netty底层的NIO技术。支持TCP重用/keep-alive、SSL加密、RPC调用取消操作、嵌入式日志等功能。<h5 id="4-Thrift"><a href="#4-Thrift" class="headerlink" title="4.Thrift"></a>4.Thrift</h5>&nbsp;&nbsp;&nbsp;&nbsp;是一种可伸缩的跨语言服务的软件框架。它拥有功能强大的代码生成引擎，无缝地支持C++、C#、Java、Python、PHP和Ruby。Thrift允许你定义一个描述文件，描述数据类型和服务接口。依据该文件，编译器方便得生成RPC客户端和服务器通信代码。<br>&nbsp;&nbsp;&nbsp;&nbsp;最初由Facebook开发用做系统内各语言之间的RPC通信，2007年由Facebook贡献到Apache基金，现在是Apache下的opensource之一。支持多种语言之间的RPC方式的通信:PHP语言client可以构造一个对象，调用相应的服务方法来调用Java语言的服务，跨越语言的C/S RPC调用。底层通讯基于Socket。<h5 id="5-Avro"><a href="#5-Avro" class="headerlink" title="5.Avro"></a>5.Avro</h5>&nbsp;&nbsp;&nbsp;&nbsp;出自Hadoop之父Doug Cutting，在Thrift已经相当流行的情况下推出Avro的目标不仅是提供一套类似Thrift的通讯中间件，更是要建立一个新的、标准化的云计算的数据交换和存储的Protocol。支持HTTP,TCP两种协议。<h5 id="6-Dubbo"><a href="#6-Dubbo" class="headerlink" title="6.Dubbo"></a>6.Dubbo</h5>&nbsp;&nbsp;&nbsp;&nbsp;Dubbo是阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的RPC实现服务的输入和输出功能，可以和Spring框架无缝集成。<h3 id="九-RPC的实现原理架构图"><a href="#九-RPC的实现原理架构图" class="headerlink" title="九.RPC的实现原理架构图"></a>九.RPC的实现原理架构图</h3>&nbsp;&nbsp;&nbsp;&nbsp;两台服务器A、B，一个应用部署在A服务器上，想要调用B服务器上应用提供的函数/方法，由于不在一个内存空间，不能直接调用，需要通过网络来表达调用的语义和传达调用的数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;比如说，A服务器想调用B服务器上的一个方法： User getUserByName(String username)<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.建立通信</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先要解决通讯的问题：即A机器想要调用B机器，首先得建立起通信连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要是通过在客户端和服务器之间建立TCP连接，远程过程调用的所有交换的数据都在这个连接里传输。连接可以是按需连接，调用结束后就断掉，也可以是长连接，多个远程过程调用共享一个连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常这个连接可以是按需连接(需要调用的时候就先建立连接，调用结束就立马断掉)，也可以是长连接(客户端与服务器建立起连接之后保持长期持有，不管此时有无数据包的发送，可以配合心跳检测机制定期检测建立的连接是否存活有效)，多个远程过程调用共享同一个连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.服务寻址</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要解决寻址的问题，也就是说，A服务器上的应用怎么告诉底层的RPC框架，如何连接到B服务器(如主机或IP地址)以及特定的端口，方法的名称是什么。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常情况下我们需要提供B机器(主机名或IP地址)以及特定的端口，然后指定调用的方法或者函数的名称以及入参出参等信息，这样才能完成服务的一个调用。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可靠的寻址方式(主要是提供服务的发现)是RPC的实现基石，比如可以采用Redis或者Zookeeper来注册服务等等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.1从服务供应者的角度来看：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当服务提供者启动的时候，需要将自己提供的服务注册到指定的注册中心，以便服务消费者能够通过服务注册中心进行查找；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当服务提供者由于各种原因致使提供的服务停止时，需要向注册中心注销停止的服务；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务的提供者需要定期向服务注册中心发送心跳检测，服务注册中心如果一段时间未收到来自服务提供者的心跳后，认为该服务提供者已经停止服务，则将该服务从注册中心去掉。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">2.2从调用者的角度来看：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务的调用者启动的时候根据自己订阅的服务向服务注册中心查找服务提供者的地址等信息；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当服务调用者消费的服务上线或者下线的时候，注册中心会告知该服务的调用者；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务调用者下线的时候，则取消订阅。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.网络传输</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.1序列化</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当A机器上的应用发起一个RPC调用时，调用方法和其入参等信息需要通过底层的网络协议如TCP传输到B机器，由于网络协议是基于二进制的，所以我们传输的参数数据都需要先进行序列化(Serialize)或者编组(marshal)成二进制的形式才能在网络中进行传输。然后通过寻址操作和网络传输将序列化或者编组之后的二进制数据发送给B机器。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">3.2反序列化</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当B机器接收到A机器的应用发来的请求之后，又需要对接收到的参数等信息进行反序列化操作(序列化的逆操作)，即将二进制信息恢复为内存中的表达方式，然后再找到对应的方法(寻址的一部分)进行本地调用(一般是通过生成代理Proxy去调用，通常会有JDK动态代理、CGLIB动态代理、Javassess生成字节码技术等)，之后得到调用的返回值。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">4.服务调用</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B机器进行本地调用(通过代理Proxy和反射调用)之后得到了返回值，此时还需要再把返回值发送回A机器，同样也需要经过序列化操作，然后再经过网络传输将二进制数据发送回A机器，而当A机器接收到这些返回值之后，则再次进行反序列化操作，恢复为内存中的表达方式，最后再交给A机器上的应用进行相关处理，一般是业务逻辑处理操作。<br>&nbsp;&nbsp;&nbsp;&nbsp;通常，经过以上四个步骤之后，一个完整的RPC调用算是完成了，另外可能因为网络抖动等原因需要重试等。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/24/dataBase_Sharding/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          数据库的分库分表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/19/interview_concurrentHashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">为啥ConcurrentHashMap读操作不需要加锁</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>js中Number精度问题 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在项目里遇到一个问题，就是利用ajax回传一个BigInteger类型的数值，将此值取出时，发现数值不对。12345// 在浏览器控制台上打印一个从后台传过来的BigInteger类型的数值console.log(21824591533692098101)// 显示如下21824591533692097000 原因:    由于JavaScript中Number类型的自身原因，并不能完全表示Big">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中Number精度问题">
+<meta property="og:url" content="http://yoursite.com/2019/01/27/js_Number_precision/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="在项目里遇到一个问题，就是利用ajax回传一个BigInteger类型的数值，将此值取出时，发现数值不对。12345// 在浏览器控制台上打印一个从后台传过来的BigInteger类型的数值console.log(21824591533692098101)// 显示如下21824591533692097000 原因:    由于JavaScript中Number类型的自身原因，并不能完全表示Big">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-19T13:09:55.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中Number精度问题">
+<meta name="twitter:description" content="在项目里遇到一个问题，就是利用ajax回传一个BigInteger类型的数值，将此值取出时，发现数值不对。12345// 在浏览器控制台上打印一个从后台传过来的BigInteger类型的数值console.log(21824591533692098101)// 显示如下21824591533692097000 原因:    由于JavaScript中Number类型的自身原因，并不能完全表示Big">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-js_Number_precision" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/27/js_Number_precision/" class="article-date">
+  	<time datetime="2019-01-27T12:07:10.000Z" itemprop="datePublished">2019-01-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js中Number精度问题
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/01/27/js_Number_precision/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js中Number精度问题">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在项目里遇到一个问题，就是利用ajax回传一个BigInteger类型的数值，将此值取出时，发现数值不对。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在浏览器控制台上打印一个从后台传过来的BigInteger类型的数值</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">21824591533692098101</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示如下</span></span><br><span class="line"><span class="number">21824591533692097000</span></span><br></pre></td></tr></table></figure></p>
+<p>原因:<br>    由于JavaScript中Number类型的自身原因，并不能完全表示BigInteger型的数字，在BigInteger长度大于17位时会出现精度丢失的问题。</p>
+<p>解决方法:<br>    1.后台转成String类型传到前台<br>    2.让前端支持Long类型</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/10/样式覆盖的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          样式覆盖的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/24/js中两个集合求并集，交集，差集/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js中两个集合求并集，交集，差集</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

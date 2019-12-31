@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>如何设计一个高并发系统 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面试官心理分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。&amp;nbsp;">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何设计一个高并发系统">
+<meta property="og:url" content="http://yoursite.com/2019/12/12/如何设计一个高并发系统/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="面试官心理分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。&amp;nbsp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-15T12:16:49.019Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何设计一个高并发系统">
+<meta name="twitter:description" content="面试官心理分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。&amp;nbsp;">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-如何设计一个高并发系统" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/12/如何设计一个高并发系统/" class="article-date">
+  	<time datetime="2019-12-12T02:20:23.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何设计一个高并发系统
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/12/12/如何设计一个高并发系统/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个高并发系统">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。<br>&nbsp;&nbsp;&nbsp;&nbsp;假设你在某知名电商公司干过高并发系统，用户上亿，一天流量几十亿，高峰期并发量上万，甚至是十几万。那么人家一定会仔细盘问你的系统架构，你们系统啥架构？怎么部署的？部署了多少台机器？缓存咋用的？MQ咋用的？数据库咋用的？就是深挖你到底是如何抗住高并发的。<br>&nbsp;&nbsp;&nbsp;&nbsp;因为真正干过高并发的人一定知道，脱离了业务的系统架构都是纸上谈兵，真正在复杂业务场景而且还高并发的时候，那么系统架构一定不是那么简单的，用个redis，用MQ就能搞定？当然不是，真实的系统架构搭配上业务之后，会比这种简单的所谓“高并发架构”要复杂很多倍。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果有面试官问你个问题说，如何设计一个高并发系统？那么不好意思，一定是因为你实际上没干过高并发系统。面试官看你简历就没啥出彩的，感觉就不咋地，所以就会问问你，如何设计一个高并发系统？说白了本质就是看看你有没有自己研究过，有没有一定的知识积累。<br>&nbsp;&nbsp;&nbsp;&nbsp;最好的当然是招聘个真正干过高并发的哥们，但是这种哥们人数稀缺，不好招。所以可能次一点的就是招一个自己研究过的哥们，总比招一个啥也不会的哥们好吧。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以这个时候你必须的做一把个人秀，秀出你所有关于高并发的知识。<br><a id="more"></a></p>
+<h3 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;其实所谓的高并发，如果你要理解这个问题呢，其实就得从高并发的根源出发，为啥会有高并发？为啥高并发就很牛逼？<br>&nbsp;&nbsp;&nbsp;&nbsp;说的浅显一点，很简单，就是因为刚开始系统都是连接数据库的，但是要知道数据库支撑到每秒并发两三千的时候，基本就快完了。所以才有说，很多公司刚开始干的时候，技术比较low，结果业务发展太快，有的时候系统扛不住压力就挂了。<br>&nbsp;&nbsp;&nbsp;&nbsp;当然会挂了，凭什么不挂？你数据库如果瞬时承载每秒5000/8000，甚至上万的并发，一定会宕机，因为比如MYSQL就压根扛不住这么高的并发量。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以为啥高并发牛逼？就是因为现在用互联网的人越来越多，很多APP、网站、系统承载的都是高并发请求，可能高峰期每秒并发量几千，很正常的。如果是什么双十一之类的，每秒并发几万几十万都有可能。<br>&nbsp;&nbsp;&nbsp;&nbsp;那么如此之高的并发量，加上原本就如此复杂的业务，咋玩？真正厉害的，一定是在复杂业务系统里玩过高并发架构的人，但是你没有，那么说一下该怎么回答这个问题：可以分为以下7点：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.系统拆分<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.缓存<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.MQ<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.分库分表<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.读写分离<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.ElasticSearch<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.hign-concurrency-system-design</p>
+<h3 id="系统拆分"><a href="#系统拆分" class="headerlink" title="系统拆分"></a>系统拆分</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;将一个系统拆分为多个子系统，用dubbo来搞。然后每个系统连一个数据库，这样本来就一个库，现在多个数据库，不也可以扛高并发么。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;缓存，必须得用缓存。大部分的高并发场景，都是读多写少，那你完全可以在数据库和缓存里都写一份，然后读的时候大量走缓存不就得了。毕竟redis轻轻松松单机几万的并发。所以你可以考虑考虑你的项目里，哪些承载主要请求的读场景，怎么用缓存来抗高并发。</p>
+<h3 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;MQ，必须得用MQ。可能你还是会出现高并发写的场景，比如说一个业务操作里要频繁搞数据库几十次，增删改增删改，疯了。那高并发绝对搞挂你的系统，你要是用redis来承载写那肯定不行，redis是缓存，数据随时就被LRU了，数据格式还无比简单，没有事务支持。所以该用MYSQL还得用MYSQL啊。那你咋办？用MQ吧，大量的写请求灌入MQ里，排队慢慢玩，后面系统消费后慢慢写，控制在MYSQL承载范围内。所以你得考虑考虑你的项目里，哪些承载复杂写业务逻辑的场景里，比如用MQ来异步写，提高并发性。MQ单机扛几万并发也是ok的。</p>
+<h3 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;分库分表，可能到了最后数据库层面还是免不了扛高并发的要求，好吧，那么就将一个数据拆分为多个库，多个库扛更高的并发；然后将一个表拆分为多个表，每个表的数据量保持少一点，提高SQL查询的性能。</p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;读写分离，这个就是说大部分时候数据库可能也是读多写少，没必要所有请求都集中在一个库上，可以搞个主从架构，主库写入，从库读取，搞一个读写分离。读流量太多的时候，还可以追加更多的从库。</p>
+<h3 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;ElasticSearch，简称es。es是分布式的，可以随便扩容，分布式天然就可以支撑高并发，因为动不动就可以扩容加机器来扛更高的并发。那么一些比较简单的查询、统计类的操作，可以考虑用ES来承载，还有一些全文搜索类的操作，也可以考虑用ES来承载。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/13/如何设计一个本地缓存/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          如何设计一个本地缓存
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/10/interview_mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis经典面试题</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>为啥ConcurrentHashMap读操作不需要加锁 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为啥ConcurrentHashMap读操作不需要加锁">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/interview_concurrentHashMap/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-31T13:29:57.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为啥ConcurrentHashMap读操作不需要加锁">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview_concurrentHashMap" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/19/interview_concurrentHashMap/" class="article-date">
+  	<time datetime="2019-12-19T07:08:51.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      为啥ConcurrentHashMap读操作不需要加锁
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/12/19/interview_concurrentHashMap/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="为啥ConcurrentHashMap读操作不需要加锁">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？<br><a id="more"></a></p>
+<h4 id="ConcurrentHashMap的简介"><a href="#ConcurrentHashMap的简介" class="headerlink" title="ConcurrentHashMap的简介"></a>ConcurrentHashMap的简介</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;在JDK1.7中采用Segment + HashEntry + ReentrantLock的方式进行实现的，而1.8中放弃了Segment臃肿的设计，取而代之的是采用Node + CAS + Synchronized来保证并发安全进行实现。</p>
+<ul>
+<li>JDK1.8的实现降低锁的粒度，JDK1.7版本锁的粒度是基于Segmemt的，包含多个HashEntry，而JDK1.8锁的粒度就是HashEntry(首节点)。</li>
+<li>JDK1.8版本的数据结构变得更加简单，使得操作也更加清晰流畅，因为已经使用synchronized来进行同步，所以不需要分段锁的概念，也就不需要Segment这种数据结构了，由于粒度的降低，实现的复杂度也增加了。</li>
+<li>JDK1.8使用红黑树来优化链表，基于长度很长的链表的遍历是一个很漫长的过程，而红黑树的遍历效率是很快的，代替一定阈值的链表，这样形成一个最佳拍档。<h4 id="get操作源码"><a href="#get操作源码" class="headerlink" title="get操作源码"></a>get操作源码</h4>&nbsp;&nbsp;&nbsp;&nbsp;首先计算hash值，定位到该table索引位置，如果是首节点符合就返回。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果遇到扩容的时候，会调用标志正在扩容节点ForwardingNode的find方法，查找该节点，匹配就返回。<br>&nbsp;&nbsp;&nbsp;&nbsp;以上都不符合的话，就往下遍历节点，匹配就返回，否则最后就返回null。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 会发现源码中没有一处加了锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Node&lt;K, V&gt;[] tab;</span><br><span class="line">    Node&lt;K, V&gt; e, p;</span><br><span class="line">    <span class="keyword">int</span> n, eh;</span><br><span class="line">    K ek;</span><br><span class="line">    <span class="comment">// 计算hash</span></span><br><span class="line">    <span class="keyword">int</span> h = spread(key.hashCode());</span><br><span class="line">    <span class="keyword">if</span>((tab = table) != <span class="keyword">null</span> &amp;&amp; (n = tab.length) &gt; <span class="number">0</span> &amp;&amp; (e = tabAt(tab, (n - <span class="number">1</span>) &amp; h)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 读取首节点的Node元素</span></span><br><span class="line">        <span class="keyword">if</span>((eh = e.hash) == h) &#123;</span><br><span class="line">            <span class="comment">// 如果该节点就是首节点就返回</span></span><br><span class="line">            <span class="keyword">if</span>((ek = e.key) == key || (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek))) &#123;</span><br><span class="line">                <span class="keyword">return</span> e.val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// hash值为负值表示正在扩容，这个时候查的是ForwardingNode的find方法来定位到nextTable</span></span><br><span class="line">		<span class="comment">// eh=-1,说明该节点是一个ForwardingNode，正在迁移，此时调用ForwardingNode的find方法去nextTable里找</span></span><br><span class="line">        <span class="comment">// eh=-2,说明该节点是一个TreeBin，此时调用TreeBin的find方法遍历红黑树，由于红黑树有可能正在旋转变色，所以find里会有读写锁。</span></span><br><span class="line">        <span class="comment">// eh&gt;=0,说明该节点下挂的是一个链表，直接遍历该链表即可.</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(eh &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (p = e.find(h, key)) != <span class="keyword">null</span> ? p.val : <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>((e = e.next) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 既不是首节点也不是ForwordingNode，那就往下遍历</span></span><br><span class="line">            <span class="keyword">if</span>(e.hash == h &amp;&amp; ((ek = e.key) == key || (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek))) &#123;</span><br><span class="line">                <span class="keyword">return</span> e.val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;get没有加锁的话，ConcurrentHashMap是如何保证读到数据不是脏数据呢？</p>
+<h4 id="volatile登场"><a href="#volatile登场" class="headerlink" title="volatile登场"></a>volatile登场</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;对于可见性，Java提供了volatile关键字来保证可见性、有序性。但不保证原子性。<br>&nbsp;&nbsp;&nbsp;&nbsp;普通的共享变量不能保证可见性，因为普通共享变量被修改之后，什么时候被写入主存是不确定的，当其他线程去读取时，此时内存中可能还是原来的旧值，因此无法保证可见性。</p>
+<ul>
+<li>volatile关键字对于基本类型的修改可以在随后对多个线程的读保持一致，但是对于引用类型如数组，实体bean，仅仅保证引用的可见性，但不保证引用内容的可见性。</li>
+<li>禁止进行指令重排序。<br>&nbsp;&nbsp;&nbsp;&nbsp;背景：为了提高处理速度，处理器不直接和内存进行通讯，而是先将系统内存的数据读到内部缓存(L1,L2或其他)后再进行操作，但操作完不知道何时会写到内存。</li>
+<li>如果对声明了volatile的变量进行写操作，JVM就会向处理器发送一条指令，将这个变量所在缓存行的数据写回到系统内存。但是，就算写回到内存，如果其他处理器缓存的值还是旧的，再执行计算操作就会有问题。</li>
+<li>在多处理器下，为了保证各个处理器的缓存是一致的，就会实现缓存一致性协议，当某个CPU在写数据时，如果发现操作的变量是共享变量，则会通知其他CPU告知该变量的缓存行是无效的，因此其他CPU在读取该变量时，发现其无效会重新从主存中加载数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;总结下来：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一：使用volatile关键字会强制将修改的值立即写入主存<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二：使用volatile关键字的话，当线程2进行修改时，会导致线程1的工作内存中缓存变量的缓存行无效(反映到硬件层的话，就是CPU的L1或者L2缓存中对应的缓存行无效)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三：由于线程1的工作内存中缓存变量的缓存行无效，所以线程1再次读取变量的值会去主存读取。<h4 id="是加在数组上的volatile吗？"><a href="#是加在数组上的volatile吗？" class="headerlink" title="是加在数组上的volatile吗？"></a>是加在数组上的volatile吗？</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">transient</span> <span class="keyword">volatile</span> Node&lt;K, V&gt;[] table;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道volatile可以修饰数组的，只要意思和它表面上看起来的样子不同。举个例子，volatile int array[10]是指array的地址是volatile的而不是数组元素的值是volatile的。</p>
+<h4 id="用volatile修饰Node"><a href="#用volatile修饰Node" class="headerlink" title="用volatile修饰Node"></a>用volatile修饰Node</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;get操作可以无锁是由于Node的元素val和指针next是由volatile修饰的，在多线程环境下线程A修改结点的val或者新增结点的时候是对线程B可见的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">    <span class="keyword">final</span> K key;</span><br><span class="line">    <span class="comment">// 可以看到这些都用了volatile修饰</span></span><br><span class="line">    <span class="keyword">volatile</span> V val;</span><br><span class="line">    <span class="keyword">volatile</span> Node&lt;K, V&gt; next;</span><br><span class="line">    Node(<span class="keyword">int</span> hash, K key, V val, Node&lt;K, V&gt; next) &#123;</span><br><span class="line">        <span class="keyword">this</span>.hash = hash;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">        <span class="keyword">this</span>.next = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> key; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">getVal</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> val; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> key.hashCode() ^ val.hashCode(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> key + <span class="string">"="</span> + val; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">setValue</span><span class="params">(V value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        Object k, v, u;</span><br><span class="line">        Map.Entry&lt;?, ?&gt; e;</span><br><span class="line">        <span class="keyword">return</span> ((o <span class="keyword">instanceof</span> Map.Entry) &amp;&amp;</span><br><span class="line">                (k = (e = (Map.Entry&lt;?, ?&gt;) o).getKey()) != <span class="keyword">null</span> &amp;&amp;</span><br><span class="line">                (v = e.getValue()) != <span class="keyword">null</span> &amp;&amp;</span><br><span class="line">                (k == key || k.equals(key)) &amp;&amp;</span><br><span class="line">                (v == (u = val) || v.equals(u)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Virtualized support for map.get(); overridden in subclasses.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">Node&lt;K, V&gt; <span class="title">find</span><span class="params">(<span class="keyword">int</span> h, Object k)</span> </span>&#123;</span><br><span class="line">        Node&lt;K.V&gt; e = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">if</span>(k != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                K ek;</span><br><span class="line">                <span class="keyword">if</span>(e.hash == h &amp;&amp;</span><br><span class="line">                    ((ek = e.key) == k || (ek != <span class="keyword">null</span> &amp;&amp; k.equals(ek)))) &#123;</span><br><span class="line">                    <span class="keyword">return</span> e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">while</span>((e = e.next) != <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        rturn <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;既然volatile修饰数组对get操作没有效果那加在数组上的volatile的目的是什么呢？<br>&nbsp;&nbsp;&nbsp;&nbsp;其实就是为了使得Node数组在扩容的时候对其他线程具有可见性而加的volatile。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>在1.8中ConcurrentHashMap的get操作全程不需要加锁，这也是它比其他并发集合比如HashTable、用Collections.synchronizedMap()包装的HashMap，安全效率高的原因之一。</li>
+<li>get操作全程不需要加锁是因为Node的成员val是用volatile修饰的和数组用volatile修饰没有关系。</li>
+<li>数组用volatile修饰主要是保证在数组扩容的时候保证可见性。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/21/interview_RPC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Dubbo RPC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/18/java8_stream/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java8_stream</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

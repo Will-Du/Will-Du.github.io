@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>谈谈对ES搜索引擎的理解 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面试官心里分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谈谈对ES搜索引擎的理解">
+<meta property="og:url" content="http://yoursite.com/2019/12/17/interview_es/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="面试官心里分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-12-31T13:29:57.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="谈谈对ES搜索引擎的理解">
+<meta name="twitter:description" content="面试官心里分析&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview_es" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/17/interview_es/" class="article-date">
+  	<time datetime="2019-12-17T02:57:00.000Z" itemprop="datePublished">2019-12-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      谈谈对ES搜索引擎的理解
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2019/12/17/interview_es/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="谈谈对ES搜索引擎的理解">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="面试官心里分析"><a href="#面试官心里分析" class="headerlink" title="面试官心里分析"></a>面试官心里分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？<br><a id="more"></a></p>
+<h3 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h3><h5 id="1-ES写数据过程"><a href="#1-ES写数据过程" class="headerlink" title="1.ES写数据过程"></a>1.ES写数据过程</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;客户端选择一个node发送请求过去，这个node就是coordinating node(协调节点)。<br>&nbsp;&nbsp;&nbsp;&nbsp;coordination node对document进行路由，将请求转发给对应的node(有primary shard)。<br>&nbsp;&nbsp;&nbsp;&nbsp;实际上node上的primary shard处理请求，然后将数据同步到replica node。<br>&nbsp;&nbsp;&nbsp;&nbsp;coordination node如果发现primary node和所有replica node都搞定之后，就返回响应结果给客户端。</p>
+<h5 id="2-ES读数据过程"><a href="#2-ES读数据过程" class="headerlink" title="2.ES读数据过程"></a>2.ES读数据过程</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;可以通过doc id来查询，会根据doc id进行hash，判断出来当时把doc id分配到了哪个shard上面去，从哪个shard去查询。<br>&nbsp;&nbsp;&nbsp;&nbsp;客户端发送请求到任意一个node，成为coordination node。<br>&nbsp;&nbsp;&nbsp;&nbsp;coordination node对doc id进行哈希路由，将请求转发到相应的node，此时会使用round-robin随机轮询算法，在primary shard以及其所有replica中随机选择一个，让读请求负载均衡。<br>&nbsp;&nbsp;&nbsp;&nbsp;接收请求的node返回document给coordination node。<br>&nbsp;&nbsp;&nbsp;&nbsp;coordination node返回document给客户端。</p>
+<h5 id="3-ES搜索数据过程"><a href="#3-ES搜索数据过程" class="headerlink" title="3.ES搜索数据过程"></a>3.ES搜索数据过程</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;ES最强大的是做全文检索，就是比如你有三条数据：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java真好玩啊<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java真难学啊<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j2ee特别牛<br>&nbsp;&nbsp;&nbsp;&nbsp;你根据java关键词来搜索，将包含java的document给搜索出来。ES就会给你返回：java真好玩啊，java真难学啊。<br>&nbsp;&nbsp;&nbsp;&nbsp;客户端发送请求到一个coordination node。<br>&nbsp;&nbsp;&nbsp;&nbsp;协调节点将搜索请求转发到所有的shard对应的primary shard或replica shard，都可以。<br>&nbsp;&nbsp;&nbsp;&nbsp;query phase:每个shard将自己的搜索结果(其实就是一些doc id)返回给协调节点，有协调节点进行数据的合并、排序、分页等操作，产出最终结果。<br>&nbsp;&nbsp;&nbsp;&nbsp;fetch phase:接着由协调节点根据doc id去各个节点上拉取实际的document数据，最终返回给客户端。<br>&nbsp;&nbsp;&nbsp;&nbsp;写请求是写入primary shard，然后同步给所有的replica shard；读请求可以从primary shard或replica shard读取，采用的是随机轮询算法。</p>
+<h5 id="4-写数据底层原理"><a href="#4-写数据底层原理" class="headerlink" title="4.写数据底层原理"></a>4.写数据底层原理</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;先写入内存buffer，在buffer里的时候数据是搜索不到的；同时将数据写入translog日志文件。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果buffer快满了，或者到一定时间，就会将内存buffer数据refresh到一个新的segment file中，但是此时数据不是直接进入segment file磁盘文件，而是先进入os cache。这个过程就是refresh。<br>&nbsp;&nbsp;&nbsp;&nbsp;每隔1秒钟，ES将buffer中的数据写入一个新的segment file，每秒钟会产生一个新的磁盘文件segment file，这个segment file中就存储最近1秒内buffer中写入的数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;但是如果buffer里面此时没有数据，那当然不会执行refresh操作，如果buffer里面有数据，默认1秒钟执行一次refresh操作，刷入一个新的segment file中。<br>&nbsp;&nbsp;&nbsp;&nbsp;操作系统里面，磁盘文件其实都有一个东西，叫做os cache，即操作系统缓存，就是说数据写入磁盘文件之前，会先进入os cache，先进入操作系统级别的一个内存缓存中去。只要buffer中的数据被refresh操作刷入os cache中，这个数据就可以被搜索到了。<br>&nbsp;&nbsp;&nbsp;&nbsp;为什么叫ES是准实时的？NRT，全称near real-time。默认是每隔1秒refresh一次的，所以ES是准实时的，因为写入的数据1秒之后才能被看到。可以通过ES的restful api或java api，手动执行一次refresh操作，就是手动将buffer中的数据刷入os cache中，让数据立马就可以被搜索到。只要数据被输入os cache中，buffer就会被清空了，因为不需要保留buffer了，数据在translog里面已经持久化到磁盘一份了。<br>&nbsp;&nbsp;&nbsp;&nbsp;重复上面的步骤，新的数据不断进入buffer和translog，不断将buffer数据写入一个又一个新的segment file中去，每次refresh完buffer被清空，translog保留。随着这个进程推进，translog会变得越来越大。当translog达到一定长度的时候，就会触发commit操作。<br>&nbsp;&nbsp;&nbsp;&nbsp;commit操作发生第一步，就是将buffer中现有数据refresh到os cache中去，清空buffer。然后将一个commit point写入磁盘文件，里面标识着这个commit point对应的所有segment file，同时强行将os cache中目前所有的数据都fsync到磁盘文件中去。最后清空现有translog日志文件，重启一个translog，此时commit操作完成。<br>&nbsp;&nbsp;&nbsp;&nbsp;这个commit操作叫做flush。默认30分钟自动执行一次flush，但如果translog过大，也会触发flush。flush操作就对应着commit的全过程，我们可以通过ES api，手动执行flush操作，手动将os cache中的数据fsync强刷到磁盘上去。<br>&nbsp;&nbsp;&nbsp;&nbsp;translog日志文件的作用是什么？你执行commit操作之前，数据要么是停留在buffer中，要么是停留在os cache中，无论是buffer还是os cache都是内存，一旦这台机器死了，内存中的数据就全丢了。所以需要将数据对应的操作写入一个专门的日志文件translog中，一旦此时机器宕机，再次重启的时候，ES会自动读取translog日志文件中的数据，恢复到内存buffer和os cache中去。<br>&nbsp;&nbsp;&nbsp;&nbsp;translog其实也是先写入os cache的，默认每隔5秒刷一次到磁盘中去，所以默认情况下，可能有5秒的数据会仅仅停留在buffer或者translog文件的os cache中，如果此时机器挂了，会丢失5秒钟的数据。但是这样性能比较好，最多丢5秒的数据。也可以将translog设置成每次写操作必须是fsync到磁盘，但是性能会差很多。<br>&nbsp;&nbsp;&nbsp;&nbsp;实际上你在这里，如果面试官没有问你ES丢数据的问题，你可以在这里给面试官炫一把，你说，其实ES第一是准实时的，数据写入1秒后可以搜索到；可能会丢失数据的。有5秒的数据，停留在buffer、translog os cache、segment file os cache中，而不在磁盘上，如果此时宕机，会导致5秒的数据丢失。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;数据先写入内存buffer，然后每隔1s，将数据refresh到os cache，到了os cache数据就能被搜索到(所以我们才说ES从写入到能被搜索到，中间有1s的延迟)，每隔5s，将数据写入translog文件(这样如果机器宕机，内存数据全没。最多会有5s的数据丢失)，translog大到一定程度，或者默认每隔30mins，会触发commit操作，将缓存区的数据都flush到segment file磁盘文件中。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据写入segment file之后，同时就建立好了倒排索引。</p>
+<h5 id="1-删除-更新数据底层原理"><a href="#1-删除-更新数据底层原理" class="headerlink" title="1.删除/更新数据底层原理"></a>1.删除/更新数据底层原理</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如果是删除操作，commit的时候会生成一个.del文件，里面将某个doc标识为deleted状态，那么搜索的时候根据.del文件就知道这个doc是否被删除了。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果是更新操作，就是将原来的doc标识为deleted状态，然后新写入一条数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;buffer没refresh一次，就会产生一个segment file，所以默认情况下是1s一个segment file，这样下来segment file会越来越多，此时会定期执行merge。每次merge的时候，会将多个segment file合并成一个，同时这里会将标识为deleted的doc给物理删除掉，然后将新的segment file写入磁盘，这里会写一个commit point，标识所有新的segment file，然后打开segment file供搜索使用，同时删除旧的segment file。</p>
+<h5 id="2-底层lucene"><a href="#2-底层lucene" class="headerlink" title="2.底层lucene"></a>2.底层lucene</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;简单来说，lucene就是一个jar包，里面包含了封装好的各种建立倒排索引的算法代码。我们用java开发的时候，引入lucene.jar，然后基于lucene的api去开发就可以了。<br>&nbsp;&nbsp;&nbsp;&nbsp;通过lucene，我们可以将已有的数据建立索引，lucene会在本地磁盘上面，给我们组织索引的数据结构。</p>
+<h5 id="3-倒排索引"><a href="#3-倒排索引" class="headerlink" title="3.倒排索引"></a>3.倒排索引</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;在搜索引擎中，每个文档都有一个相应的文档id，文档内容被表示为一系列关键字的集合。例如，文档1经过分词，提取了20个关键字，每个关键字都会记录它在文档中出现的次数和出现的位置。那么，倒排索引就是关键词到文档ID的映射，每个关键词都对应一系列的文件，这些文件中都出现了关键词。<br>&nbsp;&nbsp;&nbsp;&nbsp;案例：有以下文档</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">DocId</font></th>
+<th style="text-align:left"><font color="#0A0A0A">Doc</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">谷歌地图之父跳槽Facebook</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">谷歌地图之父加盟Fcaebook</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">谷歌地图创始人拉斯离开谷歌加盟Facebook</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">谷歌地图之父跳槽Facebook与Wave项目取消有关</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">谷歌地图之父拉斯加盟社交网站Facebook</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对文档进行分词之后，得到以下倒排索引。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">WordId</font></th>
+<th style="text-align:left"><font color="#0A0A0A">Word</font></th>
+<th style="text-align:left"><font color="#0A0A0A">DocIds</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">谷歌</td>
+<td style="text-align:left">1，2，3，4，5</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">地图</td>
+<td style="text-align:left">1，2，3，4，5</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">之父</td>
+<td style="text-align:left">1，2，4，5</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">跳槽</td>
+<td style="text-align:left">1，4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">Facebook</td>
+<td style="text-align:left">1，2，3，4，5</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">加盟</td>
+<td style="text-align:left">2，3，5</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">创始人</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">拉斯</td>
+<td style="text-align:left">3，5</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">离开</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">与</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td style="text-align:left">…</td>
+<td style="text-align:left">…</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;另外，实用的倒排索引还可以记录更多的信息，比如文档频率信息，表示在文档集合中有多少个文档包含某个单词。<br>&nbsp;&nbsp;&nbsp;&nbsp;那么，有了倒排索引，搜索引擎可以很方便地响应用户的查询，比如用户输入查询Facebook，搜索系统查找倒排索引，从中读出包含这个单词的文档，这些文档就是提供给用户的搜索结果。<br>&nbsp;&nbsp;&nbsp;&nbsp;要注意倒排索引的两个重要细节：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.倒排索引中的所有词汇对应一个或多个文档<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.倒排索引中的词汇根据字典顺序升序排列</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/18/java8_stream/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          java8_stream
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/15/learn_recursive/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">递归算法-如何学习递归</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

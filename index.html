@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 17.5px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/sql/" style="font-size: 15px;">sql</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -152,11 +152,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-mybatis-oracle" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-nginx_conf" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/05/mybatis-oracle/" class="article-date">
-  	<time datetime="2019-12-05T11:16:53.000Z" itemprop="datePublished">2019-12-05</time>
+      <a href="/2019/12/28/nginx_conf/" class="article-date">
+  	<time datetime="2019-12-28T07:03:25.000Z" itemprop="datePublished">2019-12-28</time>
 </a>
     </div>
   
@@ -169,8 +169,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/mybatis-oracle/">
-        mybatis中oracle的批量新增与批量更新
+      <a class="article-title" href="/2019/12/28/nginx_conf/">
+        Nginx配置参数说明
         
       </a>
     </h1>
@@ -181,10 +181,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;mybatis中mysql的批量插入比较常规，但oracle的批量有所不同，若按照mysql的方式书写，则会报“命令为执行结束”的错误。所以一下列出oracle的批量新增与修改的几种方式。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量新增第一种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"batchInsert"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	INSERT INTO STUDENT(ID,NAME)</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span> <span class="attr">separator</span>=<span class="string">"UNION ALL"</span>&gt;</span></span><br><span class="line">		(</span><br><span class="line">		SELECT </span><br><span class="line">			#&#123;student.id&#125;,</span><br><span class="line">			#&#123;student.name&#125;</span><br><span class="line">		FROM</span><br><span class="line">			dual</span><br><span class="line">		)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：表名之后没有VALUES。</label><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量插入第二种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"batchInsert"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	INSERT ALL</span><br><span class="line">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span>&gt;</span></span><br><span class="line">			into STUDENT(ID,NAME)</span><br><span class="line">			VALUES(#&#123;student.id&#125;,#&#123;student.name&#125;)</span><br><span class="line">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">	SELECT 1 FROM DUAL</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量更新 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"batchUpdate"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">open</span>=<span class="string">"begin"</span> <span class="attr">close</span>=<span class="string">";end;"</span> <span class="attr">separator</span>=<span class="string">";"</span>&gt;</span></span><br><span class="line">		UPDATE STUDENT</span><br><span class="line">		<span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"student.name != null and student.name != ''"</span>&gt;</span></span><br><span class="line">				NAME = #&#123;student.name&#125;</span><br><span class="line">			<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">		WHERE ID = #&#123;student.id&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量删除 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"batchDeleteByIds"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span>&gt;</span></span><br><span class="line">	DELETE FROM </span><br><span class="line">		STUDENT</span><br><span class="line">	WHERE</span><br><span class="line">		ID IN </span><br><span class="line">		<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"array"</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">opean</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></span><br><span class="line">			#&#123;id&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <p>Nginx配置参数中文详细说明:<br></p>
       
     </div>
     
@@ -192,7 +189,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 	</div>
 
       
@@ -200,7 +197,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/05/mybatis-oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
+    <span id="/2019/12/28/nginx_conf/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Nginx配置参数说明">
          &nbsp;
         view
     </span>
@@ -209,6 +206,10 @@
       
       <div class="clearfix"></div>
     </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/28/nginx_conf/#more">more >></a>
+        </p>
       
     
   </div>
@@ -219,11 +220,11 @@
 
 
   
-    <article id="post-redis内存满了如何处理" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-dataBase_Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/27/redis内存满了如何处理/" class="article-date">
-  	<time datetime="2019-11-27T07:23:20.000Z" itemprop="datePublished">2019-11-27</time>
+      <a href="/2019/12/24/dataBase_Sharding/" class="article-date">
+  	<time datetime="2019-12-24T01:31:49.000Z" itemprop="datePublished">2019-12-24</time>
 </a>
     </div>
   
@@ -236,8 +237,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/27/redis内存满了如何处理/">
-        redis内存满了如何处理
+      <a class="article-title" href="/2019/12/24/dataBase_Sharding/">
+        数据库的分库分表
         
       </a>
     </h1>
@@ -248,7 +249,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;Redis是基于内存的key-value数据库，因为系统的内存大小有限，所以我们在使用Redis的时候可以配置Redis能使用的最大的内存大小。<br></p>
+        <h3 id="数据切分"><a href="#数据切分" class="headerlink" title="数据切分"></a>数据切分</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;关系型数据库本身比较容易成为系统瓶颈，单机储存容量、连接数、处理能力都有限。<br>&nbsp;&nbsp;&nbsp;&nbsp;当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加主从库、优化索引，做很多操作时性能仍下降严重。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据库分布式核心内容无非就是数据切分(Sharding)，以及切分后对数据的定位、整合。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据切分就是将数据分散存储到多个数据库中，使得单一数据库中的数据量变小，通过扩充主机的数量缓解单一数据库的性能问题，从而达到提升数据库操作性能的目的。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/24/dataBase_Sharding/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库的分库分表">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/24/dataBase_Sharding/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-interview_RPC" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/21/interview_RPC/" class="article-date">
+  	<time datetime="2019-12-21T07:51:48.000Z" itemprop="datePublished">2019-12-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/21/interview_RPC/">
+        Dubbo RPC
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-为什么要有RPC"><a href="#一-为什么要有RPC" class="headerlink" title="一.为什么要有RPC"></a>一.为什么要有RPC</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。<br></p>
       
     </div>
     
@@ -264,7 +333,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/27/redis内存满了如何处理/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="redis内存满了如何处理">
+    <span id="/2019/12/21/interview_RPC/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Dubbo RPC">
          &nbsp;
         view
     </span>
@@ -275,7 +344,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/27/redis内存满了如何处理/#more">more >></a>
+          <a href="/2019/12/21/interview_RPC/#more">more >></a>
         </p>
       
     
@@ -287,11 +356,11 @@
 
 
   
-    <article id="post-如何设计一个安全的对外接口" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-interview_concurrentHashMap" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/26/如何设计一个安全的对外接口/" class="article-date">
-  	<time datetime="2019-11-26T13:59:36.000Z" itemprop="datePublished">2019-11-26</time>
+      <a href="/2019/12/19/interview_concurrentHashMap/" class="article-date">
+  	<time datetime="2019-12-19T07:08:51.000Z" itemprop="datePublished">2019-12-19</time>
 </a>
     </div>
   
@@ -304,8 +373,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/26/如何设计一个安全的对外接口/">
-        如何设计一个安全的对外接口
+      <a class="article-title" href="/2019/12/19/interview_concurrentHashMap/">
+        为啥ConcurrentHashMap读操作不需要加锁
         
       </a>
     </h1>
@@ -316,7 +385,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：<br></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/19/interview_concurrentHashMap/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="为啥ConcurrentHashMap读操作不需要加锁">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/19/interview_concurrentHashMap/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-java8_stream" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/18/java8_stream/" class="article-date">
+  	<time datetime="2019-12-18T01:19:11.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/18/java8_stream/">
+        java8_stream
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="Stream是什么"><a href="#Stream是什么" class="headerlink" title="Stream是什么"></a>Stream是什么</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;Stream是Java 8中添加的一个新特性，它与java.io包里面的InputStream和OutputStream是完全不同的概念。它借助于Lambda表达式，可以让你以一种声明的方式处理数据，可以极大提高Java程序员的生产力，让程序员写出高效率、干净、简洁的代码。<br></p>
       
     </div>
     
@@ -332,7 +469,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/26/如何设计一个安全的对外接口/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个安全的对外接口">
+    <span id="/2019/12/18/java8_stream/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java8_stream">
          &nbsp;
         view
     </span>
@@ -343,7 +480,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/26/如何设计一个安全的对外接口/#more">more >></a>
+          <a href="/2019/12/18/java8_stream/#more">more >></a>
         </p>
       
     
@@ -355,11 +492,11 @@
 
 
   
-    <article id="post-Mysql数据库优化" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-interview_es" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/25/Mysql数据库优化/" class="article-date">
-  	<time datetime="2019-11-25T13:22:23.000Z" itemprop="datePublished">2019-11-25</time>
+      <a href="/2019/12/17/interview_es/" class="article-date">
+  	<time datetime="2019-12-17T02:57:00.000Z" itemprop="datePublished">2019-12-17</time>
 </a>
     </div>
   
@@ -372,8 +509,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/Mysql数据库优化/">
-        Mysql数据库优化
+      <a class="article-title" href="/2019/12/17/interview_es/">
+        谈谈对ES搜索引擎的理解
         
       </a>
     </h1>
@@ -384,282 +521,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;数据库优化一方面是找出系统的瓶颈，提高MySQL数据库的整体性能，而另一方面需要合理的结构设计和参数调整，以提高用户的相应速度，同时还尽可能的节约系统资源，以便让系统提供更大的负荷。<br><strong> 优化 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;优化分为两大类：软优化和硬优化，软优化一般是操作数据库即可，而硬优化是操作服务器硬件及参数配置。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/25/Mysql数据库优化/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mysql数据库优化">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/25/Mysql数据库优化/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-设计模式之工厂模式" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/24/设计模式之工厂模式/" class="article-date">
-  	<time datetime="2019-11-24T10:40:03.000Z" itemprop="datePublished">2019-11-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/24/设计模式之工厂模式/">
-        设计模式-工厂模式
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong> 什么是工厂模式 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。工厂模式在java程序系统可以说是随处可见，因为工厂模式就是相当于创建实例对象的new，我们经常要根据类Class生成实例对象，如A a = new A()工厂模式也是用来创建实例对象的，所以以后new对象就要多个心眼，是否可以考虑使用工厂模式。虽然这样做可能多做一些工作，但会给系统带来更大的可拓展性和尽可能少的修改量。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/24/设计模式之工厂模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式-工厂模式">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/24/设计模式之工厂模式/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="w-设计模式之单例模式" class="article article-type-w" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/16/设计模式之单例模式/" class="article-date">
-  	<time datetime="2019-11-16T11:30:38.000Z" itemprop="datePublished">2019-11-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/16/设计模式之单例模式/">
-        设计模式之单例模式
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong> 什么是单例模式 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:</p>
-<ul>
-<li>懒汉式：指全局的单例实例在第一次被使用时构建。</li>
-<li>懒汉式：指全局的单例实例在类装载时构建。<br>&nbsp;&nbsp;&nbsp;&nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。</li></ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/16/设计模式之单例模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式之单例模式">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/16/设计模式之单例模式/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-linux常用命令" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/10/linux常用命令/" class="article-date">
-  	<time datetime="2019-11-10T13:36:59.000Z" itemprop="datePublished">2019-11-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/10/linux常用命令/">
-        linux常用命令
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><p>arch 显示机器的处理器架构<br>uname -m 显示机器的处理器架构<br>uname -r 显示正在使用的版本内核<br>dmidecode -q 显示硬件系统部件<br>hdparm -i/dev/hda 罗列一个磁盘的架构特性<br>hdparm -t/dev/sda 在磁盘上执行测试性读写操作<br>cat /proc/cupuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/meminfo 检验内存使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>Ispci -tv 罗列PCI设备<br>Isusb -tv 罗列USB设备<br>date 显示系统时间<br>cal 2019 显示2019年的日历表<br>date 111021002019.00 设置日期和时间 -月日时分年.秒<br>clock -w 将时间保存到BIOS<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/10/linux常用命令/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="linux常用命令">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/10/linux常用命令/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-Spring" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/07/Spring/" class="article-date">
-  	<time datetime="2019-11-07T14:16:53.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/Spring/">
-        面试题-spring
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.spring五个事务隔离级别和7个事务传播行为<br>&nbsp;&nbsp;&nbsp;&nbsp;脏读：脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另一个事务也访问这个数据，然后使用了这个数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;不可重复读：在一个事务还没有结束时，另一个事务也访问了该同一数据，那么，在第一个事务中的两次读数据之间，由于第二个事务的修改，那么第一个事务两次读到的数据可能是不一样的。这样就发生了在同一个事务内两次读到的数据是不一样的。<br>&nbsp;&nbsp;&nbsp;&nbsp;幻读：第一个事务对一个表中的数据进行修改，这种修改涉及到表中的全部数据行，同时，第二个事务也修改了表中的数据，这种修改是向表中新增一行数据。那么，就会发生操作第一个事务的用户发现表中还有没有修改的数据行，就好像发生幻觉一样。<br>&nbsp;&nbsp;&nbsp;&nbsp;可参考：<a href="https://www.cnblogs.com/ubuntu1/p/8999403.html" target="_blank" rel="noopener">https://www.cnblogs.com/ubuntu1/p/8999403.html</a><br></p>
+        <h3 id="面试官心里分析"><a href="#面试官心里分析" class="headerlink" title="面试官心里分析"></a>面试官心里分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？<br></p>
       
     </div>
     
@@ -675,7 +537,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/Spring/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-spring">
+    <span id="/2019/12/17/interview_es/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="谈谈对ES搜索引擎的理解">
          &nbsp;
         view
     </span>
@@ -686,7 +548,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/Spring/#more">more >></a>
+          <a href="/2019/12/17/interview_es/#more">more >></a>
         </p>
       
     
@@ -698,11 +560,11 @@
 
 
   
-    <article id="post-面试题-数据库" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-learn_recursive" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/面试题-数据库/" class="article-date">
-  	<time datetime="2019-11-07T11:53:05.000Z" itemprop="datePublished">2019-11-07</time>
+      <a href="/2019/12/15/learn_recursive/" class="article-date">
+  	<time datetime="2019-12-15T08:38:08.000Z" itemprop="datePublished">2019-12-15</time>
 </a>
     </div>
   
@@ -715,8 +577,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/面试题-数据库/">
-        面试题-数据库
+      <a class="article-title" href="/2019/12/15/learn_recursive/">
+        递归算法-如何学习递归
         
       </a>
     </h1>
@@ -727,7 +589,75 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.delete与truncate区别<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate是DDL语句(create、drop、alter、truncate)，delete是DML语句(insert、update、delete、select)；DCL语句(grant、revoke)<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate的速度快于delete<br>&nbsp;&nbsp;&nbsp;&nbsp;delete数据可以进行rollback进行数据回滚，truncate是永久删除不能回滚<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate不会触发表上的delete触发器，而delete会正常触发<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate语句不能带where条件意味着只能全部数据删除，而delete可带where条件进行删除<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate操作会重置表的高水位线，而delete不会<br></p>
+        <h2 id="递归的三大要素"><a href="#递归的三大要素" class="headerlink" title="递归的三大要素"></a>递归的三大要素</h2><h4 id="第一要素：明确你这个函数想干什么"><a href="#第一要素：明确你这个函数想干什么" class="headerlink" title="第一要素：明确你这个函数想干什么"></a>第一要素：明确你这个函数想干什么</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;对于递归，很重要的一件事就是，<b style="color:orangered">这个函数的功能是什么，</b>它要完成什么样的一件事，而这个，是完全由你自己来定义的。也就是说，我们先不管函数里面的代码什么，而是要先明白你这个函数要用来干什么。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归算法/">递归算法</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/15/learn_recursive/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="递归算法-如何学习递归">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/15/learn_recursive/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-如何设计一个本地缓存" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/13/如何设计一个本地缓存/" class="article-date">
+  	<time datetime="2019-12-13T07:38:54.000Z" itemprop="datePublished">2019-12-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/13/如何设计一个本地缓存/">
+        如何设计一个本地缓存
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;Mybatis提供了一级缓存和二级缓存；一级缓存相对来说比较简单，功能比较齐全的是二级缓存，基本上满足了一个缓存该有的功能；当然如果拿来和专门的缓存框架如ehcache来对比可能稍有差距。我们将整理一下实现一个本地缓存都应该需要考虑哪些问题。<br></p>
       
     </div>
     
@@ -743,7 +673,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/面试题-数据库/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-数据库">
+    <span id="/2019/12/13/如何设计一个本地缓存/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个本地缓存">
          &nbsp;
         view
     </span>
@@ -754,7 +684,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/面试题-数据库/#more">more >></a>
+          <a href="/2019/12/13/如何设计一个本地缓存/#more">more >></a>
         </p>
       
     
@@ -766,11 +696,11 @@
 
 
   
-    <article id="post-面试题-java基础" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-如何设计一个高并发系统" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/面试题-java基础/" class="article-date">
-  	<time datetime="2019-11-07T00:12:07.000Z" itemprop="datePublished">2019-11-07</time>
+      <a href="/2019/12/12/如何设计一个高并发系统/" class="article-date">
+  	<time datetime="2019-12-12T02:20:23.000Z" itemprop="datePublished">2019-12-12</time>
 </a>
     </div>
   
@@ -783,8 +713,8 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/面试题-java基础/">
-        面试题-java基础
+      <a class="article-title" href="/2019/12/12/如何设计一个高并发系统/">
+        如何设计一个高并发系统
         
       </a>
     </h1>
@@ -795,7 +725,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.interface与abstract区别<br>&nbsp;&nbsp;&nbsp;&nbsp;①抽象类可以有构造方法，接口不能有构造方法<br>&nbsp;&nbsp;&nbsp;&nbsp;②抽象类可以有普通成员变量，接口没有普通成员变量<br>&nbsp;&nbsp;&nbsp;&nbsp;③抽象类可以包含非抽象的普通方法，接口的所有方法必须都是抽象的<br>&nbsp;&nbsp;&nbsp;&nbsp;④抽象类的抽象方法的访问类型可以是public、protected，接口的方法只能是public类型的（默认为public abstract）<br>&nbsp;&nbsp;&nbsp;&nbsp;⑤抽象类可以包含静态方法，接口不能包含静态方法<br>&nbsp;&nbsp;&nbsp;&nbsp;⑥抽象类与接口中都可以包含静态成员变量，抽象类的静态成员变量的访问类型可以是任意的，但接口定义的变量只能是public abstract final类型<br>&nbsp;&nbsp;&nbsp;&nbsp;⑦一个类可以实现多个接口，但只能继承一个抽象类<br></p>
+        <h3 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。<br>&nbsp;&nbsp;&nbsp;&nbsp;假设你在某知名电商公司干过高并发系统，用户上亿，一天流量几十亿，高峰期并发量上万，甚至是十几万。那么人家一定会仔细盘问你的系统架构，你们系统啥架构？怎么部署的？部署了多少台机器？缓存咋用的？MQ咋用的？数据库咋用的？就是深挖你到底是如何抗住高并发的。<br>&nbsp;&nbsp;&nbsp;&nbsp;因为真正干过高并发的人一定知道，脱离了业务的系统架构都是纸上谈兵，真正在复杂业务场景而且还高并发的时候，那么系统架构一定不是那么简单的，用个redis，用MQ就能搞定？当然不是，真实的系统架构搭配上业务之后，会比这种简单的所谓“高并发架构”要复杂很多倍。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果有面试官问你个问题说，如何设计一个高并发系统？那么不好意思，一定是因为你实际上没干过高并发系统。面试官看你简历就没啥出彩的，感觉就不咋地，所以就会问问你，如何设计一个高并发系统？说白了本质就是看看你有没有自己研究过，有没有一定的知识积累。<br>&nbsp;&nbsp;&nbsp;&nbsp;最好的当然是招聘个真正干过高并发的哥们，但是这种哥们人数稀缺，不好招。所以可能次一点的就是招一个自己研究过的哥们，总比招一个啥也不会的哥们好吧。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以这个时候你必须的做一把个人秀，秀出你所有关于高并发的知识。<br></p>
       
     </div>
     
@@ -811,7 +741,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/面试题-java基础/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-java基础">
+    <span id="/2019/12/12/如何设计一个高并发系统/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个高并发系统">
          &nbsp;
         view
     </span>
@@ -822,7 +752,75 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/面试题-java基础/#more">more >></a>
+          <a href="/2019/12/12/如何设计一个高并发系统/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-interview_mybatis" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/10/interview_mybatis/" class="article-date">
+  	<time datetime="2019-12-10T07:59:11.000Z" itemprop="datePublished">2019-12-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/10/interview_mybatis/">
+        Mybatis经典面试题
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.什么是mybatis？<br>&nbsp;&nbsp;&nbsp;&nbsp;Mybatis是一个半ORM(对象关系映射)框架，它内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态SQL，可以严格控制SQL执行效能，灵活度高。<br>&nbsp;&nbsp;&nbsp;&nbsp;Mybatis可以使用XML或注解来配置映射原生信息，将POJO映射成数据库中的记录，避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。<br>&nbsp;&nbsp;&nbsp;&nbsp;通过XML文件或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中SQL的动态参数进行映射生成最终执行的SQL语句，最后由Mybatis框架执行SQL并将结果映射为java对象并返回。(从执行SQL到返回result的过程)<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/10/interview_mybatis/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mybatis经典面试题">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/10/interview_mybatis/#more">more >></a>
         </p>
       
     
@@ -836,7 +834,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
