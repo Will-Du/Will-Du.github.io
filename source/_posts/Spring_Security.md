@@ -12,6 +12,8 @@ tags: Spring
 - Spring Security
 - Spring AOP
 - Spring ORM
+<!-- more -->
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些模块可以大大减少应用程序的开发时间。例如：在Java Web开发的早期，我们需要编写大量的样板代码以将记录插入数据源。但是，通过使用Spring JDBC模块的JDBCTemplate,我们可以仅通过少量配置将其简化为几行代码。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.1.2 Spring Boot</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">Spring Boot</b>是基于Spring Framework，它为你的Spring应用程序提供了自动装配特性，它的设计目标是让你尽可能快的上手应用程序的开发。以下是Spring Boot所拥有的一些特性：
@@ -27,3 +29,15 @@ tags: Spring
 - 防御会话固定、点击劫持，跨站请求伪造等攻击
 - 支持Servlet API集成
 - 支持与Spring MVC集成
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:orangered">1.2 Spring Security集成</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前Spring Security5支持与以下技术进行集成：
+- HTTP basic access authentication
+- LDAP system
+- OpenID identity providers
+- JAAS API
+- CAS Server
+- ESB Platform
+- ......
+- Your own authentication system
+#### 二.核心组件 ####
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">2.1 SecurityContextHoder,SecurityContext和Authentication</b>
