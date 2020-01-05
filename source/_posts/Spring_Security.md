@@ -40,4 +40,109 @@ tags: Spring
 - ......
 - Your own authentication system
 #### 二.核心组件 ####
-&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">2.1 SecurityContextHoder,SecurityContext和Authentication</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">2.1 SecurityContextHolder,SecurityContext和Authentication</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最基本的对象是SecurityContextHolder，它是我们存储当前应用程序安全上下文的详细信息，其中包括当前使用应用程序的主体的详细信息。如当前操作的用户是谁，该用户是否已经被认证，他拥有哪些权限等。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认情况下，SecurityContextHolder使用ThreadLocal来存储这些详细信息，这意味着Security Context始终可用于同一执行线程中的方法，即使Security Context未作为这些方法的参数显式传递。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">获取当前用户的信息</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为身份信息与当前线程已绑定，所以可以使用以下代码在应用程序中获取当前已验证用户的用户名：
+```java
+Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+if(principal instanceof UserDetails) {
+    String username = ((UserDetails) principal).getUsername();
+} else {
+    String username = principal.toString();
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调用getContext()返回的对象是SecurityContext接口的一个实例，对应SecurityContext接口定义如下：
+```java
+public interface SecurityContext extends Serializable {
+    Authentication getAuthentication();
+    void setAuthentication(Authentication authentication);
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在SecurityContext接口中定义了getAuthentication和setAuthentication两个抽象方法，当调用getAuthentication方法后会返回一个Authentication类型的对象，这里的Authentication也是一个接口，它的定义如下：
+```java
+public interface Authentication entends Principal, Serializable {
+    Collection<? extends GrantedAuthority> getAuthorities();
+    Object getCredentials();
+    Object getDetails();
+    Object getPrincipal();
+    boolean isAuthenticated();
+    void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException;
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color : orangered">2.2 小结</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SecurityContextHolder用来保存SecurityContext(安全上下文对象)，通过调用SecurityContext对象中的方法，如getAuthentication方法，我们可以方便获取Authentication对象，利用该对象我们可以进一步获取已认证用户的详细信息。
+#### 三.身份认证 ####
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">3.1 Spring Security中的身份验证是什么?</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;让我们考虑每一个人都熟悉的标准身份验证方案：
+- 系统会提示用户使用用户名和密码登陆
+- 系统会验证用户名和密码是否正确
+- 若验证通过则获取该用户的上下文信息(如权限列表)
+- 为用户建立安全上下文
+- 用户继续进行，可能执行某些操作，该操作可能受访问控制机制保护，该访问控制机制根据当前安全上下文信息检查操作所需的权限
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前三项构成了身份验证进程，因此我们将在Spring Security中查看这些内容。
+- 获取用户名和密码并将其组合到UsernamePasswordAuthenticationToken的实例中(我们之前看到的Authentication接口的实例)
+- 令牌传递给AuthenticationManager的实例进行验证
+- AuthenticationManager在成功验证时返回完全填充的Authentication实例
+- Security对象是通过调用SecurityContextHolder.getContext().setAuthentication(...)创建的，传入返回的身份验证Authentication对象
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">3.2 Spring Security身份验证流程示例</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">AuthenticationManager接口:</b>
+```java
+public interface AuthenticationManager {
+    Authentication authenticate(Authentication authentication) throws AuthenticationException;
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">SampleAuthenticationManager类:</b>
+```java
+class SimpleAuthenticationManager implements AuthenticationManager {
+    static final List<GrantedAuthority> AUTHORITY = new ArrayList<GrantedAuthority>();
+    static {
+        AUTHORITY.add(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+    public Authentication authenticate(Authentication auth) throws AuthenticationException {
+        if(auth.getName.equals(auth.getCredentials())) {
+            return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials(), AUTHORITY);
+        }
+            throw new BadCredentialsException("Bad Credentials");
+    }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color #6A6AFF">AuthenticationExample类：</b>
+```java
+public class AuthenticationExample {
+    private static AuthenticationManager am = new SimpleAuthenticationManager();
+    public static void main(String[] args) throws Exception {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        while(true) {
+            System.out.println("Please enter your username:");
+            String name = in.readLine();
+						System.out.println("please enter your password:");
+						String password = in.readLine();
+						try {
+                Authentication request = new UsernamePasswordAuthenticationToken(name, password);
+                Authentication result = am.authenticate(request);
+                SecurityContextHolder.getContext().setAuthentication(result);
+								break;
+            } catch (AuthenticationExpection e) {
+                System.out.println("Authentication failed:" + e.getMessage());
+            }
+        }
+        System.out.println("Successfully authenticated. Security context contains: " 
+            + SecurityContextHolder.getContext().getAuthentication());
+    }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在以上代码中，我们实现的AuthenticationManager将验证用户名和密码相同的任何用户。它为每个用户分配一个角色。上面验证过程是这样的：
+```
+Please enter your username:
+will
+Please enter your password:
+123456
+Authentication failed: Bad Credentials
+Please enter your username:
+will
+Please enter your password:
+will
+Successfully authenticated. Security context contains: org.springframework.security.authentication.UsenamePasswordAuthenticationToken@..
+```
