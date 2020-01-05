@@ -124,7 +124,7 @@ public class AuthenticationExample {
                 Authentication result = am.authenticate(request);
                 SecurityContextHolder.getContext().setAuthentication(result);
 								break;
-            } catch (AuthenticationExpection e) {
+            } catch (AuthenticationException e) {
                 System.out.println("Authentication failed:" + e.getMessage());
             }
         }
@@ -146,3 +146,88 @@ Please enter your password:
 will
 Successfully authenticated. Security context contains: org.springframework.security.authentication.UsenamePasswordAuthenticationToken@..
 ```
+#### 四.核心服务 ####
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.1 AuthenticationManage,ProviderManager和AuthenticationProvider</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AuthenticationManager(接口)是认证相关的核心接口，也是发起认证的出发点，因为在实际需求中，我们可能会允许用户使用用户名+密码登陆，同时允许用户使用邮箱+密码，手机号+密码登陆，甚至可能会允许用户使用指纹登录，所以要求认证系统要支持多种认证方式。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring Security中AuthentiocationManager接口的默认实现是ProviderManager,但它本身并不直接处理身份验证请求，它会委托给已配置的AuthenticationProvider列表，每个列表依次被查询以查看它是否可以执行身份验证。每个Provider验证程序将抛出异常或返回一个完全填充的Authentication对象。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是说，Spring Security中核心的认证入口始终只有一个：AuthenticationManager,不同的认证方式：用户名+密码(UsernamePasswordAuthenticationToken)，邮箱+密码，手机号码+密码登陆则对应三个AuthenticationProvider。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下面我们来看一下ProviderManager的核心源码:
+```java
+public class ProviderManager implements AuthenticationManager, MessageSourceAware, InitialzingBean {
+    private List<AuthenticationProvider> providers = Collections.emptyList();
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        Class<? extends Authentication> toTest = authentication.getClass();
+        AuthenticationException lastException = null;
+        AuthenticationException parentException = null;
+				Authentication result = null;
+        Authentication parentResult = null;
+        boolean debug = logger.isDebugEnabled();
+        for(AuthenticationProvider provider : getProviders()) {
+            if(!provider.supports(toTest)) {
+                continue;
+            }
+            try {
+                result = provider.authenticate(authentication);
+                if(result != null) {
+                    copyDetails(authentication, result);
+                    break;
+                }
+            } catch (AccountStatusException | InternalAuthenticationServiceException e) {
+                prepareException(e, authentication);
+						} catch (AuthenticationException e) {
+                lastException = e;
+            }
+        }
+        if(result == null && parent != null) {
+            try {
+                result = parentResult = parent.authenticate(authentication);
+            } catch (ProviderNotFoundException e) {
+            } catch (AuthenticationException e) {
+                lastException = parentException = e;
+            }
+        }
+        if(result != null) {
+            if(eraseCredentialsAfterAuthentication && (result instanceof CredentialsContainer)) {
+                ((CredentialsContainer) result).eraseCredentials();
+            }
+            if(parentResult == null) {
+                eventPublisher.publishAuthenticationSuccess(result);
+            }
+						return result;
+        }
+        if(lastException == null) {
+            lastException = new ProviderNotFoundException(messages.getMessage("ProviderManager.providerNotFound",new Object[] { toTest.getName(); }, "No AuthenticationProvider found for {0}"));
+        }
+        if(parentException == null) {
+            prepareException(lastException, authentication);
+        }
+        throw lastException;
+    }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在ProviderManager进行认证的过程中，会遍历providers列表，判断是否支持当前authentication对象的认证方式，若支持该认证方式时，就会调用所匹配provider(AuthenticationProvider)对象的authenticate方法进行认证操作。若认证失败则会返回null，下一个AuthenticationProvider会继续尝试认证，如果所有认证器都无法认证成功，则ProviderManager会抛出一个ProviderManagerException异常。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.2 DaoAuthenticationProvider</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Spring Security中较常用的AuthenticationProvider是DaoAutnenticationProvider,这也是Spring Security最早支持的AuthenticationProvider之一。顾名思义，Dao正是数据访问层的缩写，也暗示了这个身份认证器的实现思路。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在实际项目中，最常见的认证方式是使用用户名和密码。用户在登陆表单中提交了用户名和密码，而对于已注册的用户，在数据库中已保存了正确的用户名和密码，认证便是负责对比同一用户名，提交的密码和数据库中所保存的密码是否相同便是了。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Spring Security中，对于使用用户名和密码进行认证的场景，用户在登陆表单中提交的用户名和密码，被封装成UsenamePasswordAuthenticationToken，而根据用户名加载用户的任务则是交给了UserDetailsService，在DaoAuthenticationProvider中，对应的方法就是retrieveUser，虽然有两个参数，但是retrieveUser只有第一个参数起主要作用，返回一个UserDetails。retrieveUser方法的具体实现如下：
+```java
+protected final UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+    prepareTimingAttackProtection();
+    try {
+        UserDetails loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+        if(loadedUser == null) {
+            throw new InternalAuthenticationServiceException("UserDetailsService return null, which is an interface contract violation");
+        }
+        return loadedUser;
+    } catch (UsenameNotFoundException ex) {
+        mitigateAgainstTimingAttack(authentication);
+        throw ex;
+    } catch (InternalAuthenticationServiceException ex) {
+        throw ex;
+    } catch (Exception ex) {
+        throw new InternalAuthenticationServiceException(ex.getMessage(), ex);
+    }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在DaoAuthenticationProvider类的retrieveUser方法中，会以传入的username作为参数，调用UserDetailsService对象的loadUserByUsername方法加载用户。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.3 UserDetails与UserDetailsService</b>
