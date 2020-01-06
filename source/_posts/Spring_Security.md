@@ -147,7 +147,7 @@ will
 Successfully authenticated. Security context contains: org.springframework.security.authentication.UsenamePasswordAuthenticationToken@..
 ```
 #### 四.核心服务 ####
-&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.1 AuthenticationManage,ProviderManager和AuthenticationProvider</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.1 AuthenticationManager,ProviderManager和AuthenticationProvider</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AuthenticationManager(接口)是认证相关的核心接口，也是发起认证的出发点，因为在实际需求中，我们可能会允许用户使用用户名+密码登陆，同时允许用户使用邮箱+密码，手机号+密码登陆，甚至可能会允许用户使用指纹登录，所以要求认证系统要支持多种认证方式。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spring Security中AuthentiocationManager接口的默认实现是ProviderManager,但它本身并不直接处理身份验证请求，它会委托给已配置的AuthenticationProvider列表，每个列表依次被查询以查看它是否可以执行身份验证。每个Provider验证程序将抛出异常或返回一个完全填充的Authentication对象。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也就是说，Spring Security中核心的认证入口始终只有一个：AuthenticationManager,不同的认证方式：用户名+密码(UsernamePasswordAuthenticationToken)，邮箱+密码，手机号码+密码登陆则对应三个AuthenticationProvider。
@@ -231,3 +231,36 @@ protected final UserDetails retrieveUser(String username, UsernamePasswordAuthen
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在DaoAuthenticationProvider类的retrieveUser方法中，会以传入的username作为参数，调用UserDetailsService对象的loadUserByUsername方法加载用户。
 &nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.3 UserDetails与UserDetailsService</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">4.3.1 UserDetails接口</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在DaoAuthenticationProvider类中retrieveUser方法签名是这样的：
+```java
+protected final UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该方法返回UserDetails对象，这里的UserDetails也是一个接口，它的定义如下：
+```java
+public interface UserDetails extends Serializable {
+    Collection<? extends GrantedAuthority> getAuthorities();
+    String getPassword();
+    String getUsername();
+    boolean isAccountNonExpired();
+    boolean isAccountNonLocked();
+    boolean isCredentialsNonExpired();
+    boolean isEnabled();	
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顾名思义，UserDetails表示详细的用户信息，这个接口涵盖了一些必要的用户信息字段，具体的实现类对它进行了扩展。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然Authentication与UserDetails很类似，但它们之间是有区别的。<b style="color: #00FFFF">Authentication的getCredentials()与UserDetails中的getPassword()需要被区分对待，前者是用户提交的密码凭证，后者是用户正确的密码，认证器其实就是对这两者进行比对。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外Authentication中的getAuthorities()实际是由UserDetails的getAuthorities()传递而形成的。还记得Authentication接口中getUserDetails()方法吗？其中的UserDetails用户详细信息就是经过了provider(AuthenticationProvider)认证之后被填充的。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">4.3.2 UserDetailsService接口</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大多数身份验证提供程序都利用了UserDetails和UserDetailsService接口。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserDetailsService接口定义如下：
+```java
+public inteface UserDetailsService {
+    UserDetails loadUserByUsername(String username) throws UsenameNotFoundException;
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在UserDetailsService接口中，只有一个loadUserByUsername方法，用于通过username来加载匹配的用户。当找不到username对应的用户时，会抛出UsernameNotFoundException异常。<b style="color: #00FFFF">UserDetailsService和AuthenticationProvider两者的职责常常被人搞混，记住一点即可，UserDetailsService只负责从特定的地方(通常是数据库)加载用户信息，仅此而已。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserDetailsService常见的实现类有JdbcDaoImpl,InMemoryUserDetailsManager，前者从数据库加载用户，后者从内存中加载用户，当然你也可以自己实现UserDetailsService。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.4 Spring Security Architecture</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面已经介绍了Spring Security的核心组件(SecurityContextHolder, SecurityContext和Authentication)和核心服务(AuthenticationManager,ProviderManager和AuthenticationProvider)
