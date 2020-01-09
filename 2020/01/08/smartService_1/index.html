@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>不是所有场景都适合微服务！！ | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;微服务是软件架构的银弹吗？或许不是。这个世界上很少有东西是百分百正确的，微服务也不例外。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在这篇文章里，我们将讨论在设计或重构应用程序时，哪些场景可以使用微服务，哪些场景要避免使用微服务。">
+<meta name="keywords" content="微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不是所有场景都适合微服务！！">
+<meta property="og:url" content="http://yoursite.com/2020/01/08/smartService_1/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;微服务是软件架构的银弹吗？或许不是。这个世界上很少有东西是百分百正确的，微服务也不例外。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在这篇文章里，我们将讨论在设计或重构应用程序时，哪些场景可以使用微服务，哪些场景要避免使用微服务。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-09T07:44:30.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不是所有场景都适合微服务！！">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;微服务是软件架构的银弹吗？或许不是。这个世界上很少有东西是百分百正确的，微服务也不例外。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在这篇文章里，我们将讨论在设计或重构应用程序时，哪些场景可以使用微服务，哪些场景要避免使用微服务。">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 15px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-smartService_1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/08/smartService_1/" class="article-date">
+  	<time datetime="2020-01-08T02:02:44.000Z" itemprop="datePublished">2020-01-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      不是所有场景都适合微服务！！
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微服务/">微服务</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2020/01/08/smartService_1/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="不是所有场景都适合微服务！！">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">微服务</b>是软件架构的银弹吗？或许不是。这个世界上很少有东西是百分百正确的，微服务也不例外。<br>&nbsp;&nbsp;&nbsp;&nbsp;在这篇文章里，我们将讨论在设计或重构应用程序时，哪些场景可以使用微服务，哪些场景要避免使用微服务。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;首先，我们要了解什么是微服务以及微服务有哪些优势。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">微服务是什么？为什么要使用微服务？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;顾名思义，微服务就是一个具体的软件服务，通常是基于应用程序上下文定义的一个规模合理的最小化服务。例如，“将文档放松给系统打印机驱动程序”可以算是一个微服务，但“打印字母n”或许就算不上是。一个应用程序可以由多个微服务组成，这些服务的部署和管理(部署在pod或集群中)是独立的，他们组合在一起实现了应用程序的功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这意味着我们可以在不重新设计或更新整个应用程序的情况下更新单个微服务，也意味着单个微服务(或多个微服务)发生故障并不会导致整个应用程序瘫痪，一个受到攻击的微服务也不会导致整个应用程序变脆弱。对于复杂的大型应用程序来说，微服务架构比单体架构(传统的非微服务架构)具备更高的可管理性。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">1.应对复杂</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;既然微服务这么好，为什么不都使用微服务架构呢？事实证明，适用于大型系统的架构不一定适用于规模较小的系统，在设计新系统时所使用的设计方式并不一定适合用来维护或更新已有的系统。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于微服务架构来说，复杂性可能是一个关键考虑因素。Martin Fowler曾经说过“….除非你的系统复杂到难以管理，否则不要考虑采用微服务….”换句话说，相比其他因素，复杂性是采用微服务架构最关键的考虑因素。如果复杂性不是你首要解决的问题，那么微服务可能不适合你。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;微服务架构需要额外的开销，比如服务设计、服务通信、服务管理和系统资源的使用。采用微服务架构是有代价的，如果一个应用程序无法充分利用微服务的优势，那么为了采用微服务架构而付出的代价就有点太高了。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">2.小团队，大工作</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;试想有一个中等规模、中等复杂程度的应用程序，这个应用程序由一个相对较小的团队负责开发和维护。如果它是一个单体系统，服务之间的通信可以很直接，可以对一些特定的任务进行优化。对于熟悉的代码的小团体来说，维护任务就相对容易。可能有时候开发会有点麻烦，但大多数时候是可控的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果让这个小团队开发和维护同样的应用程序，但改成了微服务架构，那么他们的工作量就会显著增加。微服务之间的通信变得很普遍，即使是做一个很小的改动也需要更多的时间，甚至还可能需要修改微服务编排和管理系统。还可能会给运维和开发造成压力。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">3.小到无法拆分</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并不是所有的应用程序都大到足以拆分为微服务。一组由中等规模服务组成的应用程序可能已经按照要求拆分完毕，即使这些服务仍然包含了子服务。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有些模块(比如库存模块和应付账款模块)真的有必要拆分成微服务吗？或者它们其实运行的还不错？可能它们现在的规模已经恰到好处了，把它们进一步拆分成微服务不仅不会降低复杂性，反而会让系统变得更复杂。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">4.与遗留系统共舞</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大部分软件开发人员几乎每天都要面对遗留代码。如果你正在维护一个遗留系统，那么无论它的原始设计多么随意，无论它现在变得多么糟糕，在把它重构成微服务之前，都要认真仔细地思考一下。它正处于生命周期的什么阶段？它是一个任务关键型系统吗(比如包含了一个不可替代的遗留数据库)？你需要几年来替换整个系统吗？更新或替换过程需要一个长期详尽的计划吗？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;微服务架构在更新或替换遗留系统方面扮演着重要角色，但整个过程可能很长，一个没有策略指引的迁移很可能会造成灾难性的后果。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">5.紧密集成</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有些应用程序要求各个组件之间紧密集成，比如那些需要快速处理实时数据的应用程序。在服务之间添加新层会导致处理速度变慢。如果系统需要快速处理数据流中的数据(例如来自自动驾驶汽车的传感器数据)，那么延迟可能是灾难性的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;嵌入式应用程序通常在响应时间和可用资源方面具有很严格的限制，所以他们的后端通常不太适合采用微服务架构。在设计嵌入式应用程序时，从一开始就要考虑如何让维护变得更简单以及如何让资源使用最优化。微服务通常在资源比较充裕的系统中容易发挥作用，可以帮助降低系统的复杂性。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">要不要采用微服务？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你的应用程序适用微服务架构吗？如果它非常大，非常复杂，为了更好地管理它，可以考虑采用微服务架构。但如果它运行得很好，那就不要盲目追赶这个潮流。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/09/java_isEmpty/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          isEmpty与isBlank区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/06/java_vo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅析VO、DTO、DO、PO的概念、区别和用处</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

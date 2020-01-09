@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jquery/" style="font-size: 13.33px;">jquery</a> <a href="/tags/js/" style="font-size: 16.67px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16.67px;">sql</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/jquery/" style="font-size: 12.5px;">jquery</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 15px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,213 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-设计模式之工厂模式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/24/设计模式之工厂模式/" class="article-date">
+  	<time datetime="2019-11-24T10:40:03.000Z" itemprop="datePublished">2019-11-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/24/设计模式之工厂模式/">
+        设计模式-工厂模式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong> 什么是工厂模式 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;工厂模式是我们最常用的实例化对象模式了，是用工厂方法代替new操作的一种模式。工厂模式在java程序系统可以说是随处可见，因为工厂模式就是相当于创建实例对象的new，我们经常要根据类Class生成实例对象，如A a = new A()工厂模式也是用来创建实例对象的，所以以后new对象就要多个心眼，是否可以考虑使用工厂模式。虽然这样做可能多做一些工作，但会给系统带来更大的可拓展性和尽可能少的修改量。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/11/24/设计模式之工厂模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式-工厂模式">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/11/24/设计模式之工厂模式/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="w-设计模式之单例模式" class="article article-type-w" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/16/设计模式之单例模式/" class="article-date">
+  	<time datetime="2019-11-16T11:30:38.000Z" itemprop="datePublished">2019-11-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/16/设计模式之单例模式/">
+        设计模式之单例模式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong> 什么是单例模式 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:</p>
+<ul>
+<li>懒汉式：指全局的单例实例在第一次被使用时构建。</li>
+<li>懒汉式：指全局的单例实例在类装载时构建。<br>&nbsp;&nbsp;&nbsp;&nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。</li></ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/11/16/设计模式之单例模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式之单例模式">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/11/16/设计模式之单例模式/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-linux常用命令" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/11/10/linux常用命令/" class="article-date">
+  	<time datetime="2019-11-10T13:36:59.000Z" itemprop="datePublished">2019-11-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/10/linux常用命令/">
+        linux常用命令
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><p>arch 显示机器的处理器架构<br>uname -m 显示机器的处理器架构<br>uname -r 显示正在使用的版本内核<br>dmidecode -q 显示硬件系统部件<br>hdparm -i/dev/hda 罗列一个磁盘的架构特性<br>hdparm -t/dev/sda 在磁盘上执行测试性读写操作<br>cat /proc/cupuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/meminfo 检验内存使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>Ispci -tv 罗列PCI设备<br>Isusb -tv 罗列USB设备<br>date 显示系统时间<br>cal 2019 显示2019年的日历表<br>date 111021002019.00 设置日期和时间 -月日时分年.秒<br>clock -w 将时间保存到BIOS<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/11/10/linux常用命令/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="linux常用命令">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/11/10/linux常用命令/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-Spring" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -628,206 +835,9 @@
 
 
   
-    <article id="post-数据库读写分离" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/05/16/数据库读写分离/" class="article-date">
-  	<time datetime="2019-05-16T06:19:43.000Z" itemprop="datePublished">2019-05-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/16/数据库读写分离/">
-        数据库读写分离
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <label style="color:red">1.主数据库创建一个用户(尽量不要使用root) </label><br>    CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;<br>    username:用户名<br>    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%<br>    password:用户密码<br><label style="color:red">2.给该用户授权slave(mysql8.0以上可以不用写IDENTIFIED BY ‘password’;)</label><br>    GRANT REPLICATION SLAVE ON *.* to ‘username‘@’%’;<br><label style="color:red">3.主数据库与从数据库修改配置文件(linux:my.cnf;window:my.ini)并重启数据库</label><br>    log-bin=mysql-bin //启用二进制日志 (主数据库必须)<br>    server-id=1 //服务器唯一ID，默认是1，一般取IP最后一段(必须)(不同服务器的server-id应不同)
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/05/16/数据库读写分离/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库读写分离">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/05/16/数据库读写分离/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-js_moneyFormat" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/10/js_moneyFormat/" class="article-date">
-  	<time datetime="2019-03-10T03:06:29.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/js_moneyFormat/">
-        js金额格式化
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* number：要格式化的数字</span></span><br><span class="line"><span class="comment">	* flag : 货币符号</span></span><br><span class="line"><span class="comment">	* decimals：保留几位小数</span></span><br><span class="line"><span class="comment">	* dec_point：小数点符号</span></span><br><span class="line"><span class="comment">	* thousands_sep：千分位符号</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">formatMoney: <span class="function"><span class="keyword">function</span>(<span class="params">number,flag,decimals,dec_point,thousands_sep</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!number) &#123;</span><br><span class="line">	  <span class="keyword">if</span>(number == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">	  <span class="keyword">if</span>(decimals) &#123;</span><br><span class="line">		decimals = decimals &gt; <span class="number">0</span> &amp;&amp; decimals &lt;= <span class="number">20</span> ? decimals : <span class="number">2</span>;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		decimals = <span class="number">2</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	  </span><br><span class="line">	  number = (number + <span class="string">''</span>).replace(<span class="regexp">/[^0-9+-Ee.]/g</span>, <span class="string">''</span>);</span><br><span class="line">	  <span class="keyword">var</span> n = !<span class="built_in">isFinite</span>(+number) ? <span class="number">0</span> : +number,</span><br><span class="line">		  prec = !<span class="built_in">isFinite</span>(+decimals) ? <span class="number">0</span> : <span class="built_in">Math</span>.abs(decimals),</span><br><span class="line">		  sep = (<span class="keyword">typeof</span> thousands_sep === <span class="string">'undefined'</span>) ? <span class="string">','</span> : thousands_sep,</span><br><span class="line">		  dec = (<span class="keyword">typeof</span> dec_point === <span class="string">'undefined'</span>) ? <span class="string">'.'</span> : dec_point,</span><br><span class="line">		  s = <span class="string">''</span>,</span><br><span class="line">		  toFixedFix = <span class="function"><span class="keyword">function</span> (<span class="params">n, prec</span>) </span>&#123;</span><br><span class="line">			  <span class="keyword">var</span> k = <span class="built_in">Math</span>.pow(<span class="number">10</span>, prec);</span><br><span class="line">			  <span class="keyword">return</span> <span class="string">''</span> + <span class="built_in">Math</span>.ceil(n * k) / k;</span><br><span class="line">		  &#125;;</span><br><span class="line"></span><br><span class="line">	  s = (prec ? toFixedFix(n, prec) : <span class="string">''</span> + <span class="built_in">Math</span>.round(n)).split(<span class="string">'.'</span>);</span><br><span class="line">	  <span class="keyword">var</span> re = <span class="regexp">/(-?\d+)(\d&#123;3&#125;)/</span>;</span><br><span class="line">	  <span class="keyword">while</span> (re.test(s[<span class="number">0</span>])) &#123;</span><br><span class="line">		  s[<span class="number">0</span>] = s[<span class="number">0</span>].replace(re, <span class="string">"$1"</span> + sep + <span class="string">"$2"</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">if</span> ((s[<span class="number">1</span>] || <span class="string">''</span>).length &lt; prec) &#123;</span><br><span class="line">		  s[<span class="number">1</span>] = s[<span class="number">1</span>] || <span class="string">''</span>;</span><br><span class="line">		  s[<span class="number">1</span>] += <span class="keyword">new</span> <span class="built_in">Array</span>(prec - s[<span class="number">1</span>].length + <span class="number">1</span>).join(<span class="string">'0'</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">var</span> returnStr = s.join(dec);</span><br><span class="line">	  <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		returnStr = flag + <span class="string">" "</span> + returnStr;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="keyword">return</span> returnStr;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/03/10/js_moneyFormat/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js金额格式化">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-js_String_substr" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/10/js_String_substr/" class="article-date">
-  	<time datetime="2019-03-10T03:01:34.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/js_String_substr/">
-        js截取字符串
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>此代码为vue项目中，用来控制字符串显示问题的过滤器<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* value：传入的字符串</span></span><br><span class="line"><span class="comment">	* maxLength: 字符串显示的最大长度</span></span><br><span class="line"><span class="comment">	* length：超出该值得部分用'...'</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">ShowStr: <span class="function"><span class="keyword">function</span>(<span class="params">value,maxLength,length</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!value) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(value.length &lt;= maxLength) &#123;</span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> value.substr(<span class="number">0</span>,length) + <span class="string">'...'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/03/10/js_String_substr/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js截取字符串">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>
