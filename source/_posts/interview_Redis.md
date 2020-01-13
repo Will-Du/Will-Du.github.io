@@ -156,4 +156,4 @@ EXEC
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZRANGE user_scores 0 10 WITHSCORES
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agora Games就是一个很好的例子，用Ruby实现的，它的排行榜就是使用Redis来存储数据的。
 &nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">5. 发布/订阅</b>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后(但肯定不是最不重要的)是Redis的发布/订阅功能。发布/订阅的使用场景确实非常多。我已看见人们在社交网络连接中使用，还可以作为基于发布/订阅的脚本触发器，甚至用Redis的发布/订阅功能来建立聊天系统!
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后(但肯定不是最不重要的)是Redis的发布/订阅功能。发布/订阅的使用场景确实非常多。我已看见人们在社交网络连接中使用，还可以作为基于发布/订阅的脚本触发器，甚至用Redis的发布/订阅功能来建立聊天系统! 
