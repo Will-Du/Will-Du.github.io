@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="1.线程有那些状态？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;新建状态：当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;就绪状态：一个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-15T10:55:41.238Z">
+<meta property="og:updated_time" content="2020-01-15T11:14:55.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试题-并发与线程">
 <meta name="twitter:description" content="1.线程有那些状态？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;新建状态：当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;就绪状态：一个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法">
@@ -211,7 +211,7 @@
 <li>循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">活锁：</b>任务或者执行者没有被阻塞，由于某些条件没有满足，导致一直重复尝试，失败，尝试，失败。<br>&nbsp;&nbsp;&nbsp;&nbsp;活锁和死锁的区别在于，处于活锁的实体是在不断的改变状态，所谓的“活”，而处于死锁的实体表现为等待；活锁有可能自行解开，死锁则不能。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">饥饿：</b>一个或者多个线程因为种种原因无法获得所需要的资源，导致一直无法执行的状态。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中导致饥饿的原因：</li>
 <li>高优先级线程吞噬所有的低优先级线程的CPU时间。</li>
 <li>线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。</li>
-<li>线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的wait方法)，因为其他线程总是被持续地获得唤醒。<br><b style="color: #6A6AFF">14.java中用到的线程调度算法是什么？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;采用时间片轮转的方式。可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。<br><b style="color: #6A6AFF">15.什么是线程组，为什么在java中不推荐使用？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;ThreadGroup类，可以把线程归属到某一个线程组中，线程组中可以有线程对象，也可以有线程组，组中还可以有线程，这样的组织结构有点类似于树的形式。<br>&nbsp;&nbsp;&nbsp;&nbsp;为什么不推荐使用？因为使用有很多的安全隐患，没有具体追究，如果需要使用，推荐使用线程池。<br><b style="color: #6A6AFF">16.为什么使用Executor框架</b><br>&nbsp;&nbsp;&nbsp;&nbsp;1.每次执行任务创建线程new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.调用new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.使用new Thread()启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。</li>
+<li>线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的wait方法)，因为其他线程总是被持续地获得唤醒。<br><b style="color: #6A6AFF">14.java中用到的线程调度算法是什么？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;采用时间片轮转的方式。可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。<br><b style="color: #6A6AFF">15.什么是线程组，为什么在java中不推荐使用？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;ThreadGroup类，可以把线程归属到某一个线程组中，线程组中可以有线程对象，也可以有线程组，组中还可以有线程，这样的组织结构有点类似于树的形式。<br>&nbsp;&nbsp;&nbsp;&nbsp;为什么不推荐使用？因为使用有很多的安全隐患，没有具体追究，如果需要使用，推荐使用线程池。<br><b style="color: #6A6AFF">16.为什么使用Executor框架</b><br>&nbsp;&nbsp;&nbsp;&nbsp;1.每次执行任务创建线程new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.调用new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.使用new Thread()启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。<br><b style="color: #6A6AFF">17.在java中Executor和Executors的区别？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;Executors工具类的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。<br>&nbsp;&nbsp;&nbsp;&nbsp;Executor接口对象能执行我们的线程任务。<br>&nbsp;&nbsp;&nbsp;&nbsp;ExecutorService接口继承了Executor接口并进行了扩展，提供了更多的方法，我们能获得任务执行的状态并且可以获取任务的返回值。<br>&nbsp;&nbsp;&nbsp;&nbsp;使用ThreadPoolExecutor可以创建自定义线程池。<br>&nbsp;&nbsp;&nbsp;&nbsp;Future表示异步计算的结果，它提供了检查计算是否完成的方法，以等待计算的完成，并可以使用get()方法获取计算的结果。</li>
 </ul>
 
       
