@@ -3,7 +3,7 @@ title: 面试题-并发与线程
 date: 2019-11-07 08:11:11
 tags: 面试题
 ---
-1.线程有那些状态？
+<b style="color: #6A6AFF">1.线程有那些状态？</b>
 &nbsp;&nbsp;&nbsp;&nbsp;新建状态：当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。
 &nbsp;&nbsp;&nbsp;&nbsp;就绪状态：一个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法。当start()方法返回后，线程就处于就绪状态。处于就绪状态的线程并不一定立即运行run()方法，线程还必须同其他线程竞争CPU时间，只有获得CPU时间才可以运行线程。因为在单CPU的计算机系统中，不可能同时运行多个线程，一个时刻仅有一个线程处于运行状态。因此此时可能有多个线程处于就绪状态。对多个处于就绪状态的线程是由Java运行时系统的线程调度程序来调度的。
 &nbsp;&nbsp;&nbsp;&nbsp;运行状态：当线程获得CPU时间后，它才进入运行状态，真正开始执行run()方法
@@ -12,28 +12,28 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;等待状态：或者叫条件等待状态，当线程的运行条件不满足时，通过锁的条件等待机制(调用锁对象的wait()或显示锁条件对象的wait()方法)让线程进入等待状态。处于等待状态的线程将不会被CPU执行，除非线程的运行条件得到满足后，其可被其它线程唤醒，进入阻塞状态。调用不带超时的Thread.join()方法也会进入等待状态。
 &nbsp;&nbsp;&nbsp;&nbsp;限时等待状态：是等待状态的一种特例，线程在等待时我们将设定等待时间，如超过了我们设定的时间，等待线程将自动唤醒进入阻塞状态或就绪状态。在调用Thread.sleep()方法、带有超时设定的Object.wait()、带有超时设定的thread.join()方法等，线程会进入限时等待状态。
 <!-- more -->
-2.异步，同步，阻塞，非阻塞的区别
+<b style="color: #6A6AFF">2.异步，同步，阻塞，非阻塞的区别</b>
 &nbsp;&nbsp;&nbsp;&nbsp;同步和异步是针对应用程序和内核的交互而言的，同步指的是用户进程触发IO操作并等待或者轮询的去查看IO操作是否就绪，而异步是指用户进程触发IO操作以后便开始做自己的事情，而当IO操作已经完成的时候会得到IO完成的通知（异步的特点就是通知）。而阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。
-3.并发与并行的区别
+<b style="color: #6A6AFF">3.并发与并行的区别</b>
 &nbsp;&nbsp;&nbsp;&nbsp;并发：同一时间段，多个任务都在执行 (单位时间内不一定同时执行)
 &nbsp;&nbsp;&nbsp;&nbsp;并行：单位时间内，多个任务同时执行。
-4.如何避免线程死锁
+<b style="color: #6A6AFF">4.如何避免线程死锁</b>
 &nbsp;&nbsp;&nbsp;&nbsp;破坏互斥条件：这个条件我们没有办法破坏，因为我们用锁本来就是想让他们互斥的（临界资源需要互斥访问）。
 &nbsp;&nbsp;&nbsp;&nbsp;破坏请求与保持条件：一次性申请所有的资源
 &nbsp;&nbsp;&nbsp;&nbsp;破坏不剥夺条件：占用部分资源的线程进一步申请其他资源时，如果申请不到，可以主动释放它占有的资源
 &nbsp;&nbsp;&nbsp;&nbsp;破坏循环等待条件：靠按序申请资源来预防。按某一顺序申请资源，释放资源则反序释放。
-5.乐观锁与悲观锁的区别及使用场景
+<b style="color: #6A6AFF">5.乐观锁与悲观锁的区别及使用场景</b>
 &nbsp;&nbsp;乐观锁:每次获取数据的时候，都不会担心数据被修改，所以每次获取数据的时候都不会进行加锁，但是在更新数据的时候需要判断该数据是否被别人修改过。如果数据被其他线程修改，则不进行数据更新，如果数据没有被其他线程修改，则进行数据更新。由于数据没有进行加锁，期间该数据可以被其他线程进行读写操作。一般使用version方式和CAS操作方式。
 &nbsp;&nbsp;&nbsp;&nbsp;使用场景：比较适合读取操作比较频繁的场景，如果出现大量的写入操作，数据发生冲突的可能性就会增大，为了保证数据的一致性，应用层需要不断的重新获取数据，这样会增加大量的查询操作，降低了系统的吞吐量。
 &nbsp;&nbsp;悲观锁：每次获取数据的时候，都会担心数据被修改，所以每次获取数据的时候都会进行加锁，确保在自己使用的过程中数据不会被别人修改，使用完成后进行数据解锁。由于数据进行加锁，期间对该数据进行读写的其他线程都会进行等待。在Java中，synchronized的思想也是悲观锁。
 &nbsp;&nbsp;&nbsp;&nbsp;使用场景：比较适合写入操作比较频繁的场景，如果出现大量的读取操作，每次读取的时候都会进行加锁，这样会增加大量的锁的开销，降低了系统的吞吐量。
-6. sleep() 方法和 wait() 方法区别和共同点
+<b style="color: #6A6AFF">6. sleep() 方法和 wait() 方法区别和共同点</b>
 &nbsp;&nbsp;&nbsp;&nbsp;区别：1.sleep 方法没有释放锁，而 wait 方法释放了锁 2.Wait 通常被用于线程间交互/通信，sleep 通常被用于暂停执行。3.wait() 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 notify() 或者 notifyAll() 方法。sleep() 方法执行完成后，线程会自动苏醒。
 &nbsp;&nbsp;&nbsp;&nbsp;共同点：两者都可以暂停线程的执行
-7.启动一个线程为什么用start，不用run？
+<b style="color: #6A6AFF">7.启动一个线程为什么用start，不用run？</b>
 &nbsp;&nbsp;&nbsp;&nbsp;new 一个 Thread，线程进入了新建状态;调用 start() 方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了。 start() 会执行线程的相应准备工作，然后自动执行 run() 方法的内容，这是真正的多线程工作。 而直接执行 run() 方法，会把 run 方法当成一个 main 线程下的普通方法去执行，并不会在某个线程中执行它，所以这并不是多线程工作。
 &nbsp;&nbsp;&nbsp;&nbsp;总结：调用 start 方法方可启动线程并使线程进入就绪状态，而 run 方法只是 thread 的一个普通方法调用，还是在主线程里执行。
-8.线程同步的方法(https://my.oschina.net/locust/blog/2244731)
+<b style="color: #6A6AFF">8.线程同步的方法(https://my.oschina.net/locust/blog/2244731)</b>
 &nbsp;&nbsp;&nbsp;&nbsp;1.同步方法：即有synchronized关键字修饰的方法。由于java的每个对象都有一个内置锁，当用此关键字修饰方法时，内置锁会保护整个方法。在调用该方法前，需要获得内置锁，否则就处于阻塞状态。<label style="color:red">注：synchronized关键字也可以修饰静态方法，此时如果调用该静态方法，则会锁住整个类</label>
 &nbsp;&nbsp;&nbsp;&nbsp;2.同步代码块：即有synchronized关键字修饰的语句块。被该关键字修饰的语句块会自动被加上内置锁，从而实现同步。<label style="color:red">注：同步是一种高开销的操作，因此应该尽量减少同步的内容。通常没有必要同步整个方法，使用synchronized代码块同步关键代码即可</label>
 &nbsp;&nbsp;&nbsp;&nbsp;3.使用特殊域变量(volatile)实现线程同步<label style="color:red">(注：多线程中的非同步问题主要出现在对域的读写上，如果让域自身避免这个问题，则就不需要修改操作该域的方法。用final域、有锁保护的域和volatile域可以避免非同步的问题)</label>：
@@ -57,7 +57,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put(E e):在队尾添加一个元素，如果队列满则阻塞
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size():返回队列中的元素个数
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;take():移除并返回队头元素，如果队列空则阻塞
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：BlockingQuene&lt;E&gt;定义了阻塞队列的常用方法，尤其是三种添加元素的方法，我们需要多加注意，当队列满时：add()方法会抛出异常，offer()方法返回false，put()方法会阻塞</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：BlockingQueue&lt;E&gt;定义了阻塞队列的常用方法，尤其是三种添加元素的方法，我们需要多加注意，当队列满时：add()方法会抛出异常，offer()方法返回false，put()方法会阻塞</label>
 &nbsp;&nbsp;&nbsp;&nbsp;7.使用院子变量实现线程同步:需要使用线程同步的根本原因在于对普通变量的操作不是原子的。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原子操作:是指将读取变量值、修改变量值、保存变量值看成一个整体来操作，即这几种行为要么同时完成，要么都不完成。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在java中util.concurrent.atomic包中提供了创建原子类型变量的工具类，使用该类可以简化线程同步。
@@ -65,7 +65,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AtomicInteger(int initalValue):创建具有给定初始值的新的AtomicInteger
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addAddGet(int dalta):以原子方式将给定值与当前值相加
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get():获取当前值
-9.synchronized与lock的区别
+<b style="color: #6A6AFF">9.synchronized与lock的区别</b>
 &nbsp;&nbsp;&nbsp;&nbsp;①.lock是一个接口，而synochronized是java的一个内置关键字。
 &nbsp;&nbsp;&nbsp;&nbsp;②.异常是否释放锁:synchronized在放生异常时会自动释放占有的锁，因此不会出现死锁；而lock发生异常时，不会主动释放占有的锁，必须手动unlock来释放锁，可能引起死锁的发生(所以最好将同步代码块用try catch包起来，finally中写入unlock，避免死锁的发生)
 &nbsp;&nbsp;&nbsp;&nbsp;③.是否知道获取锁:lock可以通过trylock来知道有没有获取锁，而synchronized不能。
@@ -75,3 +75,241 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;⑤.2种锁的具体区别：
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;synchronized原始采用的是CPU悲观锁机制，即线程获得的是独占锁。独占锁意味着其他线程只能依靠阻塞来等待线程释放锁。而在CPU转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起CPU频繁的上下文切换导致效率很低。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lock用的是乐观锁。所谓的乐观锁就是每次不加锁，而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，知道成功为止。乐观锁实现的机制就是CAS操作。
+<b style="color: #6A6AFF">10.在java中守护线程和本地线程区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;java中线程分为两种：守护线程(Daemon)和用户线程(User)。
+&nbsp;&nbsp;&nbsp;&nbsp;任何线程都可以设置为守护线程和用户线程，通过方法Thread.setDaemon(bool on);true则把该线程设置为守护线程，反之则为用户线程。Thread.setDaemon()必须在Thread.start()之前调用，否则运行时会抛出异常。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">两者的区别：</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;唯一的区别是判断虚拟机(JVM)何时离开，Daemon是为其他线程提供服务，如果全部的UserThread已经撤离，Daemon没有可服务的线程，JVM撤离。也可以理解为守护线程是JVM自动创建的线程(但不一定)，用户线程是程序创建的线程；比如JVM的垃圾回收线程是一个守护线程，当所有线程已经撤离，不再产生垃圾，守护线程自然就没事可干了，当垃圾回收线程是Java虚拟机上仅剩的线程时，Java虚拟机会自动离开。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">扩展：</b>Thread Dump打印出的线程信息，含有daemon字样的线程即为守护线程，可能会有：服务守护进程、编译守护进程、windows下的监听Ctrl+break的守护进程、Finalizer守护进程、引用处理守护进程、GC守护进程。
+<b style="color: #6A6AFF">11.线程和进程的区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;进程是操作系统分配资源的最小单元，线程是操作系统调度的最小单元。
+&nbsp;&nbsp;&nbsp;&nbsp;一个程序至少有一个进程，一个进程至少有一个线程。
+<b style="color: #6A6AFF">12.什么是多线程中的上下文切换？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;多线程会共同使用一组计算机上的CPU，而线程数大于给程序分配的CPU数量时，为了让各个线程都有执行的机会，就需要轮转使用CPU。不同的线程切换使用CPU发生的切换数据等就是上下文切换。
+<b style="color: #6A6AFF">13.死锁和活锁的区别，死锁和饥饿的区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">死锁：</b>是指两个或两个以上的进程(或线程)在执行过程中，因争夺资源而造成的一种互相等待的现象，若无外力作用，他们都将无法推进下去。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产生死锁的必要条件：
+- 互斥条件：所谓互斥就是进程在某一时间内独占资源。
+- 请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。
+- 不剥夺条件：进程已获得资源，在未使用完之前，不能强制剥夺。
+- 循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">活锁：</b>任务或者执行者没有被阻塞，由于某些条件没有满足，导致一直重复尝试，失败，尝试，失败。
+&nbsp;&nbsp;&nbsp;&nbsp;活锁和死锁的区别在于，处于活锁的实体是在不断的改变状态，所谓的“活”，而处于死锁的实体表现为等待；活锁有可能自行解开，死锁则不能。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">饥饿：</b>一个或者多个线程因为种种原因无法获得所需要的资源，导致一直无法执行的状态。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Java中导致饥饿的原因：
+- 高优先级线程吞噬所有的低优先级线程的CPU时间。
+- 线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。
+- 线程在等待一个本身也处于永久等待完成的对象(比如调用这个对象的wait方法)，因为其他线程总是被持续地获得唤醒。
+<b style="color: #6A6AFF">14.java中用到的线程调度算法是什么？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;采用时间片轮转的方式。可以设置线程的优先级，会映射到下层的系统上面的优先级上，如非特别需要，尽量不要用，防止线程饥饿。
+<b style="color: #6A6AFF">15.什么是线程组，为什么在java中不推荐使用？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;ThreadGroup类，可以把线程归属到某一个线程组中，线程组中可以有线程对象，也可以有线程组，组中还可以有线程，这样的组织结构有点类似于树的形式。
+&nbsp;&nbsp;&nbsp;&nbsp;为什么不推荐使用？因为使用有很多的安全隐患，没有具体追究，如果需要使用，推荐使用线程池。
+<b style="color: #6A6AFF">16.为什么使用Executor框架</b>
+&nbsp;&nbsp;&nbsp;&nbsp;1.每次执行任务创建线程new Thread()比较消耗性能，创建一个线程是比较耗时、耗资源的。
+&nbsp;&nbsp;&nbsp;&nbsp;2.调用new Thread()创建的线程缺乏管理，被称为野线程，而且可以无限制的创建，线程之间的相互竞争会导致过多占用系统资源而导致系统瘫痪，还有线程之间的频繁交替也会消耗很多系统资源。
+&nbsp;&nbsp;&nbsp;&nbsp;3.使用new Thread()启动的线程不利于扩展，比如定时执行、定期执行、定时定期执行、线程中断等都不便实现。
+<b style="color: #6A6AFF">17.在java中Executor和Executors的区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Executors工具类的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。
+&nbsp;&nbsp;&nbsp;&nbsp;Executor接口对象能执行我们的线程任务。
+&nbsp;&nbsp;&nbsp;&nbsp;ExecutorService接口继承了Executor接口并进行了扩展，提供了更多的方法，我们能获得任务执行的状态并且可以获取任务的返回值。
+&nbsp;&nbsp;&nbsp;&nbsp;使用ThreadPoolExecutor可以创建自定义线程池。
+&nbsp;&nbsp;&nbsp;&nbsp;Future表示异步计算的结果，它提供了检查计算是否完成的方法，以等待计算的完成，并可以使用get()方法获取计算的结果。
+<b style="color: #6A6AFF">18.什么是原子操作？在Java Concurrency API中有哪些原子类(atomic classes)</b>
+&nbsp;&nbsp;&nbsp;&nbsp;原子操作(atomic operation)意为“不可被中断的一个或者一系列”。
+&nbsp;&nbsp;&nbsp;&nbsp;处理器使用基于对缓存加锁或总线加锁的方式来实现多处理器之间的原子操作。
+&nbsp;&nbsp;&nbsp;&nbsp;在java中可以通过加锁和循环CAS的方式来实现原子操作。CAS操作--Compare&Set，或是Compare&Swap，现在几乎所有的CPU指令操作。
+&nbsp;&nbsp;&nbsp;&nbsp;原子操作是指一个不受其他操作的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。
+&nbsp;&nbsp;&nbsp;&nbsp;int++并不是一个原子操作，所以当一个线程读取它的值并加1时，另外一个线程可能会读到之前的值，这就会引发错误。
+&nbsp;&nbsp;&nbsp;&nbsp;为了解决这个问题，必须保证增加操作是原子的，在JDK1.5之前我们可以使用同步技术来做到这一点。到JDK1.5，java.util.Concurrent.atomic包提供了int和long类型的原子包装类，它们可以自动的保证对于它们的操作是原子的并且不需要使用同步。
+&nbsp;&nbsp;&nbsp;&nbsp;java.util.concurrent这个包里面提供了一组原子类。其基本的特性就是在多线程环境下，当有多个线程同时执行这些类的实例包含的方法，具有排他性，即当某个线程进入方法，执行其中的指令时，不会被其他的线程打断，而别的线程就会像自旋锁一样，一直等到该方法执行完成，才由JVM从等待队列中选择一个另一个进程进入吗，这只是一种逻辑上的理解。
+&nbsp;&nbsp;&nbsp;&nbsp;原子类：AtomicBoolean,AtomicInteger,AtomicLong,AtomicReference
+&nbsp;&nbsp;&nbsp;&nbsp;原子数组：AtomicIntegerArray,AtomicLongArray,AtomicReferenceArray
+&nbsp;&nbsp;&nbsp;&nbsp;原子属性更新器：AtomicLongFieldUpdater,AtomicIntegerFieldUpdater,AtomicReferenceFieldUpdater
+&nbsp;&nbsp;&nbsp;&nbsp;解决ABA问题的原子类：AtomicMarkableReference(通过引入一个boolean来反映中间有没有变过)，AtomicStampedReference(通过引入一个int累加来反映中间有没有变过)
+<b style="color: #6A6AFF">19.Java Concurrency API中的Lock接口(Lock interface)是什么？对比同步它有什么优势？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Lock接口比同步方法和同步块提供了更具拓展性的锁操作。
+&nbsp;&nbsp;&nbsp;&nbsp;它们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。
+&nbsp;&nbsp;&nbsp;&nbsp;它的优势有：
+- 可以使锁更公平
+- 可以使线程在等待锁的时候响应中断
+- 可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间
+- 可以在不同的范围，以不同顺序获取和释放锁
+&nbsp;&nbsp;&nbsp;&nbsp;整体上来说Lock是synchronized的扩展版，Lock提供了无条件的、可轮询的(tryLock方法)、定时的(tryLock带参方法)、可中断的(lockInterruptibly)、可多条件队列的(newCondition方法)锁操作。另外Lock的实现类基本都支持非公平锁(默认)和公平锁，synchronized只支持非公平锁的，当然，在大部分情况下，非公平锁是高效的选择。
+<b style="color: #6A6AFF">20.什么是Executors框架</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Executor框架是一个根据一组执行策略调用、调度、执行和控制的异步任务的框架。
+&nbsp;&nbsp;&nbsp;&nbsp;无限制的创建线程会引起应用程序内存溢出。所以创建一个线程池是一个更好的解决方案，因为可以限制线程的数量并且可以回收再利用这些线程。利用Executors框架可以非常方便的创建一个线程池。
+<b style="color: #6A6AFF">21.什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队列来实现生产者-消费者模型？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;阻塞队列(BlockingQueue)是一个支持两个附加操作的队列。
+&nbsp;&nbsp;&nbsp;&nbsp;这两个附加操作是：在队列为空时，获取元素的线程会等待队列变为非空。当队列满时，存储元素的线程会等待队列可用。
+&nbsp;&nbsp;&nbsp;&nbsp;阻塞队列常用于生产者和消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。阻塞队列就是生产者存放元素的容器，而消费者也只从容器里拿元素。
+&nbsp;&nbsp;&nbsp;&nbsp;JDK7提供了7个阻塞队列，分别是：
+- ArrayBlockingQueue:一个由数组结构组成的有界阻塞队列。
+- LinkedBlockingQueue:一个由链表结构组成的有界阻塞队列。
+- PriorityBlockingQueue:一个支持优先级排序的无界阻塞队列。
+- DelayQueue:一个支持优先级队列实现的无界阻塞队列。
+- SynchronousQueue:一个不存储元素的阻塞队列。
+- LinkedTransferQueue:一个由链表结构组成的无界阻塞队列。
+- LinkedBlockingDeque:一个由链表结构组成的双向阻塞队列。
+&nbsp;&nbsp;&nbsp;&nbsp;JDK5之前实现同步存取时，可以使用普通的一个集合，然后在使用线程的协作和线程同步可以实现生产者，消费者模式，主要的技术就是用好wait、notify、notifyAll、synchronized这些关键字。而在JDK5之后，可以使用阻塞队列来实现，此方式大大减少了代码量，使得多线程编程更加容易，安全方面也有保障。
+&nbsp;&nbsp;&nbsp;&nbsp;BlockingQueue接口是Queue的子接口，它的主要用途并不是作为容器，而是作为线程同步的工具，因此它具有一个很明显的特性，当生产者线程试图向BlockingQueue放入元素时，如果队列已满，则线程会被阻塞，当消费者试图从中取出一个元素时，如果队列为空，则该线程会被阻塞，正是因为它所具有这个特性，所以在程序中多个线程交替向BlockingQueue中放入元素、取出元素，它可以很好的控制线程之间的通信。
+&nbsp;&nbsp;&nbsp;&nbsp;阻塞队列使用最经典的场景就是socket客户端数据的读取和解析，读取数据的线程不断将数据放入队列，然后解析线程不断从队列中取数据解析。
+<b style="color: #6A6AFF">21.什么是Callable和Future?</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Callable接口类似于Runnable，从名字就可以看出来了，但是Runnable不会返回结果，并且无法抛出返回结果的异常，而Callable功能更强大一些，被线程执行后，可以返回值，这个返回值可以被Future拿到，也就是说，Future可以拿到异步执行任务的返回值。可以认为是带有回调的Runnable。
+&nbsp;&nbsp;&nbsp;&nbsp;Future接口表示异步任务，是还没有完成的任务给出的未来结果。所以说Callable用于产生结果，Future用于获取结果。
+<b style="color: #6A6AFF">22.什么是FutureTask?使用ExecutorService启动任务。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在Java并发程序中FutureTask表示一个可以取消的异步运算。它有启动和取消运算、查询运算是否完成和取回运算结果等方法。只有当运算完成的时候结果才能取回，如果运算尚未完成get方法将会阻塞。一个FutureTask对象可以对调用了Callable和Runnaable的对象进行包装，由于FutureTask也是调用了Runnable接口，所以它可以提交给Executor来执行。
+<b style="color: #6A6AFF">23.什么是并发容器的实现？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;何为同步容器：可以简单地理解为通过synchronized来实现同步的容器，如果有多个线程调用同步容器的方法，它们将会串行执行。比如Vector、Hashtable以及Collections.synchronizedSet、synchronizedList等方法返回的容器。
+&nbsp;&nbsp;&nbsp;&nbsp;可以通过查看Vevtor、Hashtable等这些同步容器的实现代码，可以看到这些容器实现线程安全的方式就是将他们的状态封装起来，并在需要同步的方法上加上关键字synchronized。
+&nbsp;&nbsp;&nbsp;&nbsp;并发容器使用了与同步容器完全不同的加锁策略来提供更高的并发性和伸缩性，例如在ConcurrentHashMap中采用了一种粒度更细的加锁机制，可以称为分段锁，在这种锁机制下，允许任意数量的读线程并发地访问map，并且执行读操作的线程和写操作的线程也可以并发的访问map，同时允许一定数量的写操作线程并发地修改map，所以它可以在并发环境下实现更高的吞吐量。
+<b style="color: #6A6AFF">24.多线程同步和互斥有几种实现方法，都是什么？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;线程同步是指线程之间所具有的一种制约关系，一个线程的执行依赖另一个线程的消息，当它没有得到另一个线程的消息时应等待，直到消息到达时才被唤醒。
+&nbsp;&nbsp;&nbsp;&nbsp;线程互斥是指对于共享的进程系统资源，在各单个线程访问时的排他性。当有若干个线程都要使用某一共享资源时，任何时刻最多只允许一个线程去使用，其他要使用该资源的线程必须等待，直到占用资源者释放该资源。线程互斥可以看成是一种特殊的线程同步。
+&nbsp;&nbsp;&nbsp;&nbsp;线程间的同步方法大体可分为两类：用户模式和内核模式。顾名思义，内核模式就是指利用系统内核对象的单一性来进行同步，使用时需要切换内核态与用户态，而用户模式就是不需要切换到内核态，只在用户态完成操作。
+&nbsp;&nbsp;&nbsp;&nbsp;用户模式下的方法有：原子操作(例如一个单一的全局变量)，临界区。内核模式下的方法有：事件，信号量，互斥量。
+<b style="color: #6A6AFF">25.什么是竞争条件？你怎么发现和解决竞争？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;当多个进程都企图对共享数据进行某种处理，而最后的结果又取决于进程运行的顺序时，则我们认为这发生了竞争条件(race condition)。
+<b style="color: #6A6AFF">26.Java中你怎样唤醒一个阻塞的线程？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在Java发展史上曾经使用suspend()、resume()方法对于线程进行阻塞唤醒，但随之出现很多问题，比较典型的还是死锁问题。
+&nbsp;&nbsp;&nbsp;&nbsp;解决方案可以使用以对象为目标的阻塞，即利用Object类的wait()和notify()方法实现线程阻塞。
+&nbsp;&nbsp;&nbsp;&nbsp;首先，wait、notify方法是针对对象的，调用任意对象的wait()方法都将导致线程阻塞，阻塞的同时也将释放该对象的锁，相应的，调用任意对象的notify()方法则将随机解除该对象阻塞的线程，但它需要重新获取该对象的锁，直到获取成功才能往下执行；其次，wait、notify方法必须在synchronized块或方法中被调用，并且要保证同步块或方法的锁对象与调用wait、notify方法的对象是同一个，如此一来在调用wait之前当前线程就已经成功获取某对象的锁，执行wait阻塞后当前线程就将之前获取的对象锁释放。
+<b style="color: #6A6AFF">27.在Java中CycliBarrier和CountdownLatch有什么区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;CycliBarrier可以重复使用，而CountdownLatch不能重复使用。
+&nbsp;&nbsp;&nbsp;&nbsp;Java的concurrent包里面的CountdownLatch其实可以把它看作一个计数器，只不过这个计数器的操作是原子操作，同时只能有一个线程去操作这个计数器，也就是同时只能有一个线程去减这个计数器里面的值。
+&nbsp;&nbsp;&nbsp;&nbsp;你可以向CountdownLatch对象设置一个初始的数字作为计数值，任何调用这个对象上的await()方法都会阻塞，直到这个计数器的计数值被其他的线程减为0为止。
+&nbsp;&nbsp;&nbsp;&nbsp;所以在当前计数到达到零之前，await方法会一直受阻塞。之后，会释放所有等待的线程，await的所有后续调用都将立即返回。这种现象只出现一次--计数无法被重置。如果需要重置计数，请考虑使用CyclicBarrier。
+&nbsp;&nbsp;&nbsp;&nbsp;CountdownLatch的一个非常典型的应用场景是：有一个任务想要往下执行，但必须要等到其他的任务执行完毕后才可以继续往下执行。假如我们这个想要继续往下执行的任务调用一个CountdownLatch对象的await()方法，其他的任务执行完自己的任务后调用同一个CountdownLatch对象上的countDown()方法，这个调用await()方法的任务将一直阻塞等待，直到这个CountdownLatch对象的计数值减到0为止。
+&nbsp;&nbsp;&nbsp;&nbsp;CyclicBarrier一个同步辅助类，它允许一组线程互相等待，直到到达某个公共屏障点(common barrier point)。在涉及一组固定大小的线程的程序中，这些线程必须不时地互相等待，此时CyclicBarrier很有用。因为该barrier在释放等待线程后可以重用，所以称它为循环的barrier。
+<b style="color: #6A6AFF">28.什么是不可变对象，它对写并发应用有什么帮助？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;不可变对象(Immutable Objects)即对象一旦被创建它的状态(对象的数据，也即对象属性值)就不能改变，反之即为可变对象(Mutable Objects)。
+&nbsp;&nbsp;&nbsp;&nbsp;不可变对象的类即为不可变类(Immutable Class)。Java平台类库中包含许多不可变类，如String、基本类型的包装类、BigInteger和BigDecimal等。
+&nbsp;&nbsp;&nbsp;&nbsp;不可变对象天生是线程安全的。它们的常量(域)是在构造函数中创建的。既然它们的状态无法修改，这些常量永远不会变。
+&nbsp;&nbsp;&nbsp;&nbsp;不可变对象永远是线程安全的。
+&nbsp;&nbsp;&nbsp;&nbsp;只有满足如下状态，一个对象才是不可变的：
+- 它的状态不能在创建后再被修改；
+- 所有域都是final类型；
+- 它被正确创建(创建期间没有发生this引用的逸出)
+<b style="color: #6A6AFF">29.什么是多线程中的上下文切换？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在上下文切换过程中，CPU会停止处理当前运行的程序，并保存当前程序运行的具体位置以便之后继续运行。从这个角度来看，上下文切换有点像我们同时阅读几本书，在来回切换书本的同时我们需要记住每本书当前读到的页码。在程序中，上下文切换过程中的"页码"信息是保存在进程控制块(PCB)中的。PCB还经常被称作"切换桢"(switchframe)。"页码"信息会一直保存到CPU的内存中，直到它们被再次使用。
+&nbsp;&nbsp;&nbsp;&nbsp;上下文切换是存储和恢复CPU状态的过程，它使得线程执行能够从中断点恢复执行。上下文切换是多任务操作系统和多线程环境的基本特征。
+<b style="color: #6A6AFF">30.Java中用到的线程调度算法是什么？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;计算机通常只有一个CPU，在任意时刻只能执行一条机器指令，每个线程只有获得CPU的使用权才能执行指令，所谓多线程的并发运行，其实是指从宏观上看，各个线程轮流获得CPU的使用权，分别执行各自的任务，在运行池中，会有多个处于就绪状态的线程在等待CPU，Java虚拟机的一项任务就是负责线程的调度，线程调度是指按照特定机制为多个线程分配CPU的使用权。
+&nbsp;&nbsp;&nbsp;&nbsp;有两种调度模型：分时调度模型和抢占式调度模型。
+&nbsp;&nbsp;&nbsp;&nbsp;分时调度模型是指让所有的线程轮流获得CPU的使用权，并且平均分配每个线程占用的CPU时间片这个也比较好理解。
+&nbsp;&nbsp;&nbsp;&nbsp;java虚拟机采用抢占式调度模型，是指优先让可运行池中优先级高的线程占用CPU，如果可运行池中的线程优先级相同，那么就随机选择一个线程，使其占用CPU。处于运行状态的线程会一直运行，直至它不得不放弃CPU。
+<b style="color: #6A6AFF">31.java中有几种方法可以实现一个线程？</b>
+- 继承Thread类
+- 实现Runnable接口
+- 实现Callable接口，需要实现的是call()方法
+<b style="color: #6A6AFF">32.如何停止一个正在运行的线程？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;使用共享变量的方式
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这种方式中，之所以引入共享变量，是因为该变量可以被多个执行相同任务的线程用来作为是否中断的信号，通知中断线程的执行。
+&nbsp;&nbsp;&nbsp;&nbsp;使用interrupt方法终止线程
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果一个线程由于等待某些事件的发生而被阻塞，又该怎样停止该线程呢？这种情况经常会发生，比如当一个线程由于需要等候键盘输入而被阻塞，或者调用Thread.join()方法，或者Thread.sleep()方法，在网络中调用serverSocket.accept()方法，或者调用了DatagramSocket.recive()方法时，都有可能导致线程阻塞，使线程处于不可运行状态时，即使主程序中将该线程的共享变量设置为true，但该线程此时根本无法检查循环标志，当然也就无法立即中断。这里我们给出的建议是，不要使用stop()方法，而是使用Thread提供的interrupt()方法，因为该方法虽然不会中断一个正在运行的线程，但是它可以使一个被阻塞的线程抛出一个中断异常，从而使线程提前结束阻塞状态，退出阻塞代码。
+<b style="color: #6A6AFF">33.notify()和notifyAll()有什么区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;当一个线程进入wait之后，就必须等其他线程notify/notifyAll，使用notifyAll，可以唤醒所有处于wait状态的线程，使其重新进入锁的争夺队列中，而notify只能唤醒一个。
+&nbsp;&nbsp;&nbsp;&nbsp;如果没有把握，建议notifyAll，防止notify因为信号丢失而造成程序异常。
+<b style="color: #6A6AFF">34.什么是Daemon线程?它有什么意义？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;所谓后台(daemon)线程，是指在程序运行的时候提供一种通用服务的线程，并且这个线程并不属于程序中不可或缺的部分。因此，当所有的非后台线程结束时，程序也就终止了，同时会杀死进程中的所有后台线程。
+&nbsp;&nbsp;&nbsp;&nbsp;反过来说，只要有任何非后台线程还在运行，程序就不会终止。必须在线程启动之前调用setDaemon()方法，才能把它设置为后台进程。<b style="color: orangered">注意：后台进程在不执行finally子句的情况下就会终止其run()方法。</b>
+&nbsp;&nbsp;&nbsp;&nbsp;比如：JVM的垃圾回收机制就是Daemon线程，Finalizer也是守护线程。
+<b style="color: #6A6AFF">35.java如何实现多线程之间的通讯和协作？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;中断和共享变量。
+<b style="color: #6A6AFF">36.什么是可重入锁(ReentrantLock)?</b>
+&nbsp;&nbsp;&nbsp;&nbsp;举例来说明锁的可重入性：
+```java
+public class UnReentrant {
+    Lock lock = new Lock();
+    public void outer() {
+        lock.lock();
+        inner();
+        lock.unlock();
+    }
+    public void inner() {
+        lock.lock();
+        // do something
+        lock.unlock();
+    }
+}
+```
+&nbsp;&nbsp;&nbsp;&nbsp;outer中调用了inner，outer先锁住了lock，这样inner就不能再获取lock。其实调用outer的线程已经获取了lock锁，但是不能在inner中重复利用已经获取的锁资源，这种锁即成之为不可重入。可重入就意味着：线程可以进入任何一个它已经拥有的锁所同步着的代码块。
+&nbsp;&nbsp;&nbsp;&nbsp;synchronized、ReentrantLock都是可重入的锁，可重入锁相对来说简化了并发编程的开发。
+<b style="color: #6A6AFF">37.当一个线程进入某个对象的一个synchronized的实例方法后，其他线程是否可进入此对象的其他方法？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;如果其他方法没有synchronized的话，其他线程是可以进入的。
+&nbsp;&nbsp;&nbsp;&nbsp;所以要开放一个线程安全的对象时，得保证每个方法都是线程安全的。
+<b style="color: #6A6AFF">38.SynchronizedMap和ConcurrentHashMap有什么区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;SynchronizedMap一次锁住整张表来保证线程安全，所以每次只能有一个线程来访该map。
+&nbsp;&nbsp;&nbsp;&nbsp;ConcurrentHashMap使用分段锁来保证在多线程下的性能。ConcurrentHashMap中则是一次锁住一个桶。ConcurrentHashMap默认将hash表分为16个桶，诸如get、put、remove等常用操作只锁当前需要用到的桶。这样，原来只能一个线程进入，现在却能同时有16个写线程执行，并发性能的提升是显而易见的。
+&nbsp;&nbsp;&nbsp;&nbsp;另外ConcurrentHashMap使用了一种不同的的迭代方法。在这种迭代方式中，当iterator被创建后集合再发生改变就不再是抛出ConcurrentModificationException,取而代之的是在改变是new新的数据从而不影响原有的数据，iterator完成后再将头指针替换为新的数据，这样iterator线程可以使用原先老的数据，而写线程也可以并发的完成改变。
+<b style="color: #6A6AFF">39.CopyOnWriteArrayList可以用于什么应用场景？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;CopyOnWriteArrayList(免锁容器)的好处之一是当多个迭代器同时遍历和修改这个列表时，不会抛出ConcurrentModificationException。在CopyOnWriteArrayList中，写入将导致创建整个底层数组的副本，而源数组将保留在原地，使得复制的数组在被修改时，读取操作可以安全执行。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.由于写操作的时候，需要拷贝数组，会消耗内存，如果原数组的内容比较多的情况下，可能导致young gc或者full gc；
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.不能用于实时读的场景，像拷贝数组、新增元素都需要时间，所以调用一个set操作后，读取到的数据可能还是旧的，虽然CopyOnWriteArrayList能做到最终一致性，但是还是没法满足实时性要求。
+&nbsp;&nbsp;&nbsp;&nbsp;CopyOnWriteArrayList透露的思想：
+- 读写分离，读和写分开
+- 最终一致性
+- 使用另外开辟空间的思路，来解决并发冲突
+<b style="color: #6A6AFF">40.什么叫线程安全？Servlet是线程安全吗？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;线程安全是编程中的术语，指某个函数、函数库在多线程环境中被调用时，能够正确地处理多个线程之间的共享变量，使程序功能正确完成。
+&nbsp;&nbsp;&nbsp;&nbsp;Servlet不是线程安全的，Servlet是单实例多线程的，当多个线程同时访问同一个方法，是不能保证共享变量的线程安全性的。
+&nbsp;&nbsp;&nbsp;&nbsp;Struts2的action是多实例多线程的，是线程安全的，每个请求过来都会new一个新的action分配给这个请求，请求完成后销毁。
+&nbsp;&nbsp;&nbsp;&nbsp;SpringMVC的Controller是线程安全的吗？不是的，和Servlet类似的处理流程。
+&nbsp;&nbsp;&nbsp;&nbsp;Strusts2好处是不用考虑线程安全的问题；Servlet和SpringMVC需要考虑线程安全的问题，但是性能可以提升不用处理太多的gc，可以使用ThreadLocal来处理多线程的问题。
+<b style="color: #6A6AFF">41.volatile有什么用？能否用一句话说明下volatile的应用场景？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;volatile保证内存可见性和禁止指令重排。
+&nbsp;&nbsp;&nbsp;&nbsp;volatile用于多线程环境下的单次操作(单词读或者单次写)。
+<b style="color: #6A6AFF">42.为什么代码会重新排序？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在执行程序时，为了提供性能，处理器和编译器常常会对指令进行重排序，但是不能随意重排序，不是你想怎么排序就怎么排序，它需要满足以下两个条件：
+- 在单线程环境下不能改变程序运行的结果。
+- 存在数据依赖关系的不允许重排序。
+&nbsp;&nbsp;&nbsp;&nbsp;需要注意的是：重排序不会影响单线程环境的运行结果，但是会破坏多线程的执行语义。
+<b style="color: #6A6AFF">43.一个线程运行时发生异常会怎样？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;如果异常没有被捕获该线程将会停止执行。Thread.UncaughtExceptionHandler是用于处理未捕获异常造成线程突然中断情况的一个内嵌接口。当一个未捕获异常将造成线程中断的时候JVM会使用Thread.getUncaughtExceptionHandler()来查询线程的UncaughtExceptionHandler并将线程和异常作为参数传递给handler的uncaughtException()方法进行处理。
+<b style="color: #6A6AFF">44.如何在两个线程间共享数据？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在两个线程间共享变量即可实现共享。
+&nbsp;&nbsp;&nbsp;&nbsp;一般来说，共享变量要求变量本身是线程安全的，然后在线程内使用的时候，如果有对共享变量的复合操作，那么也得保证复合操作的线程安全性。
+<b style="color: #6A6AFF">45.为什么wait、notify和notifyAll这些方法不在thread类里面？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;一个很明显的原因是JAVA提供的锁是对象级的而不是线程级的，每个对象都有锁，通过线程获得。由于wait、notify和notify都是锁级别的操作，所以把他们定义在Object类中因为锁属于对象。
+<b style="color: #6A6AFF">46.什么是ThreadLocal变量？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;ThreadLocal是java里一种特殊的变量。每个线程都有一个ThreadLocal就是每个线程都拥有了自己独立的变量，竞争条件被彻底消除了。它是为创建代价高昂的对象获取线程安全的好方法，比如你可以用ThreadLocal让SimpleDateFormat变成线程安全的，因为那个类创建代价高昂且每次调用都需要创建不同的实例所以不值得在局部范围使用它，如果为每个线程提供一个自己独有的变量拷贝，将大大提高效率。首先，通过复用减少了代价高昂的对象创建个数。其次，你在没有使用高代价的同步或者不变性的情况下获得了线程安全。
+<b style="color: #6A6AFF">47.java中interrupted和isInterrupted方法的区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">interrupt</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;interrupt方法用于中断线程。调用该方法的线程的状态为将被置为“中断”状态。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意：线程中断仅仅是置线程的中断状态位，不会停止线程。需要用户自己去监视线程的状态为并做处理。支持线程中断的方法(也就是线程中断后会抛出interruptedException的方法)就是在监视线程的中断状态，一旦线程的中断状态被置为“中断状态”，就会抛出中断异常。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">interrupted</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查询当前线程的中断状态，并且清除原状态。如果一个线程被中断了，第一次调用interrupted则返回true，第二次和后面的就返回false了。
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">isInterrupted</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅仅是查询当前线程的中断状态。
+<b style="color: #6A6AFF">48.为什么wait和notify方法要在同步块中调用？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Java API强制要求这样做，如果你不这么做，你的代码会抛出IllegalMonitorStateException异常。还有一个原因是为了避免wait和notify之间产生竞态条件。
+<b style="color: #6A6AFF">49.为什么你应该在循环中检查等待条件？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;处于等待状态的线程可能会收到错误警报和伪唤醒，如果不在循环中检查等待条件，程序就会在没有满足结束条件的情况下退出。
+<b style="color: #6A6AFF">50.Java中的同步集合与并发集合有什么区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;同步集合与并发集合都为多线程和并发提供了合适的线程安全的集合，不过并发集合的可扩展性更高。在Java1.5之前程序员们只有同步集合来用且在多线程并发的时候会导致争用，阻碍了系统的扩展性。Java1.5介绍了并发集合像ConcurrentHashMap，不仅提供线程安全还用锁分离和内部分区等现代技术提高了可扩展性。
+<b style="color: #6A6AFF">51.什么是线程池？为什么要使用它？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;创建线程要花费昂贵的资源和时间，如果任务来了才创建线程那么响应时间会变长，而且一个进程能创建的线程数有限。为了避免这些问题，在程序启动的时候就创建若干线程来响应处理，它们被称为线程池，里面的线程池叫工作线程。从JDK1.5开始，java API提供了Executor框架让你可以创建不同的线程池。
+<b style="color: #6A6AFF">52.怎么检测一个线程是否拥有锁？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;在java.lang.Thread中有一个方法叫holdsLock(),它返回true，如果当且仅当当前线程拥有某个具体对象的锁。
+<b style="color: #6A6AFF">53.你如何在Java中获取线程堆栈？</b>
+- kill -3 [java pid]
+&nbsp;&nbsp;&nbsp;&nbsp;不会在当前终端输出，它会输出到代码执行的或指定的地方去。比如，kill -3 tomcat pid，输出堆栈到log目录下。
+- Jstack [java pid]
+&nbsp;&nbsp;&nbsp;&nbsp;这个比较简单，在当前终端显示，也可以重定向到指定文件中。
+- JvisualVM: Thread Dump
+&nbsp;&nbsp;&nbsp;&nbsp;不做说明，打开jvisualVM后，都是界面操作，过程还是很简单的。
+<b style="color: #6A6AFF">54.JVM中哪个参数是用来控制线程的堆栈大小的？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;-Xss 每个线程的栈大小
+<b style="color: #6A6AFF">55.Thread类中的yield方法有什么作用？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;使当前线程从执行状态(运行状态)变为可执行态(就绪状态)。
+&nbsp;&nbsp;&nbsp;&nbsp;当前线程到了就绪状态，那么接下来哪个线程会从就绪状态变成执行状态呢？可能是当前线程，也可能是其他线程，看系统的分配了。
+<b style="color: #6A6AFF">55.Java中ConcurrentHashMap的并发度是什么？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;ConcurrentHashMap把实际map划分为若干部分来实现它的可扩展性和线程安全。这种划分是使用并发度获得的，它是ConcurrentHashMap类构造函数的一个可选参数，默认值是16，这样在多线程情况下就能避免争用。
+&nbsp;&nbsp;&nbsp;&nbsp;在JDK8后，它摒弃了Segment(锁段)的概念，而是启用了一种全新的方式实现，利用CAS算法。同时加入了更多的辅助变量来提高并发度。
+<b style="color: #6A6AFF">56.Java中Semaphore是什么？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;Java中的Semaphore是一种新的同步类，它是一个计数信号。从概念上讲，信号量维护了一个许可集合。如有必要，在许可可用前会阻塞每一个acquire()，然后再获取该许可。每一个release()添加一个许可，从而可能释放一个正在阻塞的获取者。但是，不使用实际的许可对象，Semaphore只对可用许可的号码进行计数，并采取相应的行动，信号量常常用于多线程的代码中，比如数据库连接池。
+<b style="color: #6A6AFF">57.java线程池中submit()和execute()方法有什么区别？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;两个方法都可以向线程池提交任务，execute()方法返回类型是void，它定义在Executor接口中。
+&nbsp;&nbsp;&nbsp;&nbsp;而submit()方法可以返回持有计算结果的Future对象，它定义在ExecutorService接口中，它扩展了Executor接口，其他线程池类像ThreadPoolExecutor和ScheduledThreadPoolExecutor都有这些方法。
+<b style="color: #6A6AFF">58.什么是阻塞式方法？</b>
+&nbsp;&nbsp;&nbsp;&nbsp;阻塞式方法是指程序会一直等待该方法完成，期间不做其他事情，ServerSocket的accept()方法就是一直等待客户端连接。这里的阻塞是指调用结果返回之前，当前线程会被挂起，直到得到结果之后才会返回。此外，还有异步和非阻塞式方法在任务完成前就返回。
