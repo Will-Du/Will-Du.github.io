@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Git基本命令 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.git clone -b &amp;lt;指定分支名&amp;gt; &amp;lt;远程仓库地址&amp;gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;克隆指定分支，如：git clone -b blog https://github.com/Will-Du/Will-Du.github.io.git">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git基本命令">
+<meta property="og:url" content="http://yoursite.com/2020/01/27/git_command/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.git clone -b &amp;lt;指定分支名&amp;gt; &amp;lt;远程仓库地址&amp;gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;克隆指定分支，如：git clone -b blog https://github.com/Will-Du/Will-Du.github.io.git">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-27T12:56:32.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git基本命令">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.git clone -b &amp;lt;指定分支名&amp;gt; &amp;lt;远程仓库地址&amp;gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;克隆指定分支，如：git clone -b blog https://github.com/Will-Du/Will-Du.github.io.git">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/sql/" style="font-size: 16px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-git_command" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/27/git_command/" class="article-date">
+  	<time datetime="2020-01-27T12:09:41.000Z" itemprop="datePublished">2020-01-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git基本命令
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2020/01/27/git_command/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Git基本命令">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;1.git clone -b &lt;指定分支名&gt; &lt;远程仓库地址&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">克隆指定分支，如：git clone -b blog <a href="https://github.com/Will-Du/Will-Du.github.io.git" target="_blank" rel="noopener">https://github.com/Will-Du/Will-Du.github.io.git</a></b><br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;2.git branch <b style="color: #6A6AFF">查看当前分支</b><br>&nbsp;&nbsp;&nbsp;&nbsp;3.git branch -r 或者 git branch -a<b style="color: #6A6AFF">查看所有分支</b><br>&nbsp;&nbsp;&nbsp;&nbsp;4.git checkout &lt;指定分支名&gt;<b style="color: #6A6AFF">切换分支，如：git checkout blog</b><br>&nbsp;&nbsp;&nbsp;&nbsp;5.git pull<b style="color: #6A6AFF">拉代码</b><br>&nbsp;&nbsp;&nbsp;&nbsp;6.git add -A <b style="color: #6A6AFF">提交所有变化</b><br>&nbsp;&nbsp;&nbsp;&nbsp;git add -u <b style="color: #6A6AFF">提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;git add . <b style="color: #6A6AFF">提交新文件(new)和被修改文件(modified)，不包括被删除(deleted)文件</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">add到缓存中</b><br>&nbsp;&nbsp;&nbsp;&nbsp;7.git commit -m “注释” <b style="color: #6A6AFF">提交代码</b><br>&nbsp;&nbsp;&nbsp;&nbsp;8.git push <b style="color: #6A6AFF">推送代码</b><br>&nbsp;&nbsp;&nbsp;&nbsp;9.git init <b style="color: #6A6AFF">初始化：创建一个git仓库，创建之后就会在当前目录生成一个.git的文件</b><br>&nbsp;&nbsp;&nbsp;&nbsp;10.git add filename <b style="color: #6A6AFF">添加文件：把文件添加到缓冲区</b><br>&nbsp;&nbsp;&nbsp;&nbsp;11.git rm filename <b style="color: #6A6AFF">删除文件</b><br>&nbsp;&nbsp;&nbsp;&nbsp;12.git status <b style="color: #6A6AFF">查看git库的状态，未提交的文件，分为两种，add过已经在缓冲区的，为add过的</b><br>&nbsp;&nbsp;&nbsp;&nbsp;13.git diff filename <b style="color: #6A6AFF">比较：如果文件修改了，还没有提交，就可以比较文件修改前后的差异</b><br>&nbsp;&nbsp;&nbsp;&nbsp;14.git log <b style="color: #6A6AFF">查看日志</b><br>&nbsp;&nbsp;&nbsp;&nbsp;15.git reset <b style="color: #6A6AFF">版本回退：可以将当前仓库回退到历史的某个版本</b><br>&nbsp;&nbsp;&nbsp;&nbsp;git reset --hard HEAD^ <b style="color: #6A6AFF">回退到上一个版本，(HEAD代表当前版本，有一个^代表上一个版本，以此类推)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;git reset --hard d7b5 <b style="color：#6A6AFF">回退到指定版本(其中d7b5是想回退的指定版本号的前几位)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;16.git reflog <b style="color: #6A6AFF">查看命令历史：查看仓库的操作历史</b><br>&nbsp;&nbsp;&nbsp;&nbsp;17.git remote add origin git://127.0.0.1/abc.git <b style="color: #6A6AFF">增加了远程仓库abc</b><br>&nbsp;&nbsp;&nbsp;&nbsp;18.git remote remove origin <b style="color: #6A6AFF">移除远端仓库</b><br>&nbsp;&nbsp;&nbsp;&nbsp;19.git push -u origin master <b style="color: #6A6AFF">将本地仓库内容推送到远端仓库(-u 表示第一次推送master分支的所有内容，后面再推送就不需要-u了)，跟commit的区别在于一个是提交到本地仓库，一个是提交到远程仓库</b><br>&nbsp;&nbsp;&nbsp;&nbsp;20.git commit -m “update .gitignore” <b style="color: #6A6AF">提交到git时，忽略部分IDE产生的文件。在根目录下创建.gitignore文件，注意:</b><b style="color: orangered">新加.gitignore只能忽略那些原来没有被提交的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: orangered">解决方法就是先把本地缓存删除(改变成未track状态)，然后再提交：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;git rm -f --cached .<br>&nbsp;&nbsp;&nbsp;&nbsp;git add .<br>&nbsp;&nbsp;&nbsp;&nbsp;git commit -m “update .gitignore”<br>&nbsp;&nbsp;&nbsp;&nbsp;.gitignore文件内容，举例如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**/target</span><br><span class="line">/**/.project</span><br><span class="line">/**/.classpath</span><br><span class="line">/**/.settings</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;PS:在使用GIT之后，会发现要比SVN好用得多，从以下几个方面做个简单的比较：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.GIT为分布式方式，在传统的版本控制里，比如CVS或者SVN，这个是最核心的区别<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.存储的方式不一样。GIT存储的方式是按照元数据的方式进行存储，而传统的CVS或者SVN则是以文件方式存储。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.GIT特别的分支。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CVS和SVN的分支管理比较简单，只是在版本库中另一个目录而已，确认代码是否已合并也相对麻烦，在分支管理方面容易产生遗留和错误。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GIT分支管理则相对复杂，但是用起来非常有趣，各个分支键可以随意的快速进行切换、合并、还原等操作。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.从完整性上来说，GIT的完整性远远高于SVN<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SVN经常会在不同版本间使用容易出现问题，比如兼容性、网路不稳定带来莫名其妙的异常。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GIT的内存存储则采用的是哈希算法，不仅能够保障了代码的完整性，而且在网络和磁盘故障方面几乎不受到任何影响。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/11/SQL_1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQL语句中where条件后写1=1是什么意思</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
