@@ -152,6 +152,74 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-interview_RPC" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/21/interview_RPC/" class="article-date">
+  	<time datetime="2019-12-21T07:51:48.000Z" itemprop="datePublished">2019-12-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/21/interview_RPC/">
+        Dubbo RPC
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-为什么要有RPC"><a href="#一-为什么要有RPC" class="headerlink" title="一.为什么要有RPC"></a>一.为什么要有RPC</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/21/interview_RPC/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Dubbo RPC">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/21/interview_RPC/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-interview_concurrentHashMap" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -749,75 +817,6 @@
       
         <p class="article-more-link">
           <a href="/2019/12/09/oracle_getUser/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-mybatis_oracle" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/12/05/mybatis_oracle/" class="article-date">
-  	<time datetime="2019-12-05T11:16:53.000Z" itemprop="datePublished">2019-12-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/mybatis_oracle/">
-        mybatis中oracle的批量新增与批量更新
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;mybatis中mysql的批量插入比较常规，但oracle的批量有所不同，若按照mysql的方式书写，则会报“命令为执行结束”的错误。所以一下列出oracle的批量新增与修改的几种方式。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量新增第一种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"batchInsert"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	INSERT INTO STUDENT(ID,NAME)</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span> <span class="attr">separator</span>=<span class="string">"UNION ALL"</span>&gt;</span></span><br><span class="line">		(</span><br><span class="line">		SELECT </span><br><span class="line">			#&#123;student.id&#125;,</span><br><span class="line">			#&#123;student.name&#125;</span><br><span class="line">		FROM</span><br><span class="line">			dual</span><br><span class="line">		)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：表名之后没有VALUES。</label><br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/12/05/mybatis_oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/12/05/mybatis_oracle/#more">more >></a>
         </p>
       
     
