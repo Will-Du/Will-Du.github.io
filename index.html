@@ -152,6 +152,79 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-java_midengxing" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/01/30/java_midengxing/" class="article-date">
+  	<time datetime="2020-01-30T13:33:47.000Z" itemprop="datePublished">2020-01-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/30/java_midengxing/">
+        高并发下的接口幂等性如何实现
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;实际系统中有很多操作，是不管做多少次，都应该产生一样的效果或返回一样的结果。例如：</p>
+<ul>
+<li>前端重复提交选中的数据，应该后台只产生对应这个数据的一个反应结果。</li>
+<li>我们发起一笔付款请求，应该只扣用户账户一次钱，当遇到网络重发或系统BUG重发，也应该只扣一次钱。</li>
+<li>发送消息，也应该只发一次，同样的短信发给用户，用户会哭的</li>
+<li>创建业务订单，一次业务请求只能创建一个，创建多个就会出大问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;等等很多重要的情况，这些逻辑都需要幂等的特性来支持。</li></ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2020/01/30/java_midengxing/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="高并发下的接口幂等性如何实现">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2020/01/30/java_midengxing/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-java_sql" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -763,74 +836,6 @@
       
         <p class="article-more-link">
           <a href="/2019/12/28/nginx_conf/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-dataBase_Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/12/24/dataBase_Sharding/" class="article-date">
-  	<time datetime="2019-12-24T01:31:49.000Z" itemprop="datePublished">2019-12-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/24/dataBase_Sharding/">
-        数据库的分库分表
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="数据切分"><a href="#数据切分" class="headerlink" title="数据切分"></a>数据切分</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;关系型数据库本身比较容易成为系统瓶颈，单机储存容量、连接数、处理能力都有限。<br>&nbsp;&nbsp;&nbsp;&nbsp;当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加主从库、优化索引，做很多操作时性能仍下降严重。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据库分布式核心内容无非就是数据切分(Sharding)，以及切分后对数据的定位、整合。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据切分就是将数据分散存储到多个数据库中，使得单一数据库中的数据量变小，通过扩充主机的数量缓解单一数据库的性能问题，从而达到提升数据库操作性能的目的。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/12/24/dataBase_Sharding/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库的分库分表">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/12/24/dataBase_Sharding/#more">more >></a>
         </p>
       
     

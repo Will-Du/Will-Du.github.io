@@ -152,6 +152,74 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-dataBase_Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/24/dataBase_Sharding/" class="article-date">
+  	<time datetime="2019-12-24T01:31:49.000Z" itemprop="datePublished">2019-12-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/dataBase_Sharding/">
+        数据库的分库分表
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数据切分"><a href="#数据切分" class="headerlink" title="数据切分"></a>数据切分</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;关系型数据库本身比较容易成为系统瓶颈，单机储存容量、连接数、处理能力都有限。<br>&nbsp;&nbsp;&nbsp;&nbsp;当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加主从库、优化索引，做很多操作时性能仍下降严重。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据库分布式核心内容无非就是数据切分(Sharding)，以及切分后对数据的定位、整合。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据切分就是将数据分散存储到多个数据库中，使得单一数据库中的数据量变小，通过扩充主机的数量缓解单一数据库的性能问题，从而达到提升数据库操作性能的目的。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/24/dataBase_Sharding/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库的分库分表">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/24/dataBase_Sharding/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-interview_RPC" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -749,74 +817,6 @@
       
         <p class="article-more-link">
           <a href="/2019/12/10/git_ssh_key/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-oracle_getUser" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/12/09/oracle_getUser/" class="article-date">
-  	<time datetime="2019-12-09T07:17:55.000Z" itemprop="datePublished">2019-12-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/09/oracle_getUser/">
-        oracle如何查看当前有哪些用户连接到数据库
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询用户会话</span></span><br><span class="line"><span class="keyword">SELECT</span> USERNAME,<span class="built_in">SERIAL</span><span class="comment">#,SID,STATUS FROM V$SESSION;</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	A.SID,B.SPID,A.SERIAL<span class="comment">#,A.MACHINE,A.PREV_EXEC_START,A.STATUS,C.SQL_TEXT</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	V$<span class="keyword">SESSION</span> A,V$PROCESS B,V$<span class="keyword">SQL</span> C</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	A.PADDR = B.ADDR</span><br><span class="line">	<span class="keyword">AND</span> A.PREV_SQL_ID = C.SQL_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PREV_EXEC_START;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/12/09/oracle_getUser/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="oracle如何查看当前有哪些用户连接到数据库">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/12/09/oracle_getUser/#more">more >></a>
         </p>
       
     
