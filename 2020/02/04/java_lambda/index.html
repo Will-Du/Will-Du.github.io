@@ -3,19 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2020/2 | 嘟嘟的博客</title>
+  <title>浅谈lambda表达式 | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="嘟嘟的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/02/index.html">
+  <meta name="description" content="Java8其中一个很重要的新特性就是lambda表达式，允许我们将行为传到函数中。想想看，在Java8之前我们想要将行为传入函数，仅有的选择就是匿名内部类。Java8发布以后，lambda表达式将大量替代匿名内部类的使用，简化代码的同时，更突出了原来匿名内部类中最重要的那部分包含真正逻辑的代码。尤其是对于做数据的同学来说，当习惯使用类似scala之类的函数式编程语言以后，体会将更加深刻。现在我们就">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2020/02/04/java_lambda/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="Java8其中一个很重要的新特性就是lambda表达式，允许我们将行为传到函数中。想想看，在Java8之前我们想要将行为传入函数，仅有的选择就是匿名内部类。Java8发布以后，lambda表达式将大量替代匿名内部类的使用，简化代码的同时，更突出了原来匿名内部类中最重要的那部分包含真正逻辑的代码。尤其是对于做数据的同学来说，当习惯使用类似scala之类的函数式编程语言以后，体会将更加深刻。现在我们就">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-02-04T13:01:26.074Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="嘟嘟的博客">
+<meta name="twitter:title" content="浅谈lambda表达式">
+<meta name="twitter:description" content="Java8其中一个很重要的新特性就是lambda表达式，允许我们将行为传到函数中。想想看，在Java8之前我们想要将行为传入函数，仅有的选择就是匿名内部类。Java8发布以后，lambda表达式将大量替代匿名内部类的使用，简化代码的同时，更突出了原来匿名内部类中最重要的那部分包含真正逻辑的代码。尤其是对于做数据的同学来说，当习惯使用类似scala之类的函数式编程语言以后，体会将更加深刻。现在我们就">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -150,47 +155,40 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-java_lambda" class="article article-type-post" itemscope="" itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/04/java_lambda/" class="archive-article-date">
-  	<time datetime="2020-02-04T12:54:03.000Z" itemprop="datePublished">Feb 4</time>
+    <div class="article-meta">
+      <a href="/2020/02/04/java_lambda/" class="article-date">
+  	<time datetime="2020-02-04T12:54:03.000Z" itemprop="datePublished">2020-02-04</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/04/java_lambda/">
-        浅谈lambda表达式
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
         
-      </a>
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈lambda表达式
+      
     </h1>
   
 
-        <div class="article-info info-on-left">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 	</div>
 
-          
+        
 
+        
           
-            
 <div class="counter-tag counter">
     <span id="/2020/02/04/java_lambda/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="浅谈lambda表达式">
          &nbsp;
@@ -198,62 +196,35 @@
     </span>
 </div>
 
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/02/01/java_null/" class="archive-article-date">
-  	<time datetime="2020-02-01T11:04:44.000Z" itemprop="datePublished">Feb 1</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/01/java_null/">
-        如何优雅处理代码中Null值引起的BUG?
         
-      </a>
-    </h1>
-  
-
-        <div class="article-info info-on-left">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-          
-
-          
-            
-<div class="counter-tag counter">
-    <span id="/2020/02/01/java_null/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何优雅处理代码中Null值引起的BUG?">
-         &nbsp;
-        view
-    </span>
-</div>
-
-          
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </div>
+      
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java8其中一个很重要的新特性就是lambda表达式，允许我们将行为传到函数中。想想看，在Java8之前我们想要将行为传入函数，仅有的选择就是匿名内部类。Java8发布以后，lambda表达式将大量替代匿名内部类的使用，简化代码的同时，更突出了原来匿名内部类中最重要的那部分包含真正逻辑的代码。尤其是对于做数据的同学来说，当习惯使用类似scala之类的函数式编程语言以后，体会将更加深刻。现在我们就来看看Java8中lambda表达式的一些常见的写法。<br><a id="more"></a><br><b style="color: orangered">lambda体中调用方法的参数列表和返回值类型，要和函数式接口中抽象方法的参数列表和返回值类型保持一致。</b></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/01/java_null/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何优雅处理代码中Null值引起的BUG?</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
 
 </div>
       <footer id="footer">
@@ -279,8 +250,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
