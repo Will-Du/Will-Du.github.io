@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>最强java Redis客户端 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为什么要在Java分布式应用程序中使用缓存？在提高应用程序速度和性能上，每一毫秒都很重要。根据谷歌的一项研究，假如一个网站在3秒钟或更短时间内没有加载成功，会有53%的手机用户会离开。">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最强java Redis客户端">
+<meta property="og:url" content="http://yoursite.com/2020/02/07/redis_最强javaRedis客户端/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="为什么要在Java分布式应用程序中使用缓存？在提高应用程序速度和性能上，每一毫秒都很重要。根据谷歌的一项研究，假如一个网站在3秒钟或更短时间内没有加载成功，会有53%的手机用户会离开。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-02-07T13:51:45.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="最强java Redis客户端">
+<meta name="twitter:description" content="为什么要在Java分布式应用程序中使用缓存？在提高应用程序速度和性能上，每一毫秒都很重要。根据谷歌的一项研究，假如一个网站在3秒钟或更短时间内没有加载成功，会有53%的手机用户会离开。">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql/" style="font-size: 16px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-redis_最强javaRedis客户端" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/02/07/redis_最强javaRedis客户端/" class="article-date">
+  	<time datetime="2020-02-07T12:13:08.000Z" itemprop="datePublished">2020-02-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最强java Redis客户端
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2020/02/07/redis_最强javaRedis客户端/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="最强java Redis客户端">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为什么要在Java分布式应用程序中使用缓存？<br>在提高应用程序速度和性能上，每一毫秒都很重要。根据谷歌的一项研究，假如一个网站在3秒钟或更短时间内没有加载成功，会有53%的手机用户会离开。<br><a id="more"></a><br>缓存是让分布式应用程序加速的重要技术之一。存储的信息越接近CPU，访问速度就越快。从CPU缓存中加载数据比从RAM中加载要快得多，比从硬盘或网络上加载要快得多得多。<br>要存储经常访问的数据，分布式应用程序需要在多台机器中维护缓存。分布式缓存是降低分布式应用程序延迟、提高并发性和可伸缩性的一种重要策略。<br>Redis是一种流行的开源内存数据存储，可用作数据库、缓存或消息代理。由于是从内存而非磁盘加载数据，Redis比许多传统的数据库解决方案更快。<br>然而，对开发者来说让Redis分布式缓存正确工作是一个巨大挑战。例如，必须谨慎处理本地缓存失败，即替换或删除缓存条目。每次更新或删除存储计算机本地缓存中的信息时，必须更新分布式缓存系统所有计算机内存中的缓存。<br>好消息是，有一些类似Redisson这样的Redis框架，可以帮助构建应用程序所需的分布式缓存。下面将讨论Redisson中分布式缓存的三个重要实现：Maps、String Cache和JCache。<br><b style="color: orangered">1.Redisson分布式缓存</b><br>&nbsp;&nbsp;&nbsp;&nbsp;Redisson是一个基于Redis的框架，用Java实现了一个Redis包装器(wrapper)和接口。Redisson包含很多常见的Java类，例如分布式对象、分布式服务、分布式锁和同步器，以及分布式集合。正如下面即将介绍的，其中一些接口同时支持分布式和本地缓存。<br><b style="color: orangered">2.Map</b><br>&nbsp;&nbsp;&nbsp;&nbsp;Map是Java最有用的集合之一。Redisson提供了一个名为RMap的Java Map实现，支持本地缓存。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果希望执行多个读操作或网络环回(roundtrip)，应使用支持本地缓存的RMap。通过本地存储Map数据，RMap比不启用本地缓存是快45倍。通用分布式缓存使用RMapCache，本地缓存使用RLocalCachedMap。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redis引擎自身能够执行缓存，不需要在客户端执行代码。然而， 虽然本地缓存能显著提高读取速度，但需要由开发人员维护，并且可能需要一些开发工作。Redisson为开发人员提供了RLocalCacheMap对象，让本地缓存实现起来更容易。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面的代码展示了如何初始化RMapCache对象：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RMapCache&lt;String, SomeObject&gt; map = redisson.getMapCache(<span class="string">"anyMap"</span>);</span><br><span class="line">map.put(<span class="string">"key1"</span>, <span class="keyword">new</span> SomeObject(), <span class="number">10</span>, TimeUnit.MINUTES, <span class="number">10</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;上面的代码将字符串”key1”放到RMapCache中，并与SomeObject()关联。然后它指定了两个参数，TTL设为10分钟，最大空闲时间10秒。<br>&nbsp;&nbsp;&nbsp;&nbsp;当不再需要时，应销毁RMapCache对象：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map.destory();</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Redisson关闭后不用再做销毁操作。<br><b style="color: orangered">3.Spring Cache</b><br>&nbsp;&nbsp;&nbsp;&nbsp;Spring是一个用于构建企业级WEB应用程序的Java框架，也提供了缓存支持。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redisson包含了Spring缓存功能，提供两个对象：RedissonSpringCacheManager和RedissonSpringLocalCachedCacheManager.RedissonSpringLocalCachedCacheManager支持本地缓存。<br>&nbsp;&nbsp;&nbsp;&nbsp;下面是一个RedissonSpringLocalCachedCacheManager对象的示例配置：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span>(destoryMethod=<span class="string">"shutdown"</span>)</span><br><span class="line">    <span class="function">RedissonClient <span class="title">redisson</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Config config = <span class="keyword">new</span> Config();</span><br><span class="line">        config.useClusterServers().addNodeAddress(<span class="string">"127.0.0.1:7004"</span>,<span class="string">"127.0.0.1:7001"</span>);</span><br><span class="line">        <span class="keyword">return</span> Redisson.create(config);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function">CacheManager <span class="title">cacheManager</span><span class="params">(ResissonClient redissonClient)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, CacheConfig&gt; config = <span class="keyword">new</span> HashMap&lt;String, CacheConfig&gt;();</span><br><span class="line">        <span class="comment">// 新建"testMap"缓存，ttl=24分钟，maxIdleTime=12分钟</span></span><br><span class="line">        config.put(<span class="string">"testMap"</span>, <span class="keyword">new</span> CacheConfig(<span class="number">24</span>*<span class="number">60</span>*<span class="number">1000</span>, <span class="number">12</span>*<span class="number">60</span>*<span class="number">1000</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RedissonSpringCacheManager(redissonClient, config);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;此外，还可以读取JSON或YAML文件配置RedissonSpringCacheManager。<br>&nbsp;&nbsp;&nbsp;&nbsp;与RMaps一样，每个RedissonSpringCacheManager实例都有两个重要参数：ttl(生存时间)和maxIdleTime。如果这些参数设为0或者没有定义，那么数据将无限期地保留在缓存中。<br><b style="color: orangered">4.JCache</b><br>&nbsp;&nbsp;&nbsp;&nbsp;JCache是一个Java缓存API，允许开发人员从缓存临时存储、检索、更新和删除对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redisson提供了Redis的JCache API实现。下面是在Redisson中使用默认配置调用JCache API的示例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MutableConfiguration&lt;String, String&gt; config = <span class="keyword">new</span> MutableConfiguration&lt;&gt;();</span><br><span class="line">CacheManager manager = Caching.getCachingProvider().getCacheManager();</span><br><span class="line">Cache&lt;String, String&gt; cache = manager.createCache(<span class="string">"nameCache"</span>, config);</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;此外，还可以使用自定义配置文件、Redisson Config对象或Redisson RedissonClient对象配置JCache。例如，下面的代码使用自定义Redisson配置来调用JCache：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MutableConfiguration&lt;String, String&gt; jcacheConfig = <span class="keyword">new</span> MutableConfiguration&lt;&gt;();</span><br><span class="line">Config redissonCfg = ...</span><br><span class="line">Configuration&lt;String, String&gt; config = RedissonConfiguration.fromConfig(redissonCfg, jcacheConfig);</span><br><span class="line">CacheManager manager = Caching.getCachingProvider().getCacheManager();</span><br><span class="line">Cache&lt;String, String&gt; cache = manager.createCache(<span class="string">"nameCache"</span>, config);</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Redisson的JCache实现已经通过JCache TCK的所有测试。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/04/java_lambda/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈lambda表达式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
