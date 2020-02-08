@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>权限架构设计那些事 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;权限管理是所有后台系统都会涉及的一个重要组成部分，主要目的是对不同的人访问资源进行权限的控制，避免因权限控制缺失或操作不当引发的风险问题，如操作错误，隐私数据泄漏等问题。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司采用微服务架构，权限系统自然就独立出来了，其他业务系统包括商品中心，订单中心，用户中心，仓库系统，小程序，多个APP等十几个系">
+<meta name="keywords" content="系统设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="权限架构设计那些事">
+<meta property="og:url" content="http://yoursite.com/2020/02/08/权限架构设计/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;权限管理是所有后台系统都会涉及的一个重要组成部分，主要目的是对不同的人访问资源进行权限的控制，避免因权限控制缺失或操作不当引发的风险问题，如操作错误，隐私数据泄漏等问题。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司采用微服务架构，权限系统自然就独立出来了，其他业务系统包括商品中心，订单中心，用户中心，仓库系统，小程序，多个APP等十几个系">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-02-08T12:14:47.100Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="权限架构设计那些事">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;权限管理是所有后台系统都会涉及的一个重要组成部分，主要目的是对不同的人访问资源进行权限的控制，避免因权限控制缺失或操作不当引发的风险问题，如操作错误，隐私数据泄漏等问题。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;公司采用微服务架构，权限系统自然就独立出来了，其他业务系统包括商品中心，订单中心，用户中心，仓库系统，小程序，多个APP等十几个系">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="/js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-权限架构设计" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/02/08/权限架构设计/" class="article-date">
+  	<time datetime="2020-02-08T11:19:38.000Z" itemprop="datePublished">2020-02-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      权限架构设计那些事
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统设计/">系统设计</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2020/02/08/权限架构设计/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="权限架构设计那些事">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">前言</b><br>&nbsp;&nbsp;&nbsp;&nbsp;权限管理是所有后台系统都会涉及的一个重要组成部分，主要目的是对不同的人访问资源进行权限的控制，避免因权限控制缺失或操作不当引发的风险问题，如操作错误，隐私数据泄漏等问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;公司采用微服务架构，权限系统自然就独立出来了，其他业务系统包括商品中心，订单中心，用户中心，仓库系统，小程序，多个APP等十几个系统和终端。<br><a id="more"></a><br><b style="color: orangered">1.权限模型</b><br>&nbsp;&nbsp;&nbsp;&nbsp;迄今为止最为普及的权限设计模型是RBAC模型，基于角色的访问控制(Role-Based Access Control)<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.1 RBACO模型如下</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户&lt;--多对多--&gt;角色&lt;--多对多--&gt;权限</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是权限最基础也是最核心的模型，它包括用户/角色/权限，其中用户和角色是多对多的关系，角色和权限也是多对多的关系。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">用户</b>是发起操作的主体，按类型可分为2B和2C用户，可以是后台管理系统的用户，可以是OA系统的内部员工，也可以是面向C端的用户，比如阿里云的用户。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">角色</b>起到了桥梁的作用，连接了用户和权限的关系，每个角色可以关联多个权限，同时一个用户关联多个角色，那么这个用户就有了多个角色的多个权限。有人会问了为什么用户不直接关联权限呢？在用户基数小的系统，比如20个人的小系统，管理员可以直接把用户和权限关联，工作量并不大，选择一个用户勾选下需要的权限就完事了。但是在实际企业系统中，用户基数比较大，其中很多人的权限都是一样的，就是个普通访问权限，如果管理员给100人甚至更多授权，工作量巨大。这就引入了”角色(Role)”概念，一个角色可以与多个用户关联，管理员只需要把该角色赋予用户，那么用户就有了该角色下的所有权限，这样设计既提升了效率，也有很大的扩展性。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">权限</b>是用户可以访问的资源，包括页面权限，操作权限，数据权限：</p>
+<ul>
+<li>页面权限：即用户登录系统可以看到的页面，由菜单来控制，菜单包括一级菜单和二级菜单，只要用户有一级和二级菜单的权限，那么用户就可以访问页面。</li>
+<li>操作权限：即页面的功能按钮，包括查看、新增、修改、删除、审核等，用户点击删除按钮时，后台会校验用户角色下的所有权限是否包含该删除权限，如果是，就可以进行下一步操作，反之提示无权限。有的系统要求”可见即可操作”，意思是如果页面上能够看到操作按钮，那么用户就可以操作，要实现此需求，这里就需要前端来配合，前端开发把用户的权限信息缓存，在页面判断用户是否包含此权限，如果有，就显示该按钮，如果没有，就隐藏该按钮。某种程度上提升了用户体验，但是在实际场景可自行选择是否需要这样做。</li>
+<li>数据权限：数据权限就是用户在同一页面看到的数据是不同的，比如财政部只能看到其部门下的用户数据，采购部只看采购部的数据，在一些大型的公司，全国有很多城市和分公司，比如杭州用户登录系统只能看到杭州的数据，上海用户只能看到上海的数据，解决方案一般是把数据和具体的组织架构关联起来。举个例子，在给用户授权的时候，用户选择某个角色同时绑定组织如财政部或者合肥分公司，那么该用户就有了该角色下财务部或合肥分公司下的数据权限。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是RBAC的核心设计及模型分析，此模型也叫做RBAC0，而基于核心概念之上，RBAC还提供了扩展模式。包含RBAC1,RBAC2,RBAC3模型。下面介绍这三种类型。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.2 RBAC1模型</b><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">             角色1</span><br><span class="line">         ↗          ↖</span><br><span class="line">      角色2          角色3</span><br><span class="line">    ↗    ↖       ↗     ↖ </span><br><span class="line">角色4     角色5 角色6    角色7</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此模型引入了角色继承(Hierarchical Role)概念，即角色具有上下级的关系，角色间的继承关系可分为一般继承和受限继承关系。一般继承关系仅要求角色继承关系是一个绝对偏序关系，允许角色间的多继承。而受限继承关系则进一步要求角色继承关系是一个树结构，实现角色间的单继承。这种设计可以给角色分组和分层，一定程度简化了权限管理工作。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/07/redis_最强javaRedis客户端/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">最强java Redis客户端</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>

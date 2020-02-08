@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql/" style="font-size: 16px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,74 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-如何设计一个高并发系统" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/12/12/如何设计一个高并发系统/" class="article-date">
+  	<time datetime="2019-12-12T02:20:23.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/12/如何设计一个高并发系统/">
+        如何设计一个高并发系统
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;说实话，如果面试官问你这个题目，那么你必须要使出全身吃奶的劲了。为啥？因为你没看到现在很多公司招聘的JD里面都是说啥，有高并发经验者优先。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果你确实有真学实才，在互联网公司里干过高并发系统，那你确实拿offer基本如探囊取物，没啥问题。面试官也绝对不会这样来问你，否则他就是蠢。<br>&nbsp;&nbsp;&nbsp;&nbsp;假设你在某知名电商公司干过高并发系统，用户上亿，一天流量几十亿，高峰期并发量上万，甚至是十几万。那么人家一定会仔细盘问你的系统架构，你们系统啥架构？怎么部署的？部署了多少台机器？缓存咋用的？MQ咋用的？数据库咋用的？就是深挖你到底是如何抗住高并发的。<br>&nbsp;&nbsp;&nbsp;&nbsp;因为真正干过高并发的人一定知道，脱离了业务的系统架构都是纸上谈兵，真正在复杂业务场景而且还高并发的时候，那么系统架构一定不是那么简单的，用个redis，用MQ就能搞定？当然不是，真实的系统架构搭配上业务之后，会比这种简单的所谓“高并发架构”要复杂很多倍。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果有面试官问你个问题说，如何设计一个高并发系统？那么不好意思，一定是因为你实际上没干过高并发系统。面试官看你简历就没啥出彩的，感觉就不咋地，所以就会问问你，如何设计一个高并发系统？说白了本质就是看看你有没有自己研究过，有没有一定的知识积累。<br>&nbsp;&nbsp;&nbsp;&nbsp;最好的当然是招聘个真正干过高并发的哥们，但是这种哥们人数稀缺，不好招。所以可能次一点的就是招一个自己研究过的哥们，总比招一个啥也不会的哥们好吧。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以这个时候你必须的做一把个人秀，秀出你所有关于高并发的知识。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/12/12/如何设计一个高并发系统/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个高并发系统">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/12/12/如何设计一个高并发系统/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-interview_mybatis" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -256,6 +324,10 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+	</div>
+
       
 
       
@@ -321,7 +393,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -390,7 +462,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -526,7 +598,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -594,7 +666,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -764,77 +836,9 @@
 
 
   
-    <article id="post-linux常用命令" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/10/linux常用命令/" class="article-date">
-  	<time datetime="2019-11-10T13:36:59.000Z" itemprop="datePublished">2019-11-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/10/linux常用命令/">
-        linux常用命令
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h3><p>arch 显示机器的处理器架构<br>uname -m 显示机器的处理器架构<br>uname -r 显示正在使用的版本内核<br>dmidecode -q 显示硬件系统部件<br>hdparm -i/dev/hda 罗列一个磁盘的架构特性<br>hdparm -t/dev/sda 在磁盘上执行测试性读写操作<br>cat /proc/cupuinfo 显示CPU info的信息<br>cat /proc/interrupts 显示中断<br>cat /proc/swaps 显示哪些swap被使用<br>cat /proc/meminfo 检验内存使用<br>cat /proc/version 显示内核的版本<br>cat /proc/net/dev 显示网络适配器及统计<br>cat /proc/mounts 显示已加载的文件系统<br>Ispci -tv 罗列PCI设备<br>Isusb -tv 罗列USB设备<br>date 显示系统时间<br>cal 2019 显示2019年的日历表<br>date 111021002019.00 设置日期和时间 -月日时分年.秒<br>clock -w 将时间保存到BIOS<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/10/linux常用命令/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="linux常用命令">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/10/linux常用命令/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

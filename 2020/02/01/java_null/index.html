@@ -10,14 +10,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="写在前面&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;有时候，更可怕的是系统因为这些空值的情况，会抛出空指针异常，导致业务系统发生问题。此篇文章，总结了几种关于空值的处理手法，希望对读者有帮助。">
-<meta name="keywords" content="java">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何优雅处理代码中Null值引起的BUG?">
 <meta property="og:url" content="http://yoursite.com/2020/02/01/java_null/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="写在前面&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;有时候，更可怕的是系统因为这些空值的情况，会抛出空指针异常，导致业务系统发生问题。此篇文章，总结了几种关于空值的处理手法，希望对读者有帮助。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-03T12:35:35.910Z">
+<meta property="og:updated_time" content="2020-02-08T11:12:27.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何优雅处理代码中Null值引起的BUG?">
 <meta name="twitter:description" content="写在前面&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;有时候，更可怕的是系统因为这些空值的情况，会抛出空指针异常，导致业务系统发生问题。此篇文章，总结了几种关于空值的处理手法，希望对读者有帮助。">
@@ -109,7 +109,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql/" style="font-size: 16px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 	</div>
 
         

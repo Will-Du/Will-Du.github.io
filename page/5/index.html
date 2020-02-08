@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jquery/" style="font-size: 12px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sql/" style="font-size: 16px;">sql</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/递归算法/" style="font-size: 10px;">递归算法</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/微服务/" style="font-size: 10px;">微服务</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -152,6 +152,71 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-js_String_substr" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/10/js_String_substr/" class="article-date">
+  	<time datetime="2019-03-10T03:01:34.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/js_String_substr/">
+        js截取字符串
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此代码为vue项目中，用来控制字符串显示问题的过滤器<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* value：传入的字符串</span></span><br><span class="line"><span class="comment">	* maxLength: 字符串显示的最大长度</span></span><br><span class="line"><span class="comment">	* length：超出该值得部分用'...'</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">ShowStr: <span class="function"><span class="keyword">function</span>(<span class="params">value,maxLength,length</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!value) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span>(value.length &lt;= maxLength) &#123;</span><br><span class="line">		<span class="keyword">return</span> value;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> value.substr(<span class="number">0</span>,length) + <span class="string">'...'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/03/10/js_String_substr/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js截取字符串">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-mysql_sum(null)_deal" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -190,7 +255,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -256,7 +321,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
 	</div>
 
       
@@ -455,7 +520,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
 	</div>
 
       
@@ -519,7 +584,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JQuery/">JQuery</a></li></ul>
 	</div>
 
       
@@ -589,7 +654,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 	</div>
 
       
@@ -721,7 +786,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 	</div>
 
       
@@ -752,78 +817,9 @@
 
 
   
-    <article id="w-java_Calendar" class="article article-type-w" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/01/06/java_Calendar/" class="article-date">
-  	<time datetime="2019-01-06T13:02:19.000Z" itemprop="datePublished">2019-01-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/java_Calendar/">
-        java-Calendar常用方法总结
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="取得Calendar中的年月日时分秒"><a href="#取得Calendar中的年月日时分秒" class="headerlink" title="取得Calendar中的年月日时分秒"></a>取得Calendar中的年月日时分秒</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 实例化Calendar</span></span><br><span class="line">		Calendar calendar = Calendar.getInstance();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第一种：直接将date放入</span></span><br><span class="line">		Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>).parse(<span class="string">"2019-01-06 20:30:00"</span>);</span><br><span class="line">		<span class="comment">// 将实例化的时间设为2019-01-06</span></span><br><span class="line">		calendar.setTime(date);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第二种：year:年, month:月-1(以0开始), date:日, hourOfDay:小时, minute:分钟, second:秒数</span></span><br><span class="line">		calendar.set(<span class="number">2019</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 第三种 若不设置则取当前时间有关的年月日时分秒</span></span><br><span class="line">		calendar.set(Calendar.YEAR, <span class="number">2019</span>);</span><br><span class="line">		calendar.set(Calendar.MONTH, <span class="number">0</span>);</span><br><span class="line">		calendar.set(Calendar.DAY_OF_MONTH, <span class="number">6</span>);</span><br><span class="line">		calendar.set(Calendar.HOUR_OF_DAY, <span class="number">20</span>);</span><br><span class="line">		calendar.set(Calendar.MINUTE, <span class="number">30</span>);</span><br><span class="line">		calendar.set(Calendar.SECOND, <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 获取calendar中设定的年，若calendar为直接实例出来，默认是当前年。</span></span><br><span class="line">		<span class="keyword">int</span> year = calendar.get(Calendar.YEAR);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的月。注：默认为0，因此需要+1才显示当前月</span></span><br><span class="line">		<span class="keyword">int</span> month = calendar.get(Calendar.MONTH) + <span class="number">1</span>;</span><br><span class="line">		<span class="comment">// 获取calendar中设定的日</span></span><br><span class="line">		<span class="keyword">int</span> day = calendar.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的小时</span></span><br><span class="line">		<span class="keyword">int</span> hour = calendar.get(Calendar.HOUR_OF_DAY);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的分钟</span></span><br><span class="line">		<span class="keyword">int</span> minute = calendar.get(Calendar.MINUTE);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的秒</span></span><br><span class="line">		<span class="keyword">int</span> second = calendar.get(Calendar.SECOND);</span><br><span class="line">		<span class="comment">// 获取calendar中设定的星期，注：英国国家以星期日开始，因此需要转换一下</span></span><br><span class="line">		<span class="keyword">int</span> weekday = calendar.get(Calendar.DAY_OF_WEEK) -<span class="number">1</span> == <span class="number">0</span> ? <span class="number">7</span> : calendar.get(Calendar.DAY_OF_WEEK) - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		System.err.println(<span class="string">"calendar中设定的时间为："</span> + year + <span class="string">"年"</span> + month + <span class="string">"月"</span> + day + <span class="string">"日"</span> + hour + <span class="string">"时"</span> + minute + <span class="string">"分"</span> </span><br><span class="line">		+ second + <span class="string">"秒  星期"</span> + weekday);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>程序输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">calendar中设定的时间为：2019年1月6日20时30分0秒  星期7</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/01/06/java_Calendar/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-Calendar常用方法总结">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/01/06/java_Calendar/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 </div>
