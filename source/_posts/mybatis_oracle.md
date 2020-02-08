@@ -1,7 +1,7 @@
 ---
 title: mybatis中oracle的批量新增与批量更新
 date: 2019-12-05 19:16:53
-tags: sql
+tags: 数据库
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;mybatis中mysql的批量插入比较常规，但oracle的批量有所不同，若按照mysql的方式书写，则会报“命令为执行结束”的错误。所以一下列出oracle的批量新增与修改的几种方式。
 ```XML

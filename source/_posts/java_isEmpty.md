@@ -1,7 +1,7 @@
 ---
 title: isEmpty与isBlank区别
 date: 2020-01-09 15:45:48
-tags: java
+tags: Java
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。
 <!-- more -->

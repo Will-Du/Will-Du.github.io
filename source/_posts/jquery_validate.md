@@ -1,7 +1,7 @@
 ---
 title: jquery自定义验证
 date: 2019-01-15 15:52:41
-tags: jquery
+tags: JQuery
 ---
 
 ### jquery添加自定义验证

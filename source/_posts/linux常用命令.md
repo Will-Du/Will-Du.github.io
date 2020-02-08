@@ -1,7 +1,7 @@
 ---
 title: linux常用命令
 date: 2019-11-10 21:36:59
-tags: linux
+tags: Linux
 ---
 ### 系统信息
 arch 显示机器的处理器架构

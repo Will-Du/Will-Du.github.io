@@ -1,7 +1,7 @@
 ---
 title: jquery判断输入框的值所占的字节
 date: 2019-01-15 16:18:13
-tags: jquery
+tags: JQuery
 ---
 
 ### 判断输入框的值所占的字节

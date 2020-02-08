@@ -1,7 +1,7 @@
 ---
 title: 浅析VO、DTO、DO、PO的概念、区别和用处
 date: 2020-01-06 15:41:31
-tags: java
+tags: Java
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;本篇文章主要讨论一下我们经常会用到的一些对象：VO、DTO、DO、PO。
 &nbsp;&nbsp;&nbsp;&nbsp;由于不同的项目和开发人员有不同的命名习惯，这里首先对上述的概念进行一个简单描述，名字只是个标识，我们重点关注其概念:

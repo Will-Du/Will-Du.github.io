@@ -1,7 +1,7 @@
 ---
 title: Nginx配置参数说明
 date: 2019-12-28 15:03:25
-tags: nginx
+tags: Nginx
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;Nginx配置参数中文详细说明:
 <!-- more -->

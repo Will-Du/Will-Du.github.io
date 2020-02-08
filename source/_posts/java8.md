@@ -1,7 +1,7 @@
 ---
 title: java8的简单用法
 date: 2019-01-13 10:44:05
-tags: java
+tags: Java
 ---
 
 ## 以下为java8的一些基本用法

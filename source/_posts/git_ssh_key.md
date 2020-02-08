@@ -1,7 +1,7 @@
 ---
 title: git生成ssh key
 date: 2019-12-10 10:20:18
-tags:
+tags: git
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;1.首先在git设置身份的名称和邮箱
 ```git

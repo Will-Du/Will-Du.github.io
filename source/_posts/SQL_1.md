@@ -1,7 +1,7 @@
 ---
 title: SQL语句中where条件后写1=1是什么意思
 date: 2020-01-11 18:39:33
-tags: sql
+tags: 数据库
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;这段代码应该是由程序(例如java)中生成的，where条件中1=1之后的条件是通过if动态变化的。例如:
 ```java

@@ -1,7 +1,7 @@
 ---
 title: 如何优雅处理代码中Null值引起的BUG?
 date: 2020-02-01 19:04:44
-tags: java
+tags: Java
 ---
 <b style="color: orangered">写在前面</b>
 &nbsp;&nbsp;&nbsp;&nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。

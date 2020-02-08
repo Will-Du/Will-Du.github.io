@@ -1,7 +1,7 @@
 ---
 title: java-DateUtil 常用时间方法封装
 date: 2019-01-09 22:02:09
-tags: java
+tags: Java
 ---
 
 运用Calendar封装了个工具类，代码如下(主页请点击more阅读全文)
