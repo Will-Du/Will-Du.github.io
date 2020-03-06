@@ -70,7 +70,7 @@ public static void test3() {
     consumer.accept("传入参数");
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">Supplier 供给型接口：T get():</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.Supplier 供给型接口：T get():</b>
 ```java
 public class Test2 {
     public static void main(String[] args) {
@@ -108,7 +108,7 @@ public class Test2 {
 ABC
 abc
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">Predicate 断言式接口：boolean test(T t):</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">4.Predicate 断言式接口：boolean test(T t):</b>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一些字符串数组判断长度>2的字符串:
 ```java
 public static void main(String[] args) {
