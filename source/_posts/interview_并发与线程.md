@@ -58,7 +58,7 @@ tags: 面试题
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size():返回队列中的元素个数
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;take():移除并返回队头元素，如果队列空则阻塞
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：BlockingQueue&lt;E&gt;定义了阻塞队列的常用方法，尤其是三种添加元素的方法，我们需要多加注意，当队列满时：add()方法会抛出异常，offer()方法返回false，put()方法会阻塞</label>
-&nbsp;&nbsp;&nbsp;&nbsp;7.使用院子变量实现线程同步:需要使用线程同步的根本原因在于对普通变量的操作不是原子的。
+&nbsp;&nbsp;&nbsp;&nbsp;7.使用原子变量实现线程同步:需要使用线程同步的根本原因在于对普通变量的操作不是原子的。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原子操作:是指将读取变量值、修改变量值、保存变量值看成一个整体来操作，即这几种行为要么同时完成，要么都不完成。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在java中util.concurrent.atomic包中提供了创建原子类型变量的工具类，使用该类可以简化线程同步。
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中AtomicInteger表可以用原子方式更新int的值，可用在应用程式中(如以原子方式增加的计数器)，但不能用于替换Integer；可扩展Number，允许那些处理基于数字类的工具和实用工具进行统一访问。AtomicInteger类常用方法:
