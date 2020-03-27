@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/sourcecode/" style="font-size: 10px;">sourcecode</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,74 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-数据库读写分离" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/16/数据库读写分离/" class="article-date">
+  	<time datetime="2019-05-16T06:19:43.000Z" itemprop="datePublished">2019-05-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/数据库读写分离/">
+        数据库读写分离
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <label style="color:red">1.主数据库创建一个用户(尽量不要使用root) </label><br>    CREATE USER ‘username‘@’%’ IDENTIFIED BY ‘password’;<br>    username:用户名<br>    %：指定该用户在哪个主机上可以登陆，如果是本地用户可用localhost，如果想让该用户可以从任意远程主机登陆，可以使用通配符%<br>    password:用户密码<br><label style="color:red">2.给该用户授权slave(mysql8.0以上可以不用写IDENTIFIED BY ‘password’;)</label><br>    GRANT REPLICATION SLAVE ON *.* to ‘username‘@’%’;<br><label style="color:red">3.主数据库与从数据库修改配置文件(linux:my.cnf;window:my.ini)并重启数据库</label><br>    log-bin=mysql-bin //启用二进制日志 (主数据库必须)<br>    server-id=1 //服务器唯一ID，默认是1，一般取IP最后一段(必须)(不同服务器的server-id应不同)
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2019/05/16/数据库读写分离/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库读写分离">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/2019/05/16/数据库读写分离/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-js_moneyFormat" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -739,70 +807,6 @@
         <p class="article-more-link">
           <a href="/2019/01/13/java8/#more">more >></a>
         </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-js_toFixed_precision" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/01/11/js_toFixed_precision/" class="article-date">
-  	<time datetime="2019-01-11T08:49:57.000Z" itemprop="datePublished">2019-01-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/11/js_toFixed_precision/">
-        js中toFixed的精度问题
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决不同浏览器对toFixed进行四舍五入會造成精度問題</span></span><br><span class="line"><span class="built_in">Number</span>.prototype.toFixed = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n &gt; <span class="number">20</span> || n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">RangeError</span>(<span class="string">'toFixed() digits argument must be between 0 and 20'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> number = <span class="keyword">this</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isNaN</span>(number) || number &gt;= <span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="number">21</span>)) &#123;</span><br><span class="line">		<span class="keyword">return</span> number.toString();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span> (n) == <span class="string">'undefined'</span> || n == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="built_in">Math</span>.round(number)).toString();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">var</span> result = number.toString();</span><br><span class="line">	<span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 整数的情况</span></span><br><span class="line">	<span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">		result += <span class="string">'.'</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">			result += <span class="string">'0'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span> (decimal.length == n) &#123;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (decimal.length &lt; n) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n - decimal.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">			result += <span class="string">'0'</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">	result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);</span><br><span class="line">	<span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">		<span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n);</span><br><span class="line">		result = (<span class="built_in">Math</span>.round((<span class="built_in">parseFloat</span>(result) * x)) + <span class="number">1</span>) / x;</span><br><span class="line">		result = result.toFixed(n);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/01/11/js_toFixed_precision/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js中toFixed的精度问题">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
       
     
   </div>

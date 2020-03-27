@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/sourcecode/" style="font-size: 10px;">sourcecode</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,73 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-readsourcecode_AbstractCollection" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/03/26/readsourcecode_AbstractCollection/" class="article-date">
+  	<time datetime="2020-03-26T11:50:56.000Z" itemprop="datePublished">2020-03-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/26/readsourcecode_AbstractCollection/">
+        小吴读源码记录之AbstractCollection
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">  Iterator&lt;E&gt; it = iterator();</span><br><span class="line">  <span class="keyword">if</span> (o==<span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (it.hasNext())</span><br><span class="line">      <span class="keyword">if</span> (it.next()==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (it.hasNext())</span><br><span class="line">      <span class="keyword">if</span> (o.equals(it.next()))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：如果传进来的参数为null，会通过迭代该集合，如果有null的则返回true。如果传进来的参数不为null，则还会迭代该集合，通过equals比较，如果相等则返回true。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NotNull</span></span><br><span class="line"><span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">  <span class="comment">// Estimate size of array; be prepared to see more or fewer elements</span></span><br><span class="line">  Object[] r = <span class="keyword">new</span> Object[size()];</span><br><span class="line">  Iterator&lt;E&gt; it = iterator();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (! it.hasNext()) <span class="comment">// fewer elements than expected</span></span><br><span class="line">      <span class="keyword">return</span> Arrays.copyOf(r, i);</span><br><span class="line">    r[i] = it.next();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> it.hasNext() ? finishToArray(r, it) : r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T[] copyOf(<span class="meta">@NotNull</span> T[] original, <span class="keyword">int</span> newLength) &#123;</span><br><span class="line">  <span class="keyword">return</span> (T[]) copyOf(original, newLength, original.getClass());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Native</span> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>   MAX_VALUE = <span class="number">0x7fffffff</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = Integer.MAX_VALUE - <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T[] finishToArray(T[] r, Iterator&lt;?&gt; it) &#123;</span><br><span class="line">  <span class="keyword">int</span> i = r.length;</span><br><span class="line">  <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">    <span class="keyword">int</span> cap = r.length;</span><br><span class="line">    <span class="keyword">if</span> (i == cap) &#123;</span><br><span class="line">      <span class="keyword">int</span> newCap = cap + (cap &gt;&gt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">      <span class="comment">// overflow-conscious code</span></span><br><span class="line">      <span class="keyword">if</span> (newCap - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCap = hugeCapacity(cap + <span class="number">1</span>);</span><br><span class="line">      r = Arrays.copyOf(r, newCap);</span><br><span class="line">    &#125;</span><br><span class="line">    r[i++] = (T)it.next();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// trim if overallocated</span></span><br><span class="line">  <span class="keyword">return</span> (i == r.length) ? r : Arrays.copyOf(r, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError(<span class="string">"Required array size too large"</span>);</span><br><span class="line">  <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>个人理解：先创建一个长度为默认的数组，然后获取集合，循环数组，如果集合的长度&gt;数组的长度，则会调用finishToArray这个方法，如果集合长度&lt;=数组长度，则会进行完全复制完成。int newCap = cap + (cap &gt;&gt; 1) + 1;数组扩容时2n+1，如果超出超出数组的最大值，则会取Integer的最大值最为长度。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; T[] toArray(<span class="meta">@NotNullT</span>[] a) &#123;</span><br><span class="line">  <span class="comment">// Estimate size of array; be prepared to see more or fewer elements</span></span><br><span class="line">  <span class="keyword">int</span> size = size();</span><br><span class="line">  T[] r = a.length &gt;= size ? a : (T[])java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);</span><br><span class="line">  Iterator&lt;E&gt; it = iterator();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (! it.hasNext()) &#123; <span class="comment">// fewer elements than expected</span></span><br><span class="line">      <span class="keyword">if</span> (a == r) &#123;</span><br><span class="line">        r[i] = <span class="keyword">null</span>; <span class="comment">// null-terminate</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a.length &lt; i) &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOf(r, i);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.arraycopy(r, <span class="number">0</span>, a, <span class="number">0</span>, i);</span><br><span class="line">        <span class="keyword">if</span> (a.length &gt; i) &#123;</span><br><span class="line">          a[i] = <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">  r[i] = (T)it.next();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// more elements than expected</span></span><br><span class="line">  <span class="keyword">return</span> it.hasNext() ? finishToArray(r, it) : r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sourcecode/">sourcecode</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="/2020/03/26/readsourcecode_AbstractCollection/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之AbstractCollection">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-zookeeper_1" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -762,74 +829,6 @@
       
         <p class="article-more-link">
           <a href="/2020/01/11/SQL_1/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-redis_1" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2020/01/10/redis_1/" class="article-date">
-  	<time datetime="2020-01-10T08:27:19.000Z" itemprop="datePublished">2020-01-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/redis_1/">
-        Redis的各项功能，都解决了哪些问题？
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;首先，先看一下Redis是一个什么东西。官方简介解释到：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Redis是一个基于BSD开源的项目，是一个把结构化的数据放在内存中的一个存储系统，你可以把它作为数据库，缓存和消息中间件来使用。同时支持strings、lists、hashes、sets、sortedsets、bitmaps、hyperloglogs和geospatial indexes等数据类型。它还内建了复制，lua脚本，LRU，事务等功能，通过Redis sentinel实现高可用，通过redis cluster实现了自动分片。以及事务，发布/订阅，自动故障转移等待。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2020/01/10/redis_1/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Redis的各项功能，都解决了哪些问题？">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2020/01/10/redis_1/#more">more >></a>
         </p>
       
     
