@@ -91,3 +91,25 @@ public <T> T[] toArray(@NotNullT[] a) {
   return it.hasNext() ? finishToArray(r, it) : r;
 }
 ```
+```java
+public boolean remove(Object o) {
+  Iterator<E> it = iterator();
+  if (o==null) {
+    while (it.hasNext()) {
+      if (it.next()==null) {
+        it.remove();
+        return true;
+      }
+    }
+  } else {
+    while (it.hasNext()) {
+      if (o.equals(it.next())) {
+        it.remove();
+        return true;
+      }
+    }
+  }
+  return false;
+}
+```
+个人理解：由此代码可见，如果该集合内有多个重复的要删除元素，remove只会删除第一个匹配到的元素。
