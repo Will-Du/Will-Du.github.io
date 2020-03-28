@@ -19,6 +19,7 @@ public boolean contains(Object o) {
 }
 ```
 个人理解：如果传进来的参数为null，会通过迭代该集合，如果有null的则返回true。如果传进来的参数不为null，则还会迭代该集合，通过equals比较，如果相等则返回true。
+<!-- more -->
 ```java
 @NotNull
 public Object[] toArray() {
