@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="嘟嘟的博客">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:url" content="https://will-du.github.io/page/3/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/img/kenan.jpg">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   
   
 
@@ -32,7 +32,7 @@
   
       <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
 <script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
-<script src="/js/Counter.js"></script>
+<script src="../../js/Counter.js"></script>
   
 </head></html>
 <body>
@@ -88,9 +88,9 @@
 					<nav class="header-menu">
 						<ul>
 						
-							<li><a href="/">主页</a></li>
+							<li><a href="../../index.html">主页</a></li>
 				        
-							<li><a href="/archives">所有文章</a></li>
+							<li><a href="../../archives">所有文章</a></li>
 				        
 						</ul>
 					</nav>
@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 12px;">git</a> <a href="../../tags/js/" style="font-size: 14px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -135,9 +135,9 @@
 			<nav class="header-menu">
 				<ul>
 				
-					<li><a href="/">主页</a></li>
+					<li><a href="../../index.html">主页</a></li>
 		        
-					<li><a href="/archives">所有文章</a></li>
+					<li><a href="../../archives">所有文章</a></li>
 		        
 		        <div class="clearfix"></div>
 				</ul>
@@ -152,10 +152,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-interview_concurrentHashMap" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/12/19/interview_concurrentHashMap/" class="article-date">
+  	<time datetime="2019-12-19T07:08:51.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/12/19/interview_concurrentHashMap/">
+        为啥ConcurrentHashMap读操作不需要加锁
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/12/19/interview_concurrentHashMap/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="为啥ConcurrentHashMap读操作不需要加锁">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/12/19/interview_concurrentHashMap/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-interview_es" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/17/interview_es/" class="article-date">
+      <a href="../../2019/12/17/interview_es/" class="article-date">
   	<time datetime="2019-12-17T02:57:00.000Z" itemprop="datePublished">2019-12-17</time>
 </a>
     </div>
@@ -169,7 +237,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/17/interview_es/">
+      <a class="article-title" href="../../2019/12/17/interview_es/">
         谈谈对ES搜索引擎的理解
         
       </a>
@@ -189,7 +257,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -197,7 +265,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/17/interview_es/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="谈谈对ES搜索引擎的理解">
+    <span id="../../2019/12/17/interview_es/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="谈谈对ES搜索引擎的理解">
          &nbsp;
         view
     </span>
@@ -208,7 +276,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/17/interview_es/#more">more >></a>
+          <a href="../../2019/12/17/interview_es/#more">more >></a>
         </p>
       
     
@@ -223,7 +291,7 @@
     <article id="post-learn_recursive" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/15/learn_recursive/" class="article-date">
+      <a href="../../2019/12/15/learn_recursive/" class="article-date">
   	<time datetime="2019-12-15T08:38:08.000Z" itemprop="datePublished">2019-12-15</time>
 </a>
     </div>
@@ -237,7 +305,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/15/learn_recursive/">
+      <a class="article-title" href="../../2019/12/15/learn_recursive/">
         递归算法-如何学习递归
         
       </a>
@@ -257,7 +325,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/算法/">算法</a></li></ul>
 	</div>
 
       
@@ -265,7 +333,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/15/learn_recursive/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="递归算法-如何学习递归">
+    <span id="../../2019/12/15/learn_recursive/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="递归算法-如何学习递归">
          &nbsp;
         view
     </span>
@@ -276,7 +344,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/15/learn_recursive/#more">more >></a>
+          <a href="../../2019/12/15/learn_recursive/#more">more >></a>
         </p>
       
     
@@ -291,7 +359,7 @@
     <article id="post-如何设计一个本地缓存" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/13/如何设计一个本地缓存/" class="article-date">
+      <a href="../../2019/12/13/如何设计一个本地缓存/" class="article-date">
   	<time datetime="2019-12-13T07:38:54.000Z" itemprop="datePublished">2019-12-13</time>
 </a>
     </div>
@@ -305,7 +373,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/13/如何设计一个本地缓存/">
+      <a class="article-title" href="../../2019/12/13/如何设计一个本地缓存/">
         如何设计一个本地缓存
         
       </a>
@@ -325,7 +393,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -333,7 +401,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/13/如何设计一个本地缓存/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个本地缓存">
+    <span id="../../2019/12/13/如何设计一个本地缓存/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个本地缓存">
          &nbsp;
         view
     </span>
@@ -344,7 +412,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/13/如何设计一个本地缓存/#more">more >></a>
+          <a href="../../2019/12/13/如何设计一个本地缓存/#more">more >></a>
         </p>
       
     
@@ -359,7 +427,7 @@
     <article id="post-如何设计一个高并发系统" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/12/如何设计一个高并发系统/" class="article-date">
+      <a href="../../2019/12/12/如何设计一个高并发系统/" class="article-date">
   	<time datetime="2019-12-12T02:20:23.000Z" itemprop="datePublished">2019-12-12</time>
 </a>
     </div>
@@ -373,7 +441,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/12/如何设计一个高并发系统/">
+      <a class="article-title" href="../../2019/12/12/如何设计一个高并发系统/">
         如何设计一个高并发系统
         
       </a>
@@ -393,7 +461,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -401,7 +469,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/12/如何设计一个高并发系统/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个高并发系统">
+    <span id="../../2019/12/12/如何设计一个高并发系统/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个高并发系统">
          &nbsp;
         view
     </span>
@@ -412,7 +480,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/12/如何设计一个高并发系统/#more">more >></a>
+          <a href="../../2019/12/12/如何设计一个高并发系统/#more">more >></a>
         </p>
       
     
@@ -427,7 +495,7 @@
     <article id="post-interview_mybatis" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/10/interview_mybatis/" class="article-date">
+      <a href="../../2019/12/10/interview_mybatis/" class="article-date">
   	<time datetime="2019-12-10T07:59:11.000Z" itemprop="datePublished">2019-12-10</time>
 </a>
     </div>
@@ -441,7 +509,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/interview_mybatis/">
+      <a class="article-title" href="../../2019/12/10/interview_mybatis/">
         Mybatis经典面试题
         
       </a>
@@ -461,7 +529,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -469,7 +537,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/10/interview_mybatis/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mybatis经典面试题">
+    <span id="../../2019/12/10/interview_mybatis/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mybatis经典面试题">
          &nbsp;
         view
     </span>
@@ -480,7 +548,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/10/interview_mybatis/#more">more >></a>
+          <a href="../../2019/12/10/interview_mybatis/#more">more >></a>
         </p>
       
     
@@ -495,7 +563,7 @@
     <article id="post-git_ssh_key" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/10/git_ssh_key/" class="article-date">
+      <a href="../../2019/12/10/git_ssh_key/" class="article-date">
   	<time datetime="2019-12-10T02:20:18.000Z" itemprop="datePublished">2019-12-10</time>
 </a>
     </div>
@@ -509,7 +577,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/git_ssh_key/">
+      <a class="article-title" href="../../2019/12/10/git_ssh_key/">
         git生成ssh key
         
       </a>
@@ -529,7 +597,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/git/">git</a></li></ul>
 	</div>
 
       
@@ -537,7 +605,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/10/git_ssh_key/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="git生成ssh key">
+    <span id="../../2019/12/10/git_ssh_key/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="git生成ssh key">
          &nbsp;
         view
     </span>
@@ -548,7 +616,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/10/git_ssh_key/#more">more >></a>
+          <a href="../../2019/12/10/git_ssh_key/#more">more >></a>
         </p>
       
     
@@ -563,7 +631,7 @@
     <article id="post-oracle_getUser" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/09/oracle_getUser/" class="article-date">
+      <a href="../../2019/12/09/oracle_getUser/" class="article-date">
   	<time datetime="2019-12-09T07:17:55.000Z" itemprop="datePublished">2019-12-09</time>
 </a>
     </div>
@@ -577,7 +645,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/09/oracle_getUser/">
+      <a class="article-title" href="../../2019/12/09/oracle_getUser/">
         oracle如何查看当前有哪些用户连接到数据库
         
       </a>
@@ -597,7 +665,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -605,7 +673,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/09/oracle_getUser/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="oracle如何查看当前有哪些用户连接到数据库">
+    <span id="../../2019/12/09/oracle_getUser/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="oracle如何查看当前有哪些用户连接到数据库">
          &nbsp;
         view
     </span>
@@ -616,7 +684,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/09/oracle_getUser/#more">more >></a>
+          <a href="../../2019/12/09/oracle_getUser/#more">more >></a>
         </p>
       
     
@@ -631,7 +699,7 @@
     <article id="post-mybatis_oracle" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/05/mybatis_oracle/" class="article-date">
+      <a href="../../2019/12/05/mybatis_oracle/" class="article-date">
   	<time datetime="2019-12-05T11:16:53.000Z" itemprop="datePublished">2019-12-05</time>
 </a>
     </div>
@@ -645,7 +713,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/mybatis_oracle/">
+      <a class="article-title" href="../../2019/12/05/mybatis_oracle/">
         mybatis中oracle的批量新增与批量更新
         
       </a>
@@ -666,7 +734,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -674,7 +742,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/12/05/mybatis_oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
+    <span id="../../2019/12/05/mybatis_oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
          &nbsp;
         view
     </span>
@@ -685,7 +753,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/12/05/mybatis_oracle/#more">more >></a>
+          <a href="../../2019/12/05/mybatis_oracle/#more">more >></a>
         </p>
       
     
@@ -700,7 +768,7 @@
     <article id="post-redis内存满了如何处理" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/27/redis内存满了如何处理/" class="article-date">
+      <a href="../../2019/11/27/redis内存满了如何处理/" class="article-date">
   	<time datetime="2019-11-27T07:23:20.000Z" itemprop="datePublished">2019-11-27</time>
 </a>
     </div>
@@ -714,7 +782,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/27/redis内存满了如何处理/">
+      <a class="article-title" href="../../2019/11/27/redis内存满了如何处理/">
         redis内存满了如何处理
         
       </a>
@@ -734,7 +802,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -742,7 +810,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/27/redis内存满了如何处理/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="redis内存满了如何处理">
+    <span id="../../2019/11/27/redis内存满了如何处理/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="redis内存满了如何处理">
          &nbsp;
         view
     </span>
@@ -753,75 +821,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/27/redis内存满了如何处理/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-如何设计一个安全的对外接口" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/26/如何设计一个安全的对外接口/" class="article-date">
-  	<time datetime="2019-11-26T13:59:36.000Z" itemprop="datePublished">2019-11-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/26/如何设计一个安全的对外接口/">
-        如何设计一个安全的对外接口
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/26/如何设计一个安全的对外接口/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个安全的对外接口">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/26/如何设计一个安全的对外接口/#more">more >></a>
+          <a href="../../2019/11/27/redis内存满了如何处理/#more">more >></a>
         </p>
       
     
@@ -835,7 +835,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="../2/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><a class="extend next" rel="next" href="../4/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -853,7 +853,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -869,7 +869,7 @@
 		open_in_new: false
 	}
 </script>
-<script src="/js/main.js"></script>
+<script src="../../js/main.js"></script>
 
 
 

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="嘟嘟的博客">
-<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:url" content="https://will-du.github.io/page/6/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/img/kenan.jpg">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   
   
 
@@ -32,7 +32,7 @@
   
       <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
 <script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
-<script src="/js/Counter.js"></script>
+<script src="../../js/Counter.js"></script>
   
 </head></html>
 <body>
@@ -88,9 +88,9 @@
 					<nav class="header-menu">
 						<ul>
 						
-							<li><a href="/">主页</a></li>
+							<li><a href="../../index.html">主页</a></li>
 				        
-							<li><a href="/archives">所有文章</a></li>
+							<li><a href="../../archives">所有文章</a></li>
 				        
 						</ul>
 					</nav>
@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 12px;">git</a> <a href="../../tags/js/" style="font-size: 14px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -135,9 +135,9 @@
 			<nav class="header-menu">
 				<ul>
 				
-					<li><a href="/">主页</a></li>
+					<li><a href="../../index.html">主页</a></li>
 		        
-					<li><a href="/archives">所有文章</a></li>
+					<li><a href="../../archives">所有文章</a></li>
 		        
 		        <div class="clearfix"></div>
 				</ul>
@@ -152,10 +152,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-jquery_validate" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/01/15/jquery_validate/" class="article-date">
+  	<time datetime="2019-01-15T07:52:41.000Z" itemprop="datePublished">2019-01-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/01/15/jquery_validate/">
+        jquery自定义验证
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="jquery添加自定义验证"><a href="#jquery添加自定义验证" class="headerlink" title="jquery添加自定义验证"></a>jquery添加自定义验证</h3><p>首先写个自定义验证<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当return false则出现提示信息</span></span><br><span class="line">$.validator.addMethod(<span class="string">"checkNumber"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value, element</span>) </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 若无输入，不验证</span></span><br><span class="line">	<span class="keyword">if</span>(value == <span class="string">""</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 验证规则</span></span><br><span class="line">	<span class="keyword">var</span> v_regex=<span class="regexp">/^[0-9]+.?[0-9]*$/</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(value)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!v_regex.test(value))&#123;</span><br><span class="line">	</span><br><span class="line">		  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;, <span class="string">"金額需為數字"</span>);</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JQuery/">JQuery</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/01/15/jquery_validate/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="jquery自定义验证">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/01/15/jquery_validate/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-java8" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/01/13/java8/" class="article-date">
+      <a href="../../2019/01/13/java8/" class="article-date">
   	<time datetime="2019-01-13T02:44:05.000Z" itemprop="datePublished">2019-01-13</time>
 </a>
     </div>
@@ -169,7 +237,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/13/java8/">
+      <a class="article-title" href="../../2019/01/13/java8/">
         java8的简单用法
         
       </a>
@@ -191,7 +259,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Java/">Java</a></li></ul>
 	</div>
 
       
@@ -199,7 +267,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/01/13/java8/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java8的简单用法">
+    <span id="../../2019/01/13/java8/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java8的简单用法">
          &nbsp;
         view
     </span>
@@ -210,7 +278,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/01/13/java8/#more">more >></a>
+          <a href="../../2019/01/13/java8/#more">more >></a>
         </p>
       
     
@@ -225,7 +293,7 @@
     <article id="post-js_toFixed_precision" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/01/11/js_toFixed_precision/" class="article-date">
+      <a href="../../2019/01/11/js_toFixed_precision/" class="article-date">
   	<time datetime="2019-01-11T08:49:57.000Z" itemprop="datePublished">2019-01-11</time>
 </a>
     </div>
@@ -239,7 +307,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/11/js_toFixed_precision/">
+      <a class="article-title" href="../../2019/01/11/js_toFixed_precision/">
         js中toFixed的精度问题
         
       </a>
@@ -259,7 +327,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js/">js</a></li></ul>
 	</div>
 
       
@@ -267,7 +335,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/01/11/js_toFixed_precision/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js中toFixed的精度问题">
+    <span id="../../2019/01/11/js_toFixed_precision/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js中toFixed的精度问题">
          &nbsp;
         view
     </span>
@@ -289,7 +357,7 @@
     <article id="post-java_DateUtil" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/01/09/java_DateUtil/" class="article-date">
+      <a href="../../2019/01/09/java_DateUtil/" class="article-date">
   	<time datetime="2019-01-09T14:02:09.000Z" itemprop="datePublished">2019-01-09</time>
 </a>
     </div>
@@ -303,7 +371,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/09/java_DateUtil/">
+      <a class="article-title" href="../../2019/01/09/java_DateUtil/">
         java-DateUtil 常用时间方法封装
         
       </a>
@@ -323,7 +391,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Java/">Java</a></li></ul>
 	</div>
 
       
@@ -331,7 +399,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/01/09/java_DateUtil/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-DateUtil 常用时间方法封装">
+    <span id="../../2019/01/09/java_DateUtil/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-DateUtil 常用时间方法封装">
          &nbsp;
         view
     </span>
@@ -342,7 +410,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/01/09/java_DateUtil/#more">more >></a>
+          <a href="../../2019/01/09/java_DateUtil/#more">more >></a>
         </p>
       
     
@@ -357,7 +425,7 @@
     <article id="w-java_Calendar" class="article article-type-w" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/01/06/java_Calendar/" class="article-date">
+      <a href="../../2019/01/06/java_Calendar/" class="article-date">
   	<time datetime="2019-01-06T13:02:19.000Z" itemprop="datePublished">2019-01-06</time>
 </a>
     </div>
@@ -371,7 +439,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/java_Calendar/">
+      <a class="article-title" href="../../2019/01/06/java_Calendar/">
         java-Calendar常用方法总结
         
       </a>
@@ -392,7 +460,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Java/">Java</a></li></ul>
 	</div>
 
       
@@ -400,7 +468,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/01/06/java_Calendar/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-Calendar常用方法总结">
+    <span id="../../2019/01/06/java_Calendar/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-Calendar常用方法总结">
          &nbsp;
         view
     </span>
@@ -411,7 +479,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/01/06/java_Calendar/#more">more >></a>
+          <a href="../../2019/01/06/java_Calendar/#more">more >></a>
         </p>
       
     
@@ -425,7 +493,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+      <a class="extend prev" rel="prev" href="../5/">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="page-number current">6</span>
     </nav>
   
 </div>
@@ -443,7 +511,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -459,7 +527,7 @@
 		open_in_new: false
 	}
 </script>
-<script src="/js/main.js"></script>
+<script src="../../js/main.js"></script>
 
 
 

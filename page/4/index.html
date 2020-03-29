@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="嘟嘟的博客">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:url" content="https://will-du.github.io/page/4/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -22,7 +22,7 @@
   
     <link rel="icon" href="/img/kenan.jpg">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   
   
 
@@ -32,7 +32,7 @@
   
       <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
 <script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
-<script src="/js/Counter.js"></script>
+<script src="../../js/Counter.js"></script>
   
 </head></html>
 <body>
@@ -88,9 +88,9 @@
 					<nav class="header-menu">
 						<ul>
 						
-							<li><a href="/">主页</a></li>
+							<li><a href="../../index.html">主页</a></li>
 				        
-							<li><a href="/archives">所有文章</a></li>
+							<li><a href="../../archives">所有文章</a></li>
 				        
 						</ul>
 					</nav>
@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Redis/" style="font-size: 12px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="/tags/分布式/" style="font-size: 12px;">分布式</a> <a href="/tags/数据库/" style="font-size: 16px;">数据库</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="/tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="/tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 12px;">git</a> <a href="../../tags/js/" style="font-size: 14px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -135,9 +135,9 @@
 			<nav class="header-menu">
 				<ul>
 				
-					<li><a href="/">主页</a></li>
+					<li><a href="../../index.html">主页</a></li>
 		        
-					<li><a href="/archives">所有文章</a></li>
+					<li><a href="../../archives">所有文章</a></li>
 		        
 		        <div class="clearfix"></div>
 				</ul>
@@ -152,10 +152,78 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-如何设计一个安全的对外接口" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/11/26/如何设计一个安全的对外接口/" class="article-date">
+  	<time datetime="2019-11-26T13:59:36.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/11/26/如何设计一个安全的对外接口/">
+        如何设计一个安全的对外接口
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/11/26/如何设计一个安全的对外接口/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个安全的对外接口">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/11/26/如何设计一个安全的对外接口/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-Mysql数据库优化" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/25/Mysql数据库优化/" class="article-date">
+      <a href="../../2019/11/25/Mysql数据库优化/" class="article-date">
   	<time datetime="2019-11-25T13:22:23.000Z" itemprop="datePublished">2019-11-25</time>
 </a>
     </div>
@@ -169,7 +237,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/Mysql数据库优化/">
+      <a class="article-title" href="../../2019/11/25/Mysql数据库优化/">
         Mysql数据库优化
         
       </a>
@@ -189,7 +257,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
 	</div>
 
       
@@ -197,7 +265,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/25/Mysql数据库优化/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mysql数据库优化">
+    <span id="../../2019/11/25/Mysql数据库优化/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Mysql数据库优化">
          &nbsp;
         view
     </span>
@@ -208,7 +276,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/25/Mysql数据库优化/#more">more >></a>
+          <a href="../../2019/11/25/Mysql数据库优化/#more">more >></a>
         </p>
       
     
@@ -223,7 +291,7 @@
     <article id="post-设计模式之工厂模式" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/24/设计模式之工厂模式/" class="article-date">
+      <a href="../../2019/11/24/设计模式之工厂模式/" class="article-date">
   	<time datetime="2019-11-24T10:40:03.000Z" itemprop="datePublished">2019-11-24</time>
 </a>
     </div>
@@ -237,7 +305,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/24/设计模式之工厂模式/">
+      <a class="article-title" href="../../2019/11/24/设计模式之工厂模式/">
         设计模式-工厂模式
         
       </a>
@@ -257,7 +325,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/设计模式/">设计模式</a></li></ul>
 	</div>
 
       
@@ -265,7 +333,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/24/设计模式之工厂模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式-工厂模式">
+    <span id="../../2019/11/24/设计模式之工厂模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式-工厂模式">
          &nbsp;
         view
     </span>
@@ -276,7 +344,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/24/设计模式之工厂模式/#more">more >></a>
+          <a href="../../2019/11/24/设计模式之工厂模式/#more">more >></a>
         </p>
       
     
@@ -291,7 +359,7 @@
     <article id="w-设计模式之单例模式" class="article article-type-w" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/16/设计模式之单例模式/" class="article-date">
+      <a href="../../2019/11/16/设计模式之单例模式/" class="article-date">
   	<time datetime="2019-11-16T11:30:38.000Z" itemprop="datePublished">2019-11-16</time>
 </a>
     </div>
@@ -305,7 +373,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/16/设计模式之单例模式/">
+      <a class="article-title" href="../../2019/11/16/设计模式之单例模式/">
         设计模式之单例模式
         
       </a>
@@ -328,7 +396,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/设计模式/">设计模式</a></li></ul>
 	</div>
 
       
@@ -336,7 +404,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/16/设计模式之单例模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式之单例模式">
+    <span id="../../2019/11/16/设计模式之单例模式/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="设计模式之单例模式">
          &nbsp;
         view
     </span>
@@ -347,7 +415,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/16/设计模式之单例模式/#more">more >></a>
+          <a href="../../2019/11/16/设计模式之单例模式/#more">more >></a>
         </p>
       
     
@@ -362,7 +430,7 @@
     <article id="post-linux常用命令" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/10/linux常用命令/" class="article-date">
+      <a href="../../2019/11/10/linux常用命令/" class="article-date">
   	<time datetime="2019-11-10T13:36:59.000Z" itemprop="datePublished">2019-11-10</time>
 </a>
     </div>
@@ -376,7 +444,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/10/linux常用命令/">
+      <a class="article-title" href="../../2019/11/10/linux常用命令/">
         linux常用命令
         
       </a>
@@ -396,7 +464,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Linux/">Linux</a></li></ul>
 	</div>
 
       
@@ -404,7 +472,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/10/linux常用命令/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="linux常用命令">
+    <span id="../../2019/11/10/linux常用命令/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="linux常用命令">
          &nbsp;
         view
     </span>
@@ -415,7 +483,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/10/linux常用命令/#more">more >></a>
+          <a href="../../2019/11/10/linux常用命令/#more">more >></a>
         </p>
       
     
@@ -430,7 +498,7 @@
     <article id="post-Spring" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/Spring/" class="article-date">
+      <a href="../../2019/11/07/Spring/" class="article-date">
   	<time datetime="2019-11-07T14:16:53.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     </div>
@@ -444,7 +512,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/Spring/">
+      <a class="article-title" href="../../2019/11/07/Spring/">
         面试题-spring
         
       </a>
@@ -464,7 +532,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -472,7 +540,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/Spring/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-spring">
+    <span id="../../2019/11/07/Spring/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-spring">
          &nbsp;
         view
     </span>
@@ -483,7 +551,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/Spring/#more">more >></a>
+          <a href="../../2019/11/07/Spring/#more">more >></a>
         </p>
       
     
@@ -498,7 +566,7 @@
     <article id="post-interview_dataBase" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/interview_dataBase/" class="article-date">
+      <a href="../../2019/11/07/interview_dataBase/" class="article-date">
   	<time datetime="2019-11-07T11:53:05.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     </div>
@@ -512,7 +580,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/interview_dataBase/">
+      <a class="article-title" href="../../2019/11/07/interview_dataBase/">
         面试题-数据库
         
       </a>
@@ -532,7 +600,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -540,7 +608,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/interview_dataBase/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-数据库">
+    <span id="../../2019/11/07/interview_dataBase/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-数据库">
          &nbsp;
         view
     </span>
@@ -551,7 +619,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/interview_dataBase/#more">more >></a>
+          <a href="../../2019/11/07/interview_dataBase/#more">more >></a>
         </p>
       
     
@@ -566,7 +634,7 @@
     <article id="post-interview_java_base" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/interview_java_base/" class="article-date">
+      <a href="../../2019/11/07/interview_java_base/" class="article-date">
   	<time datetime="2019-11-07T00:12:07.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     </div>
@@ -580,7 +648,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/interview_java_base/">
+      <a class="article-title" href="../../2019/11/07/interview_java_base/">
         面试题-java基础
         
       </a>
@@ -600,7 +668,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -608,7 +676,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/interview_java_base/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-java基础">
+    <span id="../../2019/11/07/interview_java_base/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-java基础">
          &nbsp;
         view
     </span>
@@ -619,7 +687,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/interview_java_base/#more">more >></a>
+          <a href="../../2019/11/07/interview_java_base/#more">more >></a>
         </p>
       
     
@@ -634,7 +702,7 @@
     <article id="post-集群-分布式环境下5种共享session处理策略" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/集群-分布式环境下5种共享session处理策略/" class="article-date">
+      <a href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/" class="article-date">
   	<time datetime="2019-11-07T00:11:45.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     </div>
@@ -648,7 +716,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/集群-分布式环境下5种共享session处理策略/">
+      <a class="article-title" href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/">
         集群/分布式环境下5种共享session处理策略
         
       </a>
@@ -668,7 +736,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -676,7 +744,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/集群-分布式环境下5种共享session处理策略/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="集群/分布式环境下5种共享session处理策略">
+    <span id="../../2019/11/07/集群-分布式环境下5种共享session处理策略/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="集群/分布式环境下5种共享session处理策略">
          &nbsp;
         view
     </span>
@@ -687,7 +755,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/集群-分布式环境下5种共享session处理策略/#more">more >></a>
+          <a href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/#more">more >></a>
         </p>
       
     
@@ -702,7 +770,7 @@
     <article id="post-interview_并发与线程" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/07/interview_并发与线程/" class="article-date">
+      <a href="../../2019/11/07/interview_并发与线程/" class="article-date">
   	<time datetime="2019-11-07T00:11:11.000Z" itemprop="datePublished">2019-11-07</time>
 </a>
     </div>
@@ -716,7 +784,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/interview_并发与线程/">
+      <a class="article-title" href="../../2019/11/07/interview_并发与线程/">
         面试题-并发与线程
         
       </a>
@@ -736,7 +804,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
       
@@ -744,7 +812,7 @@
       
         
 <div class="counter-tag counter">
-    <span id="/2019/11/07/interview_并发与线程/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-并发与线程">
+    <span id="../../2019/11/07/interview_并发与线程/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-并发与线程">
          &nbsp;
         view
     </span>
@@ -755,75 +823,7 @@
     </div>
       
         <p class="article-more-link">
-          <a href="/2019/11/07/interview_并发与线程/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-interview_nginx" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/11/07/interview_nginx/" class="article-date">
-  	<time datetime="2019-11-07T00:07:43.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/interview_nginx/">
-        面试题-nginx
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.什么是Nginx<br>&nbsp;&nbsp;&nbsp;&nbsp;Nginx是一个高性能的HTTP和反向代理服务器，及电子邮件代理服务器，同时也是一个非常高效的反向代理、负载平衡。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="/2019/11/07/interview_nginx/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-nginx">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/2019/11/07/interview_nginx/#more">more >></a>
+          <a href="../../2019/11/07/interview_并发与线程/#more">more >></a>
         </p>
       
     
@@ -837,7 +837,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="../3/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><a class="extend next" rel="next" href="../5/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -855,7 +855,7 @@
 </footer>
     </div>
     
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
 
 
 <script>
@@ -871,7 +871,7 @@
 		open_in_new: false
 	}
 </script>
-<script src="/js/main.js"></script>
+<script src="../../js/main.js"></script>
 
 
 
