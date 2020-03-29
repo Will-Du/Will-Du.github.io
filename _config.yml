@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://will-du.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -37,8 +37,8 @@ filename_case: 0
 render_drafts: false
 # 本地图片
 post_asset_folder: true
-relative_link: false
-future: true
+relative_link: true
+future: false
 highlight:
   enable: true
   line_number: true
