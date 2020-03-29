@@ -162,3 +162,21 @@ private class Itr implements Iterator<E> {
 }
 ```
 个人理解：当AbstractList调用clear，会removeRange方法，将0和长度传入，然后调用Itr判断是否有下一个元素，然后删除该元素。
+```java
+public boolean equals(Object o) {
+  if (o == this)
+    return true;
+  if (!(o instanceof List))
+    return false;
+
+  ListIterator<E> e1 = listIterator();
+  ListIterator<?> e2 = ((List<?>) o).listIterator();
+  while (e1.hasNext() && e2.hasNext()) {
+    E o1 = e1.next();
+    Object o2 = e2.next();
+    if (!(o1==null ? o2==null : o1.equals(o2)))
+      return false;
+    }
+  return !(e1.hasNext() || e2.hasNext());
+}
+```
