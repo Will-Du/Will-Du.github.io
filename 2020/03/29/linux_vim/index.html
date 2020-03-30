@@ -12,14 +12,14 @@
   <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim常用快捷键">
-<meta property="og:url" content="https://will-du.github.io/2020/03/29/linux_vim/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/linux_vim/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://will-du.github.io/2020/03/29/linux_vim/linux-vim.png">
-<meta property="og:updated_time" content="2020-03-29T09:29:53.313Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/29/linux_vim/linux-vim.png">
+<meta property="og:updated_time" content="2020-03-30T07:05:58.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim常用快捷键">
-<meta name="twitter:image" content="https://will-du.github.io/2020/03/29/linux_vim/linux-vim.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/29/linux_vim/linux-vim.png">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -202,7 +202,259 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2020/03/29/linux_vim/linux-vim.png" alt="vim中3中模式切换"></p>
+        <p><img src="/2020/03/29/linux_vim/linux-vim.png" alt="vim中3中模式切换"><br><a id="more"></a><br>一般模式下操作快捷键</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">快捷键</font></th>
+<th style="text-align:left"><font color="#0A0A0A">操作行为</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">h或←</td>
+<td style="text-align:left">向左移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">j或↓</td>
+<td style="text-align:left">向下移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">k或↑</td>
+<td style="text-align:left">向上移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">l或→</td>
+<td style="text-align:left">向右移动一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl+f或pageUp</td>
+<td style="text-align:left">屏幕向前移动一页</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl+b或pageDown</td>
+<td style="text-align:left">屏幕向后移动一页</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl+d</td>
+<td style="text-align:left">屏幕向前移动半页</td>
+</tr>
+<tr>
+<td style="text-align:left">ctrl+u</td>
+<td style="text-align:left">屏幕向后移动半页</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:left">光标移动到非空格符的下一列</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">光标移动到非空格符的上一列</td>
+</tr>
+<tr>
+<td style="text-align:left">n空格</td>
+<td style="text-align:left">按下数字n然后按空格，则光标会向右移动n个字符，如果该行字符数小于n，则光标继续从下行开始向右移动，一直到n</td>
+</tr>
+<tr>
+<td style="text-align:left">0或Shift+6</td>
+<td style="text-align:left">移动到本行行首</td>
+</tr>
+<tr>
+<td style="text-align:left">shift+4</td>
+<td style="text-align:left">移动到本行行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">光标移动到当前屏幕的最顶行</td>
+</tr>
+<tr>
+<td style="text-align:left">M</td>
+<td style="text-align:left">光标移动到当前屏幕的中央那一行</td>
+</tr>
+<tr>
+<td style="text-align:left">L</td>
+<td style="text-align:left">光标移动到当前屏幕的最底行</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">光标移动到文本的最末行</td>
+</tr>
+<tr>
+<td style="text-align:left">nG</td>
+<td style="text-align:left">移动到该文本的第n行</td>
+</tr>
+<tr>
+<td style="text-align:left">gg</td>
+<td style="text-align:left">移动到该文本的首行</td>
+</tr>
+<tr>
+<td style="text-align:left">n回车</td>
+<td style="text-align:left">光标向下移动n行</td>
+</tr>
+<tr>
+<td style="text-align:left">x，X</td>
+<td style="text-align:left">x为向后删除一个字符，X为向前删除一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">nx</td>
+<td style="text-align:left">向后删除n个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">dd</td>
+<td style="text-align:left">删除光标所在的那一行</td>
+</tr>
+<tr>
+<td style="text-align:left">ndd</td>
+<td style="text-align:left">删除光标所在的向下n行</td>
+</tr>
+<tr>
+<td style="text-align:left">d1G</td>
+<td style="text-align:left">删除光标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:left">dG</td>
+<td style="text-align:left">删除光标所在行到末行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:left">yy</td>
+<td style="text-align:left">复制光标所在的那行</td>
+</tr>
+<tr>
+<td style="text-align:left">nyy</td>
+<td style="text-align:left">复制从光标所在行起向下n行</td>
+</tr>
+<tr>
+<td style="text-align:left">p，P</td>
+<td style="text-align:left">p复制的数据从光标下一行粘贴，P则从光标上一行粘贴</td>
+</tr>
+<tr>
+<td style="text-align:left">y1G</td>
+<td style="text-align:left">复制光标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:left">yG</td>
+<td style="text-align:left">复制光标所在行到末行的所有数据</td>
+</tr>
+<tr>
+<td style="text-align:left">J</td>
+<td style="text-align:left">将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">还原过去的操作</td>
+</tr>
+</tbody>
+</table>
+<p>vim编辑模式下快捷键</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">快捷键</font></th>
+<th style="text-align:left"><font color="#0A0A0A">操作行为</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">在当前字符前插入字符</td>
+</tr>
+<tr>
+<td style="text-align:left">I</td>
+<td style="text-align:left">在当前行行首插入字符</td>
+</tr>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">在当前字符后插入字符</td>
+</tr>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left">在当前行行末插入字符</td>
+</tr>
+<tr>
+<td style="text-align:left">o</td>
+<td style="text-align:left">在当前行下插入新的一行</td>
+</tr>
+<tr>
+<td style="text-align:left">O</td>
+<td style="text-align:left">在当前行上插入新的一行</td>
+</tr>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left">替换光标所在的字符，只替换一次</td>
+</tr>
+<tr>
+<td style="text-align:left">R</td>
+<td style="text-align:left">一直替换光标所在的字符，一直到按下ESC</td>
+</tr>
+</tbody>
+</table>
+<p>vim命令行模式下快捷键</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">快捷键</font></th>
+<th style="text-align:left"><font color="#0A0A0A">操作行为</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">:w</td>
+<td style="text-align:left">将编辑过的文本保存</td>
+</tr>
+<tr>
+<td style="text-align:left">:w!</td>
+<td style="text-align:left">若文本属性为只读时，强制保存</td>
+</tr>
+<tr>
+<td style="text-align:left">:q</td>
+<td style="text-align:left">退出vim</td>
+</tr>
+<tr>
+<td style="text-align:left">:q!</td>
+<td style="text-align:left">不管编辑或未编辑都不保存，退出</td>
+</tr>
+<tr>
+<td style="text-align:left">:wq</td>
+<td style="text-align:left">保存，退出</td>
+</tr>
+<tr>
+<td style="text-align:left">:e!</td>
+<td style="text-align:left">将文档还原成最原始状态</td>
+</tr>
+<tr>
+<td style="text-align:left">ZZ</td>
+<td style="text-align:left">若文档没有改动，则不储存离开；若文档改动过，则储存后离开，等同于:wq</td>
+</tr>
+<tr>
+<td style="text-align:left">:w [filename]</td>
+<td style="text-align:left">编辑后的文档另存为filename</td>
+</tr>
+<tr>
+<td style="text-align:left">:r [filename]</td>
+<td style="text-align:left">在当前光标所在行的下面读入filename文档的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">:set nu</td>
+<td style="text-align:left">在每行的行首显示行号</td>
+</tr>
+<tr>
+<td style="text-align:left">:set nonu</td>
+<td style="text-align:left">取消行号</td>
+</tr>
+<tr>
+<td style="text-align:left">n1,n2 w [filename]</td>
+<td style="text-align:left">将n1到n2的内容另存为filename这个文档</td>
+</tr>
+<tr>
+<td style="text-align:left">:! command</td>
+<td style="text-align:left">暂时离开vim运行某个linux命令</td>
+</tr>
+<tr>
+<td style="text-align:left">/string</td>
+<td style="text-align:left">搜索，搜索下一处为n，搜索上一处为N</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
