@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 12px;">git</a> <a href="../../tags/js/" style="font-size: 14px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 12px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.33px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.67px;">git</a> <a href="../../tags/js/" style="font-size: 15px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 13.33px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16.67px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.67px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,74 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-interview_并发与线程" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/11/07/interview_并发与线程/" class="article-date">
+  	<time datetime="2019-11-07T00:11:11.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/11/07/interview_并发与线程/">
+        面试题-并发与线程
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: #6A6AFF">1.线程有那些状态？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;新建状态：当用new操作符创建一个线程时。此时程序还没有开始运行线程中的代码。<br>&nbsp;&nbsp;&nbsp;&nbsp;就绪状态：一个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法。当start()方法返回后，线程就处于就绪状态。处于就绪状态的线程并不一定立即运行run()方法，线程还必须同其他线程竞争CPU时间，只有获得CPU时间才可以运行线程。因为在单CPU的计算机系统中，不可能同时运行多个线程，一个时刻仅有一个线程处于运行状态。因此此时可能有多个线程处于就绪状态。对多个处于就绪状态的线程是由Java运行时系统的线程调度程序来调度的。<br>&nbsp;&nbsp;&nbsp;&nbsp;运行状态：当线程获得CPU时间后，它才进入运行状态，真正开始执行run()方法<br>&nbsp;&nbsp;&nbsp;&nbsp;阻塞状态：所谓阻塞状态是正在运行的线程没有运行结束，暂时让出CPU，这时其他处于就绪状态的线程就可以获得CPU时间，进入运行状态。线程运行过程中，可能由于各种原因进入阻塞状态：①线程通过调用sleep方法进入睡眠状态；②线程调用一个在I/O上被阻塞的操作，即该操作在输入输出操作完成之前不会返回到它的调用者；③线程试图得到一个锁，而该锁正被其他线程持有；④线程在等待某个触发条件。<br>&nbsp;&nbsp;&nbsp;&nbsp;死亡状态：有两个原因会导致线程死亡：①run方法正常退出而自然死亡；②一个未捕获的异常终止了run方法而使线程猝死；<br>&nbsp;&nbsp;&nbsp;&nbsp;等待状态：或者叫条件等待状态，当线程的运行条件不满足时，通过锁的条件等待机制(调用锁对象的wait()或显示锁条件对象的wait()方法)让线程进入等待状态。处于等待状态的线程将不会被CPU执行，除非线程的运行条件得到满足后，其可被其它线程唤醒，进入阻塞状态。调用不带超时的Thread.join()方法也会进入等待状态。<br>&nbsp;&nbsp;&nbsp;&nbsp;限时等待状态：是等待状态的一种特例，线程在等待时我们将设定等待时间，如超过了我们设定的时间，等待线程将自动唤醒进入阻塞状态或就绪状态。在调用Thread.sleep()方法、带有超时设定的Object.wait()、带有超时设定的thread.join()方法等，线程会进入限时等待状态。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/11/07/interview_并发与线程/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="面试题-并发与线程">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/11/07/interview_并发与线程/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-interview_nginx" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -731,72 +799,6 @@
         
 <div class="counter-tag counter">
     <span id="../../2019/01/24/js中两个集合求并集，交集，差集/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js中两个集合求并集，交集，差集">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-jquery_String_length" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/01/15/jquery_String_length/" class="article-date">
-  	<time datetime="2019-01-15T08:18:13.000Z" itemprop="datePublished">2019-01-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/01/15/jquery_String_length/">
-        jquery判断输入框的值所占的字节
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="判断输入框的值所占的字节"><a href="#判断输入框的值所占的字节" class="headerlink" title="判断输入框的值所占的字节"></a>判断输入框的值所占的字节</h3><p>Oracle中字符集为UTF-8时，一个汉字占3个字节，因此有时候需要限制栏位长度，防止存储数据报异常。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getByteLen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> value = $(<span class="string">"#id"</span>).val();</span><br><span class="line">	<span class="keyword">var</span> len = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">		<span class="keyword">var</span> a = value.charAt(i);</span><br><span class="line">	<span class="comment">// 中文为3个字节，其余字符占2个字节</span></span><br><span class="line">	<span class="keyword">if</span> (a.match(<span class="regexp">/[^\x00-\xff]/ig</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">		len += <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		len += <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JQuery/">JQuery</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/01/15/jquery_String_length/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="jquery判断输入框的值所占的字节">
          &nbsp;
         view
     </span>

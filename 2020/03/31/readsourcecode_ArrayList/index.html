@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>样式覆盖的问题 | 嘟嘟的博客</title>
+  <title>小吴读源码记录之ArrayList | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
-<meta name="keywords" content="CSS">
+  <meta name="description" content="123456789public ArrayList(int initialCapacity) &amp;#123;  if (initialCapacity &amp;gt; 0) &amp;#123;    this.elementData = new Object[initialCapacity];  &amp;#125; else if (initialCapacity == 0) &amp;#123;    this.eleme">
+<meta name="keywords" content="sourcecode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="样式覆盖的问题">
-<meta property="og:url" content="http://yoursite.com/2019/03/10/样式覆盖的问题/index.html">
+<meta property="og:title" content="小吴读源码记录之ArrayList">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/readsourcecode_ArrayList/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
+<meta property="og:description" content="123456789public ArrayList(int initialCapacity) &amp;#123;  if (initialCapacity &amp;gt; 0) &amp;#123;    this.elementData = new Object[initialCapacity];  &amp;#125; else if (initialCapacity == 0) &amp;#123;    this.eleme">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-08T11:17:50.781Z">
+<meta property="og:updated_time" content="2020-03-31T07:53:11.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="样式覆盖的问题">
-<meta name="twitter:description" content="前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.官方表述的CSS样式优先级如下：1通用选择器（*） &amp;lt; 元素(类型)选择器 &amp;lt; 类选择器 &amp;lt; 属性选择器 &amp;lt; 伪类 &amp;lt; ID 选择器 &amp;lt; 内联样式 !important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高">
+<meta name="twitter:title" content="小吴读源码记录之ArrayList">
+<meta name="twitter:description" content="123456789public ArrayList(int initialCapacity) &amp;#123;  if (initialCapacity &amp;gt; 0) &amp;#123;    this.elementData = new Object[initialCapacity];  &amp;#125; else if (initialCapacity == 0) &amp;#123;    this.eleme">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-样式覆盖的问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-readsourcecode_ArrayList" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2019-03-10T02:25:24.000Z" itemprop="datePublished">2019-03-10</time>
+  	<time datetime="2020-03-31T07:49:06.000Z" itemprop="datePublished">2020-03-31</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      样式覆盖的问题
+      小吴读源码记录之ArrayList
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/CSS/">CSS</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/sourcecode/">sourcecode</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="样式覆盖的问题">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之ArrayList">
          &nbsp;
         view
     </span>
@@ -203,8 +203,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前端框架有时会导致自己写的的样式被覆盖掉，这时需要在写的样式后面加!important即可.<br>官方表述的CSS样式优先级如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用选择器（*） &lt; 元素(类型)选择器 &lt; 类选择器 &lt; 属性选择器 &lt; 伪类 &lt; ID 选择器 &lt; 内联样式</span><br></pre></td></tr></table></figure></p>
-<p>!important是CSS1就定义的语法，作用是提高指定样式规则的应用优先权，添加!important即优先级最高</p>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span> + initialCapacity);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。</p>
 
       
     </div>
@@ -214,18 +214,9 @@
     
 <nav id="article-nav">
   
-    <a href="../mysql_sum(null)_deal/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          mysql中sum结果为null的处理方式
-        
-      </div>
-    </a>
   
-  
-    <a href="../../../01/27/js_Number_precision/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js中Number精度问题</div>
+    <a href="../../29/linux_vim/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vim常用快捷键</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
