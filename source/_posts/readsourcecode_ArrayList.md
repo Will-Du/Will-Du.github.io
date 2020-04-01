@@ -15,6 +15,7 @@ public ArrayList(int initialCapacity) {
 }
 ```
 个人理解：当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。
+<!-- more -->
 ```java
 private void ensureCapacityInternal(int minCapacity) {
   ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
@@ -65,3 +66,46 @@ public E remove(int index) {
 }
 ```
 个人理解：System.arraycopy，第一个elementData为sourceData，index+1为取sourceData的下标，第二个elementData为destData，index为将替换destData[index]元素的下标，numMoved为取sourceData[index]与之后de共numMoved元素。最后将取出元素替换到destData里。
+```java
+public boolean remove(Object o) {
+  if (o == null) {
+    for (int index = 0; index < size; index++)
+      if (elementData[index] == null) {
+        fastRemove(index);
+        return true;
+      }
+  } else {
+    for (int index = 0; index < size; index++)
+      if (o.equals(elementData[index])) {
+        fastRemove(index);
+        return true;
+      }
+  }
+  return false;
+}
+
+private void fastRemove(int index) {
+  modCount++;
+  int numMoved = size - index - 1;
+  if (numMoved > 0)
+    System.arraycopy(elementData, index+1, elementData, index, numMoved);
+  elementData[--size] = null; // clear to let GC do its work
+}
+```
+个人理解：如果删除元素，会循环匹配该元素，如果匹配到，直接删除第一个后直接返回结果。若是迭代中使用remove则会抛出异常。
+```java
+public void forEach(Consumer<? super E> action) {
+  Objects.requireNonNull(action);
+  final int expectedModCount = modCount;
+  @SuppressWarnings("unchecked")
+  final E[] elementData = (E[]) this.elementData;
+  final int size = this.size;
+  for (int i=0; modCount == expectedModCount && i < size; i++) {
+    action.accept(elementData[i]);
+  }
+  if (modCount != expectedModCount) {
+    throw new ConcurrentModificationException();
+  }
+}
+```
+个人理解：在迭代中，元素的个数是不能进行修改的，即不能add跟remove。

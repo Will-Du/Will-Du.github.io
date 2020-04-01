@@ -161,7 +161,8 @@ private class Itr implements Iterator<E> {
   }
 }
 ```
-个人理解：当AbstractList调用clear，会removeRange方法，将0和长度传入，然后调用Itr判断是否有下一个元素，然后删除该元素。
+个人理解：1.当AbstractList调用clear，会removeRange方法，将0和长度传入，然后调用Itr判断是否有下一个元素，然后删除该元素。
+2.迭代时remove()，add()会调用checkForComodification()，若是在for(T t : list)里面remove则会抛出异常。即迭代该集合时不可remove元素。
 ```java
 public boolean equals(Object o) {
   if (o == this)
