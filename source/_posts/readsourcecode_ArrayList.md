@@ -14,7 +14,8 @@ public ArrayList(int initialCapacity) {
   }
 }
 ```
-个人理解：当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。
+个人理解：1.当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。
+2.由此可以看出ArrayList的底层是数组，所以具有查询快，增删慢的特点。
 <!-- more -->
 ```java
 private void ensureCapacityInternal(int minCapacity) {
