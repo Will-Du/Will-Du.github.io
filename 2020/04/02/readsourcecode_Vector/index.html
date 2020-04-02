@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>jquery判断输入框的值所占的字节 | 嘟嘟的博客</title>
+  <title>小吴读源码记录之Vector | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="判断输入框的值所占的字节Oracle中字符集为UTF-8时，一个汉字占3个字节，因此有时候需要限制栏位长度，防止存储数据报异常。 123456789101112131415function getByteLen() &amp;#123;	var value = $(&quot;#id&quot;).val();	var len = 0;	for (var i = 0; i &amp;lt; value.length; i++) &amp;#">
-<meta name="keywords" content="JQuery">
+  <meta name="description" content="1234567public Vector(int initialCapacity, int capacityIncrement) &amp;#123;  super();  if (initialCapacity &amp;lt; 0)    throw new IllegalArgumentException(&quot;Illegal Capacity: &quot; + initialCapacity);  this.elem">
+<meta name="keywords" content="sourcecode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jquery判断输入框的值所占的字节">
-<meta property="og:url" content="http://yoursite.com/2019/01/15/jquery_String_length/index.html">
+<meta property="og:title" content="小吴读源码记录之Vector">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/readsourcecode_Vector/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="判断输入框的值所占的字节Oracle中字符集为UTF-8时，一个汉字占3个字节，因此有时候需要限制栏位长度，防止存储数据报异常。 123456789101112131415function getByteLen() &amp;#123;	var value = $(&quot;#id&quot;).val();	var len = 0;	for (var i = 0; i &amp;lt; value.length; i++) &amp;#">
+<meta property="og:description" content="1234567public Vector(int initialCapacity, int capacityIncrement) &amp;#123;  super();  if (initialCapacity &amp;lt; 0)    throw new IllegalArgumentException(&quot;Illegal Capacity: &quot; + initialCapacity);  this.elem">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-08T11:12:57.088Z">
+<meta property="og:updated_time" content="2020-04-02T11:35:59.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jquery判断输入框的值所占的字节">
-<meta name="twitter:description" content="判断输入框的值所占的字节Oracle中字符集为UTF-8时，一个汉字占3个字节，因此有时候需要限制栏位长度，防止存储数据报异常。 123456789101112131415function getByteLen() &amp;#123;	var value = $(&quot;#id&quot;).val();	var len = 0;	for (var i = 0; i &amp;lt; value.length; i++) &amp;#">
+<meta name="twitter:title" content="小吴读源码记录之Vector">
+<meta name="twitter:description" content="1234567public Vector(int initialCapacity, int capacityIncrement) &amp;#123;  super();  if (initialCapacity &amp;lt; 0)    throw new IllegalArgumentException(&quot;Illegal Capacity: &quot; + initialCapacity);  this.elem">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-jquery_String_length" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-readsourcecode_Vector" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2019-01-15T08:18:13.000Z" itemprop="datePublished">2019-01-15</time>
+  	<time datetime="2020-04-02T08:18:35.000Z" itemprop="datePublished">2020-04-02</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      jquery判断输入框的值所占的字节
+      小吴读源码记录之Vector
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/JQuery/">JQuery</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/sourcecode/">sourcecode</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="jquery判断输入框的值所占的字节">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之Vector">
          &nbsp;
         view
     </span>
@@ -203,8 +203,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="判断输入框的值所占的字节"><a href="#判断输入框的值所占的字节" class="headerlink" title="判断输入框的值所占的字节"></a>判断输入框的值所占的字节</h3><p>Oracle中字符集为UTF-8时，一个汉字占3个字节，因此有时候需要限制栏位长度，防止存储数据报异常。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getByteLen</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> value = $(<span class="string">"#id"</span>).val();</span><br><span class="line">	<span class="keyword">var</span> len = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">		<span class="keyword">var</span> a = value.charAt(i);</span><br><span class="line">	<span class="comment">// 中文为3个字节，其余字符占2个字节</span></span><br><span class="line">	<span class="keyword">if</span> (a.match(<span class="regexp">/[^\x00-\xff]/ig</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">		len += <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		len += <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">int</span> capacityIncrement)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>();</span><br><span class="line">  <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span> + initialCapacity);</span><br><span class="line">  <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">  <span class="keyword">this</span>.capacityIncrement = capacityIncrement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：由此可见，Vector底层为数组，所以具有查询快，读写慢的特点。<br><a id="more"></a></p>
 
       
     </div>
@@ -214,18 +214,9 @@
     
 <nav id="article-nav">
   
-    <a href="../../24/js中两个集合求并集，交集，差集/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          js中两个集合求并集，交集，差集
-        
-      </div>
-    </a>
   
-  
-    <a href="../jquery_validate/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jquery自定义验证</div>
+    <a href="../readsourcecode_LinkedList/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小吴读源码记录之LinkedList</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   

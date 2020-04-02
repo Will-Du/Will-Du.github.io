@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="tags/Java/" style="font-size: 18.33px;">Java</a> <a href="tags/Linux/" style="font-size: 10px;">Linux</a> <a href="tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="tags/Spring/" style="font-size: 10px;">Spring</a> <a href="tags/git/" style="font-size: 11.67px;">git</a> <a href="tags/js/" style="font-size: 15px;">js</a> <a href="tags/linux/" style="font-size: 10px;">linux</a> <a href="tags/sourcecode/" style="font-size: 13.33px;">sourcecode</a> <a href="tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="tags/数据库/" style="font-size: 16.67px;">数据库</a> <a href="tags/算法/" style="font-size: 10px;">算法</a> <a href="tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="tags/设计模式/" style="font-size: 11.67px;">设计模式</a> <a href="tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="tags/Java/" style="font-size: 18px;">Java</a> <a href="tags/Linux/" style="font-size: 10px;">Linux</a> <a href="tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="tags/Redis/" style="font-size: 12px;">Redis</a> <a href="tags/Spring/" style="font-size: 10px;">Spring</a> <a href="tags/git/" style="font-size: 12px;">git</a> <a href="tags/js/" style="font-size: 14px;">js</a> <a href="tags/linux/" style="font-size: 10px;">linux</a> <a href="tags/sourcecode/" style="font-size: 14px;">sourcecode</a> <a href="tags/分布式/" style="font-size: 12px;">分布式</a> <a href="tags/数据库/" style="font-size: 16px;">数据库</a> <a href="tags/算法/" style="font-size: 10px;">算法</a> <a href="tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -152,6 +152,144 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-readsourcecode_Vector" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="2020/04/02/readsourcecode_Vector/" class="article-date">
+  	<time datetime="2020-04-02T08:18:35.000Z" itemprop="datePublished">2020-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/02/readsourcecode_Vector/">
+        小吴读源码记录之Vector
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">int</span> capacityIncrement)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>();</span><br><span class="line">  <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span> + initialCapacity);</span><br><span class="line">  <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">  <span class="keyword">this</span>.capacityIncrement = capacityIncrement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：由此可见，Vector底层为数组，所以具有查询快，读写慢的特点。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/sourcecode/">sourcecode</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="2020/04/02/readsourcecode_Vector/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之Vector">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="2020/04/02/readsourcecode_Vector/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-readsourcecode_LinkedList" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="2020/04/02/readsourcecode_LinkedList/" class="article-date">
+  	<time datetime="2020-04-02T08:10:41.000Z" itemprop="datePublished">2020-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/04/02/readsourcecode_LinkedList/">
+        小吴读源码记录之LinkedList
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>();</span><br><span class="line">  addAll(c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> addAll(size, c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span> index, Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">  checkPositionIndex(index);</span><br><span class="line"></span><br><span class="line">  Object[] a = c.toArray();</span><br><span class="line">  <span class="keyword">int</span> numNew = a.length;</span><br><span class="line">  <span class="keyword">if</span> (numNew == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">  Node&lt;E&gt; pred, succ;</span><br><span class="line">  <span class="keyword">if</span> (index == size) &#123;</span><br><span class="line">    succ = <span class="keyword">null</span>;</span><br><span class="line">    pred = last;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    succ = node(index);</span><br><span class="line">    pred = succ.prev;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (Object o : a) &#123;</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>) </span><br><span class="line">		E e = (E) o;</span><br><span class="line">    Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(pred, e, <span class="keyword">null</span>);</span><br><span class="line">    <span class="keyword">if</span> (pred == <span class="keyword">null</span>)</span><br><span class="line">      first = newNode;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      pred.next = newNode;</span><br><span class="line">    pred = newNode;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (succ == <span class="keyword">null</span>) &#123;</span><br><span class="line">    last = pred;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    pred.next = succ;</span><br><span class="line">    succ.prev = pred;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  size += numNew;</span><br><span class="line">  modCount++;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">checkPositionIndex</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!isPositionIndex(index))</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(outOfBoundsMsg(index));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：由此可见LinkedList底层为链表，所以具有查询慢，读写快的特点。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/sourcecode/">sourcecode</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="2020/04/02/readsourcecode_LinkedList/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之LinkedList">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="2020/04/02/readsourcecode_LinkedList/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-readsourcecode_ArrayList" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -182,7 +320,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span> + initialCapacity);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>个人理解：当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。<br></p>
+<p>个人理解：1.当入参大于0时，则声明一个长度为入参的集合；当入参等于0时，则声明一个空数组{}；当入参小于0，则抛出异常。<br>2.由此可以看出ArrayList的底层是数组，所以具有查询快，增删慢的特点。<br></p>
       
     </div>
     
@@ -688,147 +826,6 @@
       
         <p class="article-more-link">
           <a href="2020/02/04/java_lambda/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-java_null" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2020/02/01/java_null/" class="article-date">
-  	<time datetime="2020-02-01T11:04:44.000Z" itemprop="datePublished">2020-02-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/02/01/java_null/">
-        如何优雅处理代码中Null值引起的BUG?
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b style="color: orangered">写在前面</b><br>&nbsp;&nbsp;&nbsp;&nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。<br>&nbsp;&nbsp;&nbsp;&nbsp;有时候，更可怕的是系统因为这些空值的情况，会抛出空指针异常，导致业务系统发生问题。此篇文章，总结了几种关于空值的处理手法，希望对读者有帮助。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="2020/02/01/java_null/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何优雅处理代码中Null值引起的BUG?">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="2020/02/01/java_null/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-java_midengxing" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2020/01/30/java_midengxing/" class="article-date">
-  	<time datetime="2020-01-30T13:33:47.000Z" itemprop="datePublished">2020-01-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/01/30/java_midengxing/">
-        高并发下的接口幂等性如何实现
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;实际系统中有很多操作，是不管做多少次，都应该产生一样的效果或返回一样的结果。例如：</p>
-<ul>
-<li>前端重复提交选中的数据，应该后台只产生对应这个数据的一个反应结果。</li>
-<li>我们发起一笔付款请求，应该只扣用户账户一次钱，当遇到网络重发或系统BUG重发，也应该只扣一次钱。</li>
-<li>发送消息，也应该只发一次，同样的短信发给用户，用户会哭的</li>
-<li>创建业务订单，一次业务请求只能创建一个，创建多个就会出大问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;等等很多重要的情况，这些逻辑都需要幂等的特性来支持。</li></ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="2020/01/30/java_midengxing/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="高并发下的接口幂等性如何实现">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="2020/01/30/java_midengxing/#more">more >></a>
         </p>
       
     

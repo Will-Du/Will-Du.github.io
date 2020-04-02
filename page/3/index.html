@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.33px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.67px;">git</a> <a href="../../tags/js/" style="font-size: 15px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 13.33px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16.67px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.67px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../tags/git/" style="font-size: 12px;">git</a> <a href="../../tags/js/" style="font-size: 14px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/sourcecode/" style="font-size: 14px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,142 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-nginx_conf" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/12/28/nginx_conf/" class="article-date">
+  	<time datetime="2019-12-28T07:03:25.000Z" itemprop="datePublished">2019-12-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/12/28/nginx_conf/">
+        Nginx配置参数说明
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Nginx配置参数中文详细说明:<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/12/28/nginx_conf/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Nginx配置参数说明">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/12/28/nginx_conf/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-dataBase_Sharding" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/12/24/dataBase_Sharding/" class="article-date">
+  	<time datetime="2019-12-24T01:31:49.000Z" itemprop="datePublished">2019-12-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/12/24/dataBase_Sharding/">
+        数据库的分库分表
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数据切分"><a href="#数据切分" class="headerlink" title="数据切分"></a>数据切分</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;关系型数据库本身比较容易成为系统瓶颈，单机储存容量、连接数、处理能力都有限。<br>&nbsp;&nbsp;&nbsp;&nbsp;当单表的数据量达到1000W或100G以后，由于查询维度较多，即使添加主从库、优化索引，做很多操作时性能仍下降严重。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时就要考虑对其进行切分了，切分的目的就在于减少数据库的负担，缩短查询时间。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据库分布式核心内容无非就是数据切分(Sharding)，以及切分后对数据的定位、整合。<br>&nbsp;&nbsp;&nbsp;&nbsp;数据切分就是将数据分散存储到多个数据库中，使得单一数据库中的数据量变小，通过扩充主机的数量缓解单一数据库的性能问题，从而达到提升数据库操作性能的目的。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/12/24/dataBase_Sharding/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="数据库的分库分表">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/12/24/dataBase_Sharding/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-interview_RPC" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -685,143 +821,6 @@
       
         <p class="article-more-link">
           <a href="../../2019/12/10/git_ssh_key/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-oracle_getUser" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/12/09/oracle_getUser/" class="article-date">
-  	<time datetime="2019-12-09T07:17:55.000Z" itemprop="datePublished">2019-12-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/12/09/oracle_getUser/">
-        oracle如何查看当前有哪些用户连接到数据库
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询用户会话</span></span><br><span class="line"><span class="keyword">SELECT</span> USERNAME,<span class="built_in">SERIAL</span><span class="comment">#,SID,STATUS FROM V$SESSION;</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	A.SID,B.SPID,A.SERIAL<span class="comment">#,A.MACHINE,A.PREV_EXEC_START,A.STATUS,C.SQL_TEXT</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	V$<span class="keyword">SESSION</span> A,V$PROCESS B,V$<span class="keyword">SQL</span> C</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	A.PADDR = B.ADDR</span><br><span class="line">	<span class="keyword">AND</span> A.PREV_SQL_ID = C.SQL_ID</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> A.PREV_EXEC_START;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/12/09/oracle_getUser/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="oracle如何查看当前有哪些用户连接到数据库">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/12/09/oracle_getUser/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-mybatis_oracle" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/12/05/mybatis_oracle/" class="article-date">
-  	<time datetime="2019-12-05T11:16:53.000Z" itemprop="datePublished">2019-12-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/12/05/mybatis_oracle/">
-        mybatis中oracle的批量新增与批量更新
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;mybatis中mysql的批量插入比较常规，但oracle的批量有所不同，若按照mysql的方式书写，则会报“命令为执行结束”的错误。所以一下列出oracle的批量新增与修改的几种方式。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量新增第一种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"batchInsert"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	INSERT INTO STUDENT(ID,NAME)</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span> <span class="attr">separator</span>=<span class="string">"UNION ALL"</span>&gt;</span></span><br><span class="line">		(</span><br><span class="line">		SELECT </span><br><span class="line">			#&#123;student.id&#125;,</span><br><span class="line">			#&#123;student.name&#125;</span><br><span class="line">		FROM</span><br><span class="line">			dual</span><br><span class="line">		)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：表名之后没有VALUES。</label><br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/12/05/mybatis_oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/12/05/mybatis_oracle/#more">more >></a>
         </p>
       
     
