@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>int和Integer区别 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="int和Integer区别&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.Integer是int的包装类，int则是java的一种基本数据类型。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2.Integer变量必须实例化后才能使用，而int变量不需要。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3.Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="int和Integer区别">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/interview_intAndInteger/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="int和Integer区别&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.Integer是int的包装类，int则是java的一种基本数据类型。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2.Integer变量必须实例化后才能使用，而int变量不需要。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3.Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-06T11:50:54.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="int和Integer区别">
+<meta name="twitter:description" content="int和Integer区别&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.Integer是int的包装类，int则是java的一种基本数据类型。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2.Integer变量必须实例化后才能使用，而int变量不需要。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3.Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="../../../../js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../../../tags/JQuery/" style="font-size: 12px;">JQuery</a> <a href="../../../../tags/Java/" style="font-size: 18px;">Java</a> <a href="../../../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../../../tags/Redis/" style="font-size: 12px;">Redis</a> <a href="../../../../tags/Spring/" style="font-size: 10px;">Spring</a> <a href="../../../../tags/git/" style="font-size: 12px;">git</a> <a href="../../../../tags/js/" style="font-size: 14px;">js</a> <a href="../../../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../../../tags/resourcecode/" style="font-size: 12px;">resourcecode</a> <a href="../../../../tags/sourcecode/" style="font-size: 14px;">sourcecode</a> <a href="../../../../tags/分布式/" style="font-size: 12px;">分布式</a> <a href="../../../../tags/数据库/" style="font-size: 16px;">数据库</a> <a href="../../../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../../../tags/系统设计/" style="font-size: 10px;">系统设计</a> <a href="../../../../tags/设计模式/" style="font-size: 12px;">设计模式</a> <a href="../../../../tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-interview_intAndInteger" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+  	<time datetime="2020-04-06T11:02:12.000Z" itemprop="datePublished">2020-04-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      int和Integer区别
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/面试题/">面试题</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="int和Integer区别">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color:orangered">int和Integer区别</b><br>&nbsp;&nbsp;&nbsp;&nbsp;1.Integer是int的包装类，int则是java的一种基本数据类型。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.Integer变量必须实例化后才能使用，而int变量不需要。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此对象；而int则是直接存储数据值。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.Integer默认值是null，int默认值是0。<br><a id="more"></a><br><b style="color:orangered">关于Integer和int的比较</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">1.由于Integer变量实际上是对一个Integer对象的引用，所以两个通过new生成的Integer变量永远是不相等的。(因为new生成的是两个对象，其内存地址不同)</b><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer x = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">Integer y = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">System.err.print(x == y); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">2.Integer变量和int变量比较时，只要两个变量的是相等的，其结果为true。(因为包装类Integer和基本数据类型int比较时，java会自动拆包为int，然后进行比较，实际上就变为了两个int变量的比较)</b><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer x = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line"><span class="keyword">int</span> y = <span class="number">100</span>;</span><br><span class="line">System.err.print(x == y); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">200</span>)</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">200</span>;</span><br><span class="line">System.err.print(a == b); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">3.非new生成的Integer变量和new Integer()生成的变量比较时，结果为false.(因为非new生成的Integer变量指向的是java常量池中的对象，而new Integer()生成的变量指向堆中新建的对象，两者在内存中的地址不同)</b><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer x = <span class="keyword">new</span> Integer(<span class="number">100</span>);</span><br><span class="line">Integer y = <span class="number">100</span>;</span><br><span class="line">System.err.print(x == y); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">4.对于两个非new生成的Integer对象，进行比较时，如果两个变量的值在区间-128到127之间，则比较结果为true，如果两个变量的值不在此区间，则比较结果为false</b><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Integer x = <span class="number">100</span>;</span><br><span class="line">Integer y = <span class="number">100</span>;</span><br><span class="line">System.err.print(x == y); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Integer a = <span class="number">128</span>;</span><br><span class="line">Integer b = <span class="number">128</span>;</span><br><span class="line">System.err.print(a == b); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java在编译Integer x = 100时，会翻译成为Integer x = Integer.valueOf(100);,而java API中对Integer类型的valueOf的定义如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">  <span class="keyword">if</span>(i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high) &#123;</span><br><span class="line">    <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];	</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java对于-128到127之间的数，会进行缓存，Integer i = 127时，会将127进行缓存，下次再写Integer j = 127时，就会一直从缓存中取，就不会new了。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../05/readsourcecode_HashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小吴读源码记录之HashMap</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
