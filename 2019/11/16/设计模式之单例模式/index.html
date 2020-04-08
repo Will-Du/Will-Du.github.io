@@ -9,18 +9,18 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 懒汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
+  <meta name="description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 饿汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式之单例模式">
 <meta property="og:url" content="http://yoursite.com/2019/11/16/设计模式之单例模式/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 懒汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
+<meta property="og:description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 饿汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-08T11:17:30.071Z">
+<meta property="og:updated_time" content="2020-04-08T05:09:15.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式之单例模式">
-<meta name="twitter:description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 懒汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
+<meta name="twitter:description" content="什么是单例模式 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:  懒汉式：指全局的单例实例在第一次被使用时构建。 饿汉式：指全局的单例实例在类装载时构建。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -206,7 +206,7 @@
         <p><strong> 什么是单例模式 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;单例对象的类必须保证只有一个实例存在。对单例的实现可以分为2大类：懒汉式和饿汉式，他们区别在于:</p>
 <ul>
 <li>懒汉式：指全局的单例实例在第一次被使用时构建。</li>
-<li>懒汉式：指全局的单例实例在类装载时构建。<br>&nbsp;&nbsp;&nbsp;&nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。<a id="more"></a>
+<li>饿汉式：指全局的单例实例在类装载时构建。<br>&nbsp;&nbsp;&nbsp;&nbsp;从区别看，日常使用较多的应该是懒汉式的单例，毕竟按需加载才能做到资源的最大化利用。<a id="more"></a>
 <strong> 懒汉式单例 </strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// version:1.1 最简单版本</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Single instance;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">			instance = <span class="keyword">new</span> Single();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
