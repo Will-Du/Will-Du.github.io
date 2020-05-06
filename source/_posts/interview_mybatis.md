@@ -157,7 +157,7 @@ public List<Student> findStudents(@param("name") String name, @param("age") int 
 		</collection>
 	</resultMap>
 	<!-- association 一对一关联查询 -->
-	<select id="getClass" parameterType="int" resultMap="classesResultMap>
+	<select id="getClass" parameterType="int" resultMap="classesResultMap">
 		select * from class c, teacher t where c.teacher_id = t.id and c.c_id =#{id}
 	</select>
 	<!-- collection 一对多关联查询 -->
