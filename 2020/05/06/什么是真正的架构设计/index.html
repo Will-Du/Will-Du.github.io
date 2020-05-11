@@ -19,7 +19,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构1.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构2.jpg">
-<meta property="og:updated_time" content="2020-05-10T14:49:01.865Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构3.png">
+<meta property="og:updated_time" content="2020-05-11T14:39:59.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是真正的架构设计">
 <meta name="twitter:description" content="一.什么是架构和架构本质&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在软件行业，对于什么是架构，都有很多的争论，每个人都有自己的理解。此君说的架构和彼君理解的架构未必是一回事。因此我们在讨论架构的概念定义，概念是人认识这个世界的基础，并用来沟通的手段，如果对架构概念理解不一样，那沟通起来自然不顺畅。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Linux有架构，MySQL有架构，JVM也有架">
@@ -216,7 +217,14 @@
 <li>非功能性需求在整个系统占据重要位置</li>
 <li>系统生命周期长，有扩展性需求</li>
 <li>系统基于组件或者集成的需要</li>
-<li>业务流程再造的需要<br><b style="color: orangered">二.架构分层和分类</b><br>&nbsp;&nbsp;&nbsp;&nbsp;架构分类可细分为业务架构、应用架构、技术架构、部署架构。<br><img src="/2020/05/06/什么是真正的架构设计/架构1.jpg" alt="系统架构图"><br>&nbsp;&nbsp;&nbsp;&nbsp;业务架构是战略，应用架构是技术，技术架构是装备。其中应用架构承上启下，一方面承接业务架构的落地，另一方面影响技术选型。<br>&nbsp;&nbsp;&nbsp;&nbsp;熟悉业务，形成业务架构，根据业务架构，做出相应的应用架构，最后技术架构落地实施。<br>&nbsp;&nbsp;&nbsp;&nbsp;如何针对当前需求，选择合适的应用架构，如何面对未来，保证架构平滑过渡，这个是软件开发者，特别是架构师，都需要深入思考的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.1业务架构(俯视架构)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;包括业务规划、业务模块、业务流程，对整个系统的业务进行拆分，对领域模型进行设计，把现实的业务转化为抽象对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有最优的架构，只有最合适的架构，一切系统设计原则都要以解决业务问题为最终目标，脱离实际业务的技术情怀架构往往会给系统带入大坑，任何不基于业务做异想天开的架构都是耍流氓。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有问题的前提是要搞清楚我们今天面临的业务量有多大，增长走势是什么样，而且解决高并发的过程一定是一个循序渐进的过程。合理的架构能够提前预见业务发展1~2年为宜。这样可以付出较为合理的代价来真正达到技术引领业务成长的效果。<br><img src="/2020/05/06/什么是真正的架构设计/架构2.jpg" alt="京东业务架构图"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.2应用架构(剖面架构，也叫逻辑架构图)</b></li>
+<li>业务流程再造的需要<br><b style="color: orangered">二.架构分层和分类</b><br>&nbsp;&nbsp;&nbsp;&nbsp;架构分类可细分为业务架构、应用架构、技术架构、部署架构。<br><img src="/2020/05/06/什么是真正的架构设计/架构1.jpg" alt="系统架构图"><br>&nbsp;&nbsp;&nbsp;&nbsp;业务架构是战略，应用架构是技术，技术架构是装备。其中应用架构承上启下，一方面承接业务架构的落地，另一方面影响技术选型。<br>&nbsp;&nbsp;&nbsp;&nbsp;熟悉业务，形成业务架构，根据业务架构，做出相应的应用架构，最后技术架构落地实施。<br>&nbsp;&nbsp;&nbsp;&nbsp;如何针对当前需求，选择合适的应用架构，如何面对未来，保证架构平滑过渡，这个是软件开发者，特别是架构师，都需要深入思考的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.1业务架构(俯视架构)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;包括业务规划、业务模块、业务流程，对整个系统的业务进行拆分，对领域模型进行设计，把现实的业务转化为抽象对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有最优的架构，只有最合适的架构，一切系统设计原则都要以解决业务问题为最终目标，脱离实际业务的技术情怀架构往往会给系统带入大坑，任何不基于业务做异想天开的架构都是耍流氓。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所有问题的前提是要搞清楚我们今天面临的业务量有多大，增长走势是什么样，而且解决高并发的过程一定是一个循序渐进的过程。合理的架构能够提前预见业务发展1~2年为宜。这样可以付出较为合理的代价来真正达到技术引领业务成长的效果。<br><img src="/2020/05/06/什么是真正的架构设计/架构2.jpg" alt="京东业务架构图"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.2应用架构(剖面架构，也叫逻辑架构图)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;硬件到应用的抽象，包括抽象层和编程接口。应用架构和业务架构是相辅相成的关系。业务架构的每一部分都有应用架构。<br><img src="/2020/05/06/什么是真正的架构设计/架构3.png" alt="架构示意图"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用架构：应用作为独立可部署的单元，为系统划分了明确的边界，深刻影响系统功能组织、代码开发、部署和运维等各方面。应用架构定义系统有哪些应用、以及应用之间如何分工和合作。这里所谓应用就是各个逻辑模块或者子系统。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用架构图关键有2点：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.职责划分：明确应用(各个逻辑模块或者子系统)边界</li>
+<li>逻辑分层</li>
+<li>子系统、模块定义</li>
+<li>关键类<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.职责之间的协作：</li>
+<li>接口协议：应用对外输出的接口</li>
+<li>协作关系：应用之间的调用关系<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用分层有两种方式：</li>
+<li>一种是水平分(横向)，按照功能处理顺序划分应用，比如把系统分为web前端/中间服务/后台任务，这里面向业务深度的划分。</li>
+<li>另一种是垂直分(纵向)，按照不同的业务类型划分应用，比如进销存系统可以划分为三个独立的应用，这是面向业务广度的划分。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的合反映了应用之间如何协作，共同完成复杂的业务case，主要体现现在应用之间的通讯机制和数据格式，通讯机制可以是同步调用/异步消息/共享DB访问等，数据格式可以是文本/XML/json/二进制等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的分偏向于业务，反映业务架构，应用的合偏向于技术，影响技术架构。分降低了业务复杂度，系统更有序，合增加了技术复杂度，系统更无序。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用架构的本质是通过系统拆分，平衡业务和技术复杂性，保证系统形散神不散。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统采用什么样的应用架构，受业务复杂性影响，包括企业发展阶段和业务特点；同时受技术复杂性影响，包括IT技术发展阶段和内部技术人员水平。业务复杂性(包括业务量大)必然带来技术复杂性，应用架构目标是解决业务复杂性的同时，避免技术太复杂，确保业务架构落地。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:#6A6AFF">2.3数据架构</b></li>
 </ul>
 
       
