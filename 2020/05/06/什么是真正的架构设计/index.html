@@ -20,7 +20,9 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构1.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构2.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构3.png">
-<meta property="og:updated_time" content="2020-05-11T14:39:59.680Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构5.jpg">
+<meta property="og:updated_time" content="2020-05-12T14:26:06.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是真正的架构设计">
 <meta name="twitter:description" content="一.什么是架构和架构本质&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在软件行业，对于什么是架构，都有很多的争论，每个人都有自己的理解。此君说的架构和彼君理解的架构未必是一回事。因此我们在讨论架构的概念定义，概念是人认识这个世界的基础，并用来沟通的手段，如果对架构概念理解不一样，那沟通起来自然不顺畅。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Linux有架构，MySQL有架构，JVM也有架">
@@ -224,7 +226,13 @@
 <li>接口协议：应用对外输出的接口</li>
 <li>协作关系：应用之间的调用关系<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用分层有两种方式：</li>
 <li>一种是水平分(横向)，按照功能处理顺序划分应用，比如把系统分为web前端/中间服务/后台任务，这里面向业务深度的划分。</li>
-<li>另一种是垂直分(纵向)，按照不同的业务类型划分应用，比如进销存系统可以划分为三个独立的应用，这是面向业务广度的划分。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的合反映了应用之间如何协作，共同完成复杂的业务case，主要体现现在应用之间的通讯机制和数据格式，通讯机制可以是同步调用/异步消息/共享DB访问等，数据格式可以是文本/XML/json/二进制等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的分偏向于业务，反映业务架构，应用的合偏向于技术，影响技术架构。分降低了业务复杂度，系统更有序，合增加了技术复杂度，系统更无序。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用架构的本质是通过系统拆分，平衡业务和技术复杂性，保证系统形散神不散。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统采用什么样的应用架构，受业务复杂性影响，包括企业发展阶段和业务特点；同时受技术复杂性影响，包括IT技术发展阶段和内部技术人员水平。业务复杂性(包括业务量大)必然带来技术复杂性，应用架构目标是解决业务复杂性的同时，避免技术太复杂，确保业务架构落地。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:#6A6AFF">2.3数据架构</b></li>
+<li>另一种是垂直分(纵向)，按照不同的业务类型划分应用，比如进销存系统可以划分为三个独立的应用，这是面向业务广度的划分。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的合反映了应用之间如何协作，共同完成复杂的业务case，主要体现现在应用之间的通讯机制和数据格式，通讯机制可以是同步调用/异步消息/共享DB访问等，数据格式可以是文本/XML/json/二进制等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用的分偏向于业务，反映业务架构，应用的合偏向于技术，影响技术架构。分降低了业务复杂度，系统更有序，合增加了技术复杂度，系统更无序。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应用架构的本质是通过系统拆分，平衡业务和技术复杂性，保证系统形散神不散。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统采用什么样的应用架构，受业务复杂性影响，包括企业发展阶段和业务特点；同时受技术复杂性影响，包括IT技术发展阶段和内部技术人员水平。业务复杂性(包括业务量大)必然带来技术复杂性，应用架构目标是解决业务复杂性的同时，避免技术太复杂，确保业务架构落地。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.3数据架构</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据架构指导数据库的设计。不仅仅要考虑开发中涉及到的数据库、实体模型，也要考虑物理架构中数据存储的设计。<br><img src="/2020/05/06/什么是真正的架构设计/架构4.jpg" alt="数据架构考虑因素"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.4代码架构(开发架构)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子系统代码架构主要为开发人员提供切实可行的指导，如果代码架构设计不足，就会造成影响全局的架构设计。比如公司内不同的开发团队使用不同的技术栈或者组件，结果公司整体架构设计就会失控。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代码架构主要定义：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.代码单元：</li>
+<li>配置设计</li>
+<li>框架、类库<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.代码单元组织：</li>
+<li>编码规范，编码的惯例</li>
+<li>项目模块划分</li>
+<li>顶层文件结构设计，比如MVC设计</li>
+<li>依赖关系<br><img src="/2020/05/06/什么是真正的架构设计/架构5.jpg" alt="代码架构考虑因素"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.5技术架构</b></li>
 </ul>
 
       
