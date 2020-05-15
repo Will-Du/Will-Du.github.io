@@ -26,7 +26,9 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构7.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构7.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构8.png">
-<meta property="og:updated_time" content="2020-05-14T14:44:14.994Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构9.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构10.png">
+<meta property="og:updated_time" content="2020-05-15T14:25:00.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是真正的架构设计">
 <meta name="twitter:description" content="一.什么是架构和架构本质&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在软件行业，对于什么是架构，都有很多的争论，每个人都有自己的理解。此君说的架构和彼君理解的架构未必是一回事。因此我们在讨论架构的概念定义，概念是人认识这个世界的基础，并用来沟通的手段，如果对架构概念理解不一样，那沟通起来自然不顺畅。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Linux有架构，MySQL有架构，JVM也有架">
@@ -243,7 +245,12 @@
 <li>代码级：即从代码级别保障架构实施<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">战略设计与战术设计</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于架构金字塔，我们有了系统架构的战略设计与战术设计的完美结合：</li>
 <li><b style="color: #00FFFF">战略设计：</b>业务架构用于指导架构师如何进行系统架构设计</li>
 <li><b style="color: #00FFFF">战术设计：</b>应用架构要根据业务架构来设计</li>
-<li><b style="color: #00FFFF">战术实施：</b>应用架构确定以后，就是技术选型<br><img src="/2020/05/06/什么是真正的架构设计/架构8.png" alt=""><br><b style="color: orangered">四.应用架构演进</b></li>
+<li><b style="color: #00FFFF">战术实施：</b>应用架构确定以后，就是技术选型<br><img src="/2020/05/06/什么是真正的架构设计/架构8.png" alt=""><br><b style="color: orangered">四.应用架构演进</b><br>&nbsp;&nbsp;&nbsp;&nbsp;业务架构是生产力，应用架构是生产关系，技术架构是生产工具。业务架构决定应用架构，应用架构需要适配业务架构，并随着业务架构不断进化，同时应用架构依托技术架构最终落地。<br><img src="/2020/05/06/什么是真正的架构设计/架构9.png" alt="架构演进路程"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color:#6A6AFF">4.1单体应用</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;企业一开始业务比较简单，只应用某个简单场景，应用服务支持数据增删改查和简单的逻辑即可，单体应用可以满足要求。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;典型的三级架构，前端(web/手机端)+中间业务逻辑层+数据库层。这是一种典型的Java Spring MVC或者Python Django框架的应用。其架构图如下所示：<br><img src="/2020/05/06/什么是真正的架构设计/架构10.png" alt="单体应用"><br>&nbsp;&nbsp;&nbsp;&nbsp;针对单体应用，非功能性需求的做法：</li>
+<li>性能需求：使用缓存改善性能</li>
+<li>并发需求：使用集群改善并发</li>
+<li>读写分离：数据库的读写分离</li>
+<li>使用反向代理和cdn加速</li>
+<li>使用分布式文件和分布式数据库<br>&nbsp;&nbsp;&nbsp;&nbsp;单体架构的应用比较容易部署、测试，在项目的初期，单体应用可以很好地运行、然而，随着需求的不断增加，越来越多的人加入开发团队，代码库也在飞速地膨胀。慢慢地，单体应用变得越来越臃肿，可维护性、灵活性逐渐降低，维护成本越来越高。</li>
 </ul>
 
       
