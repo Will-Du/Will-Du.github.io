@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构8.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构9.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/06/什么是真正的架构设计/架构10.png">
-<meta property="og:updated_time" content="2020-05-17T09:08:16.441Z">
+<meta property="og:updated_time" content="2020-05-17T09:52:57.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是真正的架构设计">
 <meta name="twitter:description" content="一.什么是架构和架构本质&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在软件行业，对于什么是架构，都有很多的争论，每个人都有自己的理解。此君说的架构和彼君理解的架构未必是一回事。因此我们在讨论架构的概念定义，概念是人认识这个世界的基础，并用来沟通的手段，如果对架构概念理解不一样，那沟通起来自然不顺畅。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Linux有架构，MySQL有架构，JVM也有架">
@@ -270,7 +270,15 @@
 <li><b style="color: #00FFFF">运维要求较高：</b>更多的服务意味着更多的运维投入。在单体架构中，只需要保证一个应用的正常运行。而在微服务中，需要保证几十甚至几百个微服务的正常运行与协作，这给运维带来了很大的挑战。</li>
 <li><b style="color: #00FFFF">分布式固有的复杂性：</b>使用微服务构建的是分布式系统。对于一个分布式系统，系统容错、网络延迟、分布式事务等都会带来巨大的挑战。</li>
 <li><b style="color: #00FFFF">接口调整成本高：</b>微服务之间通过接口进行通信，如果修改了某一个微服务的API，可能所有使用了该接口的微服务都需要做调整。</li>
-<li><b style="color: #00FFFF">重复劳动：</b>很多服务可能都会使用到相同的功能，而这个功能并没有达到分解为一个微服务的程度，这个时候，可能各个服务都会开发这一功能，从而导致代码重复。尽管可以使用共享库来解决这个问题(例如可以将这个功能封装成公共组件，需要该功能的微服务引用该组件)，但共享库在多语言环境下就不一定行得通了。<br><b style="color: orangered">五.衡量架构的合理性</b><br>&nbsp;&nbsp;&nbsp;&nbsp;架构为业务服务，没有最优的架构，只有最合适的架构，架构始终以高效、稳定、安全为目标来衡量其合理性。</li>
+<li><b style="color: #00FFFF">重复劳动：</b>很多服务可能都会使用到相同的功能，而这个功能并没有达到分解为一个微服务的程度，这个时候，可能各个服务都会开发这一功能，从而导致代码重复。尽管可以使用共享库来解决这个问题(例如可以将这个功能封装成公共组件，需要该功能的微服务引用该组件)，但共享库在多语言环境下就不一定行得通了。<br><b style="color: orangered">五.衡量架构的合理性</b><br>&nbsp;&nbsp;&nbsp;&nbsp;架构为业务服务，没有最优的架构，只有最合适的架构，架构始终以高效、稳定、安全为目标来衡量其合理性。<br>&nbsp;&nbsp;&nbsp;&nbsp;合理的架构设计：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">5.1业务需求角度</b></li>
+<li>能解决当下业务需求和问题</li>
+<li>高效完成业务需求：能以优雅且可复用的方式解决当下所有业务问题</li>
+<li>前瞻性设计：能在未来一段时间都能以第2种方式满足业务，从而不会每次当业务进行演变时，导致架构翻天覆地的变化。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">5.2非业务需求角度</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;①.稳定性指标：</li>
+<li><b style="color: #00FFFF">高可用：</b>要尽可能的提高软件的可用性，我想每个操作人都不愿看到自己的工作无法正常进行，黑盒白盒测试、单元测试、自动化测试、故障注入测试、提高测试覆盖率等方式来一步一步推进。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;②.高效指标：</li>
+<li><b style="color: #00FFFF">文档化：</b>不管是整体还是部分的整个生命周期内都必须做好文档化，变动的来源包括但不限于BUG、需求。</li>
+<li><b style="color: #00FFFF">可扩展：</b>软件的设计秉承着低耦合的理念去做，注意在合理的地方抽象。方便功能更改、新增和运用技术的迭代，并且支持在适时对架构做出重构。</li>
+<li><b style="color: #00FFFF">高复用：</b>为了避免重复劳动，为了降低成本，我们希望能够重用之前的代码、之前的设计。这点对于架构环境的依赖是最大的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;③.安全指标：</li>
+<li><b style="color: #00FFFF">安全：</b>组织的运作过程中产生的数据是具有商业价值的，保证数据的安全也是刻不容缓的一部分。加密、https等为普遍手段。</li>
 </ul>
 
       
