@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>isEmpty与isBlank区别 | 嘟嘟的博客</title>
+  <title>IOC | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
-<meta name="keywords" content="Java">
+  <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="isEmpty与isBlank区别">
-<meta property="og:url" content="http://yoursite.com/2020/01/09/java_isEmpty/index.html">
+<meta property="og:title" content="IOC">
+<meta property="og:url" content="http://yoursite.com/2020/05/29/IOC/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-08T11:11:51.398Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/29/IOC/ioc1.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/29/IOC/ioc2.png">
+<meta property="og:updated_time" content="2020-05-29T14:16:54.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="isEmpty与isBlank区别">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
+<meta name="twitter:title" content="IOC">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/29/IOC/ioc1.png">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java_isEmpty" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IOC" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2020-01-09T07:45:48.000Z" itemprop="datePublished">2020-01-09</time>
+  	<time datetime="2020-05-29T14:04:50.000Z" itemprop="datePublished">2020-05-29</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      isEmpty与isBlank区别
+      IOC
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Java/">Java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Spring/">Spring</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="isEmpty与isBlank区别">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="IOC">
          &nbsp;
         view
     </span>
@@ -203,8 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">分析</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们通过源码来分析区别：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNotEmpty</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !isEmpty(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isBlank</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> strLen;</span><br><span class="line">    <span class="keyword">if</span>(str != <span class="keyword">null</span> &amp;&amp; (strLen = str.length()) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLen; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!Character.isWhitespace(str.charAt(i))) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;				</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNotBlank</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !isBlank(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.StringUtils.isEmpty(String str)判断某字符串是否为空，为空的标准是str==null或str.length()==0.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.StringUtils.isBlank(String str)判断某字符串是否为空或长度为0或由空白符(whitespace)构成.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.StringUtils.isNotEmpty(String str)等价于!isEmpty(String str).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.StringUtils.isNotBlank(String str)等价于!isBlank(String str).<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">个人建议</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我自己更喜欢使用StringUtils.isBlank(String str)来执行判空操作，因为判断的条件更多更具体，特别是进行参数校验时。</p>
+        <p><img src="/2020/05/29/IOC/ioc1.png" alt="ioc"><br><a id="more"></a><br><b style="color: orangered">传统的思想(没有IOC容器的情况下)</b><br>&nbsp;&nbsp;&nbsp;&nbsp;在没有IOC容器的情况下，如果我们需要某个类的具体操作如下所示：<br><img src="/2020/05/29/IOC/ioc2.png" alt="无IOC创建类流程"><br><b style="color: orangered">传统的Bean创建</b><br>&nbsp;&nbsp;&nbsp;&nbsp;1.程序员A进行了主动的使用(new)即创建了A类，A类中又依赖B类然后在对B类进行创建<br>&nbsp;&nbsp;&nbsp;&nbsp;2.创建对象的权利现在是程序员手上需要哪个类就会对哪个类进行创建<br>&nbsp;&nbsp;&nbsp;&nbsp;3.B类是由于程序员调用了A类有对B类的依赖随着而创建<br>&nbsp;&nbsp;&nbsp;&nbsp;4.总之就是自己动手丰衣足食，没有借助任何中间产物<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">优点：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很直接的一个优点就是简单，我们需要什么就去创建什么，在程序员的角度上也是比较直观容易理解的。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">缺点：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bean之间的协调关系是由程序内部代码来控制的即通过new关键字与我们的业务代码进行了强耦合。没有对Bean进行管理。对Bean没有进行统一的管理和配置。<br><b style="color: orangered">IOC思想</b></p>
 
       
     </div>
@@ -214,18 +213,9 @@
     
 <nav id="article-nav">
   
-    <a href="../../10/redis_1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          Redis的各项功能，都解决了哪些问题？
-        
-      </div>
-    </a>
   
-  
-    <a href="../../08/smartService_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">不是所有场景都适合微服务！！</div>
+    <a href="../../25/Redis规范/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis使用规范</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
