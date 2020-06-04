@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>isEmpty与isBlank区别 | 嘟嘟的博客</title>
+  <title>Spring Cloud微服务架构 | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="服务架构&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;为了方便理解，我先讲一个小故事：(改编自一知乎答主)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Martin(微服务提出者也叫Martin)刚来到公司时是一个基层员工，它上面有经理、老板，那个时候所有人都听老板的指挥。但是过了两年，公司的人越来越多，原来的模式下整个公司的运作效率太低，管理也很混乱。于是已经踏上中层岗位的Martin建议老">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="isEmpty与isBlank区别">
-<meta property="og:url" content="http://yoursite.com/2020/01/09/java_isEmpty/index.html">
+<meta property="og:title" content="Spring Cloud微服务架构">
+<meta property="og:url" content="http://yoursite.com/2020/06/04/微服务架构/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
+<meta property="og:description" content="服务架构&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;为了方便理解，我先讲一个小故事：(改编自一知乎答主)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Martin(微服务提出者也叫Martin)刚来到公司时是一个基层员工，它上面有经理、老板，那个时候所有人都听老板的指挥。但是过了两年，公司的人越来越多，原来的模式下整个公司的运作效率太低，管理也很混乱。于是已经踏上中层岗位的Martin建议老">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-08T11:11:51.398Z">
+<meta property="og:updated_time" content="2020-06-04T08:10:43.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="isEmpty与isBlank区别">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。">
+<meta name="twitter:title" content="Spring Cloud微服务架构">
+<meta name="twitter:description" content="服务架构&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;为了方便理解，我先讲一个小故事：(改编自一知乎答主)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Martin(微服务提出者也叫Martin)刚来到公司时是一个基层员工，它上面有经理、老板，那个时候所有人都听老板的指挥。但是过了两年，公司的人越来越多，原来的模式下整个公司的运作效率太低，管理也很混乱。于是已经踏上中层岗位的Martin建议老">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-java_isEmpty" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-微服务架构" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2020-01-09T07:45:48.000Z" itemprop="datePublished">2020-01-09</time>
+  	<time datetime="2020-06-04T07:35:12.000Z" itemprop="datePublished">2020-06-04</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      isEmpty与isBlank区别
+      Spring Cloud微服务架构
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Java/">Java</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Spring/">Spring</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="isEmpty与isBlank区别">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Spring Cloud微服务架构">
          &nbsp;
         view
     </span>
@@ -203,8 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;org.apache.commons.lang.StringUtils类提供了String的常用操作，最为常用的判空有如下两种isEmpty(String str)和isBlank(String str)。<br><a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">分析</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们通过源码来分析区别：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNotEmpty</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !isEmpty(str);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isBlank</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> strLen;</span><br><span class="line">    <span class="keyword">if</span>(str != <span class="keyword">null</span> &amp;&amp; (strLen = str.length()) != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strLen; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!Character.isWhitespace(str.charAt(i))) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;				</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNotBlank</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !isBlank(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.StringUtils.isEmpty(String str)判断某字符串是否为空，为空的标准是str==null或str.length()==0.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.StringUtils.isBlank(String str)判断某字符串是否为空或长度为0或由空白符(whitespace)构成.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.StringUtils.isNotEmpty(String str)等价于!isEmpty(String str).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.StringUtils.isNotBlank(String str)等价于!isBlank(String str).<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">个人建议</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我自己更喜欢使用StringUtils.isBlank(String str)来执行判空操作，因为判断的条件更多更具体，特别是进行参数校验时。</p>
+        <p><b style="color: orangered">服务架构</b><br>&nbsp;&nbsp;&nbsp;&nbsp;为了方便理解，我先讲一个小故事：(改编自一知乎答主)<br>&nbsp;&nbsp;&nbsp;&nbsp;Martin(微服务提出者也叫Martin)刚来到公司时是一个基层员工，它上面有经理、老板，那个时候所有人都听老板的指挥。但是过了两年，公司的人越来越多，原来的模式下整个公司的运作效率太低，管理也很混乱。于是已经踏上中层岗位的Martin建议老板进行部门划分(服务化)，专门的部门只做专门的事情(单一职责)。例如：研发部门只做研发，人事部门只做招聘。老板听取了Martin的意见，对公司的组织架构进行了调整。<br>&nbsp;&nbsp;&nbsp;&nbsp;有一天，Martin发现公司的部门越来越多，各个部门并不能完全知道对方所做的事情，这对跨部门协作(服务调用)带来了困难。行政部门会(服务注册)来记录所有的部门，每当有新的部门行政都会记录下来(服务注册)，然后公布出来让所有部门知道(服务发现)。在新的组织架构下，公司的效率逐步提高。老板也给Martin发了大量奖金作为奖励，Martin从此走上了人生巅峰。<a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;这是一个公司组织架构演变的故事，主要讲的是随着公司规模的扩大，组织从集中化管理到分布化管理的过程。映射到我们的信息系统里来也是一样的，随着我们的系统越来越复杂，变得难以管理，也会有人想到去拆分然后治理。在解决复杂问题上，分治可以说是一个屡试不爽的办法。<br>&nbsp;&nbsp;&nbsp;&nbsp;服务化即是拆解的一种手段。而上面圆括号里面的内容其实就是对应了一个服务化架构的最小组成元素，分别是服务、服务调用、注册中心、服务注册、服务发现。有了这些基本的组成要素，就可以实现一个最简单的服务架构。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">面向服务的架构和微服务架构：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面向服务的架构(SOA)和微服务架构是目前两种主流的服务化架构，都符合上面的例子，也有上面提到的所有组件。这两种服务架构有很多可以讲的，但是与本文的相关性不大，本文不会做过多展开，只是简单介绍一下两者的区别。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;准确地说微服务是去ESB(企业服务总线)的SOA。ESB借鉴了计算机组成原理中的通信模型-总线，所有需要和外部系统通信的系统，通过ESB进行标准化地转换从而消除协议、异构系统之间的差异，这样就可以利用现有的系统构建一个全新的松耦合的异构的分布式系统。微服务架构去掉ESB，本质上是一种去中心化的思想。<br><b style="color: orangered">五脏六腑</b></p>
 
       
     </div>
@@ -214,18 +213,9 @@
     
 <nav id="article-nav">
   
-    <a href="../../10/redis_1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          Redis的各项功能，都解决了哪些问题？
-        
-      </div>
-    </a>
   
-  
-    <a href="../../08/smartService_1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">不是所有场景都适合微服务！！</div>
+    <a href="../../02/Redis6.0新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis 6.0新特性</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   

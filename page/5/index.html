@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.67px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.33px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 13.33px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 11.67px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.67px;">git</a> <a href="../../tags/js/" style="font-size: 15px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.67px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.67px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 16.67px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 11.67px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.67px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 12.86px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 11.43px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,75 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-mybatis_oracle" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/12/05/mybatis_oracle/" class="article-date">
+  	<time datetime="2019-12-05T11:16:53.000Z" itemprop="datePublished">2019-12-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/12/05/mybatis_oracle/">
+        mybatis中oracle的批量新增与批量更新
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;mybatis中mysql的批量插入比较常规，但oracle的批量有所不同，若按照mysql的方式书写，则会报“命令为执行结束”的错误。所以一下列出oracle的批量新增与修改的几种方式。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 批量新增第一种方式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"batchInsert"</span> <span class="attr">parameterType</span>=<span class="string">"java.util.List"</span>&gt;</span></span><br><span class="line">	INSERT INTO STUDENT(ID,NAME)</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">item</span>=<span class="string">"student"</span> <span class="attr">separator</span>=<span class="string">"UNION ALL"</span>&gt;</span></span><br><span class="line">		(</span><br><span class="line">		SELECT </span><br><span class="line">			#&#123;student.id&#125;,</span><br><span class="line">			#&#123;student.name&#125;</span><br><span class="line">		FROM</span><br><span class="line">			dual</span><br><span class="line">		)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<label style="color:red">注：表名之后没有VALUES。</label><br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/12/05/mybatis_oracle/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="mybatis中oracle的批量新增与批量更新">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/12/05/mybatis_oracle/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-redis内存满了如何处理" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -756,74 +825,6 @@
       
         <p class="article-more-link">
           <a href="../../2019/11/07/interview_java_base/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-集群-分布式环境下5种共享session处理策略" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/" class="article-date">
-  	<time datetime="2019-11-07T00:11:45.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/">
-        集群/分布式环境下5种共享session处理策略
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.粘性session：将用户锁定到某个服务器上<br>&nbsp;&nbsp;&nbsp;&nbsp;优点：简单，不需要对session进行处理<br>&nbsp;&nbsp;&nbsp;&nbsp;缺点：缺乏容错性，如果当前访问的服务器发生故障，用户被转移到另一个服务器上时，他的session信息会失效<br>&nbsp;&nbsp;&nbsp;&nbsp;使用场景：发生故障对客户产生的影响较小的时候，毕竟服务器故障是小概率事件<br>&nbsp;&nbsp;&nbsp;&nbsp;实现方式：nginx在upstream模块配置ip_hash属性即可实现粘性session<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/11/07/集群-分布式环境下5种共享session处理策略/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="集群/分布式环境下5种共享session处理策略">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/11/07/集群-分布式环境下5种共享session处理策略/#more">more >></a>
         </p>
       
     
