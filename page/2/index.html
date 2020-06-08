@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 12.86px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 11.43px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 12.86px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,75 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-readsourcecode_Vector" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2020/04/02/readsourcecode_Vector/" class="article-date">
+  	<time datetime="2020-04-02T08:18:35.000Z" itemprop="datePublished">2020-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2020/04/02/readsourcecode_Vector/">
+        小吴读源码记录之Vector
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">int</span> capacityIncrement)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>();</span><br><span class="line">  <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span> + initialCapacity);</span><br><span class="line">  <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">  <span class="keyword">this</span>.capacityIncrement = capacityIncrement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>个人理解：由此可见，Vector底层为数组，所以具有查询快，读写慢的特点。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/sourcecode/">sourcecode</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2020/04/02/readsourcecode_Vector/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之Vector">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2020/04/02/readsourcecode_Vector/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-readsourcecode_LinkedList" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -757,74 +826,6 @@
       
         <p class="article-more-link">
           <a href="../../2020/02/04/java_lambda/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-java_null" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2020/02/01/java_null/" class="article-date">
-  	<time datetime="2020-02-01T11:04:44.000Z" itemprop="datePublished">2020-02-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2020/02/01/java_null/">
-        如何优雅处理代码中Null值引起的BUG?
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b style="color: orangered">写在前面</b><br>&nbsp;&nbsp;&nbsp;&nbsp;在开发中，经常看到项目中存在到处空值判断的情况，这些判断，会让人觉得摸不到头绪，它的出现很有可能和当前的业务逻辑并没有关系。但它会让你很头疼。<br>&nbsp;&nbsp;&nbsp;&nbsp;有时候，更可怕的是系统因为这些空值的情况，会抛出空指针异常，导致业务系统发生问题。此篇文章，总结了几种关于空值的处理手法，希望对读者有帮助。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2020/02/01/java_null/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何优雅处理代码中Null值引起的BUG?">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2020/02/01/java_null/#more">more >></a>
         </p>
       
     

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>优秀的代码都是如何分层的？ | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起应用分层，大部分人都会认为这个不是很简单嘛，就controller、service、mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做得逻辑比service还多，service往往当做透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无">
+<meta name="keywords" content="系统设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优秀的代码都是如何分层的？">
+<meta property="og:url" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="1.背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起应用分层，大部分人都会认为这个不是很简单嘛，就controller、service、mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做得逻辑比service还多，service往往当做透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/分层1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/分层2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/分层3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/分层4.jpg">
+<meta property="og:updated_time" content="2020-06-08T08:20:17.426Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优秀的代码都是如何分层的？">
+<meta name="twitter:description" content="1.背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;说起应用分层，大部分人都会认为这个不是很简单嘛，就controller、service、mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做得逻辑比service还多，service往往当做透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/08/优秀的代码都是如何分层的/分层1.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="../../../../js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../../../tags/Linux/" style="font-size: 10px;">Linux</a> <a href="../../../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../../../tags/Spring/" style="font-size: 12.86px;">Spring</a> <a href="../../../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../../../tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-优秀的代码都是如何分层的" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+  	<time datetime="2020-06-08T06:55:46.000Z" itemprop="datePublished">2020-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      优秀的代码都是如何分层的？
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/系统设计/">系统设计</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="优秀的代码都是如何分层的？">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">1.背景</b><br>&nbsp;&nbsp;&nbsp;&nbsp;说起应用分层，大部分人都会认为这个不是很简单嘛，就controller、service、mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做得逻辑比service还多，service往往当做透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无法复用，层级关系混乱，对后续代码的维护非常麻烦。<a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;的确在这些人眼中分层只是一个形式，前辈们的代码这么写的，其他项目代码这么写的，那么我也这么跟着写。但是在真正的团队开发中每个人的习惯都不同，写出来的代码必然带着自己的标签，有的人习惯controller写大量的业务逻辑，有的人习惯在service中调用远程服务，这样就导致每个人的开发代码风格完全不同，后续其他人修改的时候，一看，这个人写的代码和我平常的习惯完全不同，修改的时候到底是按着自己以前的习惯改，还是跟着前辈们走，这又是一个艰难的选择，选择一旦有偏差，你的后辈又维护你的代码的时候，恐怕就要骂人了。<br>&nbsp;&nbsp;&nbsp;&nbsp;所以一个好的应用分层需要具备以下几点：</p>
+<ul>
+<li>方便后续代码进行维护扩展；</li>
+<li>分层的效果需要让整个团队都接受；</li>
+<li>各个层职责边界清晰<br><b style="color: orangered">2.如何进行分层</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.1 阿里规范</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在阿里的编码规范中约束的分层如下：<br><img src="/2020/06/08/优秀的代码都是如何分层的/分层1.jpg" alt="阿里规范中分层结构"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">开放接口层：</b>可直接封装service方法暴露成RPC接口；通过Web封装成http接口；进行网关安全控制、流量控制等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">终端显示层：</b>各个端的模板渲染并执行显示的层。当前主要是velocity渲染、JS渲染、JSP渲染、移动端展示等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">Web层：</b>主要是对访问控制进行转发，各类基本参数校验，或者不复用的业务简单处理等。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">Service层：</b>相对具体的业务逻辑服务层。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">Manager层：</b>通用业务处理层，它有如下特征：1.对第三方平台封装的层，预处理返回结果及转化异常信息；2.对Service层通用能力的下沉，如缓存方案、中间件通用处理；3.与DAO层交互，对多个DAO的组合复用。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">DAO层：</b>数据访问层，与底层MySQL、Oracle、Hbase进行数据交互。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阿里巴巴规约中的分层比较清晰简单明了，但是描述得还是过于简单了，以及service层和manager层有很多同学还是有点分不清除之间的关系，就导致了很多项目中根本没有Manager层的存在。下面介绍一下具体业务中应该如何实现分层。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.2 优化分层</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从我们的业务开发中总结了一个较为理想模型，这里要先说明一下由于我们的RPC框架选择的是thrift，可能会比其他的一些RPC框架例如dubbo会多出一层，作用和controller层类似。<br><img src="/2020/06/08/优秀的代码都是如何分层的/分层2.jpg" alt="优化分成"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最上层controller和TService是我们阿里分层规范里面的第一层：<b style="color: #00FFFF">轻业务逻辑、参数校验、异常兜底</b>。通常这种接口可以轻易更换接口类型，所以业务逻辑必须要轻，甚至不做具体逻辑。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">Service:</b>业务层，复用性较低，这里推荐每一个controller方法都得对应一个service，不要把业务编排放在controller中去做，为什么呢？如果我们把业务编排放在controller层去做的话，如果以后我们要接入thrift，我们这里又需要把业务编排再做一次，这样会导致我们每接入一个入口层，这个代码都得重新复制一份如下图所示：<br><img src="/2020/06/08/优秀的代码都是如何分层的/分层3.jpg" alt="现有的状况"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这样大量的重复工作必定会导致我们开发效率下降，所以我们需要把业务编排都得放进service中去做：<br><img src="/2020/06/08/优秀的代码都是如何分层的/分层4.jpg" alt="优化的状况"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">Manager:</b>可服用逻辑层。这里的Manager可以是单个服务，比如我们的cache、mq等等，当然也可以是复合的，当你需要调用多个Manager的时候，这个可以合为一个manager，比如逻辑上的连表查询等。如果是httpManager或rpcManager需要在这一层做一些数据转换。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">DAO:</b>数据库访问层。主要负责“操作数据库的某张表，映射到某个java对象”，dao应该只允许自己的service访问，其他service要访问我的数据必须通过对应的service。<br><b style="color: orangered">3.分层领域模型的转换</b><br>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../04/微服务架构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring Cloud微服务架构</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
