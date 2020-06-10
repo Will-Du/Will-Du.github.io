@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>firewall限制或开放IP及端口 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.查看防火墙状态&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;首先查看防火墙是否开启，如未开启，需要先开启防火墙并作开机自启。1systemctl status firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;开启防火墙并设置开机自启12systemctl start firewalldsystemctl enable firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="firewall限制或开放IP及端口">
+<meta property="og:url" content="http://yoursite.com/2020/06/09/firewall限制或开放IP及端口/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="一.查看防火墙状态&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;首先查看防火墙是否开启，如未开启，需要先开启防火墙并作开机自启。1systemctl status firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;开启防火墙并设置开机自启12systemctl start firewalldsystemctl enable firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-06-09T03:24:05.134Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="firewall限制或开放IP及端口">
+<meta name="twitter:description" content="一.查看防火墙状态&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;首先查看防火墙是否开启，如未开启，需要先开启防火墙并作开机自启。1systemctl status firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;开启防火墙并设置开机自启12systemctl start firewalldsystemctl enable firewalld &amp;nbsp;&amp;nbsp;&amp;nbsp">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="../../../../js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../../../tags/Linux/" style="font-size: 11.43px;">Linux</a> <a href="../../../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../../../tags/Spring/" style="font-size: 12.86px;">Spring</a> <a href="../../../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../../../tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-firewall限制或开放IP及端口" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+  	<time datetime="2020-06-09T02:40:48.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      firewall限制或开放IP及端口
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="firewall限制或开放IP及端口">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">一.查看防火墙状态</b><br>&nbsp;&nbsp;&nbsp;&nbsp;首先查看防火墙是否开启，如未开启，需要先开启防火墙并作开机自启。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;开启防火墙并设置开机自启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br><span class="line">systemctl enable firewalld</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;一般需要重启一下机器，不然后面做得设置可能不会生效<a id="more"></a><br><b style="color: orangered">二.开放或限制端口</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.1.开放端口</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.1 如我们需要开启xshell连接时需要使用的22端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=22/tcp --permanent</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中–permanent的作用是使设置永久生效，不加的话机器重启之后失效。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.2 重新载入一下防火墙设置，使设置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.3 可通过如下命令查看是否生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --query-port=22/tcp</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.4 如下命令可查看当前系统打开的所有端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.2.限制端口</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如我们现在需要关掉刚刚打开的22端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --remove-port=22/tcp --permanent</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后续操作同2.1.2-2.1.4<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.3.批量开放或限制端口</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;批量开放端口，如从100到500这之间的端口我们全部都要打开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=100-500/tcp --permanent</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后续操作同2.1.2、2.1.4<br><b style="color: orangered">三.开放或限制IP</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">3.1.限制IP地址访问</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 比如限制IP为192.168.0.200的地址禁止访问80端口即禁止访问机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.0.200&quot; port protocol=&quot;tcp&quot; port=&quot;80&quot; reject&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 重新载入一下防火墙，是设置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.3 查看已经设置的规则<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-rich-rules</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.解除IP地址限制</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 解除刚才被限制的192.168.0.200<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;192.168.0.200&quot; port protocol=&quot;tcp&quot; port=&quot;80&quot; accept&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后续操作同3.1.2、3.1.3。如设置未生效，可尝试直接编辑规则文件，删掉原来的设置规则，重新载入一下防火墙即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/firewalld/zones/public.xml</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">3.限制IP地址段</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3.1 如我们需要限制10.0.0.0-10.0.0.255这一整个段的IP，禁止他们访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;10.0.0.0/24&quot; port protocol=&quot;tcp&quot; port=&quot;80&quot; reject&quot;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中10.0.0.0/24表示为从10.0.0.0这个IP开始，24代表子网掩码为255.255.255.0，共包含256个地址，即从0-255共256个IP，即正好限制了这一整段的ip地址，具体的设置规则可参考下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A"></font></th>
+<th style="text-align:left"><font color="#0A0A0A">IP总数</font></th>
+<th style="text-align:left"><font color="#0A0A0A">子网掩码</font></th>
+<th style="text-align:left"><font color="#0A0A0A">C段个数</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/30</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">255.255.255.252</td>
+<td style="text-align:left">1/64</td>
+</tr>
+<tr>
+<td style="text-align:left">/29</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">255.255.255.248</td>
+<td style="text-align:left">1/32</td>
+</tr>
+<tr>
+<td style="text-align:left">/28</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">255.255.255.240</td>
+<td style="text-align:left">1/16</td>
+</tr>
+<tr>
+<td style="text-align:left">/27</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">255.255.255.224</td>
+<td style="text-align:left">1/8</td>
+</tr>
+<tr>
+<td style="text-align:left">/26</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">255.255.255.192</td>
+<td style="text-align:left">1/4</td>
+</tr>
+<tr>
+<td style="text-align:left">/24</td>
+<td style="text-align:left">256</td>
+<td style="text-align:left">255.255.255.0</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">/23</td>
+<td style="text-align:left">512</td>
+<td style="text-align:left">255.255.254.0</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">/22</td>
+<td style="text-align:left">1024</td>
+<td style="text-align:left">255.255.252.0</td>
+<td style="text-align:left">4</td>
+</tr>
+<tr>
+<td style="text-align:left">/21</td>
+<td style="text-align:left">2048</td>
+<td style="text-align:left">255.255.248.0</td>
+<td style="text-align:left">8</td>
+</tr>
+<tr>
+<td style="text-align:left">/20</td>
+<td style="text-align:left">4096</td>
+<td style="text-align:left">255.255.240.0</td>
+<td style="text-align:left">16</td>
+</tr>
+<tr>
+<td style="text-align:left">/19</td>
+<td style="text-align:left">8192</td>
+<td style="text-align:left">255.255.224.0</td>
+<td style="text-align:left">32</td>
+</tr>
+<tr>
+<td style="text-align:left">/18</td>
+<td style="text-align:left">16384</td>
+<td style="text-align:left">255.255.192.0</td>
+<td style="text-align:left">64</td>
+</tr>
+<tr>
+<td style="text-align:left">/17</td>
+<td style="text-align:left">32768</td>
+<td style="text-align:left">255.255.128.0</td>
+<td style="text-align:left">128</td>
+</tr>
+<tr>
+<td style="text-align:left">/16</td>
+<td style="text-align:left">65536</td>
+<td style="text-align:left">255.255.0.0</td>
+<td style="text-align:left">256</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后续操作同3.1.2、3.1.3。同理，打开限制为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --add-rich-rule=&quot;rule family=&quot;ipv4&quot; source address=&quot;10.0.0.0/24&quot; port protocol=&quot;tcp&quot; port=&quot;80&quot; accept&quot;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../08/优秀的代码都是如何分层的/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">优秀的代码都是如何分层的？</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
