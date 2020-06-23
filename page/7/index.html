@@ -152,6 +152,70 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-js_moneyFormat" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/03/10/js_moneyFormat/" class="article-date">
+  	<time datetime="2019-03-10T03:06:29.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/03/10/js_moneyFormat/">
+        js金额格式化
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	* 参数说明：</span></span><br><span class="line"><span class="comment">	* number：要格式化的数字</span></span><br><span class="line"><span class="comment">	* flag : 货币符号</span></span><br><span class="line"><span class="comment">	* decimals：保留几位小数</span></span><br><span class="line"><span class="comment">	* dec_point：小数点符号</span></span><br><span class="line"><span class="comment">	* thousands_sep：千分位符号</span></span><br><span class="line"><span class="comment">	* */</span></span><br><span class="line">formatMoney: <span class="function"><span class="keyword">function</span>(<span class="params">number,flag,decimals,dec_point,thousands_sep</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!number) &#123;</span><br><span class="line">	  <span class="keyword">if</span>(number == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		  <span class="keyword">return</span> flag + <span class="string">' '</span> + <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;  <span class="keyword">else</span> &#123;</span><br><span class="line">	  <span class="keyword">if</span>(decimals) &#123;</span><br><span class="line">		decimals = decimals &gt; <span class="number">0</span> &amp;&amp; decimals &lt;= <span class="number">20</span> ? decimals : <span class="number">2</span>;</span><br><span class="line">	  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		decimals = <span class="number">2</span>;</span><br><span class="line">	  &#125;</span><br><span class="line">	  </span><br><span class="line">	  number = (number + <span class="string">''</span>).replace(<span class="regexp">/[^0-9+-Ee.]/g</span>, <span class="string">''</span>);</span><br><span class="line">	  <span class="keyword">var</span> n = !<span class="built_in">isFinite</span>(+number) ? <span class="number">0</span> : +number,</span><br><span class="line">		  prec = !<span class="built_in">isFinite</span>(+decimals) ? <span class="number">0</span> : <span class="built_in">Math</span>.abs(decimals),</span><br><span class="line">		  sep = (<span class="keyword">typeof</span> thousands_sep === <span class="string">'undefined'</span>) ? <span class="string">','</span> : thousands_sep,</span><br><span class="line">		  dec = (<span class="keyword">typeof</span> dec_point === <span class="string">'undefined'</span>) ? <span class="string">'.'</span> : dec_point,</span><br><span class="line">		  s = <span class="string">''</span>,</span><br><span class="line">		  toFixedFix = <span class="function"><span class="keyword">function</span> (<span class="params">n, prec</span>) </span>&#123;</span><br><span class="line">			  <span class="keyword">var</span> k = <span class="built_in">Math</span>.pow(<span class="number">10</span>, prec);</span><br><span class="line">			  <span class="keyword">return</span> <span class="string">''</span> + <span class="built_in">Math</span>.ceil(n * k) / k;</span><br><span class="line">		  &#125;;</span><br><span class="line"></span><br><span class="line">	  s = (prec ? toFixedFix(n, prec) : <span class="string">''</span> + <span class="built_in">Math</span>.round(n)).split(<span class="string">'.'</span>);</span><br><span class="line">	  <span class="keyword">var</span> re = <span class="regexp">/(-?\d+)(\d&#123;3&#125;)/</span>;</span><br><span class="line">	  <span class="keyword">while</span> (re.test(s[<span class="number">0</span>])) &#123;</span><br><span class="line">		  s[<span class="number">0</span>] = s[<span class="number">0</span>].replace(re, <span class="string">"$1"</span> + sep + <span class="string">"$2"</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">if</span> ((s[<span class="number">1</span>] || <span class="string">''</span>).length &lt; prec) &#123;</span><br><span class="line">		  s[<span class="number">1</span>] = s[<span class="number">1</span>] || <span class="string">''</span>;</span><br><span class="line">		  s[<span class="number">1</span>] += <span class="keyword">new</span> <span class="built_in">Array</span>(prec - s[<span class="number">1</span>].length + <span class="number">1</span>).join(<span class="string">'0'</span>);</span><br><span class="line">	  &#125;</span><br><span class="line"></span><br><span class="line">	  <span class="keyword">var</span> returnStr = s.join(dec);</span><br><span class="line">	  <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">		returnStr = flag + <span class="string">" "</span> + returnStr;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="keyword">return</span> returnStr;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/js/">js</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/03/10/js_moneyFormat/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="js金额格式化">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-js_String_substr" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -739,74 +803,6 @@
       
       <div class="clearfix"></div>
     </div>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-java_DateUtil" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/01/09/java_DateUtil/" class="article-date">
-  	<time datetime="2019-01-09T14:02:09.000Z" itemprop="datePublished">2019-01-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/01/09/java_DateUtil/">
-        java-DateUtil 常用时间方法封装
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>运用Calendar封装了个工具类，代码如下(主页请点击more阅读全文)<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/01/09/java_DateUtil/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="java-DateUtil 常用时间方法封装">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/01/09/java_DateUtil/#more">more >></a>
-        </p>
       
     
   </div>
