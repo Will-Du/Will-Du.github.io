@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 11.43px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,76 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Redis规范" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2020/05/25/Redis规范/" class="article-date">
+  	<time datetime="2020-05-25T14:56:09.000Z" itemprop="datePublished">2020-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2020/05/25/Redis规范/">
+        Redis使用规范
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">一.键值设计</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.key名设计</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">可读性和可管理性</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以业务名(或数据库名)为前缀(防止key冲突)，用冒号分隔，比如业务表:表名:id<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugc:video:1</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">简洁性</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保证语义的前提下，控制key的长度，当key较多时，内存占用也不容忽视，例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user:&#123;uid&#125;:friends:messages:&#123;mid&#125;</span><br><span class="line">简化为:</span><br><span class="line">u:&#123;uid&#125;:fr:m:&#123;mid&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #00FFFF">不要包含特殊字符</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;反例：包含空格、换行、单双引号以及其他转义字符。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Redis/">Redis</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2020/05/25/Redis规范/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="Redis使用规范">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2020/05/25/Redis规范/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-什么是真正的架构设计" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -759,75 +829,6 @@
       
         <p class="article-more-link">
           <a href="../../2020/03/28/readsourcecode_AbstractList/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-readsourcecode_AbstractCollection" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2020/03/26/readsourcecode_AbstractCollection/" class="article-date">
-  	<time datetime="2020-03-26T11:50:56.000Z" itemprop="datePublished">2020-03-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2020/03/26/readsourcecode_AbstractCollection/">
-        小吴读源码记录之AbstractCollection
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">  Iterator&lt;E&gt; it = iterator();</span><br><span class="line">  <span class="keyword">if</span> (o==<span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (it.hasNext())</span><br><span class="line">      <span class="keyword">if</span> (it.next()==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (it.hasNext())</span><br><span class="line">      <span class="keyword">if</span> (o.equals(it.next()))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>个人理解：如果传进来的参数为null，会通过迭代该集合，如果有null的则返回true。如果传进来的参数不为null，则还会迭代该集合，通过equals比较，如果相等则返回true。<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/sourcecode/">sourcecode</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2020/03/26/readsourcecode_AbstractCollection/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="小吴读源码记录之AbstractCollection">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2020/03/26/readsourcecode_AbstractCollection/#more">more >></a>
         </p>
       
     
