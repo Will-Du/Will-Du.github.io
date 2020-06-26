@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>分布式系统消息异常 | 嘟嘟的博客</title>
+  <title>一个HTTP请求的曲折经历 | 嘟嘟的博客</title>
 
   <!-- keywords -->
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.异步处理模型&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一旦谈到分布式、微服务等这些具有很高逼格的代名词，总能让你在面试中脱颖而出，不是因为这些词的英文翻译的好，而是现代互联网乃至企业级开发确实在分布式、微服务等模式下取得了良好的架构效果。无论是微服务，还是之前的SOA，总是离不开异步处理模型，小到程序中IO的处理，大到系统间的信息交互，处处都有异步的身影。">
-<meta name="keywords" content="分布式">
+  <meta name="description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
+<meta name="keywords" content="面试题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式系统消息异常">
-<meta property="og:url" content="http://yoursite.com/2020/06/24/分布式系统消息异常/index.html">
+<meta property="og:title" content="一个HTTP请求的曲折经历">
+<meta property="og:url" content="http://yoursite.com/2020/06/26/一个HTTP请求的曲折经历/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
-<meta property="og:description" content="1.异步处理模型&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一旦谈到分布式、微服务等这些具有很高逼格的代名词，总能让你在面试中脱颖而出，不是因为这些词的英文翻译的好，而是现代互联网乃至企业级开发确实在分布式、微服务等模式下取得了良好的架构效果。无论是微服务，还是之前的SOA，总是离不开异步处理模型，小到程序中IO的处理，大到系统间的信息交互，处处都有异步的身影。">
+<meta property="og:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-25T13:40:20.943Z">
+<meta property="og:updated_time" content="2020-06-26T07:02:55.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分布式系统消息异常">
-<meta name="twitter:description" content="1.异步处理模型&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一旦谈到分布式、微服务等这些具有很高逼格的代名词，总能让你在面试中脱颖而出，不是因为这些词的英文翻译的好，而是现代互联网乃至企业级开发确实在分布式、微服务等模式下取得了良好的架构效果。无论是微服务，还是之前的SOA，总是离不开异步处理模型，小到程序中IO的处理，大到系统间的信息交互，处处都有异步的身影。">
+<meta name="twitter:title" content="一个HTTP请求的曲折经历">
+<meta name="twitter:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -155,11 +155,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="w-分布式系统消息异常" class="article article-type-w" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-一个HTTP请求的曲折经历" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2020-06-24T09:11:15.000Z" itemprop="datePublished">2020-06-24</time>
+  	<time datetime="2020-06-26T06:52:26.000Z" itemprop="datePublished">2020-06-26</time>
 </a>
     </div>
   
@@ -172,7 +172,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      分布式系统消息异常
+      一个HTTP请求的曲折经历
       
     </h1>
   
@@ -182,7 +182,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/分布式/">分布式</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/面试题/">面试题</a></li></ul>
 	</div>
 
         
@@ -190,7 +190,7 @@
         
           
 <div class="counter-tag counter">
-    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="分布式系统消息异常">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="一个HTTP请求的曲折经历">
          &nbsp;
         view
     </span>
@@ -203,7 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><b style="color: orangered">1.异步处理模型</b><br>&nbsp;&nbsp;&nbsp;&nbsp;一旦谈到分布式、微服务等这些具有很高逼格的代名词，总能让你在面试中脱颖而出，不是因为这些词的英文翻译的好，而是现代互联网乃至企业级开发确实在分布式、微服务等模式下取得了良好的架构效果。无论是微服务，还是之前的SOA，总是离不开异步处理模型，小到程序中IO的处理，大到系统间的信息交互，处处都有异步的身影。<br><a id="more"></a>&nbsp;&nbsp;&nbsp;&nbsp;谈到系统之间的消息异步处理，就不能不谈消息队列(MQ)。MQ只是实现数据异步处理的一种解决方案，没有MQ能不能实现异步处理呢？当然能，最简单粗暴的莫过于采用数据库方式，消息生产者直接把数据插入数据库，消费者采用读数据库的方式来获取数据，所以MQ并不等于异步处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;异步消息处理最大程度上解耦了各个系统，为每个系统独立扩展提供了更大空间，但是异步消息处理也同时面临一些挑战，比如：消息管道性能，消息管道的高可用等其中最贴近业务层的可能非“数据异常处理”莫属，基本上可认为这是数据处理模型的最末端，数据流向的尾部，但往往却是业务中比较重要的部分。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果一条异步信息作为一个分布式事务中的一环，那还涉及到消息处理结果的反馈，分布式协调器会根据消息结果的成功与否来决定事务的结果。<br>&nbsp;&nbsp;&nbsp;&nbsp;单就异步消息消费端来讲，根据不同的业务场景就有以下几种异常处理方案。<br><b style="color: orangered">2.直接忽略</b><br>&nbsp;&nbsp;&nbsp;&nbsp;这是所有异常数据处理方案中最粗暴，同时也是最简单的一种。发生异常的时候，直接忽略，什么都不做。<br>&nbsp;&nbsp;&nbsp;&nbsp;面对异常不采取任何措施，乍一听这可能是个很糟糕的方案，但是在实际业务中，这可能是完全可以接受的。如果因为错误导致的损失很小，甚至可以忽略，但是建立一套错误纠正机制的成本远远高于忽略异常，这种场景下选择直接忽略往往是一种更优的方案。而且当错误纠正机制设计需要人工接入操作的时候，代价会更高，而且好会引入影响其他业务的可能，更为可怕的是如果错误纠正机制本身出现问题，那代价更是….<br>&nbsp;&nbsp;&nbsp;&nbsp;举个简单的例子：像一些登陆日志的统计操作，如果处理某个人登陆的数据出现异常，往往会选择直接忽略。因为统计这中业务本身就带有数据的容错机制，10000和10001在统计需求看来没有什么区别。<br><b style="color: orangered">3.重试</b><br>&nbsp;&nbsp;&nbsp;&nbsp;当直接忽略的方案不可行的时候，你可能需要重试的操作。如果在重试的情况下有足够高的成功率，那重试就是合理的选择。重试虽然可以改正间接性的错误，但是它对那些违反业务的规则，违反数据模型的数据无能为力。<br>&nbsp;&nbsp;&nbsp;&nbsp;在最理想的情况下，如果重试操作是幂等性的，事情就会简单很多，重试操作可以放心大胆的去实施。但是在重试操作经过一段时间或者一定次数之后还未成功的话，多数情况下可能需要有一定的后续策略，比如：重试10次之后如果还是失败，则放弃。<br><b style="color: orangered">4.补偿</b><br>&nbsp;&nbsp;&nbsp;&nbsp;这个策略是分布式事务中经常用到的，与其说是补偿，不如说是回滚操作。特别是在程序接收到数据会有一系列的操作的情景下，补偿操作类似于事务回滚的概念，让系统回到发生这一系列操作之前的状态。这种补偿的机制非常适合于那种有“事务”需求的场景。</p>
+        <p>从一个经典的面试题说起，输入URL到页面展现的过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.浏览器拿到服务器的IP地址后，会向它发送HTTP请求。HTTP请求经由一层层的处理、封装、发出之后，最终经由网络到达服务器，建立TCP/IP连接，服务器接收到请求并开始处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.服务器构建响应，再经由一层层的处理、封装、发出后，到达客户端，浏览器处理请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.浏览器开始渲染页面，解析HTML，构建render树，根据render树的节点和CSS的对应关系，进行布局，绘制画面。<br><a id="more"></a>这4个步骤包含了一个HTTP请求的完整生命周期，文章着重介绍第2步和第3步，也就是请求是如何在两个物理端点之间进行通信的。数据的发出和接收必然会经历一些处理、解析的过程，这些过程在系统的不同层次进行。</p>
 
       
     </div>
@@ -213,18 +213,9 @@
     
 <nav id="article-nav">
   
-    <a href="../../26/一个HTTP请求的曲折经历/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          一个HTTP请求的曲折经历
-        
-      </div>
-    </a>
   
-  
-    <a href="../../23/java堆与栈的区别/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java堆与栈的区别</div>
+    <a href="../../24/分布式系统消息异常/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">分布式系统消息异常</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   

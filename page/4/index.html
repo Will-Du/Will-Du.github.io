@@ -152,6 +152,74 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-SQL_1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2020/01/11/SQL_1/" class="article-date">
+  	<time datetime="2020-01-11T10:39:33.000Z" itemprop="datePublished">2020-01-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2020/01/11/SQL_1/">
+        SQL语句中where条件后写1=1是什么意思
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;这段代码应该是由程序(例如java)中生成的，where条件中1=1之后的条件是通过if动态变化的。例如:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">"select * from table_name where 1=1"</span>;</span><br><span class="line"><span class="keyword">if</span>(conditon <span class="number">1</span>)&#123;</span><br><span class="line">    sql = sql + <span class="string">" and var2 = value2"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(conditon <span class="number">2</span>) &#123;</span><br><span class="line">    sql = sql + <span class="string">" and var3 = value3"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/数据库/">数据库</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2020/01/11/SQL_1/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="SQL语句中where条件后写1=1是什么意思">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2020/01/11/SQL_1/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-redis_1" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -759,74 +827,6 @@
       
         <p class="article-more-link">
           <a href="../../2019/12/19/interview_concurrentHashMap/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-interview_es" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/12/17/interview_es/" class="article-date">
-  	<time datetime="2019-12-17T02:57:00.000Z" itemprop="datePublished">2019-12-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/12/17/interview_es/">
-        谈谈对ES搜索引擎的理解
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="面试官心里分析"><a href="#面试官心里分析" class="headerlink" title="面试官心里分析"></a>面试官心里分析</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;问这个，其实面试官就是要看看你了不了解ES的一些基本原理，因为用ES无非就是写入数据、搜索数据。你要是不明白你发起一个写入和搜索请求的时候，ES在干什么，那你是对ES基本就是个黑盒，你还能干什么？你唯一能干的就是用ES的api读写数据。要是出点什么问题，你啥都不知道，那还能指望你什么呢？<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/12/17/interview_es/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="谈谈对ES搜索引擎的理解">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/12/17/interview_es/#more">more >></a>
         </p>
       
     

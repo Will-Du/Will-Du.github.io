@@ -152,6 +152,74 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-一个HTTP请求的曲折经历" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="2020/06/26/一个HTTP请求的曲折经历/" class="article-date">
+  	<time datetime="2020-06-26T06:52:26.000Z" itemprop="datePublished">2020-06-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/06/26/一个HTTP请求的曲折经历/">
+        一个HTTP请求的曲折经历
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从一个经典的面试题说起，输入URL到页面展现的过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.浏览器拿到服务器的IP地址后，会向它发送HTTP请求。HTTP请求经由一层层的处理、封装、发出之后，最终经由网络到达服务器，建立TCP/IP连接，服务器接收到请求并开始处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.服务器构建响应，再经由一层层的处理、封装、发出后，到达客户端，浏览器处理请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.浏览器开始渲染页面，解析HTML，构建render树，根据render树的节点和CSS的对应关系，进行布局，绘制画面。<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="2020/06/26/一个HTTP请求的曲折经历/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="一个HTTP请求的曲折经历">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="2020/06/26/一个HTTP请求的曲折经历/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="w-分布式系统消息异常" class="article article-type-w" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -755,74 +823,6 @@
       
         <p class="article-more-link">
           <a href="2020/05/31/一个TCP连接可以发多少个HTTP请求/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-IOC" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2020/05/29/IOC/" class="article-date">
-  	<time datetime="2020-05-29T14:04:50.000Z" itemprop="datePublished">2020-05-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/05/29/IOC/">
-        IOC
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2020/05/29/IOC/ioc1.png" alt="ioc"><br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Spring/">Spring</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="2020/05/29/IOC/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="IOC">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="2020/05/29/IOC/#more">more >></a>
         </p>
       
     
