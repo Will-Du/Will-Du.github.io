@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-26T07:02:55.412Z">
+<meta property="og:updated_time" content="2020-06-27T06:17:10.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个HTTP请求的曲折经历">
 <meta name="twitter:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
@@ -203,7 +203,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>从一个经典的面试题说起，输入URL到页面展现的过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.浏览器拿到服务器的IP地址后，会向它发送HTTP请求。HTTP请求经由一层层的处理、封装、发出之后，最终经由网络到达服务器，建立TCP/IP连接，服务器接收到请求并开始处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.服务器构建响应，再经由一层层的处理、封装、发出后，到达客户端，浏览器处理请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.浏览器开始渲染页面，解析HTML，构建render树，根据render树的节点和CSS的对应关系，进行布局，绘制画面。<br><a id="more"></a>这4个步骤包含了一个HTTP请求的完整生命周期，文章着重介绍第2步和第3步，也就是请求是如何在两个物理端点之间进行通信的。数据的发出和接收必然会经历一些处理、解析的过程，这些过程在系统的不同层次进行。</p>
+        <p>从一个经典的面试题说起，输入URL到页面展现的过程：<br>&nbsp;&nbsp;&nbsp;&nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。<br>&nbsp;&nbsp;&nbsp;&nbsp;2.浏览器拿到服务器的IP地址后，会向它发送HTTP请求。HTTP请求经由一层层的处理、封装、发出之后，最终经由网络到达服务器，建立TCP/IP连接，服务器接收到请求并开始处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;3.服务器构建响应，再经由一层层的处理、封装、发出后，到达客户端，浏览器处理请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;4.浏览器开始渲染页面，解析HTML，构建render树，根据render树的节点和CSS的对应关系，进行布局，绘制画面。<br><a id="more"></a>这4个步骤包含了一个HTTP请求的完整生命周期，文章着重介绍第2步和第3步，也就是请求是如何在两个物理端点之间进行通信的。数据的发出和接收必然会经历一些处理、解析的过程，这些过程在系统的不同层次进行。<br><b style="color: orangered">分层</b><br>&nbsp;&nbsp;&nbsp;&nbsp;一个HTTP请求从源端发出到终端接收的处理过程都是要经过以下四层。其中每一层都有各自的协议。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><font color="#0A0A0A">层级</font></th>
+<th style="text-align:left"><font color="#0A0A0A">协议</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">应用层</td>
+<td style="text-align:left">HTTP</td>
+</tr>
+<tr>
+<td style="text-align:left">传输层</td>
+<td style="text-align:left">TCP</td>
+</tr>
+<tr>
+<td style="text-align:left">网络层</td>
+<td style="text-align:left">IP</td>
+</tr>
+<tr>
+<td style="text-align:left">链路层</td>
+<td style="text-align:left">设备驱动程序及网卡</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们先来理解一下协议是什么，协议是经过约定，双方共同承认，并且需要共同遵守的规则。上面的每一层，都有各自的协议，协议的执行者是通信链路两端内的对应层。每一层通过协议来理解数据，并进行处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;上图中只举例出了最常见的协议，实际上每一层都有细分的协议：</p>
+<ul>
+<li>应用层：应用程序负责将数据以相应规则(协议)进行包装，发送给传输层<ul>
+<li><b style="color: #6A6AFF">HTTP:</b>超文本传输协议</li>
+<li><b style="color: #6A6AFF">FTP:</b>文件传输协议</li>
+<li><b style="color: #6A6AFF">SMTP:</b>简单邮件传送协议</li>
+<li><b style="color: #6A6AFF">SNMP:</b>简单网络管理协议</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
