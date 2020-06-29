@@ -13,16 +13,17 @@
 <meta name="keywords" content="面试题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个HTTP请求的曲折经历">
-<meta property="og:url" content="http://yoursite.com/2020/06/26/一个HTTP请求的曲折经历/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/index.html">
 <meta property="og:site_name" content="嘟嘟的博客">
 <meta property="og:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2020/06/26/一个HTTP请求的曲折经历/一个HTTP请求的曲折经历/http1.jpg">
-<meta property="og:updated_time" content="2020-06-28T02:59:01.367Z">
+<meta property="og:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp1.png">
+<meta property="og:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp2.png">
+<meta property="og:updated_time" content="2020-06-29T02:56:38.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个HTTP请求的曲折经历">
 <meta name="twitter:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
-<meta name="twitter:image" content="http://yoursite.com/2020/06/26/一个HTTP请求的曲折经历/一个HTTP请求的曲折经历/http1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp1.png">
   
     <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
   
@@ -161,7 +162,7 @@
   
     <div class="article-meta">
       <a href="" class="article-date">
-  	<time datetime="2020-06-26T06:52:26.000Z" itemprop="datePublished">2020-06-26</time>
+  	<time datetime="2020-06-29T01:59:28.000Z" itemprop="datePublished">2020-06-29</time>
 </a>
     </div>
   
@@ -258,7 +259,7 @@
 </ul>
 </li>
 </ul>
-<p><b style="color: orangered">封装和分用</b><br>&nbsp;&nbsp;&nbsp;&nbsp;数据在经过每一层的时候都要被对应的协议包装，到达终端的时候，要一层一层的解包。这两个过程叫封装和分用。<br>&nbsp;&nbsp;&nbsp;&nbsp;发送时，用户数据被HTTP封装为报文，每一层会将上一层传过来的报文作为本层的数据块，并添加自己的首部，其中包含了协议标识，这一整体作为本层报文向下传递。<br>&nbsp;&nbsp;&nbsp;&nbsp;接收时，数据自下而上流动，经过每一层时被去掉报文首部，根据报文标识确定正确的上层协议，最终到应用层被应用程序处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">封装</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源端发送HTTP报文时，报文会以数据流的形式通过一条已经打开的TCP连接按序传输，TCP收到数据流后会将其分割成小的数据块，每个小块被添加的TCP首部与数据块共同组成TCP分组，分组经由网络层发送，网络层遵循IP协议，当收到分组发送请求后，会将分组其放入IP数据报，填充报头，将数据报文经由链路层发送出去。<br><img src="一个HTTP请求的曲折经历/http1.jpg" alt="请求封装"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这一过程经过每层的时候都会增加一些首部信息，有时还需要增加尾部信息，每一层都会把数据封装到各自的报文中，并在报文首部添加协议标识，这个过程叫封装。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">分用</b></p>
+<p><b style="color: orangered">封装和分用</b><br>&nbsp;&nbsp;&nbsp;&nbsp;数据在经过每一层的时候都要被对应的协议包装，到达终端的时候，要一层一层的解包。这两个过程叫封装和分用。<br>&nbsp;&nbsp;&nbsp;&nbsp;发送时，用户数据被HTTP封装为报文，每一层会将上一层传过来的报文作为本层的数据块，并添加自己的首部，其中包含了协议标识，这一整体作为本层报文向下传递。<br>&nbsp;&nbsp;&nbsp;&nbsp;接收时，数据自下而上流动，经过每一层时被去掉报文首部，根据报文标识确定正确的上层协议，最终到应用层被应用程序处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">封装</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源端发送HTTP报文时，报文会以数据流的形式通过一条已经打开的TCP连接按序传输，TCP收到数据流后会将其分割成小的数据块，每个小块被添加的TCP首部与数据块共同组成TCP分组，分组经由网络层发送，网络层遵循IP协议，当收到分组发送请求后，会将分组其放入IP数据报，填充报头，将数据报文经由链路层发送出去。<br><img src="/2020/06/29/一个HTTP请求的曲折经历/tp1.png" alt="请求封装"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这一过程经过每层的时候都会增加一些首部信息，有时还需要增加尾部信息，每一层都会把数据封装到各自的报文中，并在报文首部添加协议标识，这个过程叫封装。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">分用</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;终端接收到一个以太网数据帧时，数据自底而上流动，去掉发送时各层协议加上的报文首部，每层协议都要检查报文首部的协议标识，从而确定上层协议，保证数据被正确处理，这个过程叫分用。<br><img src="/2020/06/29/一个HTTP请求的曲折经历/tp2.png" alt="请求封装"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;终端从链路层接收到数据请求后，进入网络层对数据进行解析，交给传输层，校验分组顺序和完整性，从数据块中取出数据，得到HTTP报文，交给应用层进行处理。这个过程会逐层剥离报头还原数据。<br><b style="color: orangered">逐层分析</b><br>&nbsp;&nbsp;&nbsp;&nbsp;我们已经知道，数据是从源端自上而下到终端自下而上被一层层处理的，现在就来看一下每层都做了什么事情。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">HTTP</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTTP属于应用层，用户触发交互所产生的行为数据和服务端对此的响应都由它封装成HTTP报文，再交由下层协议进行处理。报文的作用是客户端和服务端沟通的载体，双方都要遵循统一规则对信息进行处理，这一规则成为HTTP。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客户端与服务端的交互往往非常复杂，为了使双方都能高效、明确、安全的通信(例如传递意图与状态、承载数据、携带认证信息、控制连接行为与缓存)，需要依赖报文中的结构来实现，下面先从结构开始看。<br>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 
       
     </div>
