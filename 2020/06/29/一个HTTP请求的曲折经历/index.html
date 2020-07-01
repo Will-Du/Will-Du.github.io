@@ -19,7 +19,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp1.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp2.png">
-<meta property="og:updated_time" content="2020-06-30T09:28:15.757Z">
+<meta property="og:image" content="http://yoursite.com/2020/06/29/一个HTTP请求的曲折经历/tp3.jpg">
+<meta property="og:updated_time" content="2020-07-01T09:30:14.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个HTTP请求的曲折经历">
 <meta name="twitter:description" content="从一个经典的面试题说起，输入URL到页面展现的过程：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.输入URL后，会先进行域名解析。优先查找本地host文件有无对应的IP地址，没有的话去本地DNS服务器查找，还不行的话，本地DNS服务器会去找根DNS服务器需要一个域服务器的地址进行查询，域服务器将要查询的域名的解析服务器地址返回给本地DNS，本地DNS去这里查询就OK了。&amp;nbsp;&amp;nbsp">
@@ -364,7 +365,13 @@
 <li>Expires: 实体数据下的日期时间。</li>
 <li>Allow: 所请求资源允许的请求方法。</li>
 <li>ETag: 资源的特定版本的标识符，可以让缓存更高效，并节省带宽。</li>
-<li>Cache-Control: 控制缓存机制的指令。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是HTTP报文包含的主要结构，当请求报文到达服务器时，服务器会对报文中的内容解析出来，根据方法、资源路径、首部和主体来处理请求，然后通过请求资源的访问结果，来构建响应，回送给客户端。<br><b style="color: orangered">传输层-TCP</b></li>
+<li>Cache-Control: 控制缓存机制的指令。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上是HTTP报文包含的主要结构，当请求报文到达服务器时，服务器会对报文中的内容解析出来，根据方法、资源路径、首部和主体来处理请求，然后通过请求资源的访问结果，来构建响应，回送给客户端。<br><b style="color: orangered">传输层-TCP</b><br>&nbsp;&nbsp;&nbsp;&nbsp;HTTP连接是建立在TCP连接的基础之上的，TCP提供可靠的数据连接。当要传输一个HTTP报文时，报文数据会以流的形式通过一条已经打开的TCP连接按顺序传输，TCP会将收到的数据分成小块，每块是一个TCP分组。<br>&nbsp;&nbsp;&nbsp;&nbsp;由于数据是分成小块发送的，所以完整可靠的数据传输主要体现在：分组是否完整、分组顺序是否正常、分组是否损坏、分组数据是否重复。这些可以通过TCP的校验和、序列号、确认应答、重发控制、连接管理和窗口机制来控制。<br>&nbsp;&nbsp;&nbsp;&nbsp;TCP是传输控制协议，传输控制主要依赖首部包含的6个标志，他们控制报文的传输状态以及发送端和接收端应对数据采取的动作、当它们的值为1时，标志对应的各自功能才允许被执行，比如当URG为1时，报文首部的紧急指针部分才有效。</li>
+<li>URG：紧急指针</li>
+<li>ACK：确认序号有效</li>
+<li>PSH：接收方应该尽快将这个报文段交给应用层</li>
+<li>RST：重建连接</li>
+<li>SYN：同步序号用来发起一个连接</li>
+<li>FIN：发送端完成发送任务<br><img src="/2020/06/29/一个HTTP请求的曲折经历/tp3.jpg" alt="请求封装"><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">源端口和目的端口：</b>标识发送发和接收方的端口号，一个TCP连接通过4个值确认：源IP、源端口、目的IP、目的端口，其中源IP和目的IP包含在IP分组内。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">首部长度：</b>表示TCP首部的字节长度，也能标记出从多少个字节开始，才是需要传输的数据。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">TCP段序号：</b>本段报文发送的数据第一个字节的序号，每段报文中的数据的每个字节都有序号，每一个字节的序号从0开始，依次加1，加到(2^32)-1再次从0开始。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">TCP段确认序号：</b>当首部标志ACK为1时，确认序号有效。TCP段被接收端接收后，会回送给发送端一个确认号，为上次接收的最后一个字节序号+1。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">校验和：</b>由发送端计算，接收端验证，如果接收方检测到校验和不正确，表明该TCP段可能有损坏，会被丢弃，同时接收端向回送一个重复的确认号(与最近的一次正确的报文传输的确认号重复)，表明接收到的TCP段是错误的，并告知自己希望收到的序号。这时发送端需要立即重传出错的TCP段。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">紧急指针：</b>当首部标志URG为1时，紧急指针有效，表示发送端向接收端要发送紧急数据。紧急指针是一个正偏移量，它和TCP段序号相加，计算出紧急数据的最后一个字节的序号。比如接收方接收到数据，从序号为1000的字节开始读取，紧急指针为1000，那么紧急数据就是序号从1000到2000之间的字节。这些数据有接收方决定如何处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">窗口尺寸：</b>决定了一个TCP一次成块数据流的吞吐量。需要注意的是，它表示的是发送一方的允许对方发送的数据量，比如发送方首部中的窗口大小为1000，就表示发送发最多可以接受对方发送的1000个字节的数据量。这与发送方的数据缓存空间有关，会影响TCP的性能。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">首部标志PSH：</b>如果需要告诉接收方将数据立即全部提交给接收进程，发送发需要将PSH置为1，这里的数据是和PSH一起传送的数据以及之前接收到的全部数据，如果接收方收到了PSH为1的标志，需要立即将数据提交给接收进程，不同再等待有没有其他数据进来。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">复位标志RST：</b>当RST为1时，表示连接出现了异常情况，接收方将终止连接，通知应用层重新建立连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">同步序号SYN：</b>用来建立连接，涉及到TCP的三次握手。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.开始建立连接时，客户端想服务器发送一个TCP分组，分组首部的SYN为1，并携带一个初始序号，表明这是一个连接请求。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.如果服务器接受了连接，会向客户端发送一个TCP分组，分组中会包含SYN和ACK都为1，同时包含一个确认序号，值为来自客户端的初始序号+1，表示连接已经被接受。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.客户端收到上一步发来的分组后，会再向服务器发来一段确认报文分组，ACK为1，会再次携带确认序号，值是第二步来自客户端的确认序号+1。服务端收到确认消息后，进入已经连接的状态。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在第3步的确认分组中，是可以携带要发送的数据的。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">连接终止标志FIN：</b>用来关闭连接，当一端完成数据发送任务后会发送一个FIN标志来终止连接，但因为TCP在两个方向(C-S,S-C)上会有数据传递，每个方向有各自的发送FIN&amp;确认关闭流程，所以会有四次交互，也称为4次挥手。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.如果客户端应用层的数据发送完毕，会导致客户端的TCP报文发送一个FIN，告知服务器准备关闭数据传送。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.服务器接收到这个标志后，它发回一个ACK，确认序号为收到的序号+1，同时TCP还要向应用程序发一个文件结束符。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.此时服务器关闭这个方向的连接，导致它的TCP也会发送一个FIN。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.客户端接收到之后发回一个确认ACK，序号为收到的序号+1，连接完全关闭。<br>&nbsp;&nbsp;&nbsp;&nbsp;TCP段序号与确认序号保证了数据的顺序，校验和确保了数据的完整性，紧急指针保证紧急数据可被及时处理。另外，TCP还有一些超时重传、拥塞避免、慢启动的机制，都可以保证分组数据按照顺序完整的传到目标端。</li>
 </ul>
 
       
