@@ -152,6 +152,74 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-interview_concurrentHashMap" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="../../2019/12/19/interview_concurrentHashMap/" class="article-date">
+  	<time datetime="2019-12-19T07:08:51.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../2019/12/19/interview_concurrentHashMap/">
+        为啥ConcurrentHashMap读操作不需要加锁
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;我们知道，ConcurrentHashMap(1.8)这个并发集合框架是线程安全的，当你看到源码的get操作时，会发现get操作全程是没有加任何锁的，这也是这篇所讨论的问题–为什么它不需要加锁呢？<br></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="../../2019/12/19/interview_concurrentHashMap/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="为啥ConcurrentHashMap读操作不需要加锁">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="../../2019/12/19/interview_concurrentHashMap/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-interview_es" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -754,74 +822,6 @@
       
         <p class="article-more-link">
           <a href="../../2019/11/27/redis内存满了如何处理/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-如何设计一个安全的对外接口" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="../../2019/11/26/如何设计一个安全的对外接口/" class="article-date">
-  	<time datetime="2019-11-26T13:59:36.000Z" itemprop="datePublished">2019-11-26</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../2019/11/26/如何设计一个安全的对外接口/">
-        如何设计一个安全的对外接口
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong> 前言 </strong><br>&nbsp;&nbsp;&nbsp;&nbsp;安全措施大体来看主要在两个方面，一方面是如何保证数据在传输过程中的安全性，另一方面是数据已经到达服务器，服务器端如何识别数据，如何不被攻击，下面看具体有哪些措施：<br></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/面试题/">面试题</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="../../2019/11/26/如何设计一个安全的对外接口/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="如何设计一个安全的对外接口">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="../../2019/11/26/如何设计一个安全的对外接口/#more">more >></a>
         </p>
       
     

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>SQL别用count查找是否存在 | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="根据某一条件从数据库表中查询“有”与“没有”，只有两种状态，那为什么在写SQL的时候，还要SELECT COUNT(*)呢？无论是刚入道的程序员新星，还是久经沙场的程序员老白，还是一如既往的count.目前多数人的写法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;多次review代码，发现如下现象：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;业">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL别用count查找是否存在">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/SQL别用count查找是否存在/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="根据某一条件从数据库表中查询“有”与“没有”，只有两种状态，那为什么在写SQL的时候，还要SELECT COUNT(*)呢？无论是刚入道的程序员新星，还是久经沙场的程序员老白，还是一如既往的count.目前多数人的写法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;多次review代码，发现如下现象：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;业">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-07-05T09:09:37.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL别用count查找是否存在">
+<meta name="twitter:description" content="根据某一条件从数据库表中查询“有”与“没有”，只有两种状态，那为什么在写SQL的时候，还要SELECT COUNT(*)呢？无论是刚入道的程序员新星，还是久经沙场的程序员老白，还是一如既往的count.目前多数人的写法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;多次review代码，发现如下现象：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;业">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="../../../../js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../../../tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="../../../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../../../tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="../../../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../../../tags/分布式/" style="font-size: 12.86px;">分布式</a> <a href="../../../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../../../tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-SQL别用count查找是否存在" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+  	<time datetime="2020-07-05T08:49:23.000Z" itemprop="datePublished">2020-07-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQL别用count查找是否存在
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/数据库/">数据库</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="SQL别用count查找是否存在">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>根据某一条件从数据库表中查询“有”与“没有”，只有两种状态，那为什么在写SQL的时候，还要SELECT COUNT(*)呢？无论是刚入道的程序员新星，还是久经沙场的程序员老白，还是一如既往的count.<br><b style="color: orangered">目前多数人的写法</b><br>&nbsp;&nbsp;&nbsp;&nbsp;多次review代码，发现如下现象：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业务代码中，需要根据一个或多个条件，查询是否存在记录，不关心有多少条记录。普遍的SQL及代码写法如下:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQL写法</span></span><br><span class="line"><span class="function">SELECT <span class="title">COUNT</span><span class="params">(*)</span> FROM TABLE WHERE COLCOMN1 </span>= <span class="string">'A'</span> AND COLCOMN2 = <span class="string">'B'</span></span><br><span class="line"><span class="comment">// java写法</span></span><br><span class="line"><span class="keyword">int</span> num = XXdao.countXXbyXXX(paramer);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 当存在时，执行这里的代码</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 当不存在时，执行这里的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;是不是感觉很OK，没有什么问题。<a id="more"></a><br><b style="color: orangered">优化方案</b><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQL写法</span></span><br><span class="line">SELECT <span class="number">1</span> FROM TABLE WHERE COLCOMN1 = <span class="string">'A'</span> AND COLCOMN2 = <span class="string">'B'</span> LIMIT <span class="number">1</span></span><br><span class="line"><span class="comment">// java写法</span></span><br><span class="line">Integer exist = XXdao.countXXbyXXX(paramer);</span><br><span class="line"><span class="keyword">if</span>(exist != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="comment">// 当存在时，执行这里的代码</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 当不存在时，执行这里的代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;SQL不再使用count,而是改用LIMIT 1，让数据库查询时遇到一条就返回，不要再继续查找还有多少条了。<br>&nbsp;&nbsp;&nbsp;&nbsp;业务代码中直接判断是否非空即可，SQL查询速度大大提升。<br><b style="color: orangered">总结</b><br>&nbsp;&nbsp;&nbsp;&nbsp;根据查询条件查出来的条数越多，性能提升的越明显，在某些情况下，还可以减少联合索引的创建。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../../06/29/一个HTTP请求的曲折经历/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一个HTTP请求的曲折经历</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
