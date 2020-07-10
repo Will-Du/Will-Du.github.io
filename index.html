@@ -104,7 +104,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="tags/Java/" style="font-size: 18.57px;">Java</a> <a href="tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="tags/git/" style="font-size: 11.43px;">git</a> <a href="tags/js/" style="font-size: 15.71px;">js</a> <a href="tags/linux/" style="font-size: 10px;">linux</a> <a href="tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="tags/分布式/" style="font-size: 14.29px;">分布式</a> <a href="tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="tags/算法/" style="font-size: 10px;">算法</a> <a href="tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="tags/面试题/" style="font-size: 20px;">面试题</a>
+						<a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="tags/Java/" style="font-size: 18.57px;">Java</a> <a href="tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="tags/git/" style="font-size: 11.43px;">git</a> <a href="tags/js/" style="font-size: 15.71px;">js</a> <a href="tags/linux/" style="font-size: 10px;">linux</a> <a href="tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="tags/分布式/" style="font-size: 15.71px;">分布式</a> <a href="tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="tags/算法/" style="font-size: 10px;">算法</a> <a href="tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="tags/面试题/" style="font-size: 20px;">面试题</a>
 					</div>
 				</section>
 				
@@ -151,6 +151,74 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-分布式锁用Redis还是Zookeeper" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="2020/07/09/分布式锁用Redis还是Zookeeper/" class="article-date">
+  	<time datetime="2020-07-09T07:30:54.000Z" itemprop="datePublished">2020-07-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2020/07/09/分布式锁用Redis还是Zookeeper/">
+        分布式锁用Redis还是Zookeeper
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">为什么用分布式锁？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;在讨论这个问题之前，我们先来看一个业务场景：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统A是一个电商系统，目前是一台机器部署，系统中有一个用户下订单的接口，但是用户下订单之前一定要去检查一下库存，确保库存足够了才会给用户下单。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于系统有一定的并发，所以会预先将商品的库存保存在redis中，用户下单的时候会更新redis的库存。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/分布式/">分布式</a></li></ul>
+	</div>
+
+      
+
+      
+        
+<div class="counter-tag counter">
+    <span id="2020/07/09/分布式锁用Redis还是Zookeeper/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="分布式锁用Redis还是Zookeeper">
+         &nbsp;
+        view
+    </span>
+</div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="2020/07/09/分布式锁用Redis还是Zookeeper/#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-解决数据库跨库查询" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -756,74 +824,6 @@
       
         <p class="article-more-link">
           <a href="2020/06/09/firewall限制或开放IP及端口/#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-优秀的代码都是如何分层的" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="2020/06/08/优秀的代码都是如何分层的/" class="article-date">
-  	<time datetime="2020-06-08T06:55:46.000Z" itemprop="datePublished">2020-06-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="2020/06/08/优秀的代码都是如何分层的/">
-        优秀的代码都是如何分层的？
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b style="color: orangered">1.背景</b><br>&nbsp;&nbsp;&nbsp;&nbsp;说起应用分层，大部分人都会认为这个不是很简单嘛，就controller、service、mapper三层。看起来简单，很多人其实并没有把他们职责划分开，在很多代码中，controller做得逻辑比service还多，service往往当做透传了，这其实是很多人开发代码都没有注意到的地方，反正功能也能用，至于放哪无所谓呗。这样往往造成后面代码无法复用，层级关系混乱，对后续代码的维护非常麻烦。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/系统设计/">系统设计</a></li></ul>
-	</div>
-
-      
-
-      
-        
-<div class="counter-tag counter">
-    <span id="2020/06/08/优秀的代码都是如何分层的/" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="优秀的代码都是如何分层的？">
-         &nbsp;
-        view
-    </span>
-</div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="2020/06/08/优秀的代码都是如何分层的/#more">more >></a>
         </p>
       
     

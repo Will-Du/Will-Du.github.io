@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>分布式锁用Redis还是Zookeeper | 嘟嘟的博客</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为什么用分布式锁？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在讨论这个问题之前，我们先来看一个业务场景：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;系统A是一个电商系统，目前是一台机器部署，系统中有一个用户下订单的接口，但是用户下订单之前一定要去检查一下库存，确保库存足够了才会给用户下单。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta name="keywords" content="分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式锁用Redis还是Zookeeper">
+<meta property="og:url" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/index.html">
+<meta property="og:site_name" content="嘟嘟的博客">
+<meta property="og:description" content="为什么用分布式锁？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在讨论这个问题之前，我们先来看一个业务场景：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;系统A是一个电商系统，目前是一台机器部署，系统中有一个用户下订单的接口，但是用户下订单之前一定要去检查一下库存，确保库存足够了才会给用户下单。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz5.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz6.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz7.jpg">
+<meta property="og:updated_time" content="2020-07-10T02:51:09.650Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式锁用Redis还是Zookeeper">
+<meta name="twitter:description" content="为什么用分布式锁？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在讨论这个问题之前，我们先来看一个业务场景：&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;系统A是一个电商系统，目前是一台机器部署，系统中有一个用户下订单的接口，但是用户下订单之前一定要去检查一下库存，确保库存足够了才会给用户下单。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;n">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/09/分布式锁用Redis还是Zookeeper/rorz.png">
+  
+    <link rel="alternative" href="/atom.xml" title="嘟嘟的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/kenan.jpg">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("1KJk8n1Nj4CXCkkWBlybrOrW-gzGzoHsz", "2un8yqP38AAz4m32MnsGrv49");</script>
+<script src="../../../../js/Counter.js"></script>
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Will Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="../../../../index.html">主页</a></li>
+				        
+							<li><a href="../../../../archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="../../../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../../../tags/JQuery/" style="font-size: 11.43px;">JQuery</a> <a href="../../../../tags/Java/" style="font-size: 18.57px;">Java</a> <a href="../../../../tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="../../../../tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="../../../../tags/Redis/" style="font-size: 14.29px;">Redis</a> <a href="../../../../tags/Spring/" style="font-size: 14.29px;">Spring</a> <a href="../../../../tags/git/" style="font-size: 11.43px;">git</a> <a href="../../../../tags/js/" style="font-size: 15.71px;">js</a> <a href="../../../../tags/linux/" style="font-size: 10px;">linux</a> <a href="../../../../tags/resourcecode/" style="font-size: 11.43px;">resourcecode</a> <a href="../../../../tags/sourcecode/" style="font-size: 15.71px;">sourcecode</a> <a href="../../../../tags/分布式/" style="font-size: 15.71px;">分布式</a> <a href="../../../../tags/数据库/" style="font-size: 17.14px;">数据库</a> <a href="../../../../tags/算法/" style="font-size: 10px;">算法</a> <a href="../../../../tags/系统设计/" style="font-size: 12.86px;">系统设计</a> <a href="../../../../tags/设计模式/" style="font-size: 11.43px;">设计模式</a> <a href="../../../../tags/面试题/" style="font-size: 20px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Will Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/photo.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Will Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="../../../../index.html">主页</a></li>
+		        
+					<li><a href="../../../../archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-分布式锁用Redis还是Zookeeper" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="" class="article-date">
+  	<time datetime="2020-07-09T07:30:54.000Z" itemprop="datePublished">2020-07-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分布式锁用Redis还是Zookeeper
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/分布式/">分布式</a></li></ul>
+	</div>
+
+        
+
+        
+          
+<div class="counter-tag counter">
+    <span id="" class="leancloud_visitors post-title-link" style="font-size: 12px" data-flag-title="分布式锁用Redis还是Zookeeper">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><b style="color: orangered">为什么用分布式锁？</b><br>&nbsp;&nbsp;&nbsp;&nbsp;在讨论这个问题之前，我们先来看一个业务场景：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统A是一个电商系统，目前是一台机器部署，系统中有一个用户下订单的接口，但是用户下订单之前一定要去检查一下库存，确保库存足够了才会给用户下单。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于系统有一定的并发，所以会预先将商品的库存保存在redis中，用户下单的时候会更新redis的库存。<a id="more"></a><br>&nbsp;&nbsp;&nbsp;&nbsp;此时系统架构如下：<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz.png" alt="系统架构"><br>&nbsp;&nbsp;&nbsp;&nbsp;但是这样一来会产生一个问题：假如某个时刻，redis里面的某个商品库存为1，此时两个请求同时到来，其中一个请求执行到上图的第3步，更新数据库的库存为0，但是第4步还没有执行。而另外一个请求执行到了第2步，发现库存还是1，就继续执行第3步。这样的结果是导致卖出了2个商品，然而其实库存只有1个。很明显不对啊！这就是典型的<b style="color: #CC3299">库存超卖问题</b>。<br>&nbsp;&nbsp;&nbsp;&nbsp;此时，我们很容易想到解决方案，用锁把2、3、4步锁住，让他们执行完之后，另一个线程才能进来执行第2步。<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz2.png" alt="加锁"><br>&nbsp;&nbsp;&nbsp;&nbsp;按照上面的图，在执行第2步时，使用java提供的synchronized或者ReentrantLock来锁住，然后在第4步执行完之后才释放锁。这样一来，2、3、4这3个步骤就被”锁”住了，多个线程之间只能串行化执行。<br>&nbsp;&nbsp;&nbsp;&nbsp;但是好景不长，整个系统的并发飙升，一台机器扛不住了。现在要增加一台机器，如下图：<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz3.jpg" alt="分布式"><br>&nbsp;&nbsp;&nbsp;&nbsp;增加机器后，系统变成上图所示。假设此时两个用户的请求同时到来，但是落在了不同的机器上，那么这两个请求是可以同时执行了，还是会出现<b style="color: #CC3299">库存超卖</b>的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;为什么呢？因为上图中的两个A系统，运行在两个不同的JVM里面，他们加的锁只对属于自己JVM里面的线程有效，对于其他JVM的线程是无效的。因此，这里的问题是：<b style="color: #CC3299">Java提供的原生锁机制在多机部署场景下失效了。</b>这是因为两台机器加的锁不是同一个锁(两个锁在不同的JVM里面)。那么，我们只要保证两台机器加的锁是同一个锁，问题不就解决了吗？<br>&nbsp;&nbsp;&nbsp;&nbsp;此时，就该<b style="color: #CC3299">分布式锁</b>隆重登场，分布式锁的思路是：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在整个系统提供一个全局、唯一的获取锁的“东西”，然后每个系统在需要加锁时，都去问这个“东西”拿到一把锁，这样不同的系统拿到的就可以认为是同一把锁。<br>&nbsp;&nbsp;&nbsp;&nbsp;至于这个“东西”，可以是Redis、Zookeeper，也可以是数据库。<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz4.jpg" alt="分布式锁"><br>&nbsp;&nbsp;&nbsp;&nbsp;通过上面的分析，我们知道了库存超卖场景在分布式部署系统的情况下使用java原生的锁机制无法保证线程安全，所以我们需要用到分布式锁的方案。<br><b style="color: orangered">基于Redis实现分布式锁</b><br>&nbsp;&nbsp;&nbsp;&nbsp;上面分析为啥要使用分布式锁了，这里我们来具体看看分布式锁落地的时候应该怎么处理。<br>&nbsp;&nbsp;&nbsp;&nbsp;最常见的一种方案就是使用<b style="color: #CC3299">Redis做分布式锁</b>。使用Redis做分布式锁的思路大概是这样的：在Redis中设置一个值表示加了锁，然后释放锁的时候就把这个这个key删除。<br>&nbsp;&nbsp;&nbsp;&nbsp;具体代码是这样的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取锁</span></span><br><span class="line"><span class="comment">// NX是指如果key不存在就成功，key存在返回false，PX可以指定过期时间</span></span><br><span class="line">SET anyLock unique_value NX PX <span class="number">30000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放锁：通过执行一段lua脚本</span></span><br><span class="line"><span class="comment">// 释放锁涉及到两条指令，这两条指令不是原子性的</span></span><br><span class="line"><span class="comment">// 需要用到redis的lua脚本支持特性，redis执行lua脚本是原子性的</span></span><br><span class="line"><span class="keyword">if</span> redis.call(<span class="string">"get"</span>,KEYS[<span class="number">1</span>] == ARGV[<span class="number">1</span>] then</span><br><span class="line"><span class="keyword">return</span> redis.call(<span class="string">"del"</span>, KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这种方式有几大要点：</p>
+<ul>
+<li><b>一定要用SET key value NX PX millisenconds命令</b>。如果不用，先设置了值，再设置过期时间，这个不是原子性操作，有可能再设置过期时间之前宕机，会造成死锁(key永久存在)</li>
+<li><b>value要具有唯一性</b>。这个是为了在解锁的时候，需要验证value是和加锁的一致才删除key。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是避免了一种情况：假设A获取了锁，过期时间30s，此时35s之后，锁已经自动释放了，A去释放锁，但是此时可能B获取了锁。A客户端就不能删除B的锁了。<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz5.png" alt=""><br>&nbsp;&nbsp;&nbsp;&nbsp;除了要考虑客户端要怎么实现分布式锁之外，还需要考虑redis的部署问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redis有3种部署方式：</li>
+<li>单机模式</li>
+<li>master-slave + sentinel选举模式</li>
+<li>redis cluster模式<br>&nbsp;&nbsp;&nbsp;&nbsp;使用redis做分布式锁的缺点在于：如果采用单机部署模式，会存在单点问题，只有redis故障了，加锁就不行了。<br>&nbsp;&nbsp;&nbsp;&nbsp;采用master-slave模式，加锁的时候只会对一个节点加锁，即便通过sentinel做了高可用，但是如果master节点故障了，发生主从切换，此时就会有可能出现锁丢失的问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;基于以上的考虑，其实redis的作者也考虑到这个问题，他提出了一个RedLock的算法，这个算法的意思大概是这样的：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设redis的部署模式是redis cluster，总共有5个master节点，通过以下步骤获取一把锁：</li>
+<li>获取当前时间戳，单位是毫秒</li>
+<li>轮流尝试在每个master节点上创建锁，过期时间设置较短，一般就几十毫秒</li>
+<li>尝试在大多数节点上建立一个锁，比如5个节点就要求是3个节点(n/2 + 1)</li>
+<li>客户端计算建立好锁的时间，如果建立锁的时间小于超时时间，就算建立成功了</li>
+<li>要是锁建立失败了，那么就依次删除这个锁</li>
+<li>只要别人建立一把分布式锁，你就得不断轮询去尝试获取锁<br>&nbsp;&nbsp;&nbsp;&nbsp;但是这样的这种算法还是颇具争议的，可能还会存在不少的问题，无法保证加锁的过程一定正确。<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz6.jpg" alt=""><br><b style="color: orangered">Redisson</b><br>&nbsp;&nbsp;&nbsp;&nbsp;此外，实现Redis的分布式锁，除了自己基于redis client原生api来实现之外，还可以使用开源框架：Redisson。<br>&nbsp;&nbsp;&nbsp;&nbsp;Redisson是一个企业级的开源Redis Client，也提供了分布式锁的支持。非常推荐大家使用。<br>&nbsp;&nbsp;&nbsp;&nbsp;回想一下上面说的，如果自己写代码来通过redis设置一个值，是通过下面这个命令设置的。</li>
+<li>SET anyLock unique_value NX PX 30000<br>&nbsp;&nbsp;&nbsp;&nbsp;这里设置的超时时间是30s，假如我超过30s都还没有完成业务逻辑的情况下，key会过期，其他线程有可能会获取到锁。这样一来的话，第一个线程还没执行完业务逻辑，第二个线程进来了也会出现线程安全问题。所以我们还需要额外的去维护这个过期时间，太麻烦了。<br>&nbsp;&nbsp;&nbsp;&nbsp;我们来看看redisson是怎么实现的：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Config config = <span class="keyword">new</span> Config();</span><br><span class="line">Config.useClusterServers()</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.101:7001"</span>)</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.101:7002"</span>)</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.101:7003"</span>)</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.102:7001"</span>)</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.102:7002"</span>)</span><br><span class="line">.addNodeAddress(<span class="string">"redis://192.168.31.102:7003"</span>)</span><br><span class="line"></span><br><span class="line">RedissonClient redisson = Redisson.create(config);</span><br><span class="line"></span><br><span class="line">RLock lock = redisson.getLock(<span class="string">"anyLock"</span>);</span><br><span class="line">lock.lock();</span><br><span class="line">lock.unlock();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;就是这么简单，我们只需要通过它的api中的lock和unlock即可完成分布式锁，他帮我们考虑了很多细节：</p>
+<ul>
+<li>redisson所有指令都通过lua脚本执行，redis支持lua脚本原子性运行</li>
+<li>redisson设置一个key的默认过期时间为30s，如果某个客户端持有一个锁超过了30s怎么办？<ul>
+<li>redisson中有一个watchdog的概念，翻译过来就是看门狗，它会在你获取锁之后，每隔10s帮你把key的超时时间设为30s，这样的话，就算一直持有锁也不会出现key过期了，其他线程获取到锁的问题。</li>
+</ul>
+</li>
+<li>redisson的“看门狗”逻辑保证了没有死锁发生。(如果机器宕机了，看门狗也就没了。此时就不会延长key的过期时间，到了30s之后就会自动过期了，其他线程可以获取到锁)<br><img src="/2020/07/09/分布式锁用Redis还是Zookeeper/rorz7.jpg" alt="看门狗控制key超时时间"><br>&nbsp;&nbsp;&nbsp;&nbsp;这里稍微贴出来其 实现代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 加锁逻辑</span></span><br><span class="line"><span class="keyword">private</span> &lt;T&gt; <span class="function">RFuture&lt;Long&gt; <span class="title">tryAcquireAsync</span><span class="params">(<span class="keyword">long</span> leaseTime, TimeUnit unit, <span class="keyword">final</span> <span class="keyword">long</span> threadId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (leaseTime != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tryLockInnerAsync(leaseTime, unit, threadId, RedisCommands.EVAL_LONG);</span><br><span class="line">    &#125;		</span><br><span class="line">    <span class="comment">// 调用一段lua脚本，设置一些key、过期时间</span></span><br><span class="line">    RFuture&lt;Long&gt; ttlRemainingFuture = tryLockInnerAsync(commandExcutor.getConnectionManager().getCfg().getLockWatchdogTimeout(), TimeUnit.MILLISENCONDS, threadId, RedisCommands.EVAL_LONG);</span><br><span class="line">    ttlRemainingFuture.addListener(<span class="keyword">new</span> FutureListener&lt;Long&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operationComplete</span><span class="params">(Future&lt;Long&gt; future)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!future.isSuccess()) &#123;</span><br><span class="line">                <span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            Long ttlRemaining = future.getNow();</span><br><span class="line">            <span class="comment">// lock acquired</span></span><br><span class="line">            <span class="keyword">if</span> (ttlRemaining == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 看门狗逻辑</span></span><br><span class="line">                scheduleExpirationRenewal(threadId);</span><br><span class="line">            &#125; 								</span><br><span class="line">        &#125; 				</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> ttlRemainingFuture;		</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;T&gt; <span class="function">RFuture&lt;T&gt; <span class="title">tryLockInnerAsync</span><span class="params">(<span class="keyword">long</span> leaseTime, TimeUnit unit, <span class="keyword">long</span> threadId, RedisStrictCommand&lt;T&gt; command)</span> </span>&#123;</span><br><span class="line">    internalLockLeaseTime = unit.toMills(leaseTime);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> commandExcutor.evalWriteAsync(getName(), LongCodec.INSTANCE, command,</span><br><span class="line">        <span class="string">"if (redis.call('exists',KEYS[1]) == 0) then "</span> +</span><br><span class="line">            <span class="string">"redis.call('hset', KEYS[1], ARGV[2], 1); "</span> +</span><br><span class="line">            <span class="string">"redis.call('pexpire', KEYS[1], ARGV[1]); "</span> +</span><br><span class="line">            <span class="string">"return nil; "</span> +</span><br><span class="line">        <span class="string">"end; "</span> +</span><br><span class="line">        <span class="string">"if (redis.call('hexists', KEYS[1], ARGV[2]) == 1) then "</span> +</span><br><span class="line">            <span class="string">"redis.call('hincrby', KEYS[1], ARGV[2], 1); "</span> +</span><br><span class="line">            <span class="string">"redis.call('pexpire', KEYS[1], ARGV[1]); "</span> +</span><br><span class="line">            <span class="string">"return nil; "</span> +</span><br><span class="line">        <span class="string">"end; "</span> +</span><br><span class="line">        <span class="string">"return redis.call('pttl', KEYS[1]);"</span>,</span><br><span class="line">        Collections.&lt;Object&gt;singletonList(getName()), internalLockLeaseTime, getLockName(threadId)				</span><br><span class="line">    );		</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 看门狗最终会调用这里</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">scheduleExpirationRenewal</span><span class="params">(<span class="keyword">final</span> <span class="keyword">long</span> threadId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (expirationRenewalMap.containsKey(getEntryName())) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个任务会延迟10s执行</span></span><br><span class="line">    Timeout task = commandExcutor.getConnectionManager().newTimeout(<span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(Timeout timeout)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 这个操作会将key的过期时间重新设置为30s</span></span><br><span class="line">            RFuture&lt;Boolean&gt; future = renewExpirationAsync(threadId);</span><br><span class="line"></span><br><span class="line">            future.addListener(<span class="keyword">new</span> FutureListener&lt;Boolean&gt;()&#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operationComplete</span><span class="params">(Future&lt;Boolean&gt; future)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                    expirationRenewalMap.remove(getEntryName());</span><br><span class="line">                    <span class="keyword">if</span> (!future.isSuccess()) &#123;</span><br><span class="line">                        log.error(<span class="string">"Can't update lock "</span> + getName() + <span class="string">" expiration"</span>, future.cause());</span><br><span class="line">                        <span class="keyword">return</span>;												</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (future.getNow()) &#123;</span><br><span class="line">                        <span class="comment">// reschedule iteself</span></span><br><span class="line">                        <span class="comment">// 通过递归调用本方法，无限循环延长过期时间</span></span><br><span class="line">                        scheduleExpirationRenewal(threadId); 												</span><br><span class="line">                    &#125;										</span><br><span class="line">                &#125; 								</span><br><span class="line">            &#125;); 						</span><br><span class="line">        &#125;				</span><br><span class="line">    &#125;, internalLockLeaseTime / <span class="number">3</span>, TimeUnit.MILLISENCONDS);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (expirationRenewalMap.putIfAbsent(getEntryName(), <span class="keyword">new</span> ExpirationEntry(threadId, task)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        task.cancel();</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;另外，redisson还提供了对redlock算法的支持。它的用法也很简单：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">RedissonClient redisson = Redisson.create(config);</span><br><span class="line">RLock lock1 = redisson.getFairLock(<span class="string">"lock1"</span>);</span><br><span class="line">RLock lock2 = redisson.getFairLock(<span class="string">"lock2"</span>);</span><br><span class="line">RLock lock3 = redisson.getFairLock(<span class="string">"lock3"</span>);</span><br><span class="line">RedissonRedLock muiltLock = <span class="keyword">new</span> RedisdonRedLock(lock1, lock2, lock3);</span><br><span class="line">muiltLock.lock();</span><br><span class="line">muiltLock.unlock();</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">小结：</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文分析了使用redis作为分布式锁的具体落地方案以及其一些局限性，然后介绍了一个redis的客户端redisson。这也是我推荐大家使用的，比自己写代码实现会少关心很多细节。<br><b style="color: orangered">基于zookeeper实现分布式锁</b></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../../07/解决数据库跨库查询/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解决数据库跨库查询</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 Will Wu
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="../../../../js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+</html>
