@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/07/12/提升系统性能/xn1.jpg">
-<meta property="og:updated_time" content="2020-07-19T14:36:33.954Z">
+<meta property="og:updated_time" content="2020-07-20T14:07:40.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升系统性能">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
@@ -221,7 +221,11 @@
 <li>存量队列。如果发现一些连接得不到处理，可以增大net.core.somaxconn，即等待Nginx处理的最大连接数。如果这个连接数限制过小，应该可以看到错误信息，可以逐步提高这个值，直到错误消息不再出现。</li>
 <li>文件描述符。Nginx对每个连接最多使用两个文件描述符。如果系统服务于很多连接，可能需要增大sys.fs.file_max这个对描述符的系统级限制，以及nofile这个用户文件描述符限制，以支持增大后的负载。</li>
 <li>临时端口。在作为代理使用时，Nginx会为每个上游服务器创建临时端口。可以设置net.ipv4.ip_local_port_range，增大端口值的范围，以增加可用的端口量。此外，还可以减少net.ipv4.tcp_fin_timeout的值，它控制非活动端口释放重用的等待时间，加快周转。</li>
-<li>对nginx而言，请参考nginx性能调优指南，了解如何不费吹灰之力将你的nginx系统优化为能够支持更大的吞吐量。<br><b style="color: orangered">建议九：调优Web服务器</b></li>
+<li>对nginx而言，请参考nginx性能调优指南，了解如何不费吹灰之力将你的nginx系统优化为能够支持更大的吞吐量。<br><b style="color: orangered">建议九：调优Web服务器</b><br>&nbsp;&nbsp;&nbsp;&nbsp;无论使用什么Web服务器，都需要针对应用对其调优。以下建议适用于任何Web服务器，但会给出只有Nginx的设置说明。</li>
+<li>访问日志。不要每个请求的日志都马上写到磁盘，可以在内存里做个缓存，然后批量写入。对Nginx而言，将buffer=<em>size</em>参数添加到access_log指令，等内存缓冲区写满后再把日志写到磁盘。如果你添加了<strong>flush=<em>time</em></strong>参数，那么缓冲区的内容也会按照指定时间写入磁盘。</li>
+<li>缓冲。缓冲用于在内存里保存部分响应，直到缓冲区被填满，可以实现对客户端更有效的响应。无法写入内存的响应会被写到磁盘，从而降低性能。在Nginx的缓冲启用时，可以使用proxy_buffer_size和proxy_buffers指令来管理它。</li>
+<li>客户端活动连接。活动连接可以减少时间消耗，特别是在使用SSL/TLS的情况下。对Nginx而言，可以针对客户端提高keepalive_requests的数值，默认值为100；也可以增大keepalive_timeout的值，让活动连接持续时间更长，从而让后续请求得到更快响应。</li>
+<li>上游活动连接。</li>
 </ul>
 
       
