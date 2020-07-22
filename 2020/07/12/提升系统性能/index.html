@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/07/12/提升系统性能/xn1.jpg">
-<meta property="og:updated_time" content="2020-07-20T14:07:40.626Z">
+<meta property="og:updated_time" content="2020-07-22T06:29:16.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升系统性能">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
@@ -225,7 +225,7 @@
 <li>访问日志。不要每个请求的日志都马上写到磁盘，可以在内存里做个缓存，然后批量写入。对Nginx而言，将buffer=<em>size</em>参数添加到access_log指令，等内存缓冲区写满后再把日志写到磁盘。如果你添加了<strong>flush=<em>time</em></strong>参数，那么缓冲区的内容也会按照指定时间写入磁盘。</li>
 <li>缓冲。缓冲用于在内存里保存部分响应，直到缓冲区被填满，可以实现对客户端更有效的响应。无法写入内存的响应会被写到磁盘，从而降低性能。在Nginx的缓冲启用时，可以使用proxy_buffer_size和proxy_buffers指令来管理它。</li>
 <li>客户端活动连接。活动连接可以减少时间消耗，特别是在使用SSL/TLS的情况下。对Nginx而言，可以针对客户端提高keepalive_requests的数值，默认值为100；也可以增大keepalive_timeout的值，让活动连接持续时间更长，从而让后续请求得到更快响应。</li>
-<li>上游活动连接。</li>
+<li>上游活动连接。上游连接，即连接到应用服务器、数据库服务器的连接，同样可以从活动连接的设置中获得好处。对上游连接来说，可以增加活动连接，也就是每个工作进程可用的空闲活动连接的数量。这样可以增进连接重用，减少重开连接。</li>
 </ul>
 
       
