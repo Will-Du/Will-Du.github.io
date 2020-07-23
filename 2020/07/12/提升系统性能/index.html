@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/07/12/提升系统性能/xn1.jpg">
-<meta property="og:updated_time" content="2020-07-22T06:29:16.531Z">
+<meta property="og:updated_time" content="2020-07-22T14:37:35.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升系统性能">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
@@ -226,6 +226,8 @@
 <li>缓冲。缓冲用于在内存里保存部分响应，直到缓冲区被填满，可以实现对客户端更有效的响应。无法写入内存的响应会被写到磁盘，从而降低性能。在Nginx的缓冲启用时，可以使用proxy_buffer_size和proxy_buffers指令来管理它。</li>
 <li>客户端活动连接。活动连接可以减少时间消耗，特别是在使用SSL/TLS的情况下。对Nginx而言，可以针对客户端提高keepalive_requests的数值，默认值为100；也可以增大keepalive_timeout的值，让活动连接持续时间更长，从而让后续请求得到更快响应。</li>
 <li>上游活动连接。上游连接，即连接到应用服务器、数据库服务器的连接，同样可以从活动连接的设置中获得好处。对上游连接来说，可以增加活动连接，也就是每个工作进程可用的空闲活动连接的数量。这样可以增进连接重用，减少重开连接。</li>
+<li>限制。限制客户端使用的资源可以提升性能和安全性。对Nginx而言，limit_conn和limit_conn_zone指令限制指定源的连接数，而limit_rate限制宽带。这些设置可以防止合法用户“侵吞”资源，同时也有助于防止攻击。limit_req和limit_req_zone指令限制客户端请求。对于到上游服务器的连接，可以在上游配置区的服务器指令中使用max_conns参数，它限制对上游服务器的连接，防止过载。相关的队列指令会创建一个队列，在max_conns限制到达后将指定的请求保存指定的时间。</li>
+<li></li>
 </ul>
 
       
