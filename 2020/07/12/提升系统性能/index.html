@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/07/12/提升系统性能/xn1.jpg">
-<meta property="og:updated_time" content="2020-07-22T14:37:35.884Z">
+<meta property="og:updated_time" content="2020-07-24T01:39:09.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升系统性能">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
@@ -227,7 +227,9 @@
 <li>客户端活动连接。活动连接可以减少时间消耗，特别是在使用SSL/TLS的情况下。对Nginx而言，可以针对客户端提高keepalive_requests的数值，默认值为100；也可以增大keepalive_timeout的值，让活动连接持续时间更长，从而让后续请求得到更快响应。</li>
 <li>上游活动连接。上游连接，即连接到应用服务器、数据库服务器的连接，同样可以从活动连接的设置中获得好处。对上游连接来说，可以增加活动连接，也就是每个工作进程可用的空闲活动连接的数量。这样可以增进连接重用，减少重开连接。</li>
 <li>限制。限制客户端使用的资源可以提升性能和安全性。对Nginx而言，limit_conn和limit_conn_zone指令限制指定源的连接数，而limit_rate限制宽带。这些设置可以防止合法用户“侵吞”资源，同时也有助于防止攻击。limit_req和limit_req_zone指令限制客户端请求。对于到上游服务器的连接，可以在上游配置区的服务器指令中使用max_conns参数，它限制对上游服务器的连接，防止过载。相关的队列指令会创建一个队列，在max_conns限制到达后将指定的请求保存指定的时间。</li>
-<li></li>
+<li>工作进程。工作进程负责处理请求。Nginx采用基于事件的模型和OS相关的机制有效地在工作进程间分配请求。建议将worker_processes的值设置为每个CPU一个工作进程。如果需要，大多数系统都支持提高worker_connections的值。(默认为512)，可以通过试验找到最适合你系统的这个值。</li>
+<li>套接字分片。通常，一个套接字监听器向所有工作进程分发新连接。套接字分片则为每个工作进程都创建一个套接字监听器，由内核在套接字监听器可用时为其指定连接。这样可以减少锁争用，提升多核系统上的性能。要启用套接字分片，在listen指令中包含reuseport参数。</li>
+<li>线程池。一个费时的操作会阻塞任何计算机进程。对Web服务器软件来说，磁盘访问可能阻碍很多较快的任务，比如内存中的计算和复制。在使用线程池的情况下，慢操作会被指定给一组独立的任务，而主处理循环会继续运行较快的操作。磁盘操作完成后，结果会返回到主处理循环。在Nginx中，read()系统调用和sendfile()被转载到了线程池。<br>&nbsp;&nbsp;&nbsp;&nbsp;提示：修改任何操作系统及周边设备的设置时，每次只修改一项，然后测试性能。如果该项修改导致了问题，或者未提升性能，再改回去。<br><b style="color: orangered">建议十：监控实时动态以发现问题和瓶颈</b></li>
 </ul>
 
       
