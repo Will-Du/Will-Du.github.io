@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/07/12/提升系统性能/xn1.jpg">
-<meta property="og:updated_time" content="2020-07-24T01:39:09.583Z">
+<meta property="og:updated_time" content="2020-07-24T08:35:52.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="提升系统性能">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;提升Web应用的性能从未像今天这样刻不容缓。在线经济活动的比例日益提高，就连发展中国家和地区的经济活动都已经有5%以上在线进行了。在这个超级链接、随时在线的现代世界，用户的期望也远非昔日可比。如果你的网站不能马上响应，你的应用不能立即运行，用户转身就会投奔你的竞争对手。">
@@ -229,7 +229,7 @@
 <li>限制。限制客户端使用的资源可以提升性能和安全性。对Nginx而言，limit_conn和limit_conn_zone指令限制指定源的连接数，而limit_rate限制宽带。这些设置可以防止合法用户“侵吞”资源，同时也有助于防止攻击。limit_req和limit_req_zone指令限制客户端请求。对于到上游服务器的连接，可以在上游配置区的服务器指令中使用max_conns参数，它限制对上游服务器的连接，防止过载。相关的队列指令会创建一个队列，在max_conns限制到达后将指定的请求保存指定的时间。</li>
 <li>工作进程。工作进程负责处理请求。Nginx采用基于事件的模型和OS相关的机制有效地在工作进程间分配请求。建议将worker_processes的值设置为每个CPU一个工作进程。如果需要，大多数系统都支持提高worker_connections的值。(默认为512)，可以通过试验找到最适合你系统的这个值。</li>
 <li>套接字分片。通常，一个套接字监听器向所有工作进程分发新连接。套接字分片则为每个工作进程都创建一个套接字监听器，由内核在套接字监听器可用时为其指定连接。这样可以减少锁争用，提升多核系统上的性能。要启用套接字分片，在listen指令中包含reuseport参数。</li>
-<li>线程池。一个费时的操作会阻塞任何计算机进程。对Web服务器软件来说，磁盘访问可能阻碍很多较快的任务，比如内存中的计算和复制。在使用线程池的情况下，慢操作会被指定给一组独立的任务，而主处理循环会继续运行较快的操作。磁盘操作完成后，结果会返回到主处理循环。在Nginx中，read()系统调用和sendfile()被转载到了线程池。<br>&nbsp;&nbsp;&nbsp;&nbsp;提示：修改任何操作系统及周边设备的设置时，每次只修改一项，然后测试性能。如果该项修改导致了问题，或者未提升性能，再改回去。<br><b style="color: orangered">建议十：监控实时动态以发现问题和瓶颈</b></li>
+<li>线程池。一个费时的操作会阻塞任何计算机进程。对Web服务器软件来说，磁盘访问可能阻碍很多较快的任务，比如内存中的计算和复制。在使用线程池的情况下，慢操作会被指定给一组独立的任务，而主处理循环会继续运行较快的操作。磁盘操作完成后，结果会返回到主处理循环。在Nginx中，read()系统调用和sendfile()被转载到了线程池。<br>&nbsp;&nbsp;&nbsp;&nbsp;提示：修改任何操作系统及周边设备的设置时，每次只修改一项，然后测试性能。如果该项修改导致了问题，或者未提升性能，再改回去。<br><b style="color: orangered">建议十：监控实时动态以发现问题和瓶颈</b><br>&nbsp;&nbsp;&nbsp;&nbsp;保存应用高性能的关键是监控应用性能。必须实时监控特定设备及相应Web基础设施中应用的动态。<br>&nbsp;&nbsp;&nbsp;&nbsp;监控站点活动多数情况下是被动的，它只告诉你发生了什么，至于如何发现和解决问题，则是你自己的事情。<br>&nbsp;&nbsp;&nbsp;&nbsp;监控可以捕获以下几种问题：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.服务器停机。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.服务器不稳，漏处理连接。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.服务器出现大面积缓存失效。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.服务器发送的内容不对。<br>&nbsp;&nbsp;&nbsp;&nbsp;New Relic或Dynatrace等全局性的性能监控工具，可以帮我们监控远程加载页面的时候，而Nginx则可以帮你监控应用交付这一端。应用的性能数据可以告诉你优化手段什么时候真正给用户带去了不同的体验。以及什么时候需要扩容以满足越来越多的流量。<br>&nbsp;&nbsp;&nbsp;&nbsp;为了帮助用户尽快发现问题，Nginx Plus增加了应用程序体检功能，会报告经常重复出现的问题。Nginx Plus还具备session draining特性，会在已有任务完成前阻止连接，以及慢启动容量，从而让恢复的服务器在负载均衡集群中达到应有的速度。使用得当的情况下，健康体检会在问题显著影响用户体验之前帮你定位问题，而session draining和慢启动则让你替换服务时不影响感知的性能和在线时间。<br><b style="color: orangered">结论：</b></li>
 </ul>
 
       
