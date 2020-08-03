@@ -18,7 +18,7 @@
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;京东到家订单中心系统业务中，无论是外部商家的订单生产，或是内部上下游系统的依赖，订单查询的调用量都非常大，造成了订单数据读多写少的情况。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我们把订单数据存储在MySQL中，但显然只通过DB来支撑大量的查询是不可取的。同时对于一些复杂的查询，MySQL支持的不够友好，所以订单中心系统使用了ElasticSe">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2020/08/01/京东ElasticSearch应用/jdes1.jpg">
-<meta property="og:updated_time" content="2020-08-01T13:06:21.849Z">
+<meta property="og:updated_time" content="2020-08-02T14:56:25.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="京东ElasticSearch应用">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;京东到家订单中心系统业务中，无论是外部商家的订单生产，或是内部上下游系统的依赖，订单查询的调用量都非常大，造成了订单数据读多写少的情况。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;我们把订单数据存储在MySQL中，但显然只通过DB来支撑大量的查询是不可取的。同时对于一些复杂的查询，MySQL支持的不够友好，所以订单中心系统使用了ElasticSe">
@@ -205,7 +205,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;京东到家订单中心系统业务中，无论是外部商家的订单生产，或是内部上下游系统的依赖，订单查询的调用量都非常大，造成了订单数据读多写少的情况。<br>&nbsp;&nbsp;&nbsp;&nbsp;我们把订单数据存储在MySQL中，但显然只通过DB来支撑大量的查询是不可取的。同时对于一些复杂的查询，MySQL支持的不够友好，所以订单中心系统使用了ElasticSearch来承载订单查询的主要压力。<a id="more"></a><br><img src="/2020/08/01/京东ElasticSearch应用/jdes1.jpg" alt="SQL执行过程"><!-- more --><br>&nbsp;&nbsp;&nbsp;&nbsp;ElasticSearch作为一款功能强大的分布式搜索引擎，支持近实时的存储、搜索数据，在京东到家订单系统中发挥着巨大作用，目前订单中心ES集群存储数据量达到10亿个文档，日均查询量达到5亿。<br>&nbsp;&nbsp;&nbsp;&nbsp;随着京东到家近几年业务的快速发展，订单中心ES架设方案也不断演进，发展至今ES集群架设是一套实时互备方案，很好地保障了ES集群读写的稳定性，下面就给大家介绍一下这个历程及过程中遇到的一些坑。<br><b style="color: orangered">ES集群架构演进之路</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.初始阶段</b></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;京东到家订单中心系统业务中，无论是外部商家的订单生产，或是内部上下游系统的依赖，订单查询的调用量都非常大，造成了订单数据读多写少的情况。<br>&nbsp;&nbsp;&nbsp;&nbsp;我们把订单数据存储在MySQL中，但显然只通过DB来支撑大量的查询是不可取的。同时对于一些复杂的查询，MySQL支持的不够友好，所以订单中心系统使用了ElasticSearch来承载订单查询的主要压力。<a id="more"></a><br><img src="/2020/08/01/京东ElasticSearch应用/jdes1.jpg" alt="SQL执行过程"><!-- more --><br>&nbsp;&nbsp;&nbsp;&nbsp;ElasticSearch作为一款功能强大的分布式搜索引擎，支持近实时的存储、搜索数据，在京东到家订单系统中发挥着巨大作用，目前订单中心ES集群存储数据量达到10亿个文档，日均查询量达到5亿。<br>&nbsp;&nbsp;&nbsp;&nbsp;随着京东到家近几年业务的快速发展，订单中心ES架设方案也不断演进，发展至今ES集群架设是一套实时互备方案，很好地保障了ES集群读写的稳定性，下面就给大家介绍一下这个历程及过程中遇到的一些坑。<br><b style="color: orangered">ES集群架构演进之路</b><br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">1.初始阶段</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单中心ES初始阶段如一张白纸，架设方案基本没有，很多配置都是保持集群默认配置。整个集群部署在集团的弹性云上，ES集群的节点以及机器部署都比较混乱。同时按照集群维度来看，一个ES集群会有单点问题，显然对于订单中心业务来说也是不允许的。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">2.集群隔离阶段</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;和很多业务一样，ES集群采用的混布的方式。但由于订单中心ES存储的是线上订单数据，偶尔会发生混布集群抢占系统大量资源，导致整个订单中心ES服务异常。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显然任何影响到订单查询稳定性的情况都是无法容忍的，所以针对这个情况，先是对订单中心ES所在的弹性云，迁出那些系统资源抢占很高的集群节点，ES集群状况稍有好转。但随着集群数据不断增加，弹性云配置已经不太能满足ES集群，且为了完全的物理隔离，最终干脆将订单中心ES集群部署到高配置的物理机上，ES集群性能又得到提升。<br>&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: #6A6AFF">3.节点副本调优阶段</b></p>
 
       
     </div>
